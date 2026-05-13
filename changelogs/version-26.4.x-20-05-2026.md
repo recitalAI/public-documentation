@@ -1,4 +1,4 @@
-# Version 26.4.x (13/05/2026)
+# Version 26.4.x (20/05/2026)
 
 ### 26.4.1 (2026-04-15)
 
@@ -209,7 +209,11 @@
 
 * Vérification de la récupération des données du job lors de la mise à jour de ses informations
 
+### 26.4.14 (2026-05-12)
 
+#### Nouvelles fonctionnalités
+
+* Ajout du tri des colonnes dans le tableau de répartition des labels (étiquettes)
 
 
 
