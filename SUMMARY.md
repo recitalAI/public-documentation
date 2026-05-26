@@ -4,7 +4,10 @@
 
 ## 🚀 Démarrage rapide
 
-* [Utiliser un modèle d'extraction reciTAL sur étagère](demarrage-rapide/utiliser-un-modele-dextraction-recital-sur-etagere.md)
+* [Introduction](demarrage-rapide/README.md)
+* [Créer un agent génératif](demarrage-rapide/creer-un-agent-generatif.md)
+* [Créer un workflow](demarrage-rapide/creer-un-workflow.md)
+* [Utiliser un modèle d'extraction sur étagère](demarrage-rapide/utiliser-un-modele-dextraction-recital-sur-etagere.md)
 
 ## 🎨 Guide utilisateur Design Studio
 
