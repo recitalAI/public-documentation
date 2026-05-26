@@ -8,11 +8,11 @@
 
 ## 🎨 Guide utilisateur Design Studio
 
-* [Classification](classification/introduction.md)
+* [Classification](classification/classification.md)
   * [Constituer un Dataset](classification/entrainer-un-modele-de-classification/constitution-des-datasets.md)
   * [Entraîner un modèle](classification/entrainer-un-modele-de-classification/entrainement-du-modele.md)
   * [Lecture et interprétation des résultats](classification/entrainer-un-modele-de-classification/lecture-et-interpretation-des-resultats.md)
-* [Extraction](extraction/introduction.md)
+* [Extraction](extraction/extraction.md)
   * [Constituer un Dataset](extraction/entrainer-un-modele-dextraction/constituer-un-dataset.md)
   * [Annoter un Dataset](extraction/entrainer-un-modele-dextraction/annoter-un-dataset.md)
   * [Entraîner un modèle](extraction/entrainer-un-modele-dextraction/entrainer-un-modele.md)
