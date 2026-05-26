@@ -55,15 +55,15 @@
 ## 🔌 Intégration API
 
 * [Authentification](integration-api/authentification.md)
-* [Extraction](integration-api/extraction/README.md)
-  * [Envoyer des documents en extraction](integration-api/extraction/envoyer-des-documents-en-extraction.md)
-  * [Structure des résultats d'extraction](integration-api/extraction/structure-des-resultats-dextraction.md)
-* [Classification](integration-api/classification/README.md)
-  * [Envoyer des documents en classification](integration-api/classification/envoyer-des-documents-en-classification.md)
-  * [Structure des résultats de classification](integration-api/classification/structure-des-resultats-de-classification.md)
 * [Workflow](integration-api/workflow/README.md)
-  * [Envoyer des documents dans un Workflow](integration-api/workflow/envoyer-des-documents-dans-un-workflow.md)
-  * [Structure des résultats du workflow](integration-api/workflow/structure-des-resultats-du-workflow.md)
+* [Structures de résultats](integration-api/structures-de-resultats.md)
+  * [Classification](integration-api/classification/structure-des-resultats-de-classification.md)
+  * [Extraction](integration-api/extraction/structure-des-resultats-dextraction.md)
+  * [Workflow callback](integration-api/workflow/structure-des-resultats-du-workflow.md)
+* [Swaggers](integration-api/swaggers.md)
+  * [Swagger Classify](https://classify.recital.ai/classify/docs)
+  * [Swagger Extract](https://extract.api.recital.ai/extract/docs#/)
+  * [Swagger Auth](https://extract.auth.recital.ai/auth/docs#/)
 
 ## 📺 Autres
 
@@ -72,13 +72,6 @@
 * [Gestion des utilisateurs](autres/gestion-des-utilisateurs.md)
 * [Métriques d'évaluation](autres/metriques-devaluation.md)
 * [Connection avec OpenID Connect (OIDC)](autres/connection-avec-openid-connect-oidc.md)
-
-## 🏗️ Nos APIs
-
-* [Swagger Workflow](https://extract.workflows.recital.ai/workflows/docs)
-* [Swagger Extraction](https://extract.api.recital.ai/extract/docs#/)
-* [Swagger Classification](https://classify.recital.ai/classify/docs)
-* [Swagger Auth](https://extract.auth.recital.ai/auth/docs#/)
 
 ## ⚙️ Changelogs
 
