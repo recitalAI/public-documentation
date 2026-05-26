@@ -1,5 +1,7 @@
 # Structure des résultats du workflow
 
+> 🚧 **À reprendre** — JB a signalé que cette page doit être révisée (couvrir le mécanisme de callback en plus de la structure JSON).
+
 ## Structure du workflow
 
 Les données du workflows vont être constituées de l'ensemble des étapes successives de ce dernier. Prenons par exemple le workflow suivant :
