@@ -1,4 +1,4 @@
-# 🎯 Introduction
+# 🎯 Extraction
 
 L'objectif d'un projet d'extraction reciTAL est de configurer un Agent capable d'extraire toutes les informations dont vous avez besoin au sein d'un type de document. Que ces informations soient simples ou complexes, nos modèles d'extraction sont suffisamment puissants et flexibles pour répondre à tout type d'usage.
 

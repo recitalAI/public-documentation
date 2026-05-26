@@ -6,14 +6,21 @@
 
 * [Utiliser un modèle d'extraction reciTAL sur étagère](demarrage-rapide/utiliser-un-modele-dextraction-recital-sur-etagere.md)
 
-## 🎯 Extraction
+## 🎨 Guide utilisateur Design Studio
 
-* [🎯 Introduction](extraction/introduction.md)
-* [Entraîner un modèle d'extraction](extraction/entrainer-un-modele-dextraction/README.md)
+* [Classification](classification/classification.md)
+  * [Constituer un Dataset](classification/entrainer-un-modele-de-classification/constitution-des-datasets.md)
+  * [Entraîner un modèle](classification/entrainer-un-modele-de-classification/entrainement-du-modele.md)
+  * [Lecture et interprétation des résultats](classification/entrainer-un-modele-de-classification/lecture-et-interpretation-des-resultats.md)
+* [Extraction](extraction/extraction.md)
   * [Constituer un Dataset](extraction/entrainer-un-modele-dextraction/constituer-un-dataset.md)
   * [Annoter un Dataset](extraction/entrainer-un-modele-dextraction/annoter-un-dataset.md)
   * [Entraîner un modèle](extraction/entrainer-un-modele-dextraction/entrainer-un-modele.md)
-* [Configurer un Agent d'Extraction](extraction/configurer-un-agent-dextraction/README.md)
+
+## 🤖 Agents
+
+* [Classification](classification/configurer-un-agent-de-classification.md)
+* [Extraction](extraction/configurer-un-agent-dextraction/README.md)
   * [Créer un Agent](extraction/configurer-un-agent-dextraction/creer-un-agent.md)
   * [Configurer les extracteurs d'un Agent](extraction/configurer-un-agent-dextraction/configurer-les-extracteurs-dun-agent.md)
   * [Configurer les paramètres d'un Agent](extraction/configurer-un-agent-dextraction/configurer-les-parametres-dun-agent.md)
@@ -21,15 +28,6 @@
   * [Charger des documents en validation](extraction/valider-un-agent/charger-des-documents-en-validation.md)
   * [Valider un Agent](extraction/valider-un-agent/valider-un-agent.md)
 * [Ecran de correction](extraction/ecran-de-correction.md)
-
-## 🗃️ Classification
-
-* [🗃️ Introduction](classification/introduction.md)
-* [Entraîner un modèle de classification](classification/entrainer-un-modele-de-classification/README.md)
-  * [Constitution des datasets](classification/entrainer-un-modele-de-classification/constitution-des-datasets.md)
-  * [Entrainement du modèle](classification/entrainer-un-modele-de-classification/entrainement-du-modele.md)
-  * [Lecture et interprétation des résultats](classification/entrainer-un-modele-de-classification/lecture-et-interpretation-des-resultats.md)
-* [Configurer un Agent de Classification](classification/configurer-un-agent-de-classification.md)
 
 ## 🪄 Workflow
 

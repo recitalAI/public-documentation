@@ -1,4 +1,4 @@
-# 🗃️ Introduction
+# 🗃️ Classification
 
 ## Qu’est-ce que la classification ?
 
