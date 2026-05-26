@@ -32,10 +32,22 @@
 ## 🪄 Workflow
 
 * [🪄 Introduction](workflow/introduction.md)
-* [Créer un Workflow](workflow/creer-un-workflow.md)
-* [Les modules Workflow](workflow/les-modules-workflow.md)
-* [Jobs](workflow/jobs.md)
-* [Inputs](workflow/inputs.md)
+* [Créer un workflow](workflow/creer-un-workflow.md)
+* [Les modules de workflow](workflow/les-modules-workflow.md)
+* [Les jobs](workflow/jobs.md)
+* [Actions workflows standard](workflow/actions-workflows-standard.md)
+* [Connexion boîte mail](workflow/connexion-boite-mail.md)
+
+## 📚 Ressources
+
+* [Vue d'ensemble](ressources/README.md)
+
+## 🏭 Production
+
+* [Review](production/review.md)
+* [Activité](production/activite.md)
+* [Performance](production/performance.md)
+* [Paramètres](production/parametres.md)
 
 ## 🔌 Intégration API
 
