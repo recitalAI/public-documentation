@@ -87,3 +87,16 @@ Rentrez le nom du groupe et choisissez le modèle d'extraction utilisé pour ce 
 #### Ajouter les champs à extraire dans le groupe
 
 Ajoutez un par un les champs provenant du modèle à ajouter dans le groupe. Pour chaque champ, vous pouvez configurer un type de valeur (voir "[Créer un nouveau champ unique](configurer-les-extracteurs-dun-agent.md#creer-un-nouveau-champs-unique)"), et désigner si ce dernier est primaire ou non. Un champ primaire autorise la création d'un sous-groupe s'il est extrait. Le sous-groupe n'est pas créé si aucun champ primaire n'est extrait.
+
+
+## Datapoint génératif
+
+> 🚧 Section en cours de rédaction.
+
+### TODO
+
+- [ ] Décrire le datapoint génératif (vs datapoint classique)
+- [ ] Cas d'usage (extraction par prompt, extraction non-structurée)
+- [ ] Configuration : prompt, modèle LLM utilisé, paramètres
+- [ ] Captures d'écran de l'UI Suite reciTAL (configuration d'un datapoint génératif)
+- [ ] Exemples concrets
