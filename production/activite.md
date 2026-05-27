@@ -10,7 +10,13 @@ Dans la sidebar, cliquer sur **Activity**. Trois onglets segmentent les statisti
 - **Classification**
 - **Workflows**
 
-<figure><img src="../.gitbook/assets/production_activity_chart.png" alt="Graphes d'activité pour l'extraction sur 12 mois"><figcaption>Vue Activity &#x2014; tab Extraction. Deux histogrammes mensuels : total de pages et pages utiles.</figcaption></figure>
+<figure><img src="../.gitbook/assets/production_activity_chart.png" alt="Graphes d'activité pour l'extraction"><figcaption>Vue Activity &#x2014; tab Extraction. Trois histogrammes mensuels : pages totales, pages utiles, et documents traités.</figcaption></figure>
+
+Trois indicateurs sont affichés sur l'onglet **Extraction** :
+
+- **Total number of pages** — toutes les pages soumises aux agents d'extraction
+- **Number of useful pages** — pages effectivement annotées par le modèle (les autres sont des pages vides ou ignorées par filtrage)
+- **Documents** — nombre de documents complets traités (un document peut contenir plusieurs pages)
 
 ## Filtres et période
 
