@@ -89,14 +89,29 @@ Rentrez le nom du groupe et choisissez le modèle d'extraction utilisé pour ce 
 Ajoutez un par un les champs provenant du modèle à ajouter dans le groupe. Pour chaque champ, vous pouvez configurer un type de valeur (voir "[Créer un nouveau champ unique](configurer-les-extracteurs-dun-agent.md#creer-un-nouveau-champs-unique)"), et désigner si ce dernier est primaire ou non. Un champ primaire autorise la création d'un sous-groupe s'il est extrait. Le sous-groupe n'est pas créé si aucun champ primaire n'est extrait.
 
 
-## Datapoint génératif
+## Datapoint génératif {#datapoint-generatif}
 
-> 🚧 Section en cours de rédaction.
+Au-delà des méthodes basées sur un modèle entraîné, des règles ou un groupe, un datapoint peut être configuré pour extraire la valeur via un **LLM** (Large Language Model). C'est le **datapoint génératif**.
 
-### TODO
+### Activer le mode génératif
 
-- [ ] Décrire le datapoint génératif (vs datapoint classique)
-- [ ] Cas d'usage (extraction par prompt, extraction non-structurée)
-- [ ] Configuration : prompt, modèle LLM utilisé, paramètres
-- [ ] Captures d'écran de l'UI Suite reciTAL (configuration d'un datapoint génératif)
-- [ ] Exemples concrets
+Dans la configuration d'un datapoint (créé via **Add → Single data point**), sélectionner **Extraction method → Generative**.
+
+<figure><img src="../../.gitbook/assets/demarrage_datapoint_methods.png" alt="Choix de la méthode d'extraction"><figcaption>Les 4 méthodes : Model, Rules, Group, Generative.</figcaption></figure>
+
+<figure><img src="../../.gitbook/assets/demarrage_datapoint_generative_selected.png" alt="Méthode générative sélectionnée"><figcaption>Méthode Generative active. Un avertissement rappelle que les données sont partagées avec le provider LLM.</figcaption></figure>
+
+### Cas d'usage
+
+- **Champs non structurés** : résumé, analyse de sentiment, classification libre — là où une expression régulière ou un modèle entraîné classique ne suffit pas
+- **Démarrage rapide** : pas de dataset à constituer ni à annoter, le prompt suffit
+- **Champs rares** : valeurs présentes dans peu de documents, où un modèle entraîné manquerait de données
+
+### Confidentialité
+
+> ⚠️ Les datapoints génératifs transmettent les données du document au **provider LLM** configuré dans l'organisation. Vérifier la conformité (RGPD, secret professionnel) avant utilisation sur des documents sensibles.
+
+### Cross-refs
+
+- [Créer un agent génératif](../../demarrage-rapide/creer-un-agent-generatif.md) — tutoriel de démarrage
+- [Configurer les paramètres d'un Agent](configurer-les-parametres-dun-agent.md) — paramètres avancés et configuration LLM côté organisation
