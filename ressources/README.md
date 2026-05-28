@@ -1,9 +1,10 @@
 # Ressources
 
-> 🚧 Section en cours de structuration.
+> 🚧 Page à compléter.
+
+Cet espace regroupera les ressources utiles liées à la construction de workflows reciTAL : templates, exemples, connecteurs, bonnes pratiques.
 
 ## TODO
 
-- [ ] Définir avec JB le contenu exact de cette section
-- [ ] Candidats existants à rapatrier depuis `autres/` : Glossaire, Astuces d'annotation, Métriques d'évaluation
-- [ ] Ajouter d'éventuelles ressources externes (livres blancs, vidéos)
+- [ ] Définir avec JB le contenu exact attendu pour cette section
+- [ ] Lister les ressources types : templates de workflow, exemples métier, connecteurs disponibles
