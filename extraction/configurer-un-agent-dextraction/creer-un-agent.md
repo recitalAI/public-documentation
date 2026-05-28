@@ -1,38 +1,32 @@
 # Créer un Agent
 
-## À partir d'un modèle d'extraction sur étagère
+Depuis la sidebar, cliquer sur **Agents** puis sur le bouton **Create extraction agent**. Le wizard de création comporte 4 étapes.
 
-La bibliothèque reciTAL vous permet de créer un Agent à partir d’un modèle pré-entraîné sur nos données (modèles sur étagère). Voici la liste des modèles disponibles :&#x20;
+## Étape 1 — Agent configuration
 
-* Carte Grise (Carte Grise v3)
-* CNI (CNI v5)
-* Permis de conduire (Driving License - country ISO)
-* Facture (Invoice 750 v3)
-* KBIS (KBIS)
-* Passeport (Passport)
-* Relevé d'informations (Relevé d'info - V6 - NFR)
-* RIB (RIB v2)
+Nommer l'agent puis configurer les **langues supportées** et l'**OCR**. La configuration OCR par défaut de l'organisation est utilisée si rien n'est précisé.
 
-{% hint style="info" %}
-Plus de modèles sur étagère sont disponibles à la demande, contactez le service client pour en savoir plus.&#x20;
-{% endhint %}
+<figure><img src="../../.gitbook/assets/demarrage_agent_step1_config.png" alt="Étape Configuration"><figcaption>Étape 1 — langues supportées + configuration OCR.</figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/image (102).png" alt=""><figcaption><p><em>Création d’un nouvel Agent</em></p></figcaption></figure>
+## Étape 2 — Extraction agents (optionnel)
 
-Sélectionnez le modèle entraîné.
+Importer les extracteurs d'un autre agent existant (équivalent d'une duplication). Utile pour partir d'un agent déjà configuré et le personnaliser sans casser l'original.
 
-<figure><img src="../../.gitbook/assets/image (56).png" alt=""><figcaption><p><em>Création d’un nouvel Agent à partir d'un modèle</em></p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/demarrage_agent_step2_agents.png" alt="Étape Extraction agents"><figcaption>Étape 2 — sélection d'agents sources pour reprise des extracteurs.</figcaption></figure>
 
-Saisissez le nom du nouvel Agent et cliquez sur `ENREGISTRER`.
+## Étape 3 — Extraction models (optionnel)
 
-<figure><img src="../../.gitbook/assets/image (67).png" alt=""><figcaption><p><em>Nommage du nouveau doc type</em></p></figcaption></figure>
+Attacher un ou plusieurs modèles d'extraction entraînés dans Studio. C'est ici qu'on choisit un modèle sur étagère (Facture, RIB, CNI, KBIS, etc.) ou un modèle custom préalablement entraîné.
 
-## À partir d'un modèle "Custom"
+<figure><img src="../../.gitbook/assets/demarrage_agent_step3_models.png" alt="Étape Extraction models"><figcaption>Étape 3 — modèles disponibles avec leur précision indicative.</figcaption></figure>
 
-Si nos modèles sur étagère ne suffisent pas, il faut créer son propre modèle d'extraction. Toutes les étapes de création d'un modèle custom sont détaillées [ici](../entrainer-un-modele-dextraction/). &#x20;
+## Étape 4 — Custom extractors
 
-Une fois le modèle créé, il suffit de le sélectionner parmi les modèles disponibles.
+Confirmer la création de l'agent. La configuration des extracteurs (datapoints, groupes, datapoint génératif) se fait ensuite sur la page dédiée — voir [Configurer les extracteurs d'un Agent](configurer-les-extracteurs-dun-agent.md).
 
-## À partir d'un autre Agent (Dupliquer un Agent)
+<figure><img src="../../.gitbook/assets/demarrage_agent_step4_extractors.png" alt="Étape Custom extractors"><figcaption>Étape 4 — finalisation et bascule vers la configuration des extracteurs.</figcaption></figure>
 
-Il est également possible de dupliquer un Agent. Pour cela, il suffit de créer un nouvel agent à partir d'un agent existant. Le nouvel agent va copier en tout points ses caractéristiques (extracteurs, règles de gestion, review et configuration). Cette fonctionnalité est utile pour tester différentes configurations, sans casser l'originale.
+## À noter
+
+- Les étapes 2 et 3 sont **optionnelles** : on peut créer un agent vide et lui ajouter des extracteurs custom à la main (utile pour un agent purement génératif basé sur des prompts).
+- Le bouton **Import extraction agent** (à côté de Create) permet d'importer un agent depuis un export `.zip` (cas de migration ou de duplication cross-organisation).
