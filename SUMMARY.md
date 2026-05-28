@@ -9,48 +9,39 @@
 * [Créer un workflow](demarrage-rapide/creer-un-workflow.md)
 * [Utiliser un modèle d'extraction sur étagère](demarrage-rapide/utiliser-un-modele-dextraction-recital-sur-etagere.md)
 
-## 🎨 Guide utilisateur Design Studio
+## 📘 Guide utilisateur
 
-* [Classification](classification/classification.md)
-  * [Constituer un Dataset](classification/entrainer-un-modele-de-classification/constitution-des-datasets.md)
-  * [Entraîner un modèle](classification/entrainer-un-modele-de-classification/entrainement-du-modele.md)
-  * [Lecture et interprétation des résultats](classification/entrainer-un-modele-de-classification/lecture-et-interpretation-des-resultats.md)
-* [Extraction](extraction/extraction.md)
-  * [Constituer un Dataset](extraction/entrainer-un-modele-dextraction/constituer-un-dataset.md)
-  * [Annoter un Dataset](extraction/entrainer-un-modele-dextraction/annoter-un-dataset.md)
-  * [Entraîner un modèle](extraction/entrainer-un-modele-dextraction/entrainer-un-modele.md)
-
-## 🤖 Agents
-
-* [Classification](classification/configurer-un-agent-de-classification.md)
-* [Extraction](extraction/configurer-un-agent-dextraction/README.md)
-  * [Créer un Agent](extraction/configurer-un-agent-dextraction/creer-un-agent.md)
-  * [Configurer les extracteurs d'un Agent](extraction/configurer-un-agent-dextraction/configurer-les-extracteurs-dun-agent.md)
-  * [Configurer les paramètres d'un Agent](extraction/configurer-un-agent-dextraction/configurer-les-parametres-dun-agent.md)
-* [Valider un Agent](extraction/valider-un-agent/README.md)
-  * [Charger des documents en validation](extraction/valider-un-agent/charger-des-documents-en-validation.md)
-  * [Valider un Agent](extraction/valider-un-agent/valider-un-agent.md)
-* [Ecran de correction](extraction/ecran-de-correction.md)
-
-## 🪄 Workflow
-
-* [🪄 Introduction](workflow/introduction.md)
-* [Créer un workflow](workflow/creer-un-workflow.md)
-* [Les modules de workflow](workflow/les-modules-workflow.md)
-* [Les jobs](workflow/jobs.md)
-* [Actions workflows standard](workflow/actions-workflows-standard.md)
-* [Connexion boîte mail](workflow/connexion-boite-mail.md)
-
-## 📚 Ressources
-
-* [Vue d'ensemble](ressources/README.md)
-
-## 🏭 Production
-
-* [Review](production/review.md)
-* [Activité](production/activite.md)
-* [Performance](production/performance.md)
-* [Paramètres](production/parametres.md)
+* 🎨 Design
+  * Studio
+    * [Classification](classification/classification.md)
+      * [Constituer un Dataset](classification/entrainer-un-modele-de-classification/constitution-des-datasets.md)
+      * [Entraîner un modèle](classification/entrainer-un-modele-de-classification/entrainement-du-modele.md)
+      * [Lecture et interprétation des résultats](classification/entrainer-un-modele-de-classification/lecture-et-interpretation-des-resultats.md)
+    * [Extraction](extraction/extraction.md)
+      * [Constituer un Dataset](extraction/entrainer-un-modele-dextraction/constituer-un-dataset.md)
+      * [Annoter un Dataset](extraction/entrainer-un-modele-dextraction/annoter-un-dataset.md)
+      * [Entraîner un modèle](extraction/entrainer-un-modele-dextraction/entrainer-un-modele.md)
+  * Agents
+    * [Classification](classification/configurer-un-agent-de-classification.md)
+    * [Extraction](extraction/configurer-un-agent-dextraction/README.md)
+      * [Créer un Agent](extraction/configurer-un-agent-dextraction/creer-un-agent.md)
+      * [Configurer les extracteurs d'un Agent](extraction/configurer-un-agent-dextraction/configurer-les-extracteurs-dun-agent.md)
+      * [Configurer les paramètres d'un Agent](extraction/configurer-un-agent-dextraction/configurer-les-parametres-dun-agent.md)
+      * [Valider un Agent](extraction/valider-un-agent/README.md)
+        * [Charger des documents en validation](extraction/valider-un-agent/charger-des-documents-en-validation.md)
+        * [Valider un Agent](extraction/valider-un-agent/valider-un-agent.md)
+  * Workflow
+    * [Créer un workflow](workflow/creer-un-workflow.md)
+    * [Les modules de workflow](workflow/les-modules-workflow.md)
+    * [Les jobs](workflow/jobs.md)
+    * [Actions workflows standard](workflow/actions-workflows-standard.md)
+    * [Connexion boîte mail](workflow/connexion-boite-mail.md)
+    * [Ressources](ressources/README.md)
+* 🏭 Production
+  * [Review](production/review.md)
+  * [Activité](production/activite.md)
+  * [Performance](production/performance.md)
+  * [Paramètres](production/parametres.md)
 
 ## 🔌 Intégration API
 

@@ -10,7 +10,7 @@ Choisissez votre point de départ selon le niveau d'autonomie souhaité.
 
 ## Pour aller plus loin
 
-- [Entraîner un modèle non-génératif souverain](../guide-utilisateur-design-studio/extraction.md) — Design Studio
-- [Configurer & valider un Agent](../agents/configurer-un-agent-dextraction/README.md) — Agents
-- [Enrichir mon workflow](../workflow/les-modules-workflow.md) — Modules de workflow
-- [Suivre la production](../production/README.md) — Activité & Performance
+- **Entraîner un modèle non-génératif souverain** → voir [Studio (Extraction)](../extraction/extraction.md) ou [Studio (Classification)](../classification/classification.md)
+- **Configurer & valider un Agent** → voir [Agents — Extraction](../extraction/configurer-un-agent-dextraction/README.md) ou [Agents — Classification](../classification/configurer-un-agent-de-classification.md)
+- **Enrichir mon workflow** → voir [Les modules de workflow](../workflow/les-modules-workflow.md)
+- **Suivre la production** → voir [Activité](../production/activite.md) et [Performance](../production/performance.md)
