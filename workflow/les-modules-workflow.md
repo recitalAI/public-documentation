@@ -251,7 +251,7 @@ Le paramètre d'entrée `job` contient toutes les informations utiles dans `job.
 
 Il est également possible de rajouter de nouvelles informations dans `data` avec le `return`.&#x20;
 
-Pour plus de détails sur le fonctionnement du module de code personnalisé, et sur des détails du Workflow, veuillez [contacter l'équipe Projet](/broken/pages/9GNnOCH7oGDOTJ2Uz599).
+Pour plus de détails sur le fonctionnement du module de code personnalisé, et sur des détails du Workflow, veuillez [contacter l'équipe Projet](https://app.gitbook.com/s/czKclNsLQDMlLjxNwSSw/contact).
 
 ## 6. État
 

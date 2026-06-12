@@ -3,7 +3,7 @@
 ## Règles de Gestion
 
 {% hint style="info" %}
-Nous conseillons de ne plus utiliser cet écran, et de passer par le [Workflow](/broken/pages/U2Yb98cmBfSBSLhqMpaE) pour créer et gérer vos règles de gestion dans un module custom.
+Nous conseillons de ne plus utiliser cet écran, et de passer par le [Workflow](https://app.gitbook.com/s/czKclNsLQDMlLjxNwSSw/workflow) pour créer et gérer vos règles de gestion dans un module custom.
 {% endhint %}
 
 Les règles de gestion permettent de valider ou d'invalider automatiquement des champs extraits. Si tous les champs extraits sont automatiquement validés par des règles de gestion, un document ne passera pas par la phase de vidéo-codage, il sera considéré comme STP (Straight-Through Process).

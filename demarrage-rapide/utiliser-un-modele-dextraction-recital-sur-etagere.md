@@ -1,3 +1,24 @@
+---
+layout:
+  width: default
+  title:
+    visible: true
+  description:
+    visible: false
+  tableOfContents:
+    visible: true
+  outline:
+    visible: true
+  pagination:
+    visible: false
+  metadata:
+    visible: true
+  tags:
+    visible: true
+  actions:
+    visible: true
+---
+
 # Utiliser un modèle d'extraction reciTAL sur étagère
 
 Dans la Suite reciTAL, des **modèles d'extraction sur étagère** sont disponibles pour avoir de premiers résultats en quelques minutes.
