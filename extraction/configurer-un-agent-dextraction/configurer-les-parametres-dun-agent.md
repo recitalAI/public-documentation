@@ -24,9 +24,13 @@ Les règles de gestion permettent de valider ou d'invalider automatiquement des 
 Les règles de gestion ne concernent que les champs numériques (Nombre entier ou décimal). Tous les champs n'ayant pas le type "Nombre" ne pourront pas être utilisés dans les règles de gestion.
 {% endhint %}
 
-## Review
+## Review configuration
 
-Cet onglet est dédié à la configuration de l'écran de correction. On peut activer ou désactiver la correction, générer une url publique pour chaque document extrait afin de le corriger sans avoir à se connecter à la plateforme, gérer les extracteurs que l'on souhaite voir apparaître sur l'écran de correction, et gérer les droits des correcteurs.
+Cet onglet autorise et configure la review (correction humaine) de l'agent : activer la review (**Active review**), générer une URL publique pour corriger un document sans compte (**External validation**), choisir l'ordre de traitement de la file, restreindre la correction à des utilisateurs désignés (**Authorize reviewers**), et sélectionner les extracteurs et groupes affichés sur l'écran de correction.
+
+{% hint style="info" %}
+Le détail de ces options et le déroulé de la correction sont décrits dans [Review](../../production/review.md).
+{% endhint %}
 
 ## Configuration
 

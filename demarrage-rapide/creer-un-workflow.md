@@ -20,9 +20,9 @@ Le canvas s'ouvre en mode **Draft** avec deux étapes par défaut : **Start** (e
 
 ## 3. Ajouter des étapes
 
-Cliquer **Add step** ouvre la **Steps Library** : un catalogue de modules organisés en 16 catégories (Action, AI agent, Classification, Extraction, Email, Document, Input, Output, Post-processing, Review, State, etc.).
+Cliquer **Add step** ouvre la **Steps Library** : un catalogue de modules filtrables par 16 étiquettes (Action, AI agent, Archive, Automation, Classification, Code, Document, Email, Extraction, Generation, Input, Output, Post-processing, Review, State, Validation).
 
-<figure><img src="../.gitbook/assets/demarrage_workflow_steps_library.png" alt="Steps Library"><figcaption>Steps Library &#x2014; 83 modules au total, filtrables par catégorie. Le champ de recherche en haut permet de filtrer par nom.</figcaption></figure>
+<figure><img src="../.gitbook/assets/demarrage_workflow_steps_library.png" alt="Steps Library"><figcaption>Steps Library &#x2014; 22 modules, filtrables par étiquette. Le champ de recherche en haut permet de filtrer par nom.</figcaption></figure>
 
 Cliquer sur un module l'ajoute au canvas. Connecter ensuite les transitions entre Start, vos étapes, et Done.
 

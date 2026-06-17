@@ -8,18 +8,14 @@ description: >-
 # Les modules Workflow
 
 {% hint style="info" %}
-Les modules sont étiquettés afin de pouvoir les retrouver plus facilement. Il y a plusieurs types d'étiquettes :&#x20;
-
-* La nature de l'action : "Classification, "Extraction", "Post-traitement", "Automation"
-* La nature du media : "Mails", "Document"
-* Le type du module : "Input", "AI Agent", "Review", "Etat", "Code", "Output"
+Dans l'éditeur de workflow, le bouton **Add step** ouvre la **Steps Library** : le catalogue des modules disponibles (22 à ce jour), filtrable par recherche de nom et par étiquette. Chaque module porte une ou plusieurs étiquettes parmi : **Action, AI agent, Archive, Automation, Classification, Code, Document, Email, Extraction, Generation, Input, Output, Post-processing, Review, State, Validation**.
 {% endhint %}
 
-<figure><img src="../.gitbook/assets/image (124).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/workflow_steps_library.png" alt="Steps Library — catalogue des modules de workflow"><figcaption>La <em>Steps Library</em> (bouton <strong>Add step</strong>) — catalogue filtrable des 22 modules.</figcaption></figure>
 
 ## 1. Input
 
-### Ingérer des Emails
+### Ingest Email — ingérer des emails
 
 Ce module suppose qu'une boite mail a été configurée (voir [lnputs](inputs.md)), ou bien que les documents envoyés sont des .msg ou .eml.
 
@@ -58,7 +54,7 @@ Cette étape permet de récupérer toutes les informations concernant le mail et
 
 ## 2. AI Agent
 
-### Classification de document
+### Documents classification agent — classification de document
 
 #### Paramètres
 
@@ -68,7 +64,7 @@ Cette étape permet de récupérer toutes les informations concernant le mail et
 
 Voir [Structure des résultats de Classification](../integration-api/classification/structure-des-resultats-de-classification.md)
 
-### Classification de mails
+### Classify Email — classification de mails
 
 #### Paramètres
 
@@ -78,7 +74,7 @@ Voir [Structure des résultats de Classification](../integration-api/classificat
 
 Voir [Structure des résultats de Classification](../integration-api/classification/structure-des-resultats-de-classification.md)
 
-### Extraction
+### Extract — extraction
 
 #### Paramètres
 
@@ -88,7 +84,7 @@ Voir [Structure des résultats de Classification](../integration-api/classificat
 
 Voir [Structure des résultats d'Extraction](../integration-api/extraction/structure-des-resultats-dextraction.md)
 
-### GenAI
+### llm — GenAI
 
 <table><thead><tr><th width="234">Paramètre</th><th>Description</th></tr></thead><tbody><tr><td><strong>Nom</strong></td><td>Le nom de l'étape</td></tr><tr><td><strong>Fournisseur</strong></td><td>Fournisseur du modèle de langue</td></tr><tr><td><strong>Modèle</strong></td><td>Version du modèle de langue</td></tr><tr><td><strong>Prompt</strong></td><td>Prompt qui sera envoyé au modèle de langue. Des variables peuvent être ajoutées en les mettant entre accolade. <br>Exemple : <em>Quelle est la capitale de {data.country} ?</em></td></tr><tr><td><strong>Inclure fichier</strong></td><td>Est-ce qu'un fichier doit être passé en plus du prompt ?</td></tr><tr><td>Expression d'entrée</td><td>Le ou les fichiers qui seront passés. files["file"] par défaut.</td></tr><tr><td>Clé de sortie</td><td>La clé de "data" dans lesquels seront stockées toutes les informations relatives à ce module.</td></tr><tr><td>Température</td><td>Valeur entre 0 et 1. Une température proche de 0 donnera un modèle déterministe, et inversement.<br>Certains modèles nécessite une température de 1.</td></tr><tr><td>Itérer sur l'entrée</td><td>Activer l'option si l'entrée est une liste. Le module traitera les documents 1 à 1, et la sortie sera une liste de résultats.</td></tr></tbody></table>
 
@@ -100,7 +96,7 @@ Voir [Structure des résultats d'Extraction](../integration-api/extraction/struc
 Les étape de review sont bloquantes tant que le document n'a pas été validé par un opérateur.
 {% endhint %}
 
-### Review de Classification (vidéo-typage)
+### Classification Review — review de classification (vidéo-typage)
 
 Active le vidéo-typage suite à une classification.
 
@@ -116,7 +112,11 @@ Voir [Structure des résultats de Classification](../integration-api/classificat
 
 
 
-### Review d'Extraction (vidéo-codage)
+### Email Classification Review — review de classification d'emails
+
+Équivalent du vidéo-typage pour les emails : active la review de la classification d'un email après une étape **Classify Email**. Paramètres analogues à la *Classification Review*.
+
+### Extraction Review — review d'extraction (vidéo-codage)
 
 Active le vidéo-codage suite à une extraction.
 
@@ -228,17 +228,15 @@ Ce module permet de fusionner les pages de plusieurs documents en entrée en un 
 }
 ```
 
-### Validation d'ensemble
+### Ensemble Validation — validation d'ensemble
 
-{% hint style="info" %}
-En cours de développement
-{% endhint %}
+Module de validation (étiquettes **Validation / Document / AI agent**) disponible dans la Steps Library.
 
 
 
-## 5. Code personnalisé
+## 5. Code personnalisé (Custom Code)
 
-Le module de code personnalisé permet de faire tout ce qui n'a pas encore été préconçu par d'autre module.
+Le module **Custom Code** permet de faire tout ce qui n'a pas encore été préconçu par d'autre module.
 
 <pre class="language-python"><code class="lang-python"><strong>def execute_action(job, input):
 </strong>    # Do smth here
@@ -265,6 +263,10 @@ Rajouter un module d'état permet de:
 Les modules d'état peuvent être ajoutés à n'importe quelle transition. Ils permettent de mettre à jour l'état général d'un job, et de notifier si une url de callback a été définie lors de la création du job.
 
 ## 7. Output
+
+### Cleanup
+
+Le module **Cleanup** (étiquette **Output**) supprime les données (`data`) et tous les fichiers du job — utile en fin de workflow pour ne pas conserver les documents traités.
 
 ### Webhook
 
