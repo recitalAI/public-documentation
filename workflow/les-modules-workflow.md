@@ -8,10 +8,10 @@ description: >-
 # Les modules Workflow
 
 {% hint style="info" %}
-Dans l'éditeur de workflow, le bouton **Add step** ouvre la **Steps Library** : le catalogue des modules disponibles (22 à ce jour), filtrable par recherche de nom et par étiquette. Chaque module porte une ou plusieurs étiquettes parmi : **Action, AI agent, Archive, Automation, Classification, Code, Document, Email, Extraction, Generation, Input, Output, Post-processing, Review, State, Validation**.
+Dans l'éditeur de workflow, le bouton **Add step** ouvre la **Steps Library** : le catalogue des modules disponibles, filtrable par recherche de nom et par étiquette. Chaque module porte une ou plusieurs étiquettes parmi **16 catégories** : **Action, AI agent, Archive, Automation, Classification, Code, Document, Email, Extraction, Generation, Input, Output, Post-processing, Review, State, Validation**. Le nombre de modules par catégorie dépend des agents et modèles configurés dans votre organisation (les agents d'extraction/classification y apparaissent comme modules).
 {% endhint %}
 
-<figure><img src="../.gitbook/assets/workflow_steps_library.png" alt="Steps Library — catalogue des modules de workflow"><figcaption>La <em>Steps Library</em> (bouton <strong>Add step</strong>) — catalogue filtrable des 22 modules.</figcaption></figure>
+<figure><img src="../.gitbook/assets/workflow_steps_library.png" alt="Steps Library — catalogue des modules de workflow"><figcaption>La <em>Steps Library</em> (bouton <strong>Add step</strong>) — catalogue de modules filtrable par étiquette.</figcaption></figure>
 
 {% hint style="info" %}
 **Libellés en anglais.** L'éditeur est en anglais : les paramètres ci-dessous sont décrits en français, mais s'affichent en anglais dans l'UI. Les paramètres communs à la plupart des modules (souvent regroupés sous **Advanced options**) correspondent ainsi :
