@@ -14,19 +14,19 @@ Cliquez sur le nom d’un document pour rentrer en mode Correction.
 
 <figure><img src="../.gitbook/assets/2024_06_07_11_59_36_Window (1).png" alt=""><figcaption></figcaption></figure>
 
-Si le document ne convient pas ou est hors scope, il est possible de le rejeter.
+Si le document ne convient pas ou est hors scope, il est possible de le rejeter via le bouton **Discard**.
 
 ![corrections\_8.png](<../.gitbook/assets/corrections_8 (1).png>)
 
-Pour valider un champ, cliquer sur la coche “correcte”.
+Pour valider un champ, cliquer sur le bouton **Mark as reviewed** (la coche passe au vert).
 
 Pour corriger un champ, cliquez sur la valeur puis entourez dans le document la bonne valeur.
 
-Une fois tous les data points validés ou corrigés, cliquer sur valider.
+Une fois tous les data points validés ou corrigés, cliquer sur **Validate**.
 
 ![corrections\_6.png](<../.gitbook/assets/corrections_6 (1).png>)
 
-Si un document présente trop d’erreurs car le modèle n’a pas été suffisamment entraîné sur ce format, il est possible de l’ajouter au dataset. Pour ce faire, cliquez sur le bouton “Copier dans le dataset”.
+Si un document présente trop d’erreurs car le modèle n’a pas été suffisamment entraîné sur ce format, il est possible de l’ajouter au dataset. Pour ce faire, cliquez sur le bouton **Copy to dataset**.
 
 ![corrections\_9.png](../.gitbook/assets/corrections_9.png)
 

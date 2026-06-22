@@ -1,24 +1,24 @@
 ---
-description: Rendez vous dans Studio - Workflows
+description: Rendez-vous dans Workflows
 ---
 
 # Créer un Workflow
 
 ## Créer un nouveau workflow
 
-Cliquez sur "Créer un Workflow" puis donnez lui un nom.
+Cliquez sur **Create workflow** puis donnez-lui un nom.
 
 <figure><img src="../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../.gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
 
 {% hint style="info" %}
-Un workflow doit obligatoirement être composé au minimum d'un Etat "Début" et d'un Etat "Fin".
+Un workflow doit obligatoirement être composé au minimum d'un état **Start** et d'un état **Done**.
 {% endhint %}
 
 ## Ajouter des actions
 
-Pour ajouter des actions entre le début et la fin d'un workflow, cliquez sur le bouton "Ajouter une étape"
+Pour ajouter des actions entre le début et la fin d'un workflow, cliquez sur le bouton **Add step**.
 
 <figure><img src="../.gitbook/assets/image (10).png" alt=""><figcaption></figcaption></figure>
 
@@ -48,13 +48,13 @@ Une transition peut être libre (par défaut) ou bien conditionnelle. Pour crée
 
 ## Terminer un Worflow
 
-Chaque branche d'un workflow doit se terminer par un module d'état Terminal.
+Chaque branche d'un workflow doit se terminer par le module **Done**.
 
 Une fois que l'architecture d'un Workflow est valide, on peut le tester et le publier.
 
 ### Publier un workflow
 
-Publier un workflow permet de le tester, et de l'utiliser en production. Pour se faire, cliquez sur le bouton "Publier la version".
+Publier un workflow permet de le tester, et de l'utiliser en production. Pour ce faire, cliquez sur le bouton **Publish version**.
 
 <figure><img src="../.gitbook/assets/image (111).png" alt=""><figcaption></figcaption></figure>
 
