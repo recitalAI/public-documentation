@@ -13,6 +13,18 @@ Dans l'éditeur de workflow, le bouton **Add step** ouvre la **Steps Library** :
 
 <figure><img src="../.gitbook/assets/workflow_steps_library.png" alt="Steps Library — catalogue des modules de workflow"><figcaption>La <em>Steps Library</em> (bouton <strong>Add step</strong>) — catalogue filtrable des 22 modules.</figcaption></figure>
 
+{% hint style="info" %}
+**Libellés en anglais.** L'éditeur est en anglais : les paramètres ci-dessous sont décrits en français, mais s'affichent en anglais dans l'UI. Les paramètres communs à la plupart des modules (souvent regroupés sous **Advanced options**) correspondent ainsi :
+
+| Description (doc, FR) | Libellé UI (EN) |
+|---|---|
+| Nom | Name |
+| Expression d'entrée | Input expression |
+| Clé de sortie | Output key |
+| Itérer sur l'entrée | Iterate over input |
+| Ignorer les erreurs | Ignore errors? |
+{% endhint %}
+
 ## 1. Input
 
 ### Ingest Email — ingérer des emails
@@ -274,7 +286,7 @@ Permet de renvoyer les résultats en cours (ou une partie) vers une URL donnée.
 
 #### Paramètres
 
-<table><thead><tr><th width="234">Paramètre</th><th>Description</th></tr></thead><tbody><tr><td><strong>Nom</strong></td><td>Le nom du module</td></tr><tr><td><strong>URL</strong></td><td>L'url de callback</td></tr><tr><td><strong>Ignorer les erreurs</strong></td><td>Boolean. Si l'option est activée, les flux ne sera pas interrompu, même si le code de réponse est une erreur.</td></tr><tr><td><strong>Expression d'entrée</strong></td><td>Les données à renvoyer. "data" par défaut.</td></tr><tr><td><strong>Clé de sortie</strong></td><td>La clé de "data" dans lesquels seront stockées toutes les informations relatives à ce module.</td></tr><tr><td><strong>Itérer sur l'entrée</strong></td><td>Activer l'option si l'entrée est une liste. Le module traitera les documents 1 à 1, et la sortie sera une liste de résultats.</td></tr></tbody></table>
+<table><thead><tr><th width="234">Paramètre</th><th>Description</th></tr></thead><tbody><tr><td><strong>Nom</strong></td><td>Le nom du module</td></tr><tr><td><strong>URL</strong></td><td>L'url de callback</td></tr><tr><td><strong>Ignorer les erreurs</strong> (Ignore errors?)</td><td>Boolean. Si l'option est activée, le flux ne sera pas interrompu, même si le code de réponse est une erreur.</td></tr><tr><td><strong>Réessayer en cas d'erreur</strong> (Retry on error?)</td><td>Boolean. Relance l'appel en cas d'échec.</td></tr><tr><td><strong>Expression d'entrée</strong></td><td>Les données à renvoyer. "data" par défaut.</td></tr><tr><td><strong>Clé de sortie</strong></td><td>La clé de "data" dans lesquels seront stockées toutes les informations relatives à ce module.</td></tr><tr><td><strong>Itérer sur l'entrée</strong></td><td>Activer l'option si l'entrée est une liste. Le module traitera les documents 1 à 1, et la sortie sera une liste de résultats.</td></tr></tbody></table>
 
 #### Structure des résultats
 
