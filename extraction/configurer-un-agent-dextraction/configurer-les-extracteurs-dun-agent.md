@@ -22,11 +22,15 @@ Ajoutez un Datapoint, donnez un nom à votre nouveau champs, puis enregistrez.
 
 <figure><img src="../../.gitbook/assets/image (33).png" alt=""><figcaption></figcaption></figure>
 
-#### Type de valeur
+#### Type de valeur (Value type)
 
-Le type de valeur est la nature du champs à extraire. Sélectionner le bon type de valeur permet de normaliser le champs extrait.
+Le type de valeur normalise le champ extrait. Le choix se fait au niveau supérieur entre **trois options** : **Any**, **Predefined** et **Custom**.
 
-<table><thead><tr><th width="172">Type de valeur</th><th width="370">Détail</th><th>Exemples</th></tr></thead><tbody><tr><td>Tout</td><td>N'importe quelle chaîne de caractère, c'est la valeur par défaut</td><td>Nom, Prénom, Désignation</td></tr><tr><td>Date</td><td><p>Permet de normaliser une date au format </p><p>YYYY-MM-DD</p></td><td><p>Date d'émission, </p><p>Date d'expiration</p></td></tr><tr><td>Nombre Entier (integer)</td><td>Permet de normaliser un nombre entier</td><td><p>Nombre d'unité, </p><p>Age</p></td></tr><tr><td><p>Nombre Décimal </p><p>(float)</p></td><td>Permet de normaliser un nombre décimal</td><td>Montant HT, Pourcentage, Volume,</td></tr><tr><td>Personnalisé</td><td>Utilise les expressions régulières pour normaliser un champ extrait. <br>La première expression doit correspondre au champ extrait pour permettre sa normalisation.<br>Dans la deuxième expression, il est possible de réutiliser les groupes capturés dans la première expression (\1, \2, ...) afin de réaliser la normalisation.</td><td><p>Numéro de téléphone, Référence client, </p><p>Code barre</p></td></tr></tbody></table>
+| Value type | Détail | Exemples |
+|---|---|---|
+| **Any** (Tout) | N'importe quelle chaîne de caractères — valeur par défaut. | Nom, Prénom, Désignation |
+| **Predefined** | Un format prédéfini à normaliser : **Date** (`YYYY-MM-DD`), **Nombre entier** (integer), **Nombre décimal** (float). | Date d'émission ; nombre d'unités ; montant HT, pourcentage |
+| **Custom** (Personnalisé) | Expressions régulières. La 1ʳᵉ expression doit correspondre au champ extrait ; dans la 2ᵉ, on peut réutiliser les groupes capturés (`\1`, `\2`, …) pour la normalisation. | N° de téléphone, référence client, code-barres |
 
 
 

@@ -1,26 +1,27 @@
 # Gestion des utilisateurs
 
-L’écran Utilisateurs répertorie les utilisateurs existants sur l’organisation.
+L'écran **Settings → Users** répertorie les utilisateurs de l'organisation (colonnes **Status, Email, Name, Role**) et permet d'en créer via le bouton **Create user** (champs Prénom, Nom, Email, Role).
 
-<figure><img src="../.gitbook/assets/image (98).png" alt=""><figcaption></figcaption></figure>
+## Les rôles
 
-Il existe deux rôles possibles:
+À la création d'un utilisateur, le champ **Role** propose **cinq rôles** :
 
-## **Administrateur (**&#x4F;rgadmin)
+| Rôle | Vocation |
+|---|---|
+| **Reviewer** | Correction / review des documents (vidéo-codage). Accès restreint à l'écran de Review. |
+| **Operator** | Opérateur de correction. |
+| **Expert** | Opérateur avec un périmètre étendu. |
+| **Supervisor** | Suivi de l'activité et gestion de certains comptes/réglages. |
+| **Orgadmin** | Administration complète de l'organisation (Studio, Agents, Workflows, Review, Settings). |
 
-Son rôle est d’administrer l’organisation et de paramétrer tous les datasets, doctypes et modèles de l’organisation. Il a accès à tous les écrans et peut :
+{% hint style="info" %}
+Le périmètre exact de chaque rôle se gère côté plateforme. Pour les rôles **Operator**, **Expert** et **Supervisor**, se référer à l'écran **Settings → Users** de votre déploiement.
+{% endhint %}
 
-* Créer les datasets.
-* Configurer les doctypes.
-* Corriger et consulter les extractions.
-* Créer, modifier et supprimer des utilisateurs.
-* Consulter les statistiques.
-* Mettre à jour les paramètres.
+{% hint style="warning" %}
+Un rôle **Sysadmin** existe également mais est réservé à l'administration interne reciTAL : il n'est **pas** proposé à la création d'un utilisateur.
+{% endhint %}
 
-<figure><img src="../.gitbook/assets/Capture d&#x27;écran 2023-05-11 172600.png" alt=""><figcaption></figcaption></figure>
+## Rôles personnalisés
 
-## **Correcteur (**&#x52;eviewer)
-
-Son rôle est d'analyser les documents qui tombent dans la bannière de correction. Un correcteur possède des accès restreints et ne peut accéder qu'à l'onglet de correction.
-
-<figure><img src="../.gitbook/assets/image (52).png" alt=""><figcaption></figcaption></figure>
+Au-delà des rôles ci-dessus, des **rôles personnalisés** peuvent être définis (champ **User role** à la création, géré via l'onglet **User Roles** des Paramètres selon le déploiement). Voir [Paramètres](../production/parametres.md).
