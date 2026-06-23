@@ -3,7 +3,7 @@
 ## Règles de Gestion
 
 {% hint style="info" %}
-Nous conseillons de ne plus utiliser cet écran, et de passer par le [Workflow](/broken/pages/U2Yb98cmBfSBSLhqMpaE) pour créer et gérer vos règles de gestion dans un module custom.
+Nous conseillons de ne plus utiliser cet écran, et de passer par le [Workflow](../../workflow/les-modules-workflow.md) pour créer et gérer vos règles de gestion dans un module custom.
 {% endhint %}
 
 Les règles de gestion permettent de valider ou d'invalider automatiquement des champs extraits. Si tous les champs extraits sont automatiquement validés par des règles de gestion, un document ne passera pas par la phase de vidéo-codage, il sera considéré comme STP (Straight-Through Process).
@@ -15,8 +15,6 @@ Les règles de gestion permettent de valider ou d'invalider automatiquement des 
 <table><thead><tr><th width="148">Type</th><th width="286">Description</th><th>Exemples</th></tr></thead><tbody><tr><td>Interne</td><td>Toutes les règles de gestion qui valident des champs uniques, ou des sommes (SUM) de groupe.</td><td>Montant_HT + Montant_TVA = Montant_TTC</td></tr><tr><td>Sous-groupe</td><td>Toutes les règles de gestion qui valident la cohérence d'un groupe</td><td>LIGNE.PU * LIGNE.Qty = LIGNE.Prix_HT</td></tr></tbody></table>
 
 #### Choix
-
-**Se replier sur les valeurs génératives si Faux :** WIP.
 
 **Calculer les valeurs N/A comme 0 et remplacer si Vrai :** Si une valeur dans la règle de gestion n'est pas extraite, on vérifie si la règle de gestion est respecté en remplaçant cette valeur par 0.
 

@@ -14,15 +14,7 @@ Dans l'éditeur de workflow, le bouton **Add step** ouvre la **Steps Library** :
 <figure><img src="../.gitbook/assets/workflow_steps_library.png" alt="Steps Library — catalogue des modules de workflow"><figcaption>La <em>Steps Library</em> (bouton <strong>Add step</strong>) — catalogue de modules filtrable par étiquette.</figcaption></figure>
 
 {% hint style="info" %}
-**Libellés en anglais.** L'éditeur est en anglais : les paramètres ci-dessous sont décrits en français, mais s'affichent en anglais dans l'UI. Les paramètres communs à la plupart des modules (souvent regroupés sous **Advanced options**) correspondent ainsi :
-
-| Description (doc, FR) | Libellé UI (EN) |
-|---|---|
-| Nom | Name |
-| Expression d'entrée | Input expression |
-| Clé de sortie | Output key |
-| Itérer sur l'entrée | Iterate over input |
-| Ignorer les erreurs | Ignore errors? |
+La plupart des modules partagent des paramètres communs, regroupés sous **Advanced options** : **Input expression** (expression d'entrée), **Output key** (clé de sortie), **Iterate over input** (itérer sur l'entrée).
 {% endhint %}
 
 ## 1. Input
@@ -70,7 +62,7 @@ Cette étape permet de récupérer toutes les informations concernant le mail et
 
 #### Paramètres
 
-<table><thead><tr><th width="234">Paramètre</th><th>Description</th></tr></thead><tbody><tr><td><strong>Nom</strong></td><td>Le nom de l'étape</td></tr><tr><td><strong>Modèle</strong></td><td>La sélection parmi les modèles de classification de document existants</td></tr><tr><td><strong>Per page</strong></td><td>(SAM) Permet d'avoir une classification page à page. Il peut être couplé à un module split-pdf à la suite pour déliasser un document.</td></tr><tr><td><strong>Use Google OCR</strong></td><td>Utilisation de google OCR si activé. Sinon, utilisation d'un modèle OCR open-source. </td></tr><tr><td><strong>Expression d'entrée</strong></td><td>Le ou les fichiers à classifier. files["file"] par défaut.</td></tr><tr><td><strong>Expression du modèle</strong></td><td>Sélection dynamique du modèle d'extraction.</td></tr><tr><td><strong>Clé de sortie</strong></td><td>La clé de "data" dans lesquels seront stockées toutes les informations relatives à ce module.</td></tr><tr><td><strong>Itérer sur l'entrée</strong></td><td>Activer l'option si l'entrée est une liste. Le module traitera les documents 1 à 1, et la sortie sera une liste de résultats.</td></tr></tbody></table>
+<table><thead><tr><th width="234">Paramètre</th><th>Description</th></tr></thead><tbody><tr><td><strong>Nom</strong> (Name)</td><td>Le nom de l'étape</td></tr><tr><td><strong>Agent de classification</strong> (Classification agent)</td><td>La sélection parmi les agents de classification existants.</td></tr><tr><td><strong>Per page</strong></td><td>Permet d'avoir une classification page à page. Il peut être couplé à un module split-pdf à la suite pour déliasser un document.</td></tr><tr><td><strong>Expression d'entrée</strong> (Input expression)</td><td>Le ou les fichiers à classifier. <code>files['file']</code> par défaut.</td></tr><tr><td><strong>Expression de l'agent de classification</strong> (Classification Agent Expr)</td><td>Sélection dynamique de l'agent de classification.</td></tr><tr><td><strong>Clé de sortie</strong> (Output key)</td><td>La clé de "data" dans laquelle seront stockées les informations de ce module. <code>classify</code> par défaut.</td></tr><tr><td><strong>Itérer sur l'entrée</strong> (Iterate over input)</td><td>Activer l'option si l'entrée est une liste. Le module traitera les documents 1 à 1, et la sortie sera une liste de résultats.</td></tr><tr><td><strong>Inclure le texte OCR</strong> (Include OCR Text)</td><td>Si activé, le texte OCR du document est joint aux données renvoyées par le module.</td></tr></tbody></table>
 
 #### Structure des résultats
 
@@ -90,7 +82,7 @@ Voir [Structure des résultats de Classification](../integration-api/classificat
 
 #### Paramètres
 
-<table><thead><tr><th width="234">Paramètre</th><th>Description</th></tr></thead><tbody><tr><td><strong>Nom</strong></td><td>Le nom de l'étape</td></tr><tr><td><strong>Agent d'extraction</strong></td><td>La sélection parmi les agents d'extraction existant</td></tr><tr><td><strong>Expression d'entrée</strong></td><td>Le ou les fichiers à classifier. files["file"] par défaut.</td></tr><tr><td><strong>Expression du modèle</strong></td><td>Sélection dynamique du modèle d'extraction.</td></tr><tr><td><strong>Clé de sortie</strong></td><td>La clé de "data" dans lesquels seront stockées toutes les informations relatives à ce module.</td></tr><tr><td><strong>Itérer sur l'entrée</strong></td><td>Activer l'option si l'entrée est une liste. Le module traitera les documents 1 à 1, et la sortie sera une liste de résultats.</td></tr></tbody></table>
+<table><thead><tr><th width="234">Paramètre</th><th>Description</th></tr></thead><tbody><tr><td><strong>Nom</strong> (Name)</td><td>Le nom de l'étape</td></tr><tr><td><strong>Agent d'extraction</strong> (Extraction agent)</td><td>La sélection parmi les agents d'extraction existants.</td></tr><tr><td><strong>Expression d'entrée</strong> (Input expression)</td><td>Le ou les fichiers à traiter. <code>files['file']</code> par défaut.</td></tr><tr><td><strong>Expression de l'agent d'extraction</strong> (Extraction agent expression)</td><td>Sélection dynamique de l'agent d'extraction.</td></tr><tr><td><strong>Clé de sortie</strong> (Output key)</td><td>La clé de "data" dans laquelle seront stockées les informations de ce module. <code>extract</code> par défaut.</td></tr><tr><td><strong>Itérer sur l'entrée</strong> (Iterate over input)</td><td>Activer l'option si l'entrée est une liste. Le module traitera les documents 1 à 1, et la sortie sera une liste de résultats.</td></tr><tr><td><strong>Inclure le texte OCR</strong> (Include OCR Text)</td><td>Si activé, le texte OCR du document est joint aux données renvoyées par le module.</td></tr></tbody></table>
 
 #### Structure des résultats
 
@@ -248,12 +240,11 @@ Module de validation (étiquettes **Validation / Document / AI agent**) disponib
 
 ## 5. Code personnalisé (Custom Code)
 
-Le module **Custom Code** permet de faire tout ce qui n'a pas encore été préconçu par d'autre module.
+Le module **Custom Code** permet de réaliser des traitements personnalisés en Python, au-delà de ce que proposent les autres modules.
 
-<pre class="language-python"><code class="lang-python"><strong>def execute_action(job, input):
-</strong>    # Do smth here
-    return StepActionType.done, {
-        # Add data here          
+<pre class="language-python"><code class="lang-python"><strong>def execute_action(job):
+</strong>    return StepActionType.done, {
+        # Add data here
     }
 </code></pre>
 
@@ -261,7 +252,7 @@ Le paramètre d'entrée `job` contient toutes les informations utiles dans `job.
 
 Il est également possible de rajouter de nouvelles informations dans `data` avec le `return`.&#x20;
 
-Pour plus de détails sur le fonctionnement du module de code personnalisé, et sur des détails du Workflow, veuillez [contacter l'équipe Projet](/broken/pages/9GNnOCH7oGDOTJ2Uz599).
+Pour plus de détails sur le module de code personnalisé, [contacter l'équipe reciTAL](../contact/nous-contacter.md).
 
 ## 6. État
 

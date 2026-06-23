@@ -24,8 +24,6 @@ Sélectionner le type, cliquer **Add**, puis configurer l'agent ou le workflow c
 
 ## Indicateurs disponibles
 
-> 🚧 **Capture requise** : exemple de dashboard configuré (Workflow ou Extraction Agent Tab) avec données réelles. À fournir par l'utilisateur depuis la Suite.
-
 Les indicateurs varient selon le type de tab. Pour les détails métriques (précision, rappel, F1, matrice de confusion), voir [Métriques d'évaluation](../autres/metriques-devaluation.md).
 
 ## Vs Activity

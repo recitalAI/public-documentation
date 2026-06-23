@@ -49,9 +49,7 @@ Par exemple, configurer un premier extracteur "Adresse", qui capture une adresse
 Il est également possible d'utiliser les expressions régulières pour extraire un champ dans le document. Pour cela, sélectionnez "Règles", saisissez la regex, puis vous avez l'option de délimiter une zone dans le document où chercher l'expression.
 
 {% hint style="info" %}
-**Nouvelle fonctionnalité**
-
-Il est désormais possible de sélectionner "Génératif" comme méthode d'extraction.
+Il est aussi possible de sélectionner "Génératif" comme méthode d'extraction.
 
 Un agent génératif est créé dynamiquement à partir du nom et de la description de l'extracteur. Il est également possible d'ajouter une description au niveau de votre agent d'extraction.
 {% endhint %}

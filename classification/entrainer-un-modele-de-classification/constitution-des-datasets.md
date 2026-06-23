@@ -17,13 +17,11 @@ Quelques conseils pour constituer correctement un dataset de classification:
 {% endcontent-ref %}
 
 {% hint style="info" %}
-**WIP**
-
-Vous pouvez constituer les dataset sur votre machine, en rassemblant simplement des documents d’exemple dans des sous-dossiers. Créez ensuite un fichier zip, puis uploader le dans reciTAL. Autant de dataset seront automatiquement créés qu'il y a de sous-dossiers dans le fichier zip.
+Vous pouvez constituer les dataset sur votre machine, en rassemblant simplement des documents d’exemple dans des sous-dossiers. Créez ensuite un fichier zip, puis uploadez-le dans reciTAL. Autant de dataset seront automatiquement créés qu'il y a de sous-dossiers dans le fichier zip.
 {% endhint %}
 
 
 
-## Création des dataset de mails&#x20;
+## Création des dataset de mails
 
-Fonctionnalité WIP
+La constitution d'un dataset de mails suit le même principe : un dataset par classe, regroupant des emails d'exemple représentatifs.
