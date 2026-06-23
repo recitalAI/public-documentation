@@ -14,7 +14,7 @@ Dans la barre de navigation, cliquer sur **Review**. L'écran est segmenté en t
 - **Classification** — documents dont la classe prédite est en revue
 - **Emails** — emails à classifier
 
-Le badge de chaque onglet indique le nombre total d'éléments en attente. Le champ de recherche filtre les agents par nom.
+Le badge de chaque onglet indique le nombre d'agents ayant des documents en attente. Le champ de recherche filtre les agents par nom.
 
 <figure><img src="../.gitbook/assets/production_review_queue.png" alt="Liste des agents d'extraction avec le nombre de documents à reviewer"><figcaption>Onglet <em>Extraction</em> de Review. Chaque ligne correspond à un agent et au nombre de documents en attente.</figcaption></figure>
 
