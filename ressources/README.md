@@ -1,10 +1,13 @@
 # Ressources
 
-> 🚧 Page à compléter.
+L'onglet **Resources** (dans **Workflows**) est un espace de stockage de fichiers et de dossiers propres à l'organisation, utilisables par les workflows.
 
-Cet espace regroupera les ressources utiles liées à la construction de workflows reciTAL : templates, exemples, connecteurs, bonnes pratiques.
+## Organiser ses ressources
 
-## TODO
+L'écran présente une arborescence (chemin **resources /**) avec, pour chaque entrée, les colonnes **Name**, **Size**, **Added on** et **Updated on**.
 
-- [ ] Définir avec JB le contenu exact attendu pour cette section
-- [ ] Lister les ressources types : templates de workflow, exemples métier, connecteurs disponibles
+- **File** : ajouter un fichier dans le dossier courant.
+- **Folder** : créer un sous-dossier pour organiser les ressources.
+- **Filter by name** : rechercher une ressource par son nom.
+
+Ces fichiers servent de ressources partagées (par exemple des fichiers de référence) que les étapes d'un workflow peuvent réutiliser.

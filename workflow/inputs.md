@@ -7,7 +7,7 @@ description: Rendez-vous dans la page "Workflow", puis l'onglet "Input"
 Des connecteurs peuvent être configurés afin de récupérer en temps réel les documents et emails, plutôt que de devoir les envoyer par API.
 
 {% hint style="info" %}
-Pour le moment, seul le connecteur pour les boîtes mails est disponible. Les connecteurs pour un bucket S3 ou une connexion FTP arriveront dans les prochaines mises à jour.
+Le connecteur pour les boîtes mails (IMAP) est disponible.
 {% endhint %}
 
 ## Boites e-mail
@@ -24,7 +24,7 @@ Pour le moment, seul le connecteur pour les boîtes mails est disponible. Les co
 
 **Entrée des données - Dossier** : Le dossier dans lequel aller chercher les mails. En général, cela reste INBOX à moins que vous ayez des besoins spécifiques.
 
-**Authentification - Fournisseur** : Pour le moment, seules les adresses Google sont gérées par le connecteur. D'autres fournisseurs seront ajoutés dans les prochaines mises à jour.
+**Authentification - Fournisseur** : les fournisseurs Google et Microsoft sont gérés par le connecteur.
 
 **Authentification - Client ID et Client Secret** : Pour obtenir ces informations, vous devez configurer un projet dans la Google Cloud Console et activer l'API Gmail. Allez ensuite dans Credentials (Identifiants) et cliquez sur "Create Credentials" (ID client OAuth 2.0).
 

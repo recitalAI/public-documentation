@@ -22,6 +22,4 @@ Le périmètre exact de chaque rôle se gère côté plateforme. Pour les rôles
 Un rôle **Sysadmin** existe également mais est réservé à l'administration interne reciTAL : il n'est **pas** proposé à la création d'un utilisateur.
 {% endhint %}
 
-## Rôles personnalisés
-
-Au-delà des rôles ci-dessus, des **rôles personnalisés** peuvent être définis (champ **User role** à la création, géré via l'onglet **User Roles** des Paramètres selon le déploiement). Voir [Paramètres](../production/parametres.md).
+Le rôle est assigné à la création de l'utilisateur (onglet **Settings → Users**, bouton **Create user**). Voir [Paramètres](../production/parametres.md).
