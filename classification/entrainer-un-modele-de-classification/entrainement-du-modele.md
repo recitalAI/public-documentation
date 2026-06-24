@@ -17,7 +17,7 @@ Donnez un nom à votre modèle de classification.
 <figure><img src="../../.gitbook/assets/image (31).png" alt=""><figcaption></figcaption></figure>
 
 {% hint style="warning" %}
-Veillez à ce que l'option "Ne se reposer que sur le contenu" soit bien cochée. Si elle ne l'est pas, le modèle se reposera (en plus du contenu) sur le nom du fichier.
+Veillez à ce que l'option **"Ignore filenames in model training"** soit bien activée. Si elle ne l'est pas, le modèle se reposera (en plus du contenu) sur le nom du fichier.
 {% endhint %}
 
 Continuez, puis lancer l'entrainement.
