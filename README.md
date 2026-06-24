@@ -6,11 +6,11 @@ Première solution <mark style="color:purple;">**LAD/RAD labellisée Deep Tech**
 
 ## Solution multilingue
 
-La plateforme reciTAL est capable de traiter des documents et des mails dans plusieurs langues. Que vos documents soient en français, en anglais, ou dans une autre langue, reciTAL offre des fonctionnalités avancées pour la reconnaissance et l'extraction de données, garantissant ainsi une efficacité maximale dans un environnement multilingue.
+reciTAL traite les documents et les mails dans plusieurs langues : il reconnaît et extrait les données indépendamment de la langue (français, anglais et autres langues).
 
 ## No code / Low-code
 
-La plateforme reciTAL permet aux utilisateurs de configurer et d'utiliser les solutions sans nécessiter de compétences en programmation. Grâce à ses fonctionnalités no code et low-code, les utilisateurs peuvent créer, personnaliser et déployer des workflows complexes, tout en minimisant le besoin de développement technique.
+La plateforme se configure et s'utilise sans compétences en programmation. Les workflows se construisent depuis l'interface ; le low-code permet d'ajouter des traitements spécifiques en Python lorsque c'est nécessaire.
 
 ## Exemples de cas d'usage
 

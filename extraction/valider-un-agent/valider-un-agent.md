@@ -20,7 +20,7 @@ Une fois tous les documents annotés (ou une partie seulement), on peut retrouve
 
 **Docs OK:** correspond au nombre de documents ne contenant aucune erreur.
 
-**Précision globale:** correspond au nombre de champs correctement extraits.
+**Précision globale :** part des champs correctement extraits (champs corrects rapportés au total des champs).
 
 {% hint style="info" %}
 Si les performances de l'Agent sont satisfaisantes, verrouillez votre Agent dans les configurations. Cela évitera de le modifier par erreur.

@@ -2,11 +2,11 @@
 
 Choisissez votre point de départ selon le niveau d'autonomie souhaité.
 
-## En quelques clics
+## Mise en route rapide
 
-- [Créer un agent génératif](creer-un-agent-generatif.md) — un agent prêt à extraire en quelques minutes à l'aide d'un LLM.
+- [Créer un agent génératif](creer-un-agent-generatif.md) — un agent qui extrait des données à l'aide d'un LLM, sans dataset annoté ni modèle entraîné.
 - [Créer un workflow](creer-un-workflow.md) — orchestrer plusieurs étapes (extraction, classification, post-traitement).
-- [Utiliser un modèle d'extraction sur étagère](utiliser-un-modele-dextraction-recital-sur-etagere.md) — démarrer sans configuration avec un modèle pré-entraîné.
+- [Utiliser un modèle d'extraction sur étagère](utiliser-un-modele-dextraction-recital-sur-etagere.md) — utiliser un modèle reciTAL pré-entraîné, sans phase d'entraînement.
 
 ## Pour aller plus loin
 

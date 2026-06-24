@@ -18,9 +18,9 @@ La **Steps Library** de l'éditeur de workflow expose une catégorie **Action** 
 
 ## Quand les utiliser
 
-Les actions standard sont à insérer **entre** les étapes métier (extraction, classification, review) pour câbler le flux end-to-end :
+Les actions standard sont à insérer **entre** les étapes métier (extraction, classification, review) pour assembler les étapes du workflow :
 
-- **Avant l'extraction** — Unpack pour traiter une archive, Split Document pour séparer une liasse, Barcodes pour pré-router.
+- **Avant l'extraction** — Unpack pour traiter une archive, Split Document pour séparer une liasse, Barcodes pour lire un code-barres et router le document.
 - **Après l'extraction** — Merge Documents pour consolider, Workflow pour enchaîner un sous-traitement. _(Send Email / Forward Email : bientôt disponibles.)_
 
 ## Cross-refs

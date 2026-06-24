@@ -20,6 +20,6 @@ Donnez un nom à votre modèle de classification.
 Veillez à ce que l'option **"Ignore filenames in model training"** soit bien activée. Si elle ne l'est pas, le modèle se reposera (en plus du contenu) sur le nom du fichier.
 {% endhint %}
 
-Continuez, puis lancer l'entrainement.
+Continuez, puis lancez l'entraînement.
 
-L'entrainement d'un modèle de classification est très rapide, vous retrouverez votre modèle de classification parmi la liste des modèles quelques secondes plus tard.
+Une fois l'entraînement terminé, le modèle apparaît dans la liste des modèles.

@@ -21,7 +21,7 @@
         "label": "Label1" // La catégorie prédite par le modèle
     },
     "document": {
-        "id": int, // the ID of classification
+        "id": int, // Identifiant de la classification
         "type_": "doc",
         "org_id": int, // Identifiant de l'organisation
         "agent_id": int // Identifiant de l'agent de classification
@@ -70,7 +70,7 @@
         "labels": ["Label3", "Label1", "Label2"] // Les catégories de chaque page prédites par le modèle
     },
     "document": {
-        "id": int, // the ID of classification
+        "id": int, // Identifiant de la classification
         "type_": "doc",
         "org_id": int, // Identifiant de l'organisation
         "agent_id": int // Identifiant de l'agent de classification

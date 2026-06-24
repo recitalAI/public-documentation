@@ -28,7 +28,7 @@ Nous avons une page dédiée à la liste de tous les modules disponibles : [Les 
 
 ## Ajouter des transitions
 
-Chaque module possède 2 points d'attache (sauf les états initiaux et terminaux qui n'en possèdent qu'un).
+Chaque module possède un point d'entrée et un point de sortie ; les états **Start** et **Done** n'en possèdent qu'un.
 
 <figure><img src="../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
 
@@ -38,7 +38,7 @@ Une transition entre 2 modules peut être créée en reliant leurs points d'atta
 
 <figure><img src="../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
 
-Il est possible de créer autant de transitions que souhaité en fonction des besoin.
+Un module peut avoir plusieurs transitions sortantes.
 
 <figure><img src="../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
 
@@ -46,7 +46,7 @@ Une transition peut être libre (par défaut) ou bien conditionnelle. Pour crée
 
 <figure><img src="../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
 
-## Terminer un Worflow
+## Terminer un workflow
 
 Chaque branche d'un workflow doit se terminer par le module **Done**.
 
