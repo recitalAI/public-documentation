@@ -42,7 +42,9 @@ Nommer le datapoint, puis dans le formulaire de configuration, sélectionner **E
 
 <figure><img src="../.gitbook/assets/demarrage_datapoint_generative_selected.png" alt="Méthode générative sélectionnée"><figcaption>Méthode Generative sélectionnée. La plateforme rappelle que les données sont transmises au provider LLM.</figcaption></figure>
 
-> ⚠️ **Confidentialité** : un datapoint génératif partage les données du document avec le provider LLM configuré. Vérifier la conformité avec votre politique de données avant utilisation.
+{% hint style="info" %}
+Un datapoint génératif transmet le contenu du document au provider LLM configuré dans l'organisation.
+{% endhint %}
 
 Pour le détail de la configuration (prompt, provider, paramètres avancés), voir [Datapoint génératif](../agents/configurer-un-agent-dextraction/configurer-les-extracteurs-dun-agent.md#datapoint-generatif) dans la configuration des extracteurs.
 
