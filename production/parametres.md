@@ -68,7 +68,7 @@ Liens vers la documentation API des services : **Extract API**, **Classify API**
 
 ## Users
 
-Liste les utilisateurs de l'organisation. Colonnes : **Status**, **Email**, **Name**, **Role**. Une barre **Filter** permet de rechercher, et le bouton **Create user** d'ajouter un utilisateur (Prénom, Nom, Email, Role). Le menu **Actions** de chaque ligne permet de modifier ou désactiver un compte.
+Liste les utilisateurs de l'organisation. Colonnes : **Status**, **Email**, **Name**, **Role**. Une barre **Filter** permet de rechercher, et le bouton **Create user** d'ajouter un utilisateur (Prénom, Nom, Email, Role). Le menu **Actions** de chaque ligne permet de l'éditer (**Edit**, dont le rôle et le statut Open/Blocked), de réinitialiser son mot de passe (**Reset password**) ou de le supprimer (**Delete**).
 
 Voir [Gestion des utilisateurs](../autres/gestion-des-utilisateurs.md) pour le détail des rôles.
 
