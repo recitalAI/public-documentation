@@ -10,9 +10,9 @@ description: >-
 
 Pour rappel, nos modèles (classification et extraction) sont entraînés sur 80% des données initiales. 20% des données sont mises de côté pour la validation. Les scores de performances affichés sont les scores de validation.
 
-Le premier tableau donne les F1-scores de chaque classe.
+Le premier tableau indique, pour chaque catégorie, le nombre de documents d'entraînement (**Initial**) et le score obtenu (**Training score**).
 
-On retrouve ensuite une matrice de confusion avec les labels prédits par le modèle en colonne, et les vrais labels en ligne.
+On retrouve ensuite une **matrice de confusion** (en-tête **Expected / Predicted**) : les vraies catégories figurent en ligne (*Expected*), les catégories prédites par le modèle en colonne (*Predicted*).
 
 
 
