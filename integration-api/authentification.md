@@ -2,7 +2,7 @@
 
 ## Via un token de service (recommandé)
 
-Des tokens de service peuvent être générés depuis la page de configuration de l'organisation (Paramètre - Généraux).
+Des tokens de service peuvent être générés depuis **Settings → API Tokens** (bouton **Generate API Token**).
 
 <figure><img src="../.gitbook/assets/image (42).png" alt=""><figcaption><p>Générer un token de service</p></figcaption></figure>
 
