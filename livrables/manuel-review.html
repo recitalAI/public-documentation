@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Manuel d'utilisation — Écran de Review (Suite reciTAL)</title>
+<style>
+  :root{
+    --violet:#5146E0;
+    --violet-dark:#2E2A6E;
+    --ink:#1f2430;
+    --grey:#5b6172;
+    --line:#e4e6ef;
+    --soft:#f5f6fb;
+    --green:#16a34a;
+  }
+  @page{ size:A4; margin:18mm 16mm 18mm 16mm; }
+  *{ box-sizing:border-box; }
+  html,body{ margin:0; padding:0; }
+  body{
+    font-family:"Segoe UI",Arial,Helvetica,sans-serif;
+    color:var(--ink); font-size:10.6pt; line-height:1.5;
+  }
+  h1,h2,h3,h4{ color:var(--violet-dark); line-height:1.25; }
+  h2{ font-size:17pt; margin:0 0 4px; padding-bottom:6px; border-bottom:2px solid var(--violet); }
+  h3{ font-size:12.5pt; margin:18px 0 4px; color:var(--violet); }
+  h4{ font-size:10.8pt; margin:12px 0 2px; }
+  p{ margin:6px 0; }
+  ul,ol{ margin:6px 0 6px 0; padding-left:20px; }
+  li{ margin:3px 0; }
+  code{ background:var(--soft); border:1px solid var(--line); border-radius:4px; padding:0 4px; font-family:Consolas,monospace; font-size:9.4pt; }
+  a{ color:var(--violet); text-decoration:none; }
+
+  /* ---- Cover ---- */
+  .cover{ height:259mm; position:relative; page-break-after:always; }
+  .cover .bar{ position:absolute; top:0; right:0; width:34%; height:100%; background:linear-gradient(180deg,#eef0fb 0%,#e3e6f7 100%); }
+  .cover .bar span{ position:absolute; top:0; height:100%; width:3px; background:#c7ccef; }
+  .cover .content{ position:relative; padding-top:62mm; }
+  .cover .kicker{ color:var(--violet); font-weight:600; letter-spacing:.5px; font-size:12pt; }
+  .cover h1{ font-size:40pt; line-height:1.05; margin:6px 0 0; color:var(--violet-dark); }
+  .cover .lead{ font-style:italic; color:var(--grey); max-width:120mm; margin-top:14px; font-size:11pt; }
+  .cover .brand{ margin-top:34mm; font-weight:800; font-size:20pt; color:var(--violet-dark); }
+  .cover .brand small{ display:block; font-weight:500; font-size:10pt; color:var(--grey); letter-spacing:.4px; }
+  .cover .meta{ position:absolute; bottom:6mm; left:0; color:var(--grey); font-size:9.5pt; }
+  .cover-logo{ margin-top:34mm; width:64mm; height:auto; display:block; }
+
+  /* ---- TOC ---- */
+  .toc{ page-break-after:always; }
+  .toc h2{ border:none; }
+  .toc ol{ list-style:none; padding:0; margin-top:10px; }
+  .toc > ol > li{ font-weight:600; margin:8px 0 2px; color:var(--violet-dark); }
+  .toc ol ol{ font-weight:400; padding-left:14px; margin:2px 0; color:var(--ink); }
+
+  section{ page-break-before:always; }
+  figure{ margin:14px 0; page-break-inside:avoid; }
+  figure img{ width:100%; border:1px solid var(--line); border-radius:6px; }
+  figcaption{ font-size:9pt; color:var(--grey); margin-top:5px; font-style:italic; }
+
+  table{ width:100%; border-collapse:collapse; margin:10px 0; font-size:9.8pt; }
+  th,td{ border:1px solid var(--line); padding:7px 9px; text-align:left; vertical-align:top; }
+  th{ background:var(--soft); color:var(--violet-dark); }
+  td code{ white-space:nowrap; }
+
+  .note{ background:var(--soft); border-left:4px solid var(--violet); border-radius:0 6px 6px 0; padding:9px 12px; margin:12px 0; font-size:9.9pt; }
+  .note b{ color:var(--violet-dark); }
+
+  .pill{ display:inline-block; min-width:18px; text-align:center; border-radius:5px; padding:1px 6px; font-size:9pt; color:#fff; font-weight:700; }
+  .pill.v{ background:var(--violet); }
+  .pill.g{ background:var(--green); }
+
+  /* ---- Modal reproduction ---- */
+  .modal-stage{ background:#e9eaf2; border:1px solid var(--line); border-radius:8px; padding:26px; display:flex; justify-content:center; }
+  .modal{ width:330px; background:#fff; border-radius:14px; box-shadow:0 10px 30px rgba(40,40,90,.18); padding:20px 22px; position:relative; }
+  .modal .x{ position:absolute; top:12px; right:14px; color:#9aa0b4; font-size:15px; }
+  .modal h4{ color:var(--violet); font-size:15pt; margin:2px 0 14px; }
+  .modal .lbl{ font-size:10pt; margin-bottom:8px; }
+  .modal .field{ border:1px solid var(--line); border-radius:8px; padding:8px 10px; color:#9aa0b4; font-size:9.5pt; display:flex; justify-content:space-between; }
+  .modal .check{ display:flex; gap:8px; align-items:flex-start; margin:12px 0 18px; font-size:9.2pt; color:var(--grey); }
+  .modal .box{ width:15px; height:15px; border:2px solid #c2c6d8; border-radius:4px; flex:none; margin-top:1px; }
+  .modal .actions{ display:flex; gap:10px; justify-content:flex-end; }
+  .btn{ border-radius:20px; padding:8px 20px; font-weight:700; font-size:9.5pt; }
+  .btn.ghost{ border:1px solid var(--line); color:var(--ink); background:#fff; }
+  .btn.solid{ background:var(--violet); color:#fff; border:1px solid var(--violet); }
+
+  .legend{ border:1px solid var(--line); border-radius:8px; padding:4px 0; margin:10px 0; }
+  .legend div{ display:flex; gap:10px; padding:7px 12px; border-bottom:1px solid var(--line); font-size:9.8pt; align-items:baseline; }
+  .legend div:last-child{ border-bottom:none; }
+  .legend b{ flex:none; width:150px; color:var(--violet-dark); }
+</style>
+</head>
+<body>
+
+<!-- ===================== COVER ===================== -->
+<div class="cover">
+  <div class="bar"><span style="right:40px"></span><span style="right:54px"></span><span style="right:64px"></span></div>
+  <div class="content">
+    <div class="kicker">Suite reciTAL — Production</div>
+    <h1>Manuel d'utilisation<br>de l'écran de Review</h1>
+    <p class="lead">Ce document présente l'écran de Review (correction / vidéocodage) de la Suite reciTAL
+    et explique, étape par étape, comment vérifier et valider les données extraites par les agents,
+    puis comment autoriser et configurer la review au niveau d'un agent.</p>
+    <img class="cover-logo" src="../.gitbook/assets/recital-logo.png" alt="reciTAL">
+
+  </div>
+  <div class="meta">reciTAL · Mode opératoire à destination des équipes métier · Basé sur la Suite v26.4 · Juin 2026</div>
+</div>
+
+<!-- ===================== TOC ===================== -->
+<div class="toc">
+  <h2>Sommaire</h2>
+  <ol>
+    <li>1. Présentation
+      <ol>
+        <li>1.1 À quoi sert l'écran Review</li>
+        <li>1.2 Comment un document arrive en Review</li>
+      </ol>
+    </li>
+    <li>2. Accès et organisation
+      <ol>
+        <li>2.1 Les trois onglets</li>
+        <li>2.2 La liste des agents</li>
+        <li>2.3 Les documents d'un agent</li>
+      </ol>
+    </li>
+    <li>3. L'écran de correction
+      <ol>
+        <li>3.1 Vue d'ensemble</li>
+        <li>3.2 Naviguer entre les documents</li>
+        <li>3.3 La barre d'actions</li>
+        <li>3.4 Vérifier et corriger les champs</li>
+        <li>3.5 Groupes et sous-groupes</li>
+        <li>3.6 Le visualiseur de document</li>
+      </ol>
+    </li>
+    <li>4. Copier dans un dataset</li>
+    <li>5. Autoriser et configurer la review depuis un agent
+      <ol>
+        <li>5.1 Les options de la review</li>
+        <li>5.2 Les extracteurs affichés</li>
+      </ol>
+    </li>
+    <li>6. Rôles et permissions</li>
+    <li>7. Pour aller plus loin</li>
+  </ol>
+</div>
+
+<!-- ===================== 1. PRESENTATION ===================== -->
+<section>
+  <h2>1. Présentation</h2>
+
+  <h3>1.1 À quoi sert l'écran Review</h3>
+  <p>L'écran <b>Review</b> est l'espace de <b>correction humaine</b> de la Suite reciTAL. Il regroupe tous les
+  documents et emails dont l'extraction ou la classification automatique nécessite une vérification avant
+  validation finale, organisés par agent. C'est ici que l'opérateur :</p>
+  <ul>
+    <li>vérifie et corrige les données extraites par les modèles en production ;</li>
+    <li>valide un document une fois les contrôles résolus, ce qui le fait sortir de la file ;</li>
+    <li>écarte un document non conforme (hors périmètre, illisible, incomplet) ;</li>
+    <li>enrichit un dataset à partir d'un document mal extrait, pour améliorer les extractions futures.</li>
+  </ul>
+
+  <h3>1.2 Comment un document arrive en Review</h3>
+  <p>La vérification se fait <b>au document</b>. La review se paramètre par agent (voir §5) : lorsque l'option
+  <b>Active review</b> est activée, la correction humaine s'applique aux extractions situées sous le seuil d'automatisation.</p>
+  <p>Une fois un document vérifié et validé, le document suivant de la file est proposé automatiquement.
+  Tant qu'ils ne sont pas traités, les documents restent dans la file de l'agent.</p>
+</section>
+
+<!-- ===================== 2. ACCES ===================== -->
+<section>
+  <h2>2. Accès et organisation</h2>
+
+  <h3>2.1 Les trois onglets</h3>
+  <p>Dans la barre de navigation, cliquer sur <b>Review</b>. L'écran est segmenté en trois onglets selon le type de tâche :</p>
+  <ul>
+    <li><b>Extraction</b> — documents passés par un agent d'extraction avec des champs à vérifier ;</li>
+    <li><b>Classification</b> — documents dont la classe prédite est en revue ;</li>
+    <li><b>Emails</b> — emails à classifier.</li>
+  </ul>
+  <p>Le badge de chaque onglet indique le nombre d'éléments en attente. Le champ de recherche filtre les agents par nom.</p>
+
+  <h3>2.2 La liste des agents</h3>
+  <p>Chaque ligne correspond à un agent et au nombre de documents en attente. Cliquer sur le nom d'un agent ouvre sa file.</p>
+  <figure>
+    <img src="../.gitbook/assets/production_review_queue.png" alt="Onglet Extraction de Review">
+    <figcaption>Onglet <i>Extraction</i> de Review : la liste des agents et leur nombre de documents à corriger.</figcaption>
+  </figure>
+
+  <h3>2.3 Les documents d'un agent</h3>
+  <p>La file d'un agent liste ses documents à corriger avec leur <b>nom</b>, le <b>workflow</b> d'origine, la <b>taille</b>,
+  la <b>date d'ajout</b> et la <b>date de traitement</b>. Les cases à cocher permettent une sélection multiple,
+  et le champ <i>Filter by name</i> filtre la liste. Cliquer sur le nom d'un document ouvre l'écran de correction.</p>
+  <figure>
+    <img src="../.gitbook/assets/production_review_agent_docs.png" alt="Documents à corriger d'un agent">
+    <figcaption>Les documents en attente de correction pour l'agent sélectionné.</figcaption>
+  </figure>
+</section>
+
+<!-- ===================== 3. ECRAN DE CORRECTION ===================== -->
+<section>
+  <h2>3. L'écran de correction</h2>
+
+  <h3>3.1 Vue d'ensemble</h3>
+  <p>L'écran de correction est divisé en deux zones : à <b>gauche</b>, les champs extraits à vérifier ;
+  à <b>droite</b>, le document affiché page par page avec ses zones détectées. Les boutons d'action sont
+  regroupés en haut de la colonne de gauche.</p>
+  <figure>
+    <img src="../.gitbook/assets/production_review_correction.png" alt="Écran de correction">
+    <figcaption>Écran de correction : champs à gauche, document et zones détectées à droite.</figcaption>
+  </figure>
+
+  <h3>3.2 Naviguer entre les documents</h3>
+  <ul>
+    <li><b>All reviews</b> ramène à la file de l'agent.</li>
+    <li>Les flèches <b>‹ / ›</b>, le compteur (ex. <i>1 / 1</i>) et le menu déroulant du nom de fichier permettent
+    de passer d'un document à l'autre <b>sans quitter l'écran de correction</b>.</li>
+  </ul>
+
+  <h3>3.3 La barre d'actions</h3>
+  <p>Quatre boutons sont disponibles en haut de la colonne des champs :</p>
+  <table>
+    <tr><th style="width:34%">Bouton</th><th>Action</th></tr>
+    <tr><td><b>Validate</b></td><td>Valide le document et l'envoie. Il quitte la file ; le document suivant s'affiche.</td></tr>
+    <tr><td><b>Discard</b></td><td>Écarte le document (hors périmètre, illisible, non conforme…).</td></tr>
+    <tr><td><b>Copy to dataset</b></td><td>Copie l'intégralité du document dans un dataset Studio.</td></tr>
+    <tr><td><b>Add comment</b></td><td>Ajoute un commentaire au document.</td></tr>
+  </table>
+
+  <h3>3.4 Vérifier et corriger les champs</h3>
+  <p>Chaque champ extrait s'affiche dans une zone de saisie éditable, sous le nom de son extracteur
+  (<code>NUMERO_FACTURE</code>, <code>EMETTEUR_NOM</code>, <code>TOTAL_TTC</code>…).</p>
+  <div class="legend">
+    <div><b><span class="pill v">✓</span> Mark as reviewed</b><span>Le bouton (coche) marque la valeur du champ comme vérifiée.</span></div>
+    <div><b><span class="pill v">⟳</span> Revert to extracted value</b><span>Apparaît quand une valeur a été modifiée : restaure la valeur initialement extraite par le modèle.</span></div>
+  </div>
+  <p>Pour <b>corriger</b> une valeur, modifier directement le texte dans la zone de saisie.</p>
+
+  <h3>3.5 Groupes et sous-groupes</h3>
+  <p>Les données répétables sont regroupées : par exemple <code>LIGNE</code> pour les lignes de facture,
+  <code>EMETTEUR_ADRESSE</code>, <code>DETAIL_TVA</code>. Chaque sous-groupe peut être déplié, complété, ajouté via
+  <b>Add subgroup</b> ou supprimé, afin de refléter le nombre réel d'occurrences présentes dans le document.</p>
+
+  <h3>3.6 Le visualiseur de document</h3>
+  <p>La colonne de droite affiche le document et ses zones détectées. Les outils disponibles :</p>
+  <table>
+    <tr><th style="width:38%">Outil</th><th>Fonction</th></tr>
+    <tr><td><b>Show detected text</b> (icône ¶, haut gauche)</td><td>Affiche ou masque le texte détecté par l'OCR en surimpression.</td></tr>
+    <tr><td><b>Recherche</b> (loupe, haut droite)</td><td>Recherche dans le texte du document.</td></tr>
+    <tr><td><b>Miniatures des pages</b> (colonne de droite)</td><td>Aperçu des pages du document.</td></tr>
+    <tr><td><b>Zoom + / −</b> et <b>rotation</b> (bas droite)</td><td>Ajustent l'affichage et l'orientation pour faciliter la lecture.</td></tr>
+    <tr><td><b>Add page to dataset</b> (bas droite)</td><td>Ajoute la <b>page courante</b> à un dataset (voir §4).</td></tr>
+  </table>
+</section>
+
+<!-- ===================== 4. DATASET ===================== -->
+<section>
+  <h2>4. Copier dans un dataset</h2>
+  <p>Lorsqu'un document présente trop d'écarts, l'ajouter à un dataset permet d'enrichir l'entraînement et
+  d'améliorer les extractions futures sur ce format. Deux actions distinctes existent :</p>
+  <ul>
+    <li><b>Copy to dataset</b> (barre d'actions) — copie le <b>document entier</b> ;</li>
+    <li><b>Add page to dataset</b> (visualiseur, en bas à droite) — copie la <b>page affichée</b>.</li>
+  </ul>
+  <p>L'ajout d'une page ouvre une fenêtre où l'on sélectionne le dataset cible. L'option <b>Generate labels and
+  prefill annotations from the extraction models associated with the extraction agent</b> pré-remplit les annotations
+  de la page à partir des modèles d'extraction de l'agent, ce qui accélère l'annotation côté Studio.</p>
+
+  <div class="modal-stage">
+    <div class="modal">
+      <div class="x">✕</div>
+      <h4>Add page to dataset</h4>
+      <div class="lbl">Select a dataset to copy page to&nbsp;:</div>
+      <div class="field"><span>Select dataset</span><span>⌄</span></div>
+      <div class="check"><span class="box"></span><span>Generate labels and prefill annotations from the extraction models associated with the extraction agent</span></div>
+      <div class="actions"><span class="btn ghost">CANCEL</span><span class="btn solid">SAVE</span></div>
+    </div>
+  </div>
+  <figcaption>Fenêtre <i>Add page to dataset</i> : choix du dataset cible et option de pré-remplissage des annotations.</figcaption>
+</section>
+
+<!-- ===================== 5. CONFIG AGENT ===================== -->
+<section>
+  <h2>5. Autoriser et configurer la review depuis un agent</h2>
+  <p>La review se paramètre <b>par agent</b>, depuis l'onglet <b>Review configuration</b> de l'agent d'extraction
+  (<b>Agents → [agent] → Review configuration</b>). C'est ici que l'on autorise la review et que l'on règle son comportement.</p>
+  <figure>
+    <img src="../.gitbook/assets/production_review_config.png" alt="Onglet Review configuration d'un agent">
+    <figcaption>Onglet <i>Review configuration</i> : activation, validation externe, ordre de traitement et extracteurs affichés.</figcaption>
+  </figure>
+
+  <h3>5.1 Les options de la review</h3>
+  <table>
+    <tr><th style="width:33%">Option</th><th>Effet</th></tr>
+    <tr><td><b>Active review</b></td><td>Active la correction humaine pour les extractions sous le seuil d'automatisation. <b>Interrupteur principal</b> : sans lui, aucun document de l'agent n'est envoyé en Review.</td></tr>
+    <tr><td><b>External validation</b></td><td>Génère une URL partageable permettant à des utilisateurs <b>sans compte</b> de corriger un document. Le jeton est valable un nombre d'heures configurable (<i>Token valid for … hours</i>).</td></tr>
+    <tr><td><b>Allow anonymous copy to dataset</b></td><td>Autorise ces utilisateurs externes à copier des documents vers un dataset (à sélectionner), sans compte.</td></tr>
+    <tr><td><b>Auto validated review order</b></td><td>Affiche d'abord les valeurs N/A, puis les valeurs incorrectes, en attente et correctes.</td></tr>
+    <tr><td><b>FIFO review order</b></td><td>Traite les documents dans leur ordre d'arrivée dans la file.</td></tr>
+    <tr><td><b>Only show pages with pending values</b></td><td>N'affiche que les pages contenant des valeurs à vérifier (en pré-validation automatique, seules les pages avec valeurs invalides sont montrées).</td></tr>
+    <tr><td><b>Authorize reviewers</b></td><td>Réserve la correction des documents de l'agent à des utilisateurs non-administrateurs spécifiques.</td></tr>
+    <tr><td><b>Automatically delete documents in review</b></td><td>Supprime automatiquement les documents en review au bout d'un nombre de jours défini (<i>Keep documents for … days</i>).</td></tr>
+  </table>
+
+  <h3>5.2 Les extracteurs affichés</h3>
+  <p>Le tableau <b>Extractors displayed in review</b> liste tous les data points de l'agent ; la colonne <b>Display</b>
+  détermine, pour chacun, s'il apparaît sur l'écran de correction — on limite ainsi la correction aux seuls champs pertinents.</p>
+  <p>Le tableau <b>Label group</b> gère de la même façon les groupes (<code>LIGNE</code>, <code>EMETTEUR_ADRESSE</code>…) :
+  <b>Display</b> pour l'afficher, <b>As table</b> pour le présenter sous forme de tableau plutôt qu'en sous-groupes empilés.</p>
+
+  <div class="note"><b>À noter —</b> les autres paramètres de l'agent (verrouillage, OCR, traitement, normalisation)
+  se trouvent dans l'onglet <b>Configuration</b>.</div>
+</section>
+
+<!-- ===================== 6. ROLES ===================== -->
+<section>
+  <h2>6. Rôles et permissions</h2>
+  <p>Dans <b>Paramètres → Users</b>, chaque utilisateur porte un rôle. Les rôles présents incluent
+  <b>Reviewer</b> (utilisateur non-administrateur) et <b>Orgadmin</b> (administrateur de l'organisation).</p>
+  <p>L'option <b>Authorize reviewers</b> d'un agent permet de réserver sa file à des utilisateurs
+  non-administrateurs désignés. La gestion des comptes et des rôles se fait depuis le module <b>Paramètres</b>.</p>
+</section>
+
+<!-- ===================== 7. POUR ALLER PLUS LOIN ===================== -->
+<section>
+  <h2>7. Pour aller plus loin</h2>
+  <p>Ce manuel décrit l'écran de Review tel qu'il se présente dans la Suite reciTAL (v26.4). Pour les sujets connexes :</p>
+  <ul>
+    <li>la documentation en ligne reciTAL (sections <i>Production → Review</i>, <i>Activité</i>, <i>Performance</i>, <i>Paramètres</i>) ;</li>
+    <li>la constitution et l'annotation des datasets côté Studio, pour exploiter les pages copiées depuis la Review ;</li>
+    <li>l'équipe support reciTAL pour toute question liée aux accès et aux rôles.</li>
+  </ul>
+  <p style="margin-top:18px; color:var(--grey); font-size:9pt;">© reciTAL 2026 — Document interne / client. Captures issues de la Suite v26.4.</p>
+</section>
+
+</body>
+</html>

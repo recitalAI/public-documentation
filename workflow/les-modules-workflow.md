@@ -1,8 +1,7 @@
 ---
 description: >-
-  Un grand nombre de modules existent pour compléter votre Worflow. Cette page
-  permet d'avoir une vue d'ensemble sur ces derniers, et ce qu'ils permettent de
-  faire.
+  Catalogue des modules disponibles dans l'éditeur de workflow, regroupés par
+  catégorie, avec leurs paramètres et la structure de leurs résultats.
 ---
 
 # Les modules Workflow
@@ -72,7 +71,7 @@ Voir [Structure des résultats de Classification](../integration-api/classificat
 
 #### Paramètres
 
-<table><thead><tr><th width="234">Paramètre</th><th>Description</th></tr></thead><tbody><tr><td><strong>Nom</strong></td><td>Le nom de l'étape</td></tr><tr><td><strong>Expression d'entrée</strong></td><td>Le mail à classifier.  La valeur par défaut est : data['email']</td></tr><tr><td><strong>Expression des pièces jointes</strong></td><td>La collection des pièces jointes. La valeur par défaut est : files['attachments']</td></tr><tr><td><strong>Modèle</strong></td><td>La sélection parmi les modèles de classification de mails existants</td></tr><tr><td><strong>Expression du modèle</strong></td><td>Sélection dynamique du modèle d'extraction.</td></tr><tr><td><strong>Clé de sortie</strong></td><td>La clé de "data" dans lesquels seront stockées toutes les informations relatives à ce module.</td></tr><tr><td><strong>Itérer sur l'entrée</strong></td><td>Activer l'option si l'entrée est une liste. Le module traitera les documents 1 à 1, et la sortie sera une liste de résultats.</td></tr></tbody></table>
+<table><thead><tr><th width="234">Paramètre</th><th>Description</th></tr></thead><tbody><tr><td><strong>Nom</strong></td><td>Le nom de l'étape</td></tr><tr><td><strong>Expression d'entrée</strong></td><td>Le mail à classifier.  La valeur par défaut est : data['email']</td></tr><tr><td><strong>Expression des pièces jointes</strong></td><td>La collection des pièces jointes. La valeur par défaut est : files['attachments']</td></tr><tr><td><strong>Modèle</strong></td><td>La sélection parmi les modèles de classification de mails existants</td></tr><tr><td><strong>Expression du modèle</strong></td><td>Sélection dynamique du modèle de classification de mails.</td></tr><tr><td><strong>Clé de sortie</strong></td><td>La clé de "data" dans lesquels seront stockées toutes les informations relatives à ce module.</td></tr><tr><td><strong>Itérer sur l'entrée</strong></td><td>Activer l'option si l'entrée est une liste. Le module traitera les documents 1 à 1, et la sortie sera une liste de résultats.</td></tr></tbody></table>
 
 #### Structure des résultats
 
@@ -90,14 +89,14 @@ Voir [Structure des résultats d'Extraction](../integration-api/extraction/struc
 
 ### llm — GenAI
 
-<table><thead><tr><th width="234">Paramètre</th><th>Description</th></tr></thead><tbody><tr><td><strong>Nom</strong></td><td>Le nom de l'étape</td></tr><tr><td><strong>Fournisseur</strong></td><td>Fournisseur du modèle de langue</td></tr><tr><td><strong>Modèle</strong></td><td>Version du modèle de langue</td></tr><tr><td><strong>Prompt</strong></td><td>Prompt qui sera envoyé au modèle de langue. Des variables peuvent être ajoutées en les mettant entre accolade. <br>Exemple : <em>Quelle est la capitale de {data.country} ?</em></td></tr><tr><td><strong>Inclure fichier</strong></td><td>Est-ce qu'un fichier doit être passé en plus du prompt ?</td></tr><tr><td>Expression d'entrée</td><td>Le ou les fichiers qui seront passés. files["file"] par défaut.</td></tr><tr><td>Clé de sortie</td><td>La clé de "data" dans lesquels seront stockées toutes les informations relatives à ce module.</td></tr><tr><td>Température</td><td>Valeur entre 0 et 1. Une température proche de 0 donnera un modèle déterministe, et inversement.<br>Certains modèles nécessite une température de 1.</td></tr><tr><td>Itérer sur l'entrée</td><td>Activer l'option si l'entrée est une liste. Le module traitera les documents 1 à 1, et la sortie sera une liste de résultats.</td></tr></tbody></table>
+<table><thead><tr><th width="234">Paramètre</th><th>Description</th></tr></thead><tbody><tr><td><strong>Nom</strong></td><td>Le nom de l'étape</td></tr><tr><td><strong>Fournisseur</strong></td><td>Fournisseur du modèle de langue</td></tr><tr><td><strong>Modèle</strong></td><td>Version du modèle de langue</td></tr><tr><td><strong>Prompt</strong></td><td>Prompt qui sera envoyé au modèle de langue. Des variables peuvent être ajoutées en les mettant entre accolade. <br>Exemple : <em>Quelle est la capitale de {data.country} ?</em></td></tr><tr><td><strong>Inclure fichier</strong></td><td>Est-ce qu'un fichier doit être passé en plus du prompt ?</td></tr><tr><td>Expression d'entrée</td><td>Le ou les fichiers qui seront passés. files["file"] par défaut.</td></tr><tr><td>Clé de sortie</td><td>La clé de "data" dans lesquels seront stockées toutes les informations relatives à ce module.</td></tr><tr><td>Température</td><td>Valeur entre 0 et 1. Une température proche de 0 donnera un modèle déterministe, et inversement.<br>Certains modèles imposent une température de 1.</td></tr><tr><td>Itérer sur l'entrée</td><td>Activer l'option si l'entrée est une liste. Le module traitera les documents 1 à 1, et la sortie sera une liste de résultats.</td></tr></tbody></table>
 
 
 
 ## 3. Review
 
 {% hint style="info" %}
-Les étape de review sont bloquantes tant que le document n'a pas été validé par un opérateur.
+Les étapes de review sont bloquantes tant que le document n'a pas été validé par un opérateur.
 {% endhint %}
 
 ### Classification Review — review de classification (vidéo-typage)

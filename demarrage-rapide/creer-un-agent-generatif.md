@@ -1,6 +1,6 @@
 # Créer un agent génératif
 
-Un agent génératif utilise un **LLM** (Large Language Model) pour extraire l'information à partir d'un prompt, sans nécessiter de dataset annoté ni de modèle entraîné. C'est la voie la plus rapide quand on démarre.
+Un agent génératif utilise un **LLM** (Large Language Model) pour extraire l'information à partir d'un prompt, sans nécessiter de dataset annoté ni de modèle entraîné.
 
 ## 1. Créer l'agent
 

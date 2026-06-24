@@ -38,7 +38,7 @@ Le type de valeur normalise le champ extrait. Le choix se fait au niveau supéri
 
 C'est la façon dont le champ sera extrait dans le document.&#x20;
 
-La principale méthode d'extraction est depuis un modèle entraîné. Sélectionnez le modèle et sa version, puis sélectionnez le label du modèle correspondant.
+La méthode par défaut est **Model** : sélectionnez le modèle entraîné et sa version, puis le label du modèle correspondant.
 
 {% hint style="info" %}
 À noter que plusieurs modèles peuvent être utilisés pour des champs différents. Cela permet, par exemple, d'associer 2 labels à un même mot (ce qui est impossible avec un seul modèle). Cependant, lors d'une prédiction, chaque modèle sera appelé, ce qui augmentera le temps de traitement.
@@ -46,12 +46,12 @@ La principale méthode d'extraction est depuis un modèle entraîné. Sélection
 Par exemple, configurer un premier extracteur "Adresse", qui capture une adresse entière, et un deuxième extracteur "Code Postal" depuis un autre modèle. Ainsi, dans le document, le code postal aura à la fois le label "Code Postal" et "Adresse".
 {% endhint %}
 
-Il est également possible d'utiliser les expressions régulières pour extraire un champ dans le document. Pour cela, sélectionnez "Règles", saisissez la regex, puis vous avez l'option de délimiter une zone dans le document où chercher l'expression.
+Il est également possible d'utiliser les expressions régulières (**Rules**) pour extraire un champ : saisissez la regex, puis, en option, délimitez une zone du document où chercher l'expression.
 
 {% hint style="info" %}
-Il est aussi possible de sélectionner "Génératif" comme méthode d'extraction.
+Il est aussi possible de sélectionner **Generative** comme méthode d'extraction.
 
-Un agent génératif est créé dynamiquement à partir du nom et de la description de l'extracteur. Il est également possible d'ajouter une description au niveau de votre agent d'extraction.
+En mode génératif, le nom et la description du datapoint servent de consigne au LLM pour extraire la valeur. Une description peut aussi être renseignée au niveau de l'agent d'extraction.
 {% endhint %}
 
 ## Créer un nouveau groupe de champs
