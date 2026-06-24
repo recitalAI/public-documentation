@@ -4,22 +4,17 @@ L'écran **Settings → Users** répertorie les utilisateurs de l'organisation (
 
 ## Les rôles
 
-À la création d'un utilisateur, le champ **Role** propose **cinq rôles** :
+Le champ **Role** (à la création comme à l'édition d'un utilisateur) propose **deux rôles** intégrés :
 
 | Rôle | Vocation |
 |---|---|
 | **Reviewer** | Correction / review des documents (vidéo-codage). Accès restreint à l'écran de Review. |
-| **Operator** | Opérateur de correction. |
-| **Expert** | Opérateur avec un périmètre étendu. |
-| **Supervisor** | Suivi de l'activité et gestion de certains comptes/réglages. |
 | **Orgadmin** | Administration complète de l'organisation (Studio, Agents, Workflows, Review, Settings). |
 
-{% hint style="info" %}
-Le périmètre exact de chaque rôle se gère côté plateforme. Pour les rôles **Operator**, **Expert** et **Supervisor**, se référer à l'écran **Settings → Users** de votre déploiement.
-{% endhint %}
+Un champ distinct **user_role** permet d'assigner un **rôle personnalisé** (au-delà des deux rôles intégrés) lorsque l'organisation en a défini.
 
 {% hint style="warning" %}
-Un rôle **Sysadmin** existe également mais est réservé à l'administration interne reciTAL : il n'est **pas** proposé à la création d'un utilisateur.
+Un rôle **Sysadmin** existe également mais est réservé à l'administration interne reciTAL : il n'est **pas** proposé dans le menu Role.
 {% endhint %}
 
-Le rôle est assigné à la création de l'utilisateur (onglet **Settings → Users**, bouton **Create user**). Voir [Paramètres](../production/parametres.md).
+Le rôle s'assigne dans l'onglet **Settings → Users** (bouton **Create user**, ou menu **Actions → Edit** d'un utilisateur existant). Voir [Paramètres](../production/parametres.md).
