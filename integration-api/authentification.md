@@ -14,7 +14,7 @@ API_TOKEN = "....."
 
 <strong>r = requests.get(
 </strong>    url=f"{URL_SERVER}/config/", 
-    headers={"Authorization": f"Bearer {API_TOKEN}"
+    headers={"Authorization": f"Bearer {API_TOKEN}"}
 )
 </code></pre>
 
