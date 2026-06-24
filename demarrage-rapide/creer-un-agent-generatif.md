@@ -46,10 +46,10 @@ Nommer le datapoint, puis dans le formulaire de configuration, sélectionner **E
 Un datapoint génératif transmet le contenu du document au provider LLM configuré dans l'organisation.
 {% endhint %}
 
-Pour le détail de la configuration (prompt, provider, paramètres avancés), voir [Datapoint génératif](../agents/configurer-un-agent-dextraction/configurer-les-extracteurs-dun-agent.md#datapoint-generatif) dans la configuration des extracteurs.
+Pour le détail de la configuration (prompt, provider, paramètres avancés), voir [Datapoint génératif](../extraction/configurer-un-agent-dextraction/configurer-les-extracteurs-dun-agent.md#datapoint-generatif) dans la configuration des extracteurs.
 
 ## Pour aller plus loin
 
-- [Configurer les paramètres de l'agent](../agents/configurer-un-agent-dextraction/configurer-les-parametres-dun-agent.md) — règles métier, post-traitement, OCR avancé
-- [Valider un Agent](../agents/valider-un-agent/README.md) — charger des documents test et valider la qualité d'extraction
+- [Configurer les paramètres de l'agent](../extraction/configurer-un-agent-dextraction/configurer-les-parametres-dun-agent.md) — règles métier, post-traitement, OCR avancé
+- [Valider un Agent](../extraction/valider-un-agent/README.md) — charger des documents test et valider la qualité d'extraction
 - [Intégration API](../integration-api/authentification.md) — appeler l'agent depuis vos applications
