@@ -29,7 +29,7 @@ Cliquer sur un module l'ajoute au canvas. Connecter ensuite les transitions entr
 Pour le détail des modules disponibles, voir :
 
 - [Les modules de workflow](../workflow/les-modules-workflow.md) — tous les types de modules
-- [Actions workflows standard](../workflow/actions-workflows-standard.md) — les 7 actions standard (Barcodes, Forward Email, Merge Documents, Send Email, Split Document, Unpack, Workflow)
+- [Actions workflows standard](../workflow/actions-workflows-standard.md) — les actions standard (Barcodes, Merge Documents, Split Document, Unpack, Workflow ; Send Email / Forward Email à venir)
 
 ## 4. Tester et publier
 
