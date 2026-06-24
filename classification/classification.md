@@ -12,11 +12,11 @@ Un classifieur est un modèle d’intelligence artificielle entraîné à réali
 
 ### Mails
 
-Dans le cas d’un mail, le classifieur va analyser le corps du mail, son sujet, son expéditeur, ses destinataires, et les pièces jointes.
+Dans le cas d’un mail, le classifieur analyse le contenu du message (sujet et corps) et, le cas échéant, ses pièces jointes.
 
 ### Documents
 
-Dans le cas d’un document, le classifieur va analyser les premières pages du document pour réaliser sa prédiction.
+Dans le cas d’un document, le classifieur analyse le texte du document (océrisé) pour réaliser sa prédiction.
 
 ## Le déliassage de documents
 

@@ -45,7 +45,7 @@ L'onglet **Data** affiche les données accumulées par le job (ajout successif d
 L'onglet **Files** recense tous les documents dans les différentes collections (avec la date, la collection, le nom et l'indication *Is Initial?*) et permet de les télécharger.
 
 {% hint style="info" %}
-Le module de cleanup supprime les data et tous les fichiers.
+Le module **Cleanup** peut purger les données et les fichiers du job ; les options *Keep data / files / history / preliminary* déterminent ce qui est conservé (voir [Les modules de workflow](les-modules-workflow.md)).
 {% endhint %}
 
 <figure><img src="../.gitbook/assets/workflow_job_files.png" alt="Job - Files"><figcaption>Jobs — onglet <em>Files</em>.</figcaption></figure>
