@@ -21,7 +21,7 @@ La plupart des modules partagent des paramètres communs, regroupés sous **Adva
 
 ### Ingest Email — ingérer des emails
 
-Ce module suppose qu'une boite mail a été configurée (voir [lnputs](inputs.md)), ou bien que les documents envoyés sont des .msg ou .eml.
+Ce module suppose qu'une boite mail a été configurée (voir [Connexion boîte mail](connexion-boite-mail.md)), ou bien que les documents envoyés sont des .msg ou .eml.
 
 Cette étape permet de récupérer toutes les informations concernant le mail et de les conserver dans "data". Elle permet également de mettre les pièces jointes dans une collection.
 

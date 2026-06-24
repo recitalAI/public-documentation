@@ -67,7 +67,7 @@
              ....
         }
         ],
-        "labels": ["Label1", "Label1", "Label2"] // Les catégories de chaque page prédites par le modèle
+        "labels": ["Label3", "Label1", "Label2"] // Les catégories de chaque page prédites par le modèle
     },
     "document": {
         "id": int, // the ID of classification

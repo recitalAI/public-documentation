@@ -23,5 +23,4 @@ L'**URI de redirection autorisé** à renseigner côté Google est : `https://ex
 
 ## Voir aussi
 
-- [Inputs](inputs.md) — vue d'ensemble des connecteurs d'entrée.
 - [Les modules de workflow](les-modules-workflow.md) — le module **Ingest Email**.
