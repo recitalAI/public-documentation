@@ -109,9 +109,9 @@ Dans la configuration d'un datapoint (créé via **Add → Single data point**),
 - **Démarrage rapide** : pas de dataset à constituer ni à annoter, le prompt suffit
 - **Champs rares** : valeurs présentes dans peu de documents, où un modèle entraîné manquerait de données
 
-### Confidentialité
-
-> ⚠️ Les datapoints génératifs transmettent les données du document au **provider LLM** configuré dans l'organisation. Vérifier la conformité (RGPD, secret professionnel) avant utilisation sur des documents sensibles.
+{% hint style="info" %}
+Un datapoint génératif transmet le contenu du document au provider LLM configuré dans l'organisation.
+{% endhint %}
 
 ### Cross-refs
 
