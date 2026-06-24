@@ -27,7 +27,7 @@ Cette étape permet de récupérer toutes les informations concernant le mail et
 
 #### Paramètres
 
-<table><thead><tr><th width="234">Paramètre</th><th>Description</th></tr></thead><tbody><tr><td><strong>Nom</strong></td><td>Le nom de l'étape</td></tr><tr><td><strong>Expression d'entrée</strong></td><td>La collection d'email à traiter. files["email"] par défaut.</td></tr><tr><td><strong>Taille minimale de pièce jointe (ko)</strong></td><td>Limite minimale à une pièce jointe pour qu'elle soit prise en compte.</td></tr><tr><td><strong>Taille maximale de pièce jointe (ko)</strong></td><td>Limite maximale à une pièce jointe pour qu'elle soit prise en compte.</td></tr><tr><td><strong>Ignorer pièce jointe si le nom contient</strong></td><td>Si le nom de la pièce jointe contient le texte renseigné, alors la pièce jointe sera ignorée. Mettre le nom entre "".</td></tr><tr><td><strong>Extensions acceptées pour pièce jointe</strong></td><td>Les fichiers n'ayant pas ces extensions ne seront pas pris en compte. Si aucune extension n'est renseignée, tous les fichiers sont pris en compte.</td></tr><tr><td><strong>Clé de sortie</strong></td><td>La clé de "data" dans lesquels seront stockées toutes les informations relatives à ce module.</td></tr><tr><td><strong>Collection de sortie</strong></td><td>La collection dans laquelle seront envoyées les pièces jointes. "attachments" par défaut.</td></tr><tr><td><strong>Itérer sur l'entrée</strong></td><td>Activer l'option si l'entrée est une liste. Le module traitera les documents 1 à 1, et la sortie sera une liste de résultats.</td></tr></tbody></table>
+<table><thead><tr><th width="234">Paramètre</th><th>Description</th></tr></thead><tbody><tr><td><strong>Nom</strong></td><td>Le nom de l'étape</td></tr><tr><td><strong>Expression d'entrée</strong></td><td>La collection d'email à traiter. files["email"] par défaut.</td></tr><tr><td><strong>Taille minimale de pièce jointe (ko)</strong></td><td>Limite minimale à une pièce jointe pour qu'elle soit prise en compte.</td></tr><tr><td><strong>Taille maximale de pièce jointe (ko)</strong></td><td>Limite maximale à une pièce jointe pour qu'elle soit prise en compte.</td></tr><tr><td><strong>Ignorer pièce jointe si le nom contient</strong></td><td>Si le nom de la pièce jointe contient le texte renseigné, alors la pièce jointe sera ignorée. Mettre le nom entre "".</td></tr><tr><td><strong>Extensions acceptées pour pièce jointe</strong></td><td>Les fichiers n'ayant pas ces extensions ne seront pas pris en compte. Par défaut : pdf, txt, html, doc, docx, ppt, pptx, tif, tiff, png, jpg, jpeg.</td></tr><tr><td><strong>Clé de sortie</strong></td><td>La clé de "data" dans lesquels seront stockées toutes les informations relatives à ce module.</td></tr><tr><td><strong>Collection de sortie</strong></td><td>La collection dans laquelle seront envoyées les pièces jointes. "attachments" par défaut.</td></tr><tr><td><strong>Itérer sur l'entrée</strong></td><td>Activer l'option si l'entrée est une liste. Le module traitera les documents 1 à 1, et la sortie sera une liste de résultats.</td></tr><tr><td><strong>Renommer les pièces jointes en double</strong> (Rename duplicate attachments)</td><td>Si activé, les pièces jointes portant un nom identique sont automatiquement renommées pour éviter les collisions.</td></tr></tbody></table>
 
 #### Structure des résultats
 
@@ -160,7 +160,7 @@ Ce module permet de séparer un document en sous-documents. Très utile par exem
 
 #### Paramètres
 
-<table><thead><tr><th width="234">Paramètre</th><th>Description</th></tr></thead><tbody><tr><td><strong>Nom</strong></td><td>Le nom du module</td></tr><tr><td><strong>Collection de sortie</strong></td><td>La collection dans laquelle sont envoyés les sous-documents générés.</td></tr><tr><td><strong>Expression d'entrée</strong></td><td>Le ou les fichiers à déliasser. files["file"] par défaut.</td></tr><tr><td><strong>Labels Expr</strong></td><td>La liste des labels de chaque page. Le document sera divisé à chaque fois qu'un label est différent de la page précédente.</td></tr><tr><td><strong>Labels To Ignore</strong></td><td>Les pages ayant ce label seront automatiquement mis à l'écart, et ne figureront pas dans les sous-documents générés.</td></tr><tr><td><strong>Clé de sortie</strong></td><td>La clé de "data" dans lesquels seront stockées toutes les informations relatives à ce module.</td></tr><tr><td><strong>Itérer sur l'entrée</strong></td><td>Activer l'option si l'entrée est une liste. Le module traitera les documents 1 à 1, et la sortie sera une liste de résultats.</td></tr></tbody></table>
+<table><thead><tr><th width="234">Paramètre</th><th>Description</th></tr></thead><tbody><tr><td><strong>Nom</strong></td><td>Le nom du module</td></tr><tr><td><strong>Collection de sortie</strong></td><td>La collection dans laquelle sont envoyés les sous-documents générés.</td></tr><tr><td><strong>Expression d'entrée</strong></td><td>Le ou les fichiers à déliasser. files["file"] par défaut.</td></tr><tr><td><strong>Labels Expr</strong></td><td>La liste des labels de chaque page. Le document sera divisé à chaque fois qu'un label est différent de la page précédente.</td></tr><tr><td><strong>Breaks Expr</strong></td><td>Expression indiquant les points de découpe (breaks) page à page. Issue par défaut de la prédiction de classification : <code>data['classify']['result']['prediction']['breaks']</code>.</td></tr><tr><td><strong>Labels To Ignore</strong></td><td>Les pages ayant ce label seront automatiquement mis à l'écart, et ne figureront pas dans les sous-documents générés.</td></tr><tr><td><strong>Clé de sortie</strong></td><td>La clé de "data" dans lesquels seront stockées toutes les informations relatives à ce module.</td></tr><tr><td><strong>Itérer sur l'entrée</strong></td><td>Activer l'option si l'entrée est une liste. Le module traitera les documents 1 à 1, et la sortie sera une liste de résultats.</td></tr></tbody></table>
 
 #### Structure des résultats
 
@@ -196,7 +196,7 @@ Ce module permet de décompresser un dossier archivé et d'extraire les fichiers
 
 #### Paramètres
 
-<table><thead><tr><th width="234">Paramètre</th><th>Description</th></tr></thead><tbody><tr><td><strong>Nom</strong></td><td>Le nom du module</td></tr><tr><td><strong>Collection de sortie</strong></td><td>La collection dans laquelle sont envoyés les fichiers décompressés.</td></tr><tr><td><strong>Expression d'entrée</strong></td><td>Le ou les fichiers à décompresser. files["file"] par défaut.</td></tr><tr><td><strong>Extensions</strong></td><td>Une liste d'extension valide. (Exemple : "pdf, doc, jpg, png"). Les fichiers ayant une extension différente dans l'archive seront ignorés.</td></tr><tr><td><strong>Clé de sortie</strong></td><td>La clé de "data" dans lesquels seront stockées toutes les informations relatives à ce module.</td></tr><tr><td><strong>Itérer sur l'entrée</strong></td><td>Activer l'option si l'entrée est une liste. Le module traitera les documents 1 à 1, et la sortie sera une liste de résultats.</td></tr></tbody></table>
+<table><thead><tr><th width="234">Paramètre</th><th>Description</th></tr></thead><tbody><tr><td><strong>Nom</strong></td><td>Le nom du module</td></tr><tr><td><strong>Collection de sortie</strong></td><td>La collection dans laquelle sont envoyés les fichiers décompressés.</td></tr><tr><td><strong>Expression d'entrée</strong></td><td>Le ou les fichiers à décompresser. files["file"] par défaut.</td></tr><tr><td><strong>Extensions</strong></td><td>Une liste d'extension valide. (Exemple : "pdf, doc, jpg, png"). Les fichiers ayant une extension différente dans l'archive seront ignorés.</td></tr><tr><td><strong>Max unpack depth</strong></td><td>Profondeur maximale de décompression pour les archives imbriquées (archive contenant d'autres archives).</td></tr><tr><td><strong>Clé de sortie</strong></td><td>La clé de "data" dans lesquels seront stockées toutes les informations relatives à ce module.</td></tr><tr><td><strong>Itérer sur l'entrée</strong></td><td>Activer l'option si l'entrée est une liste. Le module traitera les documents 1 à 1, et la sortie sera une liste de résultats.</td></tr></tbody></table>
 
 #### Structure des résultats
 
@@ -234,9 +234,25 @@ Ce module permet de fusionner les pages de plusieurs documents en entrée en un 
 
 ### Ensemble Validation — validation d'ensemble
 
-Module de validation (étiquettes **Validation / Document / AI agent**) disponible dans la Steps Library.
+Ce module confronte les résultats d'extraction d'un agent à ceux déjà obtenus afin de valider (ou non) automatiquement les champs concordants.
+
+#### Paramètres
+
+<table><thead><tr><th width="234">Paramètre</th><th>Description</th></tr></thead><tbody><tr><td><strong>Nom</strong> (Name)</td><td>Le nom de l'étape</td></tr><tr><td><strong>Agent d'extraction</strong> (Extraction agent)</td><td>La sélection parmi les agents d'extraction existants, utilisé comme second avis pour la validation.</td></tr><tr><td><strong>Expression d'entrée</strong> (Input expression)</td><td>Le ou les fichiers à valider. <code>files['file']</code> par défaut.</td></tr><tr><td><strong>Extract Expr</strong></td><td>Les données d'extraction à confronter. <code>data['extract']</code> par défaut.</td></tr><tr><td><strong>Expression de l'agent d'extraction</strong> (Extraction agent expression)</td><td>Sélection dynamique de l'agent d'extraction.</td></tr><tr><td><strong>Clé de sortie</strong> (Output key)</td><td>La clé de "data" dans laquelle seront stockées les informations de ce module. <code>ensemble_validation</code> par défaut.</td></tr><tr><td><strong>Itérer sur l'entrée</strong> (Iterate over input)</td><td>Activer l'option si l'entrée est une liste. Le module traitera les documents 1 à 1, et la sortie sera une liste de résultats.</td></tr></tbody></table>
 
 
+
+### Barcodes — lecture de codes-barres
+
+Ce module détecte et lit les codes-barres présents dans les documents en entrée.
+
+#### Paramètres
+
+<table><thead><tr><th width="234">Paramètre</th><th>Description</th></tr></thead><tbody><tr><td><strong>Nom</strong> (Name)</td><td>Le nom de l'étape</td></tr><tr><td><strong>Expression d'entrée</strong> (Input expression)</td><td>Le ou les fichiers à analyser. <code>files['file']</code> par défaut.</td></tr><tr><td><strong>Clé de sortie</strong> (Output key)</td><td>La clé de "data" dans laquelle seront stockées les informations de ce module. <code>barcodes</code> par défaut.</td></tr><tr><td><strong>Itérer sur l'entrée</strong> (Iterate over input)</td><td>Activer l'option si l'entrée est une liste. Le module traitera les documents 1 à 1, et la sortie sera une liste de résultats.</td></tr></tbody></table>
+
+{% hint style="info" %}
+Deux actions e-mail figurent dans la Steps Library mais sont marquées **« Available soon »** (bientôt disponibles, non activables à ce jour) : **Send Email** (envoyer un e-mail) et **Forward Email** (transférer un e-mail).
+{% endhint %}
 
 ## 5. Code personnalisé (Custom Code)
 
@@ -269,7 +285,9 @@ Les modules d'état peuvent être ajoutés à n'importe quelle transition. Ils p
 
 ### Cleanup
 
-Le module **Cleanup** (étiquette **Output**) supprime les données (`data`) et tous les fichiers du job — utile en fin de workflow pour ne pas conserver les documents traités.
+Le module **Cleanup** (étiquette **Output**) purge les données et les fichiers d'un job — utile en fin de workflow pour ne pas conserver les documents traités. Quatre options permettent de choisir précisément ce qui est conservé :
+
+<table><thead><tr><th width="234">Paramètre</th><th>Description</th></tr></thead><tbody><tr><td><strong>Nom</strong> (Name)</td><td>Le nom de l'étape</td></tr><tr><td><strong>Keep data</strong></td><td>Conserver les données (<code>data</code>) accumulées par le job. Désactiver pour les supprimer.</td></tr><tr><td><strong>Keep files</strong></td><td>Conserver les fichiers du job. Désactiver pour les supprimer.</td></tr><tr><td><strong>Keep history</strong></td><td>Conserver l'historique des étapes du job.</td></tr><tr><td><strong>Keep preliminary</strong></td><td>Conserver les fichiers préliminaires (intermédiaires) générés pendant le traitement.</td></tr></tbody></table>
 
 ### Webhook
 
