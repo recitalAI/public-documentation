@@ -275,3 +275,70 @@ _<mark style="color:$danger;">**Attention: si vous utilisiez ces attributs d’�
 #### Corrections de bugs
 
 * Correction du pilote du système de fichiers qui retournait une liste vide lors du listage du contenu d'un dossier
+
+
+
+### Version 26.6.3 (2026-06-22)
+
+#### Corrections de bugs
+
+* Toujours stocker les images chiffrées avec l'extension « .enc »
+
+#### Autres modifications
+
+* Journaux des modifications (_changelogs_)
+
+***
+
+### Version 26.6.4 (2026-06-23)
+
+#### Nouvelles fonctionnalités
+
+* Restauration des endpoints `/resources` de workflows à l'aide de la couche de stockage partagée handyman
+* Permettre de spécifier l'obligation de révision des valeurs extraites et la rendre visible pour les utilisateurs
+* Ajout de la prise en charge des types de saisie booléen, case à cocher (_checkbox_) et bouton à bascule (_toggle_) dans les champs de mise en page (_layout_)
+
+#### Corrections de bugs
+
+* Rendre publique la référence des fichiers dans le module d'extraction (_Extract_)
+* Amélioration de la robustesse des opérations de manipulation d'images
+* Correction de l'endpoint `POST /dataset/entry`
+* Gestion plus fluide et transparente des éléments envoyés à la corbeille
+* Prise en charge du cas d'usage limite de la normalisation des dates contenant des espaces blancs adjacents
+* Correction de la synchronisation de la recherche de la combobox de ressources, de la réactivité et des suggestions en double dans les files d'attente de révision
+
+***
+
+### Version 26.6.5 (2026-06-24)
+
+#### Nouvelles fonctionnalités
+
+* Ajout de la référence du document dans les données envoyées par le webhook de classification de documents
+
+***
+
+### Version 26.6.6 (2026-06-25)
+
+#### Nouvelles fonctionnalités
+
+* Ajout de la prise en charge des options dynamiques pour les valeurs de points de données (_data point values_)
+
+#### Corrections de bugs
+
+* Correction de l'absence des lignes d'en-tête uniquement dans les groupes de lignes non répétés de la section de révision (_ReviewSection_)
+
+***
+
+### Version 26.6.7 (2026-06-25)
+
+#### Corrections de bugs
+
+* Correction de la résolution du nom de section pour les valeurs de points de données (_data point values_) sur les documents traités par polyvore
+
+***
+
+### Version 26.6.8 (2026-06-25)
+
+#### Nouvelles fonctionnalités
+
+* Résolution du problème du bouton de soumission qui restait désactivé après la mise à jour des champs calculés lors de la révision en file d'attente
