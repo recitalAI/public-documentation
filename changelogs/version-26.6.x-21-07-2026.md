@@ -53,6 +53,41 @@ Si vous utilisez `Status`, remplacez-le par `State`.
 _<mark style="color:$danger;">**Attention: si vous utilisiez ces attributs d’étape dans vos blocs de code des Workflow, alors il faudra les modifier dans vos codes avec la nouvelle version :**</mark>_&#x20;
 
 * <mark style="color:$danger;">Les attributs d’étape</mark> <mark style="color:$danger;"></mark>_<mark style="color:$danger;">**status**</mark>_ _<mark style="color:$danger;">**initial**</mark>_ <mark style="color:$danger;"></mark><mark style="color:$danger;">et</mark> <mark style="color:$danger;"></mark>_<mark style="color:$danger;">**final**</mark>_ <mark style="color:$danger;"></mark><mark style="color:$danger;">ont été supprimés.</mark>
+* <mark style="color:$danger;">Exepmple:</mark>
+* <mark style="color:$danger;">AVANT:</mark>
+
+```
+    "step": {
+        "id": 69620,
+        "workflow_id": 10353,
+        "created_at": "2026-07-09T14:52:25.777838",
+        "updated_at": null,
+        "name": "Start",
+        "action": "started",
+        "action_type": "state",
+        "config": null,
+        "initial": true,
+        "final": false,
+        "deprecated": false,
+        "enabled": true
+    },
+```
+
+* <mark style="color:$danger;">APRES:</mark>
+* ```
+   "step": {
+          "id": 69620,
+          "workflow_id": 10353,
+          "created_at": "2026-07-09T14:52:25.777838",
+          "updated_at": null,
+          "name": "Start",
+          "action": "started",
+          "action_type": "state",
+          "config": null,
+          "deprecated": false,
+          "enabled": true
+      },
+  ```
 * <mark style="color:$danger;">Le cycle de vie du travail (job) est désormais explicite dans l’attribut status, avec un nombre très limité de statuts possibles:</mark>
   * <mark style="color:$danger;">La gestion des erreurs, signalée par l'échec (</mark>_<mark style="color:$danger;">**failure**</mark>_<mark style="color:$danger;">), est désormais explicite.</mark>
   * <mark style="color:$danger;">Des événements dédiés de démarrage (</mark>_<mark style="color:$danger;">**start**</mark>_<mark style="color:$danger;">), de succès (</mark>_<mark style="color:$danger;">**success**</mark>_<mark style="color:$danger;">) et d’échec (</mark>_<mark style="color:$danger;">**failure**</mark>_<mark style="color:$danger;">) sont désormais déclenchés à un niveau inférieur.</mark>
