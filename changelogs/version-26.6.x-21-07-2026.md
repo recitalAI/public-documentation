@@ -53,7 +53,7 @@ Si vous utilisez `Status`, remplacez-le par `State`.
 _<mark style="color:$danger;">**Attention: si vous utilisiez ces attributs d’étape dans vos blocs de code des Workflow, alors il faudra les modifier dans vos codes avec la nouvelle version :**</mark>_&#x20;
 
 * <mark style="color:$danger;">Les attributs d’étape</mark> <mark style="color:$danger;"></mark>_<mark style="color:$danger;">**status**</mark>_ _<mark style="color:$danger;">**initial**</mark>_ <mark style="color:$danger;"></mark><mark style="color:$danger;">et</mark> <mark style="color:$danger;"></mark>_<mark style="color:$danger;">**final**</mark>_ <mark style="color:$danger;"></mark><mark style="color:$danger;">ont été supprimés.</mark>
-* <mark style="color:$danger;">Exepmple:</mark>
+* <mark style="color:$danger;">Exemple:</mark>
 * <mark style="color:$danger;">AVANT:</mark>
 
 ```
