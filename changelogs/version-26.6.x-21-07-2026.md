@@ -88,7 +88,7 @@ _<mark style="color:$danger;">**Attention: si vous utilisiez ces attributs d’�
           "enabled": true
       },
   ```
-* <mark style="color:$danger;">Le cycle de vie du travail (job) est désormais explicite dans l’attribut status, avec un nombre très limité de statuts possibles:</mark>
+* <mark style="color:$danger;">Le cycle de vie du job est désormais explicite dans l’attribut status, avec un nombre très limité de statuts possibles:</mark>
   * <mark style="color:$danger;">La gestion des erreurs, signalée par l'échec (</mark>_<mark style="color:$danger;">**failure**</mark>_<mark style="color:$danger;">), est désormais explicite.</mark>
   * <mark style="color:$danger;">Des événements dédiés de démarrage (</mark>_<mark style="color:$danger;">**start**</mark>_<mark style="color:$danger;">), de succès (</mark>_<mark style="color:$danger;">**success**</mark>_<mark style="color:$danger;">) et d’échec (</mark>_<mark style="color:$danger;">**failure**</mark>_<mark style="color:$danger;">) sont désormais déclenchés à un niveau inférieur.</mark>
 * <mark style="color:$danger;">Les pseudo-états (auparavant utilisés pour signaler des erreurs) ont été supprimés.</mark>
