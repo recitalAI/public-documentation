@@ -12,7 +12,7 @@ Les fichiers de Ressources deviennent globaux et sont désormais accessibles à 
 
 ### Champs State et Status
 
-Les champs `State` et `Status` des Workflows sont clarifiés. Le champ `State` est un champ utilisateur, qui peut être exploité pour suivre l'avancement d'un workflow selon des étapes propres au cas d'usage. Le champ `Status` est un champ système, utilisé par la Suite uniquement, et qui prend désormais l'une des valeurs suivantes : `start`, `running`, `pending`, `success` et `failure`.
+Les champs `State` et `Status` des Workflows sont clarifiés. Le champ `State` est un champ utilisateur, qui peut être exploité pour suivre l'avancement d'un workflow selon des étapes propres au cas d'usage. Le champ `Status` est un champ système, utilisé par la Suite uniquement, et qui prend désormais l'une des valeurs suivantes : `start`, `running`, `success` et `failure`.
 
 ## ![:rotating\_light:](https://a.slack-edge.com/production-standard-emoji-assets/16.0/google-medium/1f6a8@2x.png) Points d'attention
 
