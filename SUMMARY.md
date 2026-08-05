@@ -67,8 +67,9 @@
 
 ## ⚙️ Changelogs
 
-* [Version 26.4.x (20/05/2026)](changelogs/version-26.4.x-20-05-2026.md)
+* [Version 26.6.x (21/07/2026)](changelogs/version-26.6.x-21-07-2026.md)
 * [Mises à jours précédentes](changelogs/mises-a-jours-precedentes/README.md)
+  * [Version 26.4.x (20/05/2026)](changelogs/mises-a-jours-precedentes/version-26.4.x-20-05-2026.md)
   * [Version 26.2.x (02/03/2026)](changelogs/mises-a-jours-precedentes/version-26.2.x-02-03-2026.md)
   * [Version 25.12.x (15/01/2026)](changelogs/mises-a-jours-precedentes/version-25.12.x-15-01-2026.md)
   * [Version 25.10.x (30/10/2025)](changelogs/mises-a-jours-precedentes/version-25.10.x-30-10-2025.md)
