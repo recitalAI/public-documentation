@@ -34,7 +34,6 @@
     * [Créer un workflow](workflow/creer-un-workflow.md)
     * [Les modules de workflow](workflow/les-modules-workflow.md)
     * [Les jobs](workflow/jobs.md)
-    * [Actions workflows standard](workflow/actions-workflows-standard.md)
     * [Connexion boîte mail](workflow/connexion-boite-mail.md)
     * [Ressources](ressources/README.md)
 * 🏭 Production
@@ -55,6 +54,7 @@
 * [Swaggers](integration-api/swaggers.md)
   * [Swagger Classify](https://classify.recital.ai/classify/docs)
   * [Swagger Extract](https://extract.api.recital.ai/extract/docs#/)
+  * [Swagger Workflow](https://extract.workflows.recital.ai/workflows/docs#/)
   * [Swagger Auth](https://extract.auth.recital.ai/auth/docs#/)
 
 ## 📺 Autres

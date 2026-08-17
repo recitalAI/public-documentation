@@ -32,7 +32,7 @@ Confirmer la création de l'agent. La configuration des extracteurs se fait sur 
 
 ## 2. Ajouter un datapoint génératif
 
-L'agent est créé, on arrive sur la page des extracteurs (vide). Cliquer **Add** puis **Single data point**.
+L'agent est créé, on arrive sur la page des extracteurs. Cliquer **Add** puis **Single data point**.
 
 <figure><img src="../.gitbook/assets/demarrage_extractor_add_menu.png" alt="Menu Add extractor"><figcaption>Menu Add &#x2014; trois types : Single data point, Label Group, Extractors.</figcaption></figure>
 

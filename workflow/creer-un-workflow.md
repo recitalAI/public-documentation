@@ -28,23 +28,17 @@ Nous avons une page dédiée à la liste de tous les modules disponibles : [Les 
 
 ## Ajouter des transitions
 
-Chaque module possède un point d'entrée et un point de sortie ; les états **Start** et **Done** n'en possèdent qu'un.
-
-<figure><img src="../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
-
 Une transition entre 2 modules peut être créée en reliant leurs points d'attache.
-
-&#x20;
 
 <figure><img src="../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
 
-Un module peut avoir plusieurs transitions sortantes.
+Un module peut avoir plusieurs transitions sortantes : le workflow se divise alors en autant de branches, qui peuvent se rejoindre plus loin sur le module **Done**.
 
-<figure><img src="../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/workflow_transitions_multiples.png" alt="Un module avec trois transitions sortantes"><figcaption>Le module <strong>Aiguillage</strong> a trois transitions sortantes, vers trois branches distinctes.</figcaption></figure>
 
 Une transition peut être libre (par défaut) ou bien conditionnelle. Pour créer une transition conditionnelle, cliquez sur la transition, cochez la case "Use code for transition", et écrivez en code Python la condition à respecter pour passer par cette transition.
 
-<figure><img src="../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/workflow_transition_conditionnelle.png" alt="Panneau de configuration d'une transition conditionnelle"><figcaption>Transition conditionnelle : un nom, la case <strong>Use code for transition</strong> cochée, et la condition Python. Le nom de la transition s'affiche sur le lien dans le canvas.</figcaption></figure>
 
 ## Terminer un workflow
 

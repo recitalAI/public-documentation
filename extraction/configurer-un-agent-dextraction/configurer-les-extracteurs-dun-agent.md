@@ -24,13 +24,19 @@ Ajoutez un Datapoint, donnez un nom à votre nouveau champs, puis enregistrez.
 
 #### Type de valeur (Value type)
 
-Le type de valeur normalise le champ extrait. Le choix se fait au niveau supérieur entre **trois options** : **Any**, **Predefined** et **Custom**.
+Le type de valeur normalise le champ extrait. Il se choisit dans une liste déroulante :
+
+<figure><img src="../../.gitbook/assets/datapoint_value_type.png" alt="Liste des types de valeur"><figcaption>Les types de valeur disponibles pour un datapoint.</figcaption></figure>
 
 | Value type | Détail | Exemples |
 |---|---|---|
 | **Any** (Tout) | N'importe quelle chaîne de caractères — valeur par défaut. | Nom, Prénom, Désignation |
-| **Predefined** | Un format prédéfini à normaliser : **Date** (`YYYY-MM-DD`), **Nombre entier** (integer), **Nombre décimal** (float). | Date d'émission ; nombre d'unités ; montant HT, pourcentage |
-| **Custom** (Personnalisé) | Expressions régulières. La 1ʳᵉ expression doit correspondre au champ extrait ; dans la 2ᵉ, on peut réutiliser les groupes capturés (`\1`, `\2`, …) pour la normalisation. | N° de téléphone, référence client, code-barres |
+| **Date and time** | Une date accompagnée d'une heure. | Date et heure de dépôt, horodatage d'un accusé de réception |
+| **Date** | Une date, normalisée au format `YYYY-MM-DD`. | Date d'émission, date d'échéance |
+| **Time** | Une heure seule. | Heure de rendez-vous, heure de passage |
+| **Integer** | Un nombre entier. | Nombre d'unités, quantité |
+| **Float** | Un nombre décimal. | Montant HT, pourcentage |
+| **Regex** | Expressions régulières. La 1ʳᵉ expression doit correspondre au champ extrait ; dans la 2ᵉ, on peut réutiliser les groupes capturés (`\1`, `\2`, …) pour la normalisation. | N° de téléphone, référence client, code-barres |
 
 
 

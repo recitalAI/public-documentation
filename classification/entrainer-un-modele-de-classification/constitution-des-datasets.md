@@ -16,12 +16,6 @@ Quelques conseils pour constituer correctement un dataset de classification:
 [constituer-un-dataset.md](../../extraction/entrainer-un-modele-dextraction/constituer-un-dataset.md)
 {% endcontent-ref %}
 
-{% hint style="info" %}
-Vous pouvez constituer les dataset sur votre machine, en rassemblant simplement des documents d’exemple dans des sous-dossiers. Créez ensuite un fichier zip, puis uploadez-le dans reciTAL. Autant de dataset seront automatiquement créés qu'il y a de sous-dossiers dans le fichier zip.
-{% endhint %}
-
-
-
 ## Création des dataset de mails
 
-La constitution d'un dataset de mails suit le même principe : un dataset par classe, regroupant des emails d'exemple représentatifs.
+La constitution d'un dataset de mails suit le même principe : un dataset par classe, regroupant des emails d'exemple représentatifs. Les fichiers attendus sont des `.eml` et/ou des `.msg`.
