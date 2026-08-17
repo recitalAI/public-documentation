@@ -2,9 +2,33 @@
 
 Le JSON de réponse envoyé au callback a cette structure :
 
+## Où trouver ces données
+
+La structure décrite sur cette page est celle du **résultat d'extraction** lui-même. Selon la façon dont l'extraction est appelée, il n'est pas au même endroit :
+
+* **Appel direct de l'API d'extraction** — le JSON détaillé plus bas est renvoyé tel quel au callback.
+* **Étape d'extraction dans un workflow** — il est encapsulé sous la clé de sortie de l'étape, à côté des identifiants de l'agent et du job :
+
 ```json
 {
-    "id": int, // Identifiant de l'extraction
+    "extract": {          // Clé de sortie de l'étape d'extraction du workflow
+        "doctype": 2028,  // Identifiant de l'Agent d'extraction
+        "job": 2840990,   // Identifiant du job d'extraction
+        "result": { ... } // Le résultat d'extraction détaillé ci-dessous
+    },
+    "custom_metadata": null
+}
+```
+
+{% hint style="info" %}
+La clé (`extract` dans l'exemple) est la **clé de sortie** configurée sur l'étape du workflow — voir [Structure des résultats du workflow](../workflow/structure-des-resultats-du-workflow.md).
+{% endhint %}
+
+## Le résultat d'extraction
+
+```json
+{
+    "id": int, // Identifiant de l'extraction (= "job" dans l'enveloppe workflow)
     "name": str, // Nom du fichier
     "review_details": { // Utile pour la revue d'extraction
         "verified_by_id": null,
@@ -14,13 +38,14 @@ Le JSON de réponse envoyé au callback a cette structure :
         "manual_corrections": 0,
         "reviewer_comment": null
     },
-    "status": "pending", // ["valid", "pending", "invalid"] 
+    "status": "pending", // ["valid", "pending", "invalid", "in_workflow"]
     "number_of_pages": 1,
     "values": [...],
-    "document_type_id": int, // Identifiant de l'Agent
+    "document_type_id": int, // Identifiant de l'Agent (= "doctype" dans l'enveloppe workflow)
     "correction_external_link": null, // Si la correction manuelle est activée, génère un lien publique avec un token valid X heures (configurable)
     "custom_metadata": null, // Renvoie le paramètre "custom_medata" s'il a été utilisé lors de l'appel
     "is_ocrized": true,
+    "user_correction": true, // Indique si la correction manuelle est activée sur l'Agent
     "groups": [...],
     "objects": [...]
 }
