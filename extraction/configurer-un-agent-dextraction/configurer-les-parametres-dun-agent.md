@@ -3,7 +3,7 @@
 ## Règles de Gestion
 
 {% hint style="info" %}
-Nous conseillons de ne plus utiliser cet écran, et de passer par le [Workflow](https://app.gitbook.com/s/czKclNsLQDMlLjxNwSSw/workflow) pour créer et gérer vos règles de gestion dans un module custom.
+Nous conseillons de ne plus utiliser cet écran, et de passer par le [Workflow](../../workflow/les-modules-workflow.md) pour créer et gérer vos règles de gestion dans un module custom.
 {% endhint %}
 
 Les règles de gestion permettent de valider ou d'invalider automatiquement des champs extraits. Si tous les champs extraits sont automatiquement validés par des règles de gestion, un document ne passera pas par la phase de vidéo-codage, il sera considéré comme STP (Straight-Through Process).
@@ -16,17 +16,19 @@ Les règles de gestion permettent de valider ou d'invalider automatiquement des 
 
 #### Choix
 
-**Se replier sur les valeurs génératives si Faux :** WIP.
-
 **Calculer les valeurs N/A comme 0 et remplacer si Vrai :** Si une valeur dans la règle de gestion n'est pas extraite, on vérifie si la règle de gestion est respecté en remplaçant cette valeur par 0.
 
 {% hint style="warning" %}
 Les règles de gestion ne concernent que les champs numériques (Nombre entier ou décimal). Tous les champs n'ayant pas le type "Nombre" ne pourront pas être utilisés dans les règles de gestion.
 {% endhint %}
 
-## Review
+## Review configuration
 
-Cet onglet est dédié à la configuration de l'écran de correction. On peut activer ou désactiver la correction, générer une url publique pour chaque document extrait afin de le corriger sans avoir à se connecter à la plateforme, gérer les extracteurs que l'on souhaite voir apparaître sur l'écran de correction, et gérer les droits des correcteurs.
+Cet onglet autorise et configure la review (correction humaine) de l'agent : activer la review (**Active review**), générer une URL publique pour corriger un document sans compte (**External validation**), choisir l'ordre de traitement de la file, restreindre la correction à des utilisateurs désignés (**Authorize reviewers**), et sélectionner les extracteurs et groupes affichés sur l'écran de correction.
+
+{% hint style="info" %}
+Le détail de ces options et le déroulé de la correction sont décrits dans [Review](../../production/review.md).
+{% endhint %}
 
 ## Configuration
 

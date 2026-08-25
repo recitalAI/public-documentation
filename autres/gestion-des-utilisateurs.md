@@ -1,26 +1,20 @@
 # Gestion des utilisateurs
 
-L’écran Utilisateurs répertorie les utilisateurs existants sur l’organisation.
+L'écran **Settings → Users** répertorie les utilisateurs de l'organisation (colonnes **Status, Email, Name, Role**) et permet d'en créer via le bouton **Create user** (champs Prénom, Nom, Email, Role).
 
-<figure><img src="../.gitbook/assets/image (98).png" alt=""><figcaption></figcaption></figure>
+## Les rôles
 
-Il existe deux rôles possibles:
+Le champ **Role** (à la création comme à l'édition d'un utilisateur) propose **deux rôles** intégrés :
 
-## **Administrateur (**&#x4F;rgadmin)
+| Rôle | Vocation |
+|---|---|
+| **Reviewer** | Correction / review des documents (vidéo-codage). Accès restreint à l'écran de Review. |
+| **Orgadmin** | Administration complète de l'organisation (Studio, Agents, Workflows, Review, Settings). |
 
-Son rôle est d’administrer l’organisation et de paramétrer tous les datasets, doctypes et modèles de l’organisation. Il a accès à tous les écrans et peut :
+Un champ distinct **user_role** permet d'assigner un **rôle personnalisé** (au-delà des deux rôles intégrés) lorsque l'organisation en a défini.
 
-* Créer les datasets.
-* Configurer les doctypes.
-* Corriger et consulter les extractions.
-* Créer, modifier et supprimer des utilisateurs.
-* Consulter les statistiques.
-* Mettre à jour les paramètres.
+{% hint style="info" %}
+Un rôle **Sysadmin** existe également mais est réservé à l'administration interne reciTAL : il n'est pas proposé dans le menu Role.
+{% endhint %}
 
-<figure><img src="../.gitbook/assets/Capture d&#x27;écran 2023-05-11 172600.png" alt=""><figcaption></figcaption></figure>
-
-## **Correcteur (**&#x52;eviewer)
-
-Son rôle est d'analyser les documents qui tombent dans la bannière de correction. Un correcteur possède des accès restreints et ne peut accéder qu'à l'onglet de correction.
-
-<figure><img src="../.gitbook/assets/image (52).png" alt=""><figcaption></figcaption></figure>
+Le rôle s'assigne dans l'onglet **Settings → Users** (bouton **Create user**, ou menu **Actions → Edit** d'un utilisateur existant). Voir [Paramètres](../production/parametres.md).

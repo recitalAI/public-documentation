@@ -4,53 +4,58 @@
 
 ## 🚀 Démarrage rapide
 
-* [Utiliser un modèle d'extraction reciTAL sur étagère](demarrage-rapide/utiliser-un-modele-dextraction-recital-sur-etagere.md)
+* [Introduction](demarrage-rapide/README.md)
+* [Créer un agent génératif](demarrage-rapide/creer-un-agent-generatif.md)
+* [Créer un workflow](demarrage-rapide/creer-un-workflow.md)
+* [Utiliser un modèle d'extraction sur étagère](demarrage-rapide/utiliser-un-modele-dextraction-recital-sur-etagere.md)
 
-## 🎯 Extraction
+## 📘 Guide utilisateur
 
-* [🎯 Introduction](extraction/introduction.md)
-* [Entraîner un modèle d'extraction](extraction/entrainer-un-modele-dextraction/README.md)
-  * [Constituer un Dataset](extraction/entrainer-un-modele-dextraction/constituer-un-dataset.md)
-  * [Annoter un Dataset](extraction/entrainer-un-modele-dextraction/annoter-un-dataset.md)
-  * [Entraîner un modèle](extraction/entrainer-un-modele-dextraction/entrainer-un-modele.md)
-* [Configurer un Agent d'Extraction](extraction/configurer-un-agent-dextraction/README.md)
-  * [Créer un Agent](extraction/configurer-un-agent-dextraction/creer-un-agent.md)
-  * [Configurer les extracteurs d'un Agent](extraction/configurer-un-agent-dextraction/configurer-les-extracteurs-dun-agent.md)
-  * [Configurer les paramètres d'un Agent](extraction/configurer-un-agent-dextraction/configurer-les-parametres-dun-agent.md)
-* [Valider un Agent](extraction/valider-un-agent/README.md)
-  * [Charger des documents en validation](extraction/valider-un-agent/charger-des-documents-en-validation.md)
-  * [Valider un Agent](extraction/valider-un-agent/valider-un-agent.md)
-* [Ecran de correction](extraction/ecran-de-correction.md)
-
-## 🗃️ Classification
-
-* [🗃️ Introduction](classification/introduction.md)
-* [Entraîner un modèle de classification](classification/entrainer-un-modele-de-classification/README.md)
-  * [Constitution des datasets](classification/entrainer-un-modele-de-classification/constitution-des-datasets.md)
-  * [Entrainement du modèle](classification/entrainer-un-modele-de-classification/entrainement-du-modele.md)
-  * [Lecture et interprétation des résultats](classification/entrainer-un-modele-de-classification/lecture-et-interpretation-des-resultats.md)
-* [Configurer un Agent de Classification](classification/configurer-un-agent-de-classification.md)
-
-## 🪄 Workflow
-
-* [🪄 Introduction](workflow/introduction.md)
-* [Créer un Workflow](workflow/creer-un-workflow.md)
-* [Les modules Workflow](workflow/les-modules-workflow.md)
-* [Jobs](workflow/jobs.md)
-* [Inputs](workflow/inputs.md)
+* 🎨 Design
+  * Studio
+    * [Classification](classification/classification.md)
+      * [Constituer un Dataset](classification/entrainer-un-modele-de-classification/constitution-des-datasets.md)
+      * [Entraîner un modèle](classification/entrainer-un-modele-de-classification/entrainement-du-modele.md)
+      * [Lecture et interprétation des résultats](classification/entrainer-un-modele-de-classification/lecture-et-interpretation-des-resultats.md)
+    * [Extraction](extraction/extraction.md)
+      * [Constituer un Dataset](extraction/entrainer-un-modele-dextraction/constituer-un-dataset.md)
+      * [Annoter un Dataset](extraction/entrainer-un-modele-dextraction/annoter-un-dataset.md)
+      * [Entraîner un modèle](extraction/entrainer-un-modele-dextraction/entrainer-un-modele.md)
+  * Agents
+    * [Classification](classification/configurer-un-agent-de-classification.md)
+    * [Extraction](extraction/configurer-un-agent-dextraction/README.md)
+      * [Créer un Agent](extraction/configurer-un-agent-dextraction/creer-un-agent.md)
+      * [Configurer les extracteurs d'un Agent](extraction/configurer-un-agent-dextraction/configurer-les-extracteurs-dun-agent.md)
+      * [Configurer les paramètres d'un Agent](extraction/configurer-un-agent-dextraction/configurer-les-parametres-dun-agent.md)
+      * [Valider un Agent](extraction/valider-un-agent/README.md)
+        * [Charger des documents en validation](extraction/valider-un-agent/charger-des-documents-en-validation.md)
+        * [Valider un Agent](extraction/valider-un-agent/valider-un-agent.md)
+  * Workflow
+    * [Créer un workflow](workflow/creer-un-workflow.md)
+    * [Les modules de workflow](workflow/les-modules-workflow.md)
+    * [Les jobs](workflow/jobs.md)
+    * [Connexion boîte mail](workflow/connexion-boite-mail.md)
+    * [Ressources](ressources/README.md)
+* 🏭 Production
+  * [Review](production/review.md)
+  * [Activité](production/activite.md)
+  * [Performance](production/performance.md)
+  * [Paramètres](production/parametres.md)
 
 ## 🔌 Intégration API
 
 * [Authentification](integration-api/authentification.md)
-* [Extraction](integration-api/extraction/README.md)
-  * [Envoyer des documents en extraction](integration-api/extraction/envoyer-des-documents-en-extraction.md)
-  * [Structure des résultats d'extraction](integration-api/extraction/structure-des-resultats-dextraction.md)
-* [Classification](integration-api/classification/README.md)
-  * [Envoyer des documents en classification](integration-api/classification/envoyer-des-documents-en-classification.md)
-  * [Structure des résultats de classification](integration-api/classification/structure-des-resultats-de-classification.md)
 * [Workflow](integration-api/workflow/README.md)
-  * [Envoyer des documents dans un Workflow](integration-api/workflow/envoyer-des-documents-dans-un-workflow.md)
-  * [Structure des résultats du workflow](integration-api/workflow/structure-des-resultats-du-workflow.md)
+  * [Envoyer des documents dans un workflow](integration-api/workflow/envoyer-des-documents-dans-un-workflow.md)
+* [Structures de résultats](integration-api/structures-de-resultats.md)
+  * [Classification](integration-api/classification/structure-des-resultats-de-classification.md)
+  * [Extraction](integration-api/extraction/structure-des-resultats-dextraction.md)
+  * [Workflow callback](integration-api/workflow/structure-des-resultats-du-workflow.md)
+* [Swaggers](integration-api/swaggers.md)
+  * [Swagger Classify](https://classify.recital.ai/classify/docs)
+  * [Swagger Extract](https://extract.api.recital.ai/extract/docs#/)
+  * [Swagger Workflow](https://extract.workflows.recital.ai/workflows/docs#/)
+  * [Swagger Auth](https://extract.auth.recital.ai/auth/docs#/)
 
 ## 📺 Autres
 
@@ -60,17 +65,12 @@
 * [Métriques d'évaluation](autres/metriques-devaluation.md)
 * [Connection avec OpenID Connect (OIDC)](autres/connection-avec-openid-connect-oidc.md)
 
-## 🏗️ Nos APIs
-
-* [Swagger Workflow](https://extract.workflows.recital.ai/workflows/docs)
-* [Swagger Extraction](https://extract.api.recital.ai/extract/docs#/)
-* [Swagger Classification](https://classify.recital.ai/classify/docs)
-* [Swagger Auth](https://extract.auth.recital.ai/auth/docs#/)
-
 ## ⚙️ Changelogs
 
 * [Version 26.6.x (21/07/2026)](changelogs/version-26.6.x-21-07-2026.md)
 * [Mises à jours précédentes](changelogs/mises-a-jours-precedentes/README.md)
+  * [Version 26.4.x (20/05/2026)](changelogs/mises-a-jours-precedentes/version-26.4.x-20-05-2026.md)
+  * [Version 26.2.x (02/03/2026)](changelogs/mises-a-jours-precedentes/version-26.2.x-02-03-2026.md)
   * [Version 25.12.x (15/01/2026)](changelogs/mises-a-jours-precedentes/version-25.12.x-15-01-2026.md)
   * [Version 25.10.x (30/10/2025)](changelogs/mises-a-jours-precedentes/version-25.10.x-30-10-2025.md)
   * [Version 25.8.x (25/08/2025)](changelogs/mises-a-jours-precedentes/version-25.8.x-25-08-2025.md)
@@ -98,8 +98,6 @@
   * [Version 1.0.3 (27/06/2023)](changelogs/mises-a-jours-precedentes/version-1.0.3-27-06-2023.md)
   * [Version 1.0.2 (02/05/2023)](changelogs/mises-a-jours-precedentes/version-1.0.2-02-05-2023.md)
   * [Version 1.0.1 (24/03/2023)](changelogs/mises-a-jours-precedentes/version-1.0.1-24-03-2023.md)
-  * [Version 26.2.x (02/03/2026)](changelogs/mises-a-jours-precedentes/version-26.2.x-02-03-2026.md)
-  * [Version 26.4.x (20/05/2026)](changelogs/mises-a-jours-precedentes/version-26.4.x-20-05-2026.md)
 
 ## 🔴 SUPPORT
 

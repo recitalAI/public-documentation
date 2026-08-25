@@ -22,11 +22,21 @@ Ajoutez un Datapoint, donnez un nom à votre nouveau champs, puis enregistrez.
 
 <figure><img src="../../.gitbook/assets/image (33).png" alt=""><figcaption></figcaption></figure>
 
-#### Type de valeur
+#### Type de valeur (Value type)
 
-Le type de valeur est la nature du champs à extraire. Sélectionner le bon type de valeur permet de normaliser le champs extrait.
+Le type de valeur normalise le champ extrait. Il se choisit dans une liste déroulante :
 
-<table><thead><tr><th width="172">Type de valeur</th><th width="370">Détail</th><th>Exemples</th></tr></thead><tbody><tr><td>Tout</td><td>N'importe quelle chaîne de caractère, c'est la valeur par défaut</td><td>Nom, Prénom, Désignation</td></tr><tr><td>Date</td><td><p>Permet de normaliser une date au format </p><p>YYYY-MM-DD</p></td><td><p>Date d'émission, </p><p>Date d'expiration</p></td></tr><tr><td>Nombre Entier (integer)</td><td>Permet de normaliser un nombre entier</td><td><p>Nombre d'unité, </p><p>Age</p></td></tr><tr><td><p>Nombre Décimal </p><p>(float)</p></td><td>Permet de normaliser un nombre décimal</td><td>Montant HT, Pourcentage, Volume,</td></tr><tr><td>Personnalisé</td><td>Utilise les expressions régulières pour normaliser un champ extrait. <br>La première expression doit correspondre au champ extrait pour permettre sa normalisation.<br>Dans la deuxième expression, il est possible de réutiliser les groupes capturés dans la première expression (\1, \2, ...) afin de réaliser la normalisation.</td><td><p>Numéro de téléphone, Référence client, </p><p>Code barre</p></td></tr></tbody></table>
+<figure><img src="../../.gitbook/assets/datapoint_value_type.png" alt="Liste des types de valeur"><figcaption>Les types de valeur disponibles pour un datapoint.</figcaption></figure>
+
+| Value type | Détail | Exemples |
+|---|---|---|
+| **Any** (Tout) | N'importe quelle chaîne de caractères — valeur par défaut. | Nom, Prénom, Désignation |
+| **Date and time** | Une date accompagnée d'une heure. | Date et heure de dépôt, horodatage d'un accusé de réception |
+| **Date** | Une date, normalisée au format `YYYY-MM-DD`. | Date d'émission, date d'échéance |
+| **Time** | Une heure seule. | Heure de rendez-vous, heure de passage |
+| **Integer** | Un nombre entier. | Nombre d'unités, quantité |
+| **Float** | Un nombre décimal. | Montant HT, pourcentage |
+| **Regex** | Expressions régulières. La 1ʳᵉ expression doit correspondre au champ extrait ; dans la 2ᵉ, on peut réutiliser les groupes capturés (`\1`, `\2`, …) pour la normalisation. | N° de téléphone, référence client, code-barres |
 
 
 
@@ -34,7 +44,7 @@ Le type de valeur est la nature du champs à extraire. Sélectionner le bon type
 
 C'est la façon dont le champ sera extrait dans le document.&#x20;
 
-La principale méthode d'extraction est depuis un modèle entraîné. Sélectionnez le modèle et sa version, puis sélectionnez le label du modèle correspondant.
+La méthode par défaut est **Model** : sélectionnez le modèle entraîné et sa version, puis le label du modèle correspondant.
 
 {% hint style="info" %}
 À noter que plusieurs modèles peuvent être utilisés pour des champs différents. Cela permet, par exemple, d'associer 2 labels à un même mot (ce qui est impossible avec un seul modèle). Cependant, lors d'une prédiction, chaque modèle sera appelé, ce qui augmentera le temps de traitement.
@@ -42,14 +52,12 @@ La principale méthode d'extraction est depuis un modèle entraîné. Sélection
 Par exemple, configurer un premier extracteur "Adresse", qui capture une adresse entière, et un deuxième extracteur "Code Postal" depuis un autre modèle. Ainsi, dans le document, le code postal aura à la fois le label "Code Postal" et "Adresse".
 {% endhint %}
 
-Il est également possible d'utiliser les expressions régulières pour extraire un champ dans le document. Pour cela, sélectionnez "Règles", saisissez la regex, puis vous avez l'option de délimiter une zone dans le document où chercher l'expression.
+Il est également possible d'utiliser les expressions régulières (**Rules**) pour extraire un champ : saisissez la regex, puis, en option, délimitez une zone du document où chercher l'expression.
 
 {% hint style="info" %}
-**Nouvelle fonctionnalité**
+Il est aussi possible de sélectionner **Generative** comme méthode d'extraction.
 
-Il est désormais possible de sélectionner "Génératif" comme méthode d'extraction.
-
-Un agent génératif est créé dynamiquement à partir du nom et de la description de l'extracteur. Il est également possible d'ajouter une description au niveau de votre agent d'extraction.
+En mode génératif, le nom et la description du datapoint servent de consigne au LLM pour extraire la valeur. Une description peut aussi être renseignée au niveau de l'agent d'extraction.
 {% endhint %}
 
 ## Créer un nouveau groupe de champs
@@ -87,3 +95,31 @@ Rentrez le nom du groupe et choisissez le modèle d'extraction utilisé pour ce 
 #### Ajouter les champs à extraire dans le groupe
 
 Ajoutez un par un les champs provenant du modèle à ajouter dans le groupe. Pour chaque champ, vous pouvez configurer un type de valeur (voir "[Créer un nouveau champ unique](configurer-les-extracteurs-dun-agent.md#creer-un-nouveau-champs-unique)"), et désigner si ce dernier est primaire ou non. Un champ primaire autorise la création d'un sous-groupe s'il est extrait. Le sous-groupe n'est pas créé si aucun champ primaire n'est extrait.
+
+
+## Datapoint génératif {#datapoint-generatif}
+
+Au-delà des méthodes basées sur un modèle entraîné, des règles ou un groupe, un datapoint peut être configuré pour extraire la valeur via un **LLM** (Large Language Model). C'est le **datapoint génératif**.
+
+### Activer le mode génératif
+
+Dans la configuration d'un datapoint (créé via **Add → Single data point**), sélectionner **Extraction method → Generative**.
+
+<figure><img src="../../.gitbook/assets/demarrage_datapoint_methods.png" alt="Choix de la méthode d'extraction"><figcaption>Les 4 méthodes : Model, Rules, Group, Generative.</figcaption></figure>
+
+<figure><img src="../../.gitbook/assets/demarrage_datapoint_generative_selected.png" alt="Méthode générative sélectionnée"><figcaption>Méthode Generative active. Un avertissement rappelle que les données sont partagées avec le provider LLM.</figcaption></figure>
+
+### Cas d'usage
+
+- **Champs non structurés** : résumé, analyse de sentiment, classification libre — là où une expression régulière ou un modèle entraîné classique ne suffit pas
+- **Démarrage rapide** : pas de dataset à constituer ni à annoter, le prompt suffit
+- **Champs rares** : valeurs présentes dans peu de documents, où un modèle entraîné manquerait de données
+
+{% hint style="info" %}
+Un datapoint génératif transmet le contenu du document au provider LLM configuré dans l'organisation.
+{% endhint %}
+
+### Cross-refs
+
+- [Créer un agent génératif](../../demarrage-rapide/creer-un-agent-generatif.md) — tutoriel de démarrage
+- [Configurer les paramètres d'un Agent](configurer-les-parametres-dun-agent.md) — paramètres avancés et configuration LLM côté organisation

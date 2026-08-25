@@ -24,7 +24,7 @@ Une bonne pratique pour les tableaux peut être d'ajouter un préfixe "LIGNE\_" 
 
 **Autoriser les sauts de ligne:** Désactiver l'option pour les champs ne pouvant pas être sur plusieurs lignes (eg. un montant).
 
-**Etiquette en colonne**: Activer l'option permet de faire en sorte qu'un champs numérique n'est pas extrait partiellement (par exemple, "1 035 684" -> "1 035").
+**Etiquette en colonne**: Activer l'option permet de faire en sorte qu'un champ numérique ne soit pas extrait partiellement (par exemple, "1 035 684" -> "1 035").
 
 Réitérer pour toutes les étiquettes à ajouter.
 
@@ -48,13 +48,13 @@ Afin d'annoter correctement, il est indispensable de suivre les deux principes d
 2. **Annotation cohérente** : Il est crucial que chaque information soit annotée de manière uniforme sur tous les documents similaires. Cela évite d'introduire des ambiguïtés qui pourraient désorienter le modèle.\
    &#xNAN;_&#x45;xemple: Si un fournisseur place systématiquement le numéro de facture à un emplacement inattendu, par exemple après un libellé "numéro de commande", il est important de continuer à récupérer l'information à cet emplacement spécifique pour toutes les factures de ce fournisseur. Bien que non conventionnel, cet emplacement reste constant et doit être respecté pour garantir la précision de l'extraction des données._
 
-Annotez donc les documents en respectant ces principes afin d'optimiser les performances du modèle.
+Respectez ces deux principes lors de l'annotation.
 
 ### Annotation
 
 Annotez le document en cliquant sur le stylo situé à droite de l'étiquette et sélectionnez dans le document la valeur que vous souhaitez annoter. Répétez le processus pour toutes les étiquettes, puis passez au document suivant.
 
-Toutes les fonctionnalités liées à l'annotation sont répertoriées sur [une page dédiée](../../autres/astuces-dannotation.md). Elles permettent de grandement fluidifier cette tâche.
+Toutes les fonctionnalités liées à l'annotation sont répertoriées sur [une page dédiée](../../autres/astuces-dannotation.md).
 
 <figure><img src="../../.gitbook/assets/image (39).png" alt=""><figcaption></figcaption></figure>
 

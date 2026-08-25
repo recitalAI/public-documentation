@@ -1,33 +1,32 @@
 ---
 description: >-
-  Un grand nombre de modules existent pour compléter votre Worflow. Cette page
-  permet d'avoir une vue d'ensemble sur ces derniers, et ce qu'ils permettent de
-  faire.
+  Catalogue des modules disponibles dans l'éditeur de workflow, regroupés par
+  catégorie, avec leurs paramètres et la structure de leurs résultats.
 ---
 
 # Les modules Workflow
 
 {% hint style="info" %}
-Les modules sont étiquettés afin de pouvoir les retrouver plus facilement. Il y a plusieurs types d'étiquettes :&#x20;
-
-* La nature de l'action : "Classification, "Extraction", "Post-traitement", "Automation"
-* La nature du media : "Mails", "Document"
-* Le type du module : "Input", "AI Agent", "Review", "Etat", "Code", "Output"
+Dans l'éditeur de workflow, le bouton **Add step** ouvre la **Steps Library** : le catalogue des modules disponibles, filtrable par recherche de nom et par étiquette. Chaque module porte une ou plusieurs étiquettes parmi **16 catégories** : **Action, AI agent, Archive, Automation, Classification, Code, Document, Email, Extraction, Generation, Input, Output, Post-processing, Review, State, Validation**. Le nombre de modules par catégorie dépend des agents et modèles configurés dans votre organisation (les agents d'extraction/classification y apparaissent comme modules).
 {% endhint %}
 
-<figure><img src="../.gitbook/assets/image (124).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/workflow_steps_library.png" alt="Steps Library — catalogue des modules de workflow"><figcaption>La <em>Steps Library</em> (bouton <strong>Add step</strong>) — catalogue de modules filtrable par étiquette.</figcaption></figure>
+
+{% hint style="info" %}
+La plupart des modules partagent des paramètres communs, regroupés sous **Advanced options** : **Input expression** (expression d'entrée), **Output key** (clé de sortie), **Iterate over input** (itérer sur l'entrée).
+{% endhint %}
 
 ## 1. Input
 
-### Ingérer des Emails
+### Ingest Email — ingérer des emails
 
-Ce module suppose qu'une boite mail a été configurée (voir [lnputs](inputs.md)), ou bien que les documents envoyés sont des .msg ou .eml.
+Ce module suppose qu'une boite mail a été configurée (voir [Connexion boîte mail](connexion-boite-mail.md)), ou bien que les documents envoyés sont des .msg ou .eml.
 
 Cette étape permet de récupérer toutes les informations concernant le mail et de les conserver dans "data". Elle permet également de mettre les pièces jointes dans une collection.
 
 #### Paramètres
 
-<table><thead><tr><th width="234">Paramètre</th><th>Description</th></tr></thead><tbody><tr><td><strong>Nom</strong></td><td>Le nom de l'étape</td></tr><tr><td><strong>Expression d'entrée</strong></td><td>La collection d'email à traiter. files["email"] par défaut.</td></tr><tr><td><strong>Taille minimale de pièce jointe (ko)</strong></td><td>Limite minimale à une pièce jointe pour qu'elle soit prise en compte.</td></tr><tr><td><strong>Taille maximale de pièce jointe (ko)</strong></td><td>Limite maximale à une pièce jointe pour qu'elle soit prise en compte.</td></tr><tr><td><strong>Ignorer pièce jointe si le nom contient</strong></td><td>Si le nom de la pièce jointe contient le texte renseigné, alors la pièce jointe sera ignorée. Mettre le nom entre "".</td></tr><tr><td><strong>Extensions acceptées pour pièce jointe</strong></td><td>Les fichiers n'ayant pas ces extensions ne seront pas pris en compte. Si aucune extension n'est renseignée, tous les fichiers sont pris en compte.</td></tr><tr><td><strong>Clé de sortie</strong></td><td>La clé de "data" dans lesquels seront stockées toutes les informations relatives à ce module.</td></tr><tr><td><strong>Collection de sortie</strong></td><td>La collection dans laquelle seront envoyées les pièces jointes. "attachments" par défaut.</td></tr><tr><td><strong>Itérer sur l'entrée</strong></td><td>Activer l'option si l'entrée est une liste. Le module traitera les documents 1 à 1, et la sortie sera une liste de résultats.</td></tr></tbody></table>
+<table><thead><tr><th width="234">Paramètre</th><th>Description</th></tr></thead><tbody><tr><td><strong>Nom</strong></td><td>Le nom de l'étape</td></tr><tr><td><strong>Expression d'entrée</strong></td><td>La collection d'email à traiter. files["email"] par défaut.</td></tr><tr><td><strong>Taille minimale de pièce jointe (ko)</strong></td><td>Limite minimale à une pièce jointe pour qu'elle soit prise en compte.</td></tr><tr><td><strong>Taille maximale de pièce jointe (ko)</strong></td><td>Limite maximale à une pièce jointe pour qu'elle soit prise en compte.</td></tr><tr><td><strong>Ignorer pièce jointe si le nom contient</strong></td><td>Si le nom de la pièce jointe contient le texte renseigné, alors la pièce jointe sera ignorée. Mettre le nom entre "".</td></tr><tr><td><strong>Extensions acceptées pour pièce jointe</strong></td><td>Les fichiers n'ayant pas ces extensions ne seront pas pris en compte. Par défaut : pdf, txt, html, doc, docx, ppt, pptx, tif, tiff, png, jpg, jpeg.</td></tr><tr><td><strong>Clé de sortie</strong></td><td>La clé de "data" dans lesquels seront stockées toutes les informations relatives à ce module.</td></tr><tr><td><strong>Collection de sortie</strong></td><td>La collection dans laquelle seront envoyées les pièces jointes. "attachments" par défaut.</td></tr><tr><td><strong>Itérer sur l'entrée</strong></td><td>Activer l'option si l'entrée est une liste. Le module traitera les documents 1 à 1, et la sortie sera une liste de résultats.</td></tr><tr><td><strong>Renommer les pièces jointes en double</strong> (Rename duplicate attachments)</td><td>Si activé, les pièces jointes portant un nom identique sont automatiquement renommées pour éviter les collisions.</td></tr></tbody></table>
 
 #### Structure des résultats
 
@@ -58,49 +57,49 @@ Cette étape permet de récupérer toutes les informations concernant le mail et
 
 ## 2. AI Agent
 
-### Classification de document
+### Documents classification agent — classification de document
 
 #### Paramètres
 
-<table><thead><tr><th width="234">Paramètre</th><th>Description</th></tr></thead><tbody><tr><td><strong>Nom</strong></td><td>Le nom de l'étape</td></tr><tr><td><strong>Modèle</strong></td><td>La sélection parmi les modèles de classification de document existants</td></tr><tr><td><strong>Per page</strong></td><td>(SAM) Permet d'avoir une classification page à page. Il peut être couplé à un module split-pdf à la suite pour déliasser un document.</td></tr><tr><td><strong>Use Google OCR</strong></td><td>Utilisation de google OCR si activé. Sinon, utilisation d'un modèle OCR open-source. </td></tr><tr><td><strong>Expression d'entrée</strong></td><td>Le ou les fichiers à classifier. files["file"] par défaut.</td></tr><tr><td><strong>Expression du modèle</strong></td><td>Sélection dynamique du modèle d'extraction.</td></tr><tr><td><strong>Clé de sortie</strong></td><td>La clé de "data" dans lesquels seront stockées toutes les informations relatives à ce module.</td></tr><tr><td><strong>Itérer sur l'entrée</strong></td><td>Activer l'option si l'entrée est une liste. Le module traitera les documents 1 à 1, et la sortie sera une liste de résultats.</td></tr></tbody></table>
+<table><thead><tr><th width="234">Paramètre</th><th>Description</th></tr></thead><tbody><tr><td><strong>Nom</strong> (Name)</td><td>Le nom de l'étape</td></tr><tr><td><strong>Agent de classification</strong> (Classification agent)</td><td>La sélection parmi les agents de classification existants.</td></tr><tr><td><strong>Per page</strong></td><td>Permet d'avoir une classification page à page. Il peut être couplé à un module split-pdf à la suite pour déliasser un document.</td></tr><tr><td><strong>Expression d'entrée</strong> (Input expression)</td><td>Le ou les fichiers à classifier. <code>files['file']</code> par défaut.</td></tr><tr><td><strong>Expression de l'agent de classification</strong> (Classification Agent Expr)</td><td>Sélection dynamique de l'agent de classification.</td></tr><tr><td><strong>Clé de sortie</strong> (Output key)</td><td>La clé de "data" dans laquelle seront stockées les informations de ce module. <code>classify</code> par défaut.</td></tr><tr><td><strong>Itérer sur l'entrée</strong> (Iterate over input)</td><td>Activer l'option si l'entrée est une liste. Le module traitera les documents 1 à 1, et la sortie sera une liste de résultats.</td></tr><tr><td><strong>Inclure le texte OCR</strong> (Include OCR Text)</td><td>Si activé, le texte OCR du document est joint aux données renvoyées par le module.</td></tr></tbody></table>
 
 #### Structure des résultats
 
 Voir [Structure des résultats de Classification](../integration-api/classification/structure-des-resultats-de-classification.md)
 
-### Classification de mails
+### Classify Email — classification de mails
 
 #### Paramètres
 
-<table><thead><tr><th width="234">Paramètre</th><th>Description</th></tr></thead><tbody><tr><td><strong>Nom</strong></td><td>Le nom de l'étape</td></tr><tr><td><strong>Expression d'entrée</strong></td><td>Le mail à classifier.  La valeur par défaut est : data['email']</td></tr><tr><td><strong>Expression des pièces jointes</strong></td><td>La collection des pièces jointes. La valeur par défaut est : files['attachments']</td></tr><tr><td><strong>Modèle</strong></td><td>La sélection parmi les modèles de classification de mails existants</td></tr><tr><td><strong>Expression du modèle</strong></td><td>Sélection dynamique du modèle d'extraction.</td></tr><tr><td><strong>Clé de sortie</strong></td><td>La clé de "data" dans lesquels seront stockées toutes les informations relatives à ce module.</td></tr><tr><td><strong>Itérer sur l'entrée</strong></td><td>Activer l'option si l'entrée est une liste. Le module traitera les documents 1 à 1, et la sortie sera une liste de résultats.</td></tr></tbody></table>
+<table><thead><tr><th width="234">Paramètre</th><th>Description</th></tr></thead><tbody><tr><td><strong>Nom</strong></td><td>Le nom de l'étape</td></tr><tr><td><strong>Expression d'entrée</strong></td><td>Le mail à classifier.  La valeur par défaut est : data['email']</td></tr><tr><td><strong>Expression des pièces jointes</strong></td><td>La collection des pièces jointes. La valeur par défaut est : files['attachments']</td></tr><tr><td><strong>Modèle</strong></td><td>La sélection parmi les modèles de classification de mails existants</td></tr><tr><td><strong>Expression du modèle</strong></td><td>Sélection dynamique du modèle de classification de mails.</td></tr><tr><td><strong>Clé de sortie</strong></td><td>La clé de "data" dans lesquels seront stockées toutes les informations relatives à ce module.</td></tr><tr><td><strong>Itérer sur l'entrée</strong></td><td>Activer l'option si l'entrée est une liste. Le module traitera les documents 1 à 1, et la sortie sera une liste de résultats.</td></tr></tbody></table>
 
 #### Structure des résultats
 
 Voir [Structure des résultats de Classification](../integration-api/classification/structure-des-resultats-de-classification.md)
 
-### Extraction
+### Extract — extraction
 
 #### Paramètres
 
-<table><thead><tr><th width="234">Paramètre</th><th>Description</th></tr></thead><tbody><tr><td><strong>Nom</strong></td><td>Le nom de l'étape</td></tr><tr><td><strong>Agent d'extraction</strong></td><td>La sélection parmi les agents d'extraction existant</td></tr><tr><td><strong>Expression d'entrée</strong></td><td>Le ou les fichiers à classifier. files["file"] par défaut.</td></tr><tr><td><strong>Expression du modèle</strong></td><td>Sélection dynamique du modèle d'extraction.</td></tr><tr><td><strong>Clé de sortie</strong></td><td>La clé de "data" dans lesquels seront stockées toutes les informations relatives à ce module.</td></tr><tr><td><strong>Itérer sur l'entrée</strong></td><td>Activer l'option si l'entrée est une liste. Le module traitera les documents 1 à 1, et la sortie sera une liste de résultats.</td></tr></tbody></table>
+<table><thead><tr><th width="234">Paramètre</th><th>Description</th></tr></thead><tbody><tr><td><strong>Nom</strong> (Name)</td><td>Le nom de l'étape</td></tr><tr><td><strong>Agent d'extraction</strong> (Extraction agent)</td><td>La sélection parmi les agents d'extraction existants.</td></tr><tr><td><strong>Expression d'entrée</strong> (Input expression)</td><td>Le ou les fichiers à traiter. <code>files['file']</code> par défaut.</td></tr><tr><td><strong>Expression de l'agent d'extraction</strong> (Extraction agent expression)</td><td>Sélection dynamique de l'agent d'extraction.</td></tr><tr><td><strong>Clé de sortie</strong> (Output key)</td><td>La clé de "data" dans laquelle seront stockées les informations de ce module. <code>extract</code> par défaut.</td></tr><tr><td><strong>Itérer sur l'entrée</strong> (Iterate over input)</td><td>Activer l'option si l'entrée est une liste. Le module traitera les documents 1 à 1, et la sortie sera une liste de résultats.</td></tr><tr><td><strong>Inclure le texte OCR</strong> (Include OCR Text)</td><td>Si activé, le texte OCR du document est joint aux données renvoyées par le module.</td></tr></tbody></table>
 
 #### Structure des résultats
 
 Voir [Structure des résultats d'Extraction](../integration-api/extraction/structure-des-resultats-dextraction.md)
 
-### GenAI
+### llm — GenAI
 
-<table><thead><tr><th width="234">Paramètre</th><th>Description</th></tr></thead><tbody><tr><td><strong>Nom</strong></td><td>Le nom de l'étape</td></tr><tr><td><strong>Fournisseur</strong></td><td>Fournisseur du modèle de langue</td></tr><tr><td><strong>Modèle</strong></td><td>Version du modèle de langue</td></tr><tr><td><strong>Prompt</strong></td><td>Prompt qui sera envoyé au modèle de langue. Des variables peuvent être ajoutées en les mettant entre accolade. <br>Exemple : <em>Quelle est la capitale de {data.country} ?</em></td></tr><tr><td><strong>Inclure fichier</strong></td><td>Est-ce qu'un fichier doit être passé en plus du prompt ?</td></tr><tr><td>Expression d'entrée</td><td>Le ou les fichiers qui seront passés. files["file"] par défaut.</td></tr><tr><td>Clé de sortie</td><td>La clé de "data" dans lesquels seront stockées toutes les informations relatives à ce module.</td></tr><tr><td>Température</td><td>Valeur entre 0 et 1. Une température proche de 0 donnera un modèle déterministe, et inversement.<br>Certains modèles nécessite une température de 1.</td></tr><tr><td>Itérer sur l'entrée</td><td>Activer l'option si l'entrée est une liste. Le module traitera les documents 1 à 1, et la sortie sera une liste de résultats.</td></tr></tbody></table>
+<table><thead><tr><th width="234">Paramètre</th><th>Description</th></tr></thead><tbody><tr><td><strong>Nom</strong></td><td>Le nom de l'étape</td></tr><tr><td><strong>Fournisseur</strong></td><td>Fournisseur du modèle de langue</td></tr><tr><td><strong>Modèle</strong></td><td>Version du modèle de langue</td></tr><tr><td><strong>Prompt</strong></td><td>Prompt qui sera envoyé au modèle de langue. Des variables peuvent être ajoutées en les mettant entre accolade. <br>Exemple : <em>Quelle est la capitale de {data.country} ?</em></td></tr><tr><td><strong>Inclure fichier</strong></td><td>Est-ce qu'un fichier doit être passé en plus du prompt ?</td></tr><tr><td>Expression d'entrée</td><td>Le ou les fichiers qui seront passés. files["file"] par défaut.</td></tr><tr><td>Clé de sortie</td><td>La clé de "data" dans lesquels seront stockées toutes les informations relatives à ce module.</td></tr><tr><td>Température</td><td>Valeur entre 0 et 1. Une température proche de 0 donnera un modèle déterministe, et inversement.<br>Certains modèles imposent une température de 1.</td></tr><tr><td>Itérer sur l'entrée</td><td>Activer l'option si l'entrée est une liste. Le module traitera les documents 1 à 1, et la sortie sera une liste de résultats.</td></tr></tbody></table>
 
 
 
 ## 3. Review
 
 {% hint style="info" %}
-Les étape de review sont bloquantes tant que le document n'a pas été validé par un opérateur.
+Les étapes de review sont bloquantes tant que le document n'a pas été validé par un opérateur.
 {% endhint %}
 
-### Review de Classification (vidéo-typage)
+### Classification Review — review de classification (vidéo-typage)
 
 Active le vidéo-typage suite à une classification.
 
@@ -108,7 +107,7 @@ Active le vidéo-typage suite à une classification.
 
 #### Paramètres
 
-<table><thead><tr><th width="241">Paramètre</th><th>Description</th></tr></thead><tbody><tr><td><strong>Nom</strong></td><td>Le nom de l'étape</td></tr><tr><td><strong>Contexte</strong></td><td>Permet d'afficher des informations pendant la review</td></tr><tr><td><strong>Expression d'entrée</strong></td><td>Le ou les fichiers à classifier. files["file"] par défaut.</td></tr><tr><td><strong>Expression du contexte</strong></td><td>Permet d'afficher des informations pendant la review. Le paramètre supporte des expressions dynamiques.</td></tr><tr><td><strong>Clé de sortie</strong></td><td>La clé de "data" dans lesquels seront stockées toutes les informations relatives à ce module.</td></tr><tr><td><strong>Itérer sur l'entrée</strong></td><td>Activer l'option si l'entrée est une liste. Le module traitera les documents 1 à 1, et la sortie sera une liste de résultats.</td></tr><tr><td>Expression de date d’expiration</td><td>Une fois cette date et heure dépassées, un document en attente de review sera automatiquement libéré (validé ou rejeté en fonction du paramètre Action d'expiration).<br>Le mécanisme de libération des documents passe 1 fois / heure.<br>Format de date : <code>2025-09-23T16:00:00+02:00</code> <br><br></td></tr><tr><td>Action d'expiration</td><td>Action à prendre une fois la date d'expiration dépassée.</td></tr></tbody></table>
+<table><thead><tr><th width="241">Paramètre</th><th>Description</th></tr></thead><tbody><tr><td><strong>Nom</strong></td><td>Le nom de l'étape</td></tr><tr><td><strong>Contexte</strong></td><td>Permet d'afficher des informations pendant la review</td></tr><tr><td><strong>Expression d'entrée</strong></td><td>Les données de classification à reviewer. <code>data['classify']</code> par défaut.</td></tr><tr><td><strong>Expression du contexte</strong></td><td>Permet d'afficher des informations pendant la review. Le paramètre supporte des expressions dynamiques.</td></tr><tr><td><strong>Clé de sortie</strong></td><td>La clé de "data" dans lesquels seront stockées toutes les informations relatives à ce module.</td></tr><tr><td><strong>Itérer sur l'entrée</strong></td><td>Activer l'option si l'entrée est une liste. Le module traitera les documents 1 à 1, et la sortie sera une liste de résultats.</td></tr><tr><td>Expression de date d’expiration</td><td>Une fois cette date et heure dépassées, un document en attente de review sera automatiquement libéré (validé ou rejeté en fonction du paramètre Action d'expiration).<br>Le mécanisme de libération des documents passe 1 fois / heure.<br>Format de date : <code>2025-09-23T16:00:00+02:00</code> <br><br></td></tr><tr><td>Action d'expiration</td><td>Action à prendre une fois la date d'expiration dépassée.</td></tr></tbody></table>
 
 #### Structure des résultats
 
@@ -116,7 +115,11 @@ Voir [Structure des résultats de Classification](../integration-api/classificat
 
 
 
-### Review d'Extraction (vidéo-codage)
+### Email Classification Review — review de classification d'emails
+
+Équivalent du vidéo-typage pour les emails : active la review de la classification d'un email après une étape **Classify Email**. Paramètres analogues à la *Classification Review*.
+
+### Extraction Review — review d'extraction (vidéo-codage)
 
 Active le vidéo-codage suite à une extraction.
 
@@ -124,7 +127,7 @@ Active le vidéo-codage suite à une extraction.
 
 #### Paramètres
 
-<table><thead><tr><th width="241">Paramètre</th><th>Description</th></tr></thead><tbody><tr><td><strong>Nom</strong></td><td>Le nom de l'étape</td></tr><tr><td><strong>Expression d'entrée</strong></td><td>Le ou les fichiers à classifier. files["file"] par défaut.</td></tr><tr><td><strong>Expression du contexte</strong></td><td>Permet d'afficher des informations pendant la review. Le paramètre supporte des expressions dynamiques.</td></tr><tr><td><strong>Clé de sortie</strong></td><td>La clé de "data" dans lesquels seront stockées toutes les informations relatives à ce module.</td></tr><tr><td><strong>Itérer sur l'entrée</strong></td><td>Activer l'option si l'entrée est une liste. Le module traitera les documents 1 à 1, et la sortie sera une liste de résultats.</td></tr><tr><td>Expression de date d’expiration</td><td><p>Une fois cette date et heure dépassées, un document en attente de review sera automatiquement libéré (validé ou rejeté en fonction du paramètre Action d'expiration).</p><p>Le mécanisme de libération des documents passe 1 fois / heure.<br>Format de date : <code>2025-09-23T16:00:00+02:00</code></p></td></tr><tr><td>Action d'expiration</td><td>Action à prendre une fois la date d'expiration dépassée.</td></tr></tbody></table>
+<table><thead><tr><th width="241">Paramètre</th><th>Description</th></tr></thead><tbody><tr><td><strong>Nom</strong></td><td>Le nom de l'étape</td></tr><tr><td><strong>Expression d'entrée</strong></td><td>Les données d'extraction à reviewer. <code>data['extract']</code> par défaut.</td></tr><tr><td><strong>Clé de sortie</strong></td><td>La clé de "data" dans lesquels seront stockées toutes les informations relatives à ce module.</td></tr><tr><td><strong>Itérer sur l'entrée</strong></td><td>Activer l'option si l'entrée est une liste. Le module traitera les documents 1 à 1, et la sortie sera une liste de résultats.</td></tr><tr><td>Expression de date d’expiration</td><td><p>Une fois cette date et heure dépassées, un document en attente de review sera automatiquement libéré (validé ou rejeté en fonction du paramètre Action d'expiration).</p><p>Le mécanisme de libération des documents passe 1 fois / heure.<br>Format de date : <code>2025-09-23T16:00:00+02:00</code></p></td></tr><tr><td>Action d'expiration</td><td>Action à prendre une fois la date d'expiration dépassée.</td></tr></tbody></table>
 
 #### Structure des résultats
 
@@ -156,7 +159,7 @@ Ce module permet de séparer un document en sous-documents. Très utile par exem
 
 #### Paramètres
 
-<table><thead><tr><th width="234">Paramètre</th><th>Description</th></tr></thead><tbody><tr><td><strong>Nom</strong></td><td>Le nom du module</td></tr><tr><td><strong>Collection de sortie</strong></td><td>La collection dans laquelle sont envoyés les sous-documents générés.</td></tr><tr><td><strong>Expression d'entrée</strong></td><td>Le ou les fichiers à déliasser. files["file"] par défaut.</td></tr><tr><td><strong>Labels Expr</strong></td><td>La liste des labels de chaque page. Le document sera divisé à chaque fois qu'un label est différent de la page précédente.</td></tr><tr><td><strong>Labels To Ignore</strong></td><td>Les pages ayant ce label seront automatiquement mis à l'écart, et ne figureront pas dans les sous-documents générés.</td></tr><tr><td><strong>Clé de sortie</strong></td><td>La clé de "data" dans lesquels seront stockées toutes les informations relatives à ce module.</td></tr><tr><td><strong>Itérer sur l'entrée</strong></td><td>Activer l'option si l'entrée est une liste. Le module traitera les documents 1 à 1, et la sortie sera une liste de résultats.</td></tr></tbody></table>
+<table><thead><tr><th width="234">Paramètre</th><th>Description</th></tr></thead><tbody><tr><td><strong>Nom</strong></td><td>Le nom du module</td></tr><tr><td><strong>Collection de sortie</strong></td><td>La collection dans laquelle sont envoyés les sous-documents générés.</td></tr><tr><td><strong>Expression d'entrée</strong></td><td>Le ou les fichiers à déliasser. files["file"] par défaut.</td></tr><tr><td><strong>Labels Expr</strong></td><td>La liste des labels de chaque page. Le document sera divisé à chaque fois qu'un label est différent de la page précédente.</td></tr><tr><td><strong>Breaks Expr</strong></td><td>Expression indiquant les points de découpe (breaks) page à page. Issue par défaut de la prédiction de classification : <code>data['classify']['result']['prediction']['breaks']</code>.</td></tr><tr><td><strong>Labels To Ignore</strong></td><td>Les pages ayant ce label seront automatiquement mis à l'écart, et ne figureront pas dans les sous-documents générés.</td></tr><tr><td><strong>Clé de sortie</strong></td><td>La clé de "data" dans lesquels seront stockées toutes les informations relatives à ce module.</td></tr><tr><td><strong>Itérer sur l'entrée</strong></td><td>Activer l'option si l'entrée est une liste. Le module traitera les documents 1 à 1, et la sortie sera une liste de résultats.</td></tr></tbody></table>
 
 #### Structure des résultats
 
@@ -192,7 +195,7 @@ Ce module permet de décompresser un dossier archivé et d'extraire les fichiers
 
 #### Paramètres
 
-<table><thead><tr><th width="234">Paramètre</th><th>Description</th></tr></thead><tbody><tr><td><strong>Nom</strong></td><td>Le nom du module</td></tr><tr><td><strong>Collection de sortie</strong></td><td>La collection dans laquelle sont envoyés les fichiers décompressés.</td></tr><tr><td><strong>Expression d'entrée</strong></td><td>Le ou les fichiers à décompresser. files["file"] par défaut.</td></tr><tr><td><strong>Extensions</strong></td><td>Une liste d'extension valide. (Exemple : "pdf, doc, jpg, png"). Les fichiers ayant une extension différente dans l'archive seront ignorés.</td></tr><tr><td><strong>Clé de sortie</strong></td><td>La clé de "data" dans lesquels seront stockées toutes les informations relatives à ce module.</td></tr><tr><td><strong>Itérer sur l'entrée</strong></td><td>Activer l'option si l'entrée est une liste. Le module traitera les documents 1 à 1, et la sortie sera une liste de résultats.</td></tr></tbody></table>
+<table><thead><tr><th width="234">Paramètre</th><th>Description</th></tr></thead><tbody><tr><td><strong>Nom</strong></td><td>Le nom du module</td></tr><tr><td><strong>Collection de sortie</strong></td><td>La collection dans laquelle sont envoyés les fichiers décompressés.</td></tr><tr><td><strong>Expression d'entrée</strong></td><td>Le ou les fichiers à décompresser. files["file"] par défaut.</td></tr><tr><td><strong>Extensions</strong></td><td>Une liste d'extension valide. (Exemple : "pdf, doc, jpg, png"). Les fichiers ayant une extension différente dans l'archive seront ignorés.</td></tr><tr><td><strong>Max unpack depth</strong></td><td>Profondeur maximale de décompression pour les archives imbriquées (archive contenant d'autres archives).</td></tr><tr><td><strong>Clé de sortie</strong></td><td>La clé de "data" dans lesquels seront stockées toutes les informations relatives à ce module.</td></tr><tr><td><strong>Itérer sur l'entrée</strong></td><td>Activer l'option si l'entrée est une liste. Le module traitera les documents 1 à 1, et la sortie sera une liste de résultats.</td></tr></tbody></table>
 
 #### Structure des résultats
 
@@ -228,22 +231,35 @@ Ce module permet de fusionner les pages de plusieurs documents en entrée en un 
 }
 ```
 
-### Validation d'ensemble
+### Ensemble Validation — validation d'ensemble
+
+Ce module confronte les résultats d'extraction d'un agent à ceux déjà obtenus afin de valider (ou non) automatiquement les champs concordants.
+
+#### Paramètres
+
+<table><thead><tr><th width="234">Paramètre</th><th>Description</th></tr></thead><tbody><tr><td><strong>Nom</strong> (Name)</td><td>Le nom de l'étape</td></tr><tr><td><strong>Agent d'extraction</strong> (Extraction agent)</td><td>La sélection parmi les agents d'extraction existants, utilisé comme second avis pour la validation.</td></tr><tr><td><strong>Expression d'entrée</strong> (Input expression)</td><td>Le ou les fichiers à valider. <code>files['file']</code> par défaut.</td></tr><tr><td><strong>Extract Expr</strong></td><td>Les données d'extraction à confronter. <code>data['extract']</code> par défaut.</td></tr><tr><td><strong>Expression de l'agent d'extraction</strong> (Extraction agent expression)</td><td>Sélection dynamique de l'agent d'extraction.</td></tr><tr><td><strong>Clé de sortie</strong> (Output key)</td><td>La clé de "data" dans laquelle seront stockées les informations de ce module. <code>ensemble_validation</code> par défaut.</td></tr><tr><td><strong>Itérer sur l'entrée</strong> (Iterate over input)</td><td>Activer l'option si l'entrée est une liste. Le module traitera les documents 1 à 1, et la sortie sera une liste de résultats.</td></tr></tbody></table>
+
+
+
+### Barcodes — lecture de codes-barres
+
+Ce module détecte et lit les codes-barres présents dans les documents en entrée.
+
+#### Paramètres
+
+<table><thead><tr><th width="234">Paramètre</th><th>Description</th></tr></thead><tbody><tr><td><strong>Nom</strong> (Name)</td><td>Le nom de l'étape</td></tr><tr><td><strong>Expression d'entrée</strong> (Input expression)</td><td>Le ou les fichiers à analyser. <code>files['file']</code> par défaut.</td></tr><tr><td><strong>Clé de sortie</strong> (Output key)</td><td>La clé de "data" dans laquelle seront stockées les informations de ce module. <code>barcodes</code> par défaut.</td></tr><tr><td><strong>Itérer sur l'entrée</strong> (Iterate over input)</td><td>Activer l'option si l'entrée est une liste. Le module traitera les documents 1 à 1, et la sortie sera une liste de résultats.</td></tr></tbody></table>
 
 {% hint style="info" %}
-En cours de développement
+Deux actions e-mail figurent dans la Steps Library mais sont marquées **« Available soon »** (bientôt disponibles, non activables à ce jour) : **Send Email** (envoyer un e-mail) et **Forward Email** (transférer un e-mail).
 {% endhint %}
 
+## 5. Code personnalisé (Custom Code)
 
+Le module **Custom Code** permet de réaliser des traitements personnalisés en Python, au-delà de ce que proposent les autres modules.
 
-## 5. Code personnalisé
-
-Le module de code personnalisé permet de faire tout ce qui n'a pas encore été préconçu par d'autre module.
-
-<pre class="language-python"><code class="lang-python"><strong>def execute_action(job, input):
-</strong>    # Do smth here
-    return StepActionType.done, {
-        # Add data here          
+<pre class="language-python"><code class="lang-python"><strong>def execute_action(job):
+</strong>    return StepActionType.done, {
+        # Add data here
     }
 </code></pre>
 
@@ -251,7 +267,7 @@ Le paramètre d'entrée `job` contient toutes les informations utiles dans `job.
 
 Il est également possible de rajouter de nouvelles informations dans `data` avec le `return`.&#x20;
 
-Pour plus de détails sur le fonctionnement du module de code personnalisé, et sur des détails du Workflow, veuillez [contacter l'équipe Projet](https://app.gitbook.com/s/czKclNsLQDMlLjxNwSSw/contact).
+Pour plus de détails sur le module de code personnalisé, [contacter l'équipe reciTAL](../contact/nous-contacter.md).
 
 ## 6. État
 
@@ -266,13 +282,19 @@ Les modules d'état peuvent être ajoutés à n'importe quelle transition. Ils p
 
 ## 7. Output
 
+### Cleanup
+
+Le module **Cleanup** (étiquette **Output**) purge les données et les fichiers d'un job — utile en fin de workflow pour ne pas conserver les documents traités. Quatre options permettent de choisir précisément ce qui est conservé :
+
+<table><thead><tr><th width="234">Paramètre</th><th>Description</th></tr></thead><tbody><tr><td><strong>Nom</strong> (Name)</td><td>Le nom de l'étape</td></tr><tr><td><strong>Keep data</strong></td><td>Conserver les données (<code>data</code>) accumulées par le job. Désactiver pour les supprimer.</td></tr><tr><td><strong>Keep files</strong></td><td>Conserver les fichiers du job. Désactiver pour les supprimer.</td></tr><tr><td><strong>Keep history</strong></td><td>Conserver l'historique des étapes du job.</td></tr><tr><td><strong>Keep preliminary</strong></td><td>Conserver les fichiers préliminaires (intermédiaires) générés pendant le traitement.</td></tr></tbody></table>
+
 ### Webhook
 
 Permet de renvoyer les résultats en cours (ou une partie) vers une URL donnée.
 
 #### Paramètres
 
-<table><thead><tr><th width="234">Paramètre</th><th>Description</th></tr></thead><tbody><tr><td><strong>Nom</strong></td><td>Le nom du module</td></tr><tr><td><strong>URL</strong></td><td>L'url de callback</td></tr><tr><td><strong>Ignorer les erreurs</strong></td><td>Boolean. Si l'option est activée, les flux ne sera pas interrompu, même si le code de réponse est une erreur.</td></tr><tr><td><strong>Expression d'entrée</strong></td><td>Les données à renvoyer. "data" par défaut.</td></tr><tr><td><strong>Clé de sortie</strong></td><td>La clé de "data" dans lesquels seront stockées toutes les informations relatives à ce module.</td></tr><tr><td><strong>Itérer sur l'entrée</strong></td><td>Activer l'option si l'entrée est une liste. Le module traitera les documents 1 à 1, et la sortie sera une liste de résultats.</td></tr></tbody></table>
+<table><thead><tr><th width="234">Paramètre</th><th>Description</th></tr></thead><tbody><tr><td><strong>Nom</strong></td><td>Le nom du module</td></tr><tr><td><strong>URL</strong></td><td>L'url de callback</td></tr><tr><td><strong>Ignorer les erreurs</strong> (Ignore errors?)</td><td>Boolean. Si l'option est activée, le flux ne sera pas interrompu, même si le code de réponse est une erreur.</td></tr><tr><td><strong>Réessayer en cas d'erreur</strong> (Retry on error?)</td><td>Boolean. Relance l'appel en cas d'échec.</td></tr><tr><td><strong>Expression d'entrée</strong></td><td>Les données à renvoyer. "data" par défaut.</td></tr><tr><td><strong>Clé de sortie</strong></td><td>La clé de "data" dans lesquels seront stockées toutes les informations relatives à ce module.</td></tr><tr><td><strong>Itérer sur l'entrée</strong></td><td>Activer l'option si l'entrée est une liste. Le module traitera les documents 1 à 1, et la sortie sera une liste de résultats.</td></tr></tbody></table>
 
 #### Structure des résultats
 

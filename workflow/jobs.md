@@ -20,30 +20,32 @@ Un job permet de:
 
 ## Consulter les jobs
 
-Si vous avez réussi à envoyer un premier document - que ce soit par API (voir [Envoyer des documents dans un workflow](../integration-api/workflow/envoyer-des-documents-dans-un-workflow.md)) ou via l'upload d'un document pour tester le workflow - vous devriez voir apparaître un premier job.
+Depuis la page **Workflows**, ouvrez l'onglet **Jobs**. Si vous avez réussi à envoyer un premier document — que ce soit par API (voir [Envoyer des documents dans un workflow](../integration-api/workflow/envoyer-des-documents-dans-un-workflow.md)) ou via l'upload d'un document pour tester le workflow — vous devriez voir apparaître un premier job.
 
-<figure><img src="../.gitbook/assets/image (112).png" alt=""><figcaption><p>Tableau des jobs</p></figcaption></figure>
+Le tableau liste pour chaque job son **ID**, sa **date de création**, s'il s'agit d'un **test**, le **workflow** d'origine, l'**étape** en cours et son **état**. La bascule **Live / Test** sépare les jobs de production des jobs de test, et les filtres (statut, plage de dates, ID ou nom de fichier) permettent de retrouver un job précis.
 
-Pour consulter les détails d'un job, cliquez sur l'ID du Job.
+<figure><img src="../.gitbook/assets/workflow_jobs_list.png" alt="Onglet Jobs : tableau des jobs"><figcaption>Onglet <em>Jobs</em> — tableau des jobs avec la bascule Live/Test et les filtres.</figcaption></figure>
+
+Pour consulter les détails d'un job, cliquez sur son **ID**. L'en-tête rappelle l'ID, le workflow, l'étape courante, l'état et les dates ; le bouton **Restart** permet de relancer le job.
 
 ### Historique
 
-Le premier onglet "Historique", permet de voir le statut et les données étape par étape. On y retrouve également les logs, permettant entre autres de débugger les différents paramètres d'un module, ou de débugger un module custom (code Python).
+L'onglet **History** présente le déroulé étape par étape (création du job, états, étapes) avec leur statut. La bascule **Show detailed history?** affiche le détail, et l'on y retrouve les logs — utiles pour déboguer les paramètres d'un module ou un module custom (code Python).
 
-<figure><img src="../.gitbook/assets/image (113).png" alt=""><figcaption><p>Jobs - Historique</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/workflow_job_history.png" alt="Job - History"><figcaption>Jobs — onglet <em>History</em>.</figcaption></figure>
 
 ### Données
 
-Cet écran permet d'afficher **en direct** les données finales (ajout successif des données à chaque étape).
+L'onglet **Data** affiche les données accumulées par le job (ajout successif des données à chaque étape), au format JSON. La bascule **Show initial data?** permet de comparer avec les données initiales.
 
-<figure><img src="../.gitbook/assets/image (114).png" alt=""><figcaption><p>Jobs - Données</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/workflow_job_data.png" alt="Job - Data"><figcaption>Jobs — onglet <em>Data</em>.</figcaption></figure>
 
 ### Fichiers
 
-Cet écran permet de retrouver tous les documents dans les différentes collections et de les télécharger.
+L'onglet **Files** recense tous les documents dans les différentes collections (avec la date, la collection, le nom et l'indication *Is Initial?*) et permet de les télécharger.
 
 {% hint style="info" %}
-Le module de cleanup permet actuellement de supprimer les data et tous les fichiers.
+Le module **Cleanup** peut purger les données et les fichiers du job ; les options *Keep data / files / history / preliminary* déterminent ce qui est conservé (voir [Les modules de workflow](les-modules-workflow.md)).
 {% endhint %}
 
-<figure><img src="../.gitbook/assets/image (115).png" alt=""><figcaption><p>Jobs - Fichier</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/workflow_job_files.png" alt="Job - Files"><figcaption>Jobs — onglet <em>Files</em>.</figcaption></figure>

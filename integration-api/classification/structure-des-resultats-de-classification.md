@@ -1,5 +1,9 @@
 # Structure des résultats de classification
 
+{% hint style="info" %}
+Les structures ci-dessous sont celles renvoyées par l'API de classification. Appelée depuis une étape de workflow, la même structure est encapsulée sous la clé de sortie de l'étape — voir [Structure des résultats du workflow](../workflow/structure-des-resultats-du-workflow.md).
+{% endhint %}
+
 ## Classification simple
 
 ```json
@@ -21,8 +25,10 @@
         "label": "Label1" // La catégorie prédite par le modèle
     },
     "document": {
-        "id": int // the ID of classification
-        "type_": "doc"
+        "id": int, // Identifiant de la classification
+        "type_": "doc",
+        "org_id": int, // Identifiant de l'organisation
+        "agent_id": int // Identifiant de l'agent de classification
     },
     "review_details": { // Utile pour la revue de classification
         "verified_by_id": null,
@@ -65,11 +71,13 @@
              ....
         }
         ],
-        "labels": ["Label1", "Label1", "Label2"] // Les catégories de chaque page prédites par le modèle
+        "labels": ["Label3", "Label1", "Label2"] // Les catégories de chaque page prédites par le modèle
     },
     "document": {
-        "id": int // the ID of classification
-        "type_": "doc"
+        "id": int, // Identifiant de la classification
+        "type_": "doc",
+        "org_id": int, // Identifiant de l'organisation
+        "agent_id": int // Identifiant de l'agent de classification
     },
     "review_details": { // Utile pour la revue de classification
         "verified_by_id": null,

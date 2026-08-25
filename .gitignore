@@ -1,0 +1,5 @@
+.playwright-mcp/
+
+# Fichiers de travail internes (hors documentation)
+PRESENTATION.md
+livrables/
