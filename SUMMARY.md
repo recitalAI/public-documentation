@@ -65,6 +65,7 @@
 * [Métriques d'évaluation](autres/metriques-devaluation.md)
 * [Connection avec OpenID Connect (OIDC)](autres/connection-avec-openid-connect-oidc.md)
 * [LLM et souveraineté](autres/llm-et-souverainete.md)
+* [Review avancée](autres/review-avancee.md)
 
 ## ⚙️ Changelogs
 
