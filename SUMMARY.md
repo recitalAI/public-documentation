@@ -5,8 +5,8 @@
 ## 🚀 Démarrage rapide
 
 * [Introduction](demarrage-rapide/README.md)
-* [Créer un agent génératif](demarrage-rapide/creer-un-agent-generatif.md)
-* [Créer un workflow](demarrage-rapide/creer-un-workflow.md)
+* [Créer un Agent génératif](demarrage-rapide/creer-un-agent-generatif.md)
+* [Créer un Workflow](demarrage-rapide/creer-un-workflow.md)
 * [Utiliser un modèle d'extraction sur étagère](demarrage-rapide/utiliser-un-modele-dextraction-recital-sur-etagere.md)
 
 ## 📘 Guide utilisateur
@@ -31,8 +31,8 @@
         * [Charger des documents en validation](extraction/valider-un-agent/charger-des-documents-en-validation.md)
         * [Valider un Agent](extraction/valider-un-agent/valider-un-agent.md)
   * [Workflow](guide-utilisateur/design/workflow/README.md)
-    * [Créer un workflow](workflow/creer-un-workflow.md)
-    * [Les modules de workflow](workflow/les-modules-workflow.md)
+    * [Créer un Workflow](workflow/creer-un-workflow.md)
+    * [Les modules de Workflow](workflow/les-modules-workflow.md)
     * [Les jobs](workflow/jobs.md)
     * [Connexion boîte mail](workflow/connexion-boite-mail.md)
     * [Ressources](ressources/README.md)
@@ -46,7 +46,7 @@
 
 * [Authentification](integration-api/authentification.md)
 * [Workflow](integration-api/workflow/README.md)
-  * [Envoyer des documents dans un workflow](integration-api/workflow/envoyer-des-documents-dans-un-workflow.md)
+  * [Envoyer des documents dans un Workflow](integration-api/workflow/envoyer-des-documents-dans-un-workflow.md)
 * [Structures de résultats](integration-api/structures-de-resultats.md)
   * [Classification](integration-api/classification/structure-des-resultats-de-classification.md)
   * [Extraction](integration-api/extraction/structure-des-resultats-dextraction.md)
