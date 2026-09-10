@@ -6,7 +6,7 @@ description: Rendez-vous dans la page "Workflow", puis sur l'onglet "Jobs".
 
 ## Qu'est-ce qu'un Job ?
 
-Un Job représente le parcours d'un document au travers du workflow vers lequel il a été envoyé. Chaque Module, Etat ou Transition d'un workflow est retranscrit dans les jobs.
+Un Job représente le parcours d'un document au travers du Workflow vers lequel il a été envoyé. Chaque Module, Etat ou Transition d'un Workflow est retranscrit dans les jobs.
 
 {% hint style="info" %}
 Un job permet de:
@@ -20,13 +20,13 @@ Un job permet de:
 
 ## Consulter les jobs
 
-Depuis la page **Workflows**, ouvrez l'onglet **Jobs**. Si vous avez réussi à envoyer un premier document — que ce soit par API (voir [Envoyer des documents dans un workflow](../integration-api/workflow/envoyer-des-documents-dans-un-workflow.md)) ou via l'upload d'un document pour tester le workflow — vous devriez voir apparaître un premier job.
+Depuis la page **Workflows**, ouvrez l'onglet **Jobs**. Si vous avez réussi à envoyer un premier document — que ce soit par API (voir [Envoyer des documents dans un Workflow](../integration-api/workflow/envoyer-des-documents-dans-un-workflow.md)) ou via l'upload d'un document pour tester le Workflow — vous devriez voir apparaître un premier job.
 
-Le tableau liste pour chaque job son **ID**, sa **date de création**, s'il s'agit d'un **test**, le **workflow** d'origine, l'**étape** en cours et son **état**. La bascule **Live / Test** sépare les jobs de production des jobs de test, et les filtres (statut, plage de dates, ID ou nom de fichier) permettent de retrouver un job précis.
+Le tableau liste pour chaque job son **ID**, sa **date de création**, s'il s'agit d'un **test**, le **Workflow** d'origine, l'**étape** en cours et son **état**. La bascule **Live / Test** sépare les jobs de production des jobs de test, et les filtres (statut, plage de dates, ID ou nom de fichier) permettent de retrouver un job précis.
 
 <figure><img src="../.gitbook/assets/workflow_jobs_list.png" alt="Onglet Jobs : tableau des jobs"><figcaption>Onglet <em>Jobs</em> — tableau des jobs avec la bascule Live/Test et les filtres.</figcaption></figure>
 
-Pour consulter les détails d'un job, cliquez sur son **ID**. L'en-tête rappelle l'ID, le workflow, l'étape courante, l'état et les dates ; le bouton **Restart** permet de relancer le job.
+Pour consulter les détails d'un job, cliquez sur son **ID**. L'en-tête rappelle l'ID, le Workflow, l'étape courante, l'état et les dates ; le bouton **Restart** permet de relancer le job.
 
 ### Historique
 
@@ -45,7 +45,7 @@ L'onglet **Data** affiche les données accumulées par le job (ajout successif d
 L'onglet **Files** recense tous les documents dans les différentes collections (avec la date, la collection, le nom et l'indication *Is Initial?*) et permet de les télécharger.
 
 {% hint style="info" %}
-Le module **Cleanup** peut purger les données et les fichiers du job ; les options *Keep data / files / history / preliminary* déterminent ce qui est conservé (voir [Les modules de workflow](les-modules-workflow.md)).
+Le module **Cleanup** peut purger les données et les fichiers du job ; les options *Keep data / files / history / preliminary* déterminent ce qui est conservé (voir [Les modules de Workflow](les-modules-workflow.md)).
 {% endhint %}
 
 <figure><img src="../.gitbook/assets/workflow_job_files.png" alt="Job - Files"><figcaption>Jobs — onglet <em>Files</em>.</figcaption></figure>

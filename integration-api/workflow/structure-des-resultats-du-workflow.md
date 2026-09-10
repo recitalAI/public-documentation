@@ -1,12 +1,12 @@
-# Structure des résultats du workflow
+# Structure des résultats du Workflow
 
-## Structure du workflow
+## Structure du Workflow
 
-Les données du workflows vont être constituées de l'ensemble des étapes successives de ce dernier. Prenons par exemple le workflow suivant :
+Les données du Workflows vont être constituées de l'ensemble des étapes successives de ce dernier. Prenons par exemple le Workflow suivant :
 
 <figure><img src="../../.gitbook/assets/image (127).png" alt=""><figcaption></figcaption></figure>
 
-Chaque étape que l'on rajoute dans le workflow possède un paramètre "Clé de sortie", qui correspond à la clé JSON des données du workflow.
+Chaque étape que l'on rajoute dans le Workflow possède un paramètre "Clé de sortie", qui correspond à la clé JSON des données du Workflow.
 
 <figure><img src="../../.gitbook/assets/image (128).png" alt=""><figcaption></figcaption></figure>
 
@@ -23,7 +23,7 @@ La sortie du JSON aura donc la structure suivante :
 
 ## Structure d'une étape
 
-Le contenu d'une clé de sortie n'est pas directement le résultat du module : celui-ci est encapsulé, à côté des identifiants de l'agent et du job qui l'ont produit. Pour une étape d'extraction :
+Le contenu d'une clé de sortie n'est pas directement le résultat du module : celui-ci est encapsulé, à côté des identifiants de l'Agent et du job qui l'ont produit. Pour une étape d'extraction :
 
 ```json
 {
@@ -47,7 +47,7 @@ Le contenu d'une clé de sortie n'est pas directement le résultat du module : c
 Lors de l'intégration, pensez à descendre jusqu'à `result` pour retrouver les structures décrites dans [Structure des résultats d'extraction](../extraction/structure-des-resultats-dextraction.md) et [Structure des résultats de classification](../classification/structure-des-resultats-de-classification.md).
 {% endhint %}
 
-## Structure des étapes du workflow
+## Structure des étapes du Workflow
 
 Voir [Les modules Workflow](../../workflow/les-modules-workflow.md)
 

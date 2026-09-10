@@ -1,38 +1,38 @@
-# Créer un agent génératif
+# Créer un Agent génératif
 
-Un agent génératif utilise un **LLM** (Large Language Model) pour extraire l'information à partir d'un prompt, sans nécessiter de dataset annoté ni de modèle entraîné.
+Un Agent génératif utilise un **LLM** (Large Language Model) pour extraire l'information à partir d'un prompt, sans nécessiter de Dataset annoté ni de modèle entraîné.
 
-## 1. Créer l'agent
+## 1. Créer l'Agent
 
 Dans la sidebar, cliquer **Agents** puis le bouton **Create extraction agent**.
 
-<figure><img src="../.gitbook/assets/demarrage_agents_list.png" alt="Liste des agents d'extraction"><figcaption>Liste des agents d'extraction. Bouton de création en haut à droite.</figcaption></figure>
+<figure><img src="../.gitbook/assets/demarrage_agents_list.png" alt="Liste des Agents d'extraction"><figcaption>Liste des Agents d'extraction. Bouton de création en haut à droite.</figcaption></figure>
 
 Le wizard de création comporte 4 étapes :
 
 ### Étape 1 — Configuration
 
-Renseigner le nom de l'agent puis les langues supportées et la configuration OCR. La configuration par défaut de l'organisation est utilisée si rien n'est précisé.
+Renseigner le nom de l'Agent puis les langues supportées et la configuration OCR. La configuration par défaut de l'organisation est utilisée si rien n'est précisé.
 
 <figure><img src="../.gitbook/assets/demarrage_agent_step1_config.png" alt="Étape Configuration"><figcaption>Étape 1 — langues + OCR.</figcaption></figure>
 
 ### Étapes 2 et 3 — Imports (optionnels)
 
-L'étape 2 permet de reprendre des extracteurs depuis un autre agent. L'étape 3 d'attacher un modèle d'extraction entraîné dans Studio. Pour un agent purement génératif, ces deux étapes peuvent être ignorées.
+L'étape 2 permet de reprendre des extracteurs depuis un autre Agent. L'étape 3 d'attacher un modèle d'extraction entraîné dans Studio. Pour un Agent purement génératif, ces deux étapes peuvent être ignorées.
 
-<figure><img src="../.gitbook/assets/demarrage_agent_step2_agents.png" alt="Étape Extraction agents"><figcaption>Étape 2 — reprise depuis un autre agent (optionnel).</figcaption></figure>
+<figure><img src="../.gitbook/assets/demarrage_agent_step2_agents.png" alt="Étape Extraction agents"><figcaption>Étape 2 — reprise depuis un autre Agent (optionnel).</figcaption></figure>
 
 <figure><img src="../.gitbook/assets/demarrage_agent_step3_models.png" alt="Étape Extraction models"><figcaption>Étape 3 — sélection d'un modèle entraîné (optionnel).</figcaption></figure>
 
 ### Étape 4 — Custom extractors
 
-Confirmer la création de l'agent. La configuration des extracteurs se fait sur la page dédiée juste après.
+Confirmer la création de l'Agent. La configuration des extracteurs se fait sur la page dédiée juste après.
 
 <figure><img src="../.gitbook/assets/demarrage_agent_step4_extractors.png" alt="Étape Custom extractors"><figcaption>Étape 4 — Save pour finaliser, puis Continue to extractors.</figcaption></figure>
 
 ## 2. Ajouter un datapoint génératif
 
-L'agent est créé, on arrive sur la page des extracteurs. Cliquer **Add** puis **Single data point**.
+L'Agent est créé, on arrive sur la page des extracteurs. Cliquer **Add** puis **Single data point**.
 
 <figure><img src="../.gitbook/assets/demarrage_extractor_add_menu.png" alt="Menu Add extractor"><figcaption>Menu Add &#x2014; trois types : Single data point, Label Group, Extractors.</figcaption></figure>
 
@@ -50,6 +50,6 @@ Pour le détail de la configuration (prompt, provider, paramètres avancés), vo
 
 ## Pour aller plus loin
 
-- [Configurer les paramètres de l'agent](../extraction/configurer-un-agent-dextraction/configurer-les-parametres-dun-agent.md) — règles métier, post-traitement, OCR avancé
+- [Configurer les paramètres de l'Agent](../extraction/configurer-un-agent-dextraction/configurer-les-parametres-dun-agent.md) — règles métier, post-traitement, OCR avancé
 - [Valider un Agent](../extraction/valider-un-agent/README.md) — charger des documents test et valider la qualité d'extraction
-- [Intégration API](../integration-api/authentification.md) — appeler l'agent depuis vos applications
+- [Intégration API](../integration-api/authentification.md) — appeler l'Agent depuis vos applications
