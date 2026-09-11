@@ -10,8 +10,8 @@ La navigation est dynamique : les onglets affichés dépendent du rôle de l'uti
 
 - **Système** : préférence de langue et, selon le rôle et les produits, configurations de l'organisation ;
 - **Utilisateurs** : visible pour les rôles `orgadmin` et `sysadmin` ;
-- **Fournisseurs OCR** : visible pour les rôles `orgadmin` et `sysadmin` ;
-- **Jetons API** : visible pour les rôles `orgadmin` et `sysadmin` ;
+- **Fournisseurs OCR** : affiché dans la navigation ; sa gestion requiert le rôle `orgadmin` ou `sysadmin` ;
+- **Jetons API** : affiché dans la navigation ; sa gestion requiert le rôle `orgadmin` ou `sysadmin` ;
 - **Groupes** : affiché lorsque Search est activé ; sa gestion requiert le rôle `orgadmin` ou `sysadmin` ;
 - **Organisations** : réservé au rôle `sysadmin`.
 
