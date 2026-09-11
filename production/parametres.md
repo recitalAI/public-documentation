@@ -1,21 +1,17 @@
 # Paramètres
 
-L'écran **Paramètres** regroupe les préférences de l'utilisateur connecté et les configurations de l'organisation auxquelles son rôle et les produits activés lui donnent accès.
+L'écran **Paramètres** regroupe les préférences de l'utilisateur connecté et les configurations de son organisation.
 
 ## Accès et navigation
 
-Dans la barre latérale, cliquez sur **Paramètres**. Cette entrée est disponible pour les rôles `basic`, `orgadmin` et `sysadmin` lorsqu'Extract ou Extract Review est activé.
+Dans la barre latérale, cliquez sur **Paramètres**.
 
-La navigation est dynamique : les onglets affichés dépendent du rôle de l'utilisateur connecté et des produits activés pour son organisation. Les onglets disponibles en production peuvent être :
+La page présente les sections disponibles dans la vue d'administration de l'organisation. Certaines sections dépendent des produits activés :
 
-- **Système** : préférence de langue et, selon le rôle et les produits, configurations de l'organisation ;
-- **Utilisateurs** : visible pour les rôles `orgadmin` et `sysadmin` ;
-- **Fournisseurs OCR** : affiché dans la navigation ; sa gestion requiert le rôle `orgadmin` ou `sysadmin` ;
-- **Jetons API** : affiché dans la navigation ; sa gestion requiert le rôle `orgadmin` ou `sysadmin` ;
-- **Groupes** : affiché lorsque Search est activé ; sa gestion requiert le rôle `orgadmin` ou `sysadmin` ;
-- **Organisations** : réservé au rôle `sysadmin`.
-
-Les routes et API de gestion des **Utilisateurs**, des **Fournisseurs OCR** et des **Jetons API** requièrent le rôle `orgadmin` ou `sysadmin`.
+- **Système** : préférence de langue et configurations de l'organisation ;
+- **Utilisateurs** : liste et gestion des utilisateurs ;
+- **Fournisseurs OCR** : configuration des fournisseurs OCR ;
+- **Jetons API** : création et gestion des jetons API.
 
 ## Système
 
@@ -23,11 +19,11 @@ Les routes et API de gestion des **Utilisateurs**, des **Fournisseurs OCR** et d
 
 La langue est une préférence propre à l'utilisateur connecté, et non un paramètre commun à toute l'organisation. Les choix sont **Anglais (États-Unis)** et **Français (France)**.
 
-Les autres sections de l'onglet **Système** configurent l'organisation. Leur affichage dépend du rôle et des produits activés.
+Les autres sections de l'onglet **Système** configurent l'organisation. Leur affichage dépend des produits activés.
 
 ### Configuration OCR par défaut
 
-Cette section, disponible pour le rôle `orgadmin`, définit la configuration OCR par défaut de l'organisation utilisée par les services concernés, notamment l'extraction, la classification et le traitement de documents :
+Cette section définit la configuration OCR par défaut de l'organisation utilisée par les services concernés, notamment l'extraction, la classification et le traitement de documents :
 
 - **Fournisseur OCR** : fournisseur OCR par défaut parmi ceux configurés dans l'onglet [Fournisseurs OCR](#fournisseurs-ocr) ;
 - **Forcer l'OCR** : exécute l'OCR sur tous les documents, y compris ceux qui contiennent déjà du texte exploitable ;
@@ -39,7 +35,7 @@ Cette section, disponible pour le rôle `orgadmin`, définit la configuration OC
 
 ### Exporter l'organisation
 
-Pour une organisation utilisant Extract, un `orgadmin` peut exporter sa propre organisation depuis **Système** avec **Exporter l'organisation**, puis **Télécharger en zip**. Un `sysadmin` peut également lancer l'export d'une organisation depuis l'onglet **Organisations**.
+Lorsque Extract est activé, exportez l'organisation depuis **Système** avec **Exporter l'organisation**, puis **Télécharger en zip**.
 
 L'export démarre de manière asynchrone. Une notification de téléchargement est fournie lorsqu'il est terminé.
 
@@ -49,7 +45,7 @@ Cet export ne constitue pas à lui seul une stratégie de sauvegarde et ne fourn
 
 ### Paramètres de callback
 
-Cette section est disponible pour un `orgadmin` lorsque Extract est activé. Le callback est utilisé par le traitement d'extraction à la fin de l'extraction.
+Cette section est disponible lorsque Extract est activé. Le callback est utilisé par le traitement d'extraction à la fin de l'extraction.
 
 Les paramètres sont :
 
@@ -61,16 +57,20 @@ L'URL, le token et le nom du header d'autorisation personnalisé peuvent être l
 
 ### Paramètres de la Corbeille
 
-Cette section est disponible pour un `orgadmin` lorsque Extract est activé. Elle définit uniquement la **Période de conservation des éléments dans la Corbeille** pour les Agents d'extraction et les Datasets supprimés.
+Cette section est disponible lorsque Extract est activé. Elle définit uniquement la **Période de conservation des éléments dans la Corbeille** pour les Agents d'extraction et les Datasets supprimés.
 
 Deux choix sont proposés :
 
 - **1 semaine** : 7 jours, valeur par défaut ;
 - **30 jours**.
 
-### Paramètres Classify historiques des e-mails et de l'OCR
+### Paramètres Classify dépréciés des e-mails et de l'OCR
 
-Cette section est disponible pour un `orgadmin` lorsque Classify est activé. Ces paramètres historiques sont propres à Classify ; ils ne configurent pas l'OCR de toute la plateforme.
+Cette section est disponible lorsque Classify est activé.
+
+{% hint style="warning" %}
+Cette configuration est dépréciée. Elle concerne uniquement les anciens traitements de classification d'e-mails et leur OCR, et n'a aucun impact sur les Agents de classification. Ne l'utilisez pas pour configurer les Agents de classification ni l'OCR de la plateforme.
+{% endhint %}
 
 Les valeurs par défaut et les choix disponibles en production sont :
 
@@ -94,7 +94,7 @@ La configuration OCR de production comprend également **Utiliser le modèle le 
 
 ### Paramètres de connexion
 
-Cette section, disponible pour le rôle `orgadmin`, configure les méthodes de connexion de l'organisation :
+Cette section configure les méthodes de connexion de l'organisation :
 
 - **Authentification par e-mail et mot de passe** active ou désactive ce mode de connexion ;
 - **Lier les tokens d’accès aux IPs** configure la liaison des tokens aux adresses IP au niveau de l'organisation ;
@@ -109,30 +109,29 @@ Lorsque **Lier les tokens d’accès aux IPs** s'applique, les nouvelles session
 
 ### Documentation des API
 
-Cette section est disponible pour le rôle `orgadmin`. Les entrées dépendent des produits activés pour l'utilisateur connecté. Elles peuvent inclure :
+Les entrées dépendent des produits activés pour l'utilisateur connecté. Elles peuvent inclure :
 
 - **Extract API** ;
 - **Classify API** ;
 - **Workflows API** ;
-- **Search API** ;
 - **Extract Review API**.
 
 **Authenticator API** est toujours incluse. L'action **Ouvrir la documentation** ouvre la documentation du service. Si le contrôle de santé indique qu'un service n'est pas en cours d'exécution, cette action peut être désactivée.
 
 ## Utilisateurs
 
-L'onglet **Utilisateurs**, accessible aux rôles `orgadmin` et `sysadmin`, présente les utilisateurs de l'organisation avec leur statut, leur adresse e-mail, leur nom et leur rôle. Il permet de filtrer la liste, de créer ou modifier un utilisateur, de réinitialiser son mot de passe et de le supprimer.
+L'onglet **Utilisateurs** présente les utilisateurs de l'organisation avec leur statut, leur adresse e-mail, leur nom et leur niveau d'accès. Il permet de filtrer la liste, de créer ou modifier un utilisateur, de réinitialiser son mot de passe et de le supprimer.
 
-Voir [Gestion des utilisateurs](../autres/gestion-des-utilisateurs.md) pour le détail des rôles.
+Voir [Gestion des utilisateurs](../autres/gestion-des-utilisateurs.md) pour en savoir plus.
 
 ## Fournisseurs OCR
 
-La gestion des fournisseurs OCR requiert le rôle `orgadmin` ou `sysadmin`. Le tableau utilise les colonnes :
+Le tableau des fournisseurs OCR utilise les colonnes :
 
 - **Nom** ;
 - **Type de fournisseur** ;
 - **Point d’accès** ;
-- **QPS max**.
+- **QPS max** : nombre maximal de requêtes par seconde (QPS, « queries per second ») configuré pour ce fournisseur.
 
 La production 26.6.21 prend en charge les types de fournisseurs suivants :
 
@@ -145,7 +144,7 @@ Ces valeurs sont des types de fournisseurs pris en charge, et non la garantie qu
 
 ## Jetons API
 
-La gestion des jetons API requiert le rôle `orgadmin` ou `sysadmin`. Un `orgadmin` voit ses jetons personnels ainsi que les jetons disponibles pour toute l'organisation.
+Vous voyez vos jetons personnels ainsi que les jetons disponibles pour toute l'organisation.
 
 Le tableau contient **Nom** et **Jeton**. Les actions disponibles comprennent :
 
