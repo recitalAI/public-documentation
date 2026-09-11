@@ -32,10 +32,10 @@ Si l'Agent ne donne pas satisfaction, plusieurs axes d'amélioration peuvent êt
 
 ### Ajouter plus de données
 
-Le dataset d'entraînement peut ne pas contenir assez de documents si:
+Le Dataset d'entraînement peut ne pas contenir assez de documents si:
 
 * Certains formats sont sous-représentés par rapport à la réalité de la production. Dans ce cas, ajouter des documents de ces formats mal extraits peut améliorer le modèle.
-* Les différents formats de documents sont suffisamment présents, mais certaines données spécifiques sont absentes. Dans ce cas, il faut trouver des documents contenant ces données et les ajouter au dataset.
+* Les différents formats de documents sont suffisamment présents, mais certaines données spécifiques sont absentes. Dans ce cas, il faut trouver des documents contenant ces données et les ajouter au Dataset.
 
 ### Modifier l'annotation de certains libellés
 

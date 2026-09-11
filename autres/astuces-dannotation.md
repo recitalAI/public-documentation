@@ -8,7 +8,7 @@ La pré-annotation consiste à intégrer des étiquettes et des annotations en f
 La pré-annotation utilise un modèle d’intelligence artificielle et peut présenter des erreurs. Il est indispensable de vérifier l’exactitude des annotations et de les corriger si besoin est.
 {% endhint %}
 
-Pour pré-annoter le dataset:&#x20;
+Pour pré-annoter le Dataset:&#x20;
 
 * Cliquez sur "Pré-annoter".
 * Sélectionnez le modèle souhaité et cliquez sur "Confirmer". Le modèle importe les étiquettes et annote les documents.

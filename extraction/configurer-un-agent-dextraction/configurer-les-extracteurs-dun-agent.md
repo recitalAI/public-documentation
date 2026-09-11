@@ -57,14 +57,14 @@ Il est également possible d'utiliser les expressions régulières (**Rules**) p
 {% hint style="info" %}
 Il est aussi possible de sélectionner **Generative** comme méthode d'extraction.
 
-En mode génératif, le nom et la description du datapoint servent de consigne au LLM pour extraire la valeur. Une description peut aussi être renseignée au niveau de l'agent d'extraction.
+En mode génératif, le nom et la description du datapoint servent de consigne au LLM pour extraire la valeur. Une description peut aussi être renseignée au niveau de l'Agent d'extraction.
 {% endhint %}
 
 ## Créer un nouveau groupe de champs
 
 ### Création
 
-Lorsqu’il s’agit de lignes d’un tableau par exemple, il convient de les mettre sous forme de groupe. Si vous avez créé un agent depuis un modèle, supprimez les champs concernés de la partie "Data point" et créez un groupe d’étiquettes.
+Lorsqu’il s’agit de lignes d’un tableau par exemple, il convient de les mettre sous forme de groupe. Si vous avez créé un Agent depuis un modèle, supprimez les champs concernés de la partie "Data point" et créez un groupe d’étiquettes.
 
 <figure><img src="../../.gitbook/assets/image (34).png" alt=""><figcaption></figcaption></figure>
 
@@ -112,7 +112,7 @@ Dans la configuration d'un datapoint (créé via **Add → Single data point**),
 ### Cas d'usage
 
 - **Champs non structurés** : résumé, analyse de sentiment, classification libre — là où une expression régulière ou un modèle entraîné classique ne suffit pas
-- **Démarrage rapide** : pas de dataset à constituer ni à annoter, le prompt suffit
+- **Démarrage rapide** : pas de Dataset à constituer ni à annoter, le prompt suffit
 - **Champs rares** : valeurs présentes dans peu de documents, où un modèle entraîné manquerait de données
 
 {% hint style="info" %}
@@ -121,5 +121,5 @@ Un datapoint génératif transmet le contenu du document au provider LLM configu
 
 ### Cross-refs
 
-- [Créer un agent génératif](../../demarrage-rapide/creer-un-agent-generatif.md) — tutoriel de démarrage
+- [Créer un Agent génératif](../../demarrage-rapide/creer-un-agent-generatif.md) — tutoriel de démarrage
 - [Configurer les paramètres d'un Agent](configurer-les-parametres-dun-agent.md) — paramètres avancés et configuration LLM côté organisation

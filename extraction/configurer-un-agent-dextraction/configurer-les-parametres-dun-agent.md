@@ -24,7 +24,7 @@ Les règles de gestion ne concernent que les champs numériques (Nombre entier o
 
 ## Review configuration
 
-Cet onglet autorise et configure la review (correction humaine) de l'agent : activer la review (**Active review**), générer une URL publique pour corriger un document sans compte (**External validation**), choisir l'ordre de traitement de la file, restreindre la correction à des utilisateurs désignés (**Authorize reviewers**), et sélectionner les extracteurs et groupes affichés sur l'écran de correction.
+Cet onglet autorise et configure la review (correction humaine) de l'Agent : activer la review (**Active review**), générer une URL publique pour corriger un document sans compte (**External validation**), choisir l'ordre de traitement de la file, restreindre la correction à des utilisateurs désignés (**Authorize reviewers**), et sélectionner les extracteurs et groupes affichés sur l'écran de correction.
 
 {% hint style="info" %}
 Le détail de ces options et le déroulé de la correction sont décrits dans [Review](../../production/review.md).

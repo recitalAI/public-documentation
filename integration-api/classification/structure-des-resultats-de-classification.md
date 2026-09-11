@@ -1,7 +1,7 @@
 # Structure des résultats de classification
 
 {% hint style="info" %}
-Les structures ci-dessous sont celles renvoyées par l'API de classification. Appelée depuis une étape de workflow, la même structure est encapsulée sous la clé de sortie de l'étape — voir [Structure des résultats du workflow](../workflow/structure-des-resultats-du-workflow.md).
+Les structures ci-dessous sont celles renvoyées par l'API de classification. Appelée depuis une étape de Workflow, la même structure est encapsulée sous la clé de sortie de l'étape — voir [Structure des résultats du Workflow](../workflow/structure-des-resultats-du-workflow.md).
 {% endhint %}
 
 ## Classification simple

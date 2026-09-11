@@ -7,7 +7,7 @@ Le JSON de réponse envoyé au callback a cette structure :
 La structure décrite sur cette page est celle du **résultat d'extraction** lui-même. Selon la façon dont l'extraction est appelée, il n'est pas au même endroit :
 
 * **Appel direct de l'API d'extraction** — le JSON détaillé plus bas est renvoyé tel quel au callback.
-* **Étape d'extraction dans un workflow** — il est encapsulé sous la clé de sortie de l'étape, à côté des identifiants de l'agent et du job :
+* **Étape d'extraction dans un Workflow** — il est encapsulé sous la clé de sortie de l'étape, à côté des identifiants de l'Agent et du job :
 
 ```json
 {
@@ -21,7 +21,7 @@ La structure décrite sur cette page est celle du **résultat d'extraction** lui
 ```
 
 {% hint style="info" %}
-La clé (`extract` dans l'exemple) est la **clé de sortie** configurée sur l'étape du workflow — voir [Structure des résultats du workflow](../workflow/structure-des-resultats-du-workflow.md).
+La clé (`extract` dans l'exemple) est la **clé de sortie** configurée sur l'étape du Workflow — voir [Structure des résultats du Workflow](../workflow/structure-des-resultats-du-workflow.md).
 {% endhint %}
 
 ## Le résultat d'extraction
@@ -156,7 +156,7 @@ Liste chaque groupe de champs. Un groupe aura la structure suivante :
 
 ## Objets
 
-Liste chaque objet détecté (uniquement si les options "détecter signature" ou "détecter QR code" sont activés dans l'agent d'extraction. Un objet aura la structure suivante :&#x20;
+Liste chaque objet détecté (uniquement si les options "détecter signature" ou "détecter QR code" sont activés dans l'Agent d'extraction. Un objet aura la structure suivante :&#x20;
 
 ```json
 {
