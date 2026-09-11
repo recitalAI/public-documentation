@@ -8,7 +8,7 @@ description: >-
 
 {% hint style="info" %}
 
-Dans l'éditeur de Workflow, le bouton **Ajouter une étape** ouvre la bibliothèque **Étapes**. Elle permet de rechercher les modules par nom ou de les filtrer selon **17 catégories** : **Action, AI, Archive, Automation, Classification, Code, Document, Email, Extraction, Génération, Input, Output, Post-processing, Review, Sources, État** et **Validation**.
+Dans l'éditeur de Workflow, le bouton **Ajouter une étape** ouvre la bibliothèque **Étapes**. Elle permet de rechercher les modules par nom ou de les filtrer selon **17 catégories** : **Action, AI, Archive, Automation, Classification, Code, Document, Email, Extraction, Génération, Input, Output, Post-processing, Review, Sources, État** et **Validation**. Le filtre général **Tout** s'ajoute à ces 17 catégories.
 
 Les cartes générées à partir des Agents d'extraction, des Agents de classification et des anciens modèles de classification d'e-mail sont des instances configurées propres à votre organisation. Elles ne constituent pas des types d'action Workflow supplémentaires.
 
