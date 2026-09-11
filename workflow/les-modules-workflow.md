@@ -1,327 +1,466 @@
 ---
 description: >-
-  Catalogue des modules disponibles dans l'éditeur de workflow, regroupés par
+  Catalogue des modules disponibles dans l'éditeur de Workflow, regroupés par
   catégorie, avec leurs paramètres et la structure de leurs résultats.
 ---
 
 # Les modules Workflow
 
 {% hint style="info" %}
-Dans l'éditeur de workflow, le bouton **Add step** ouvre la **Steps Library** : le catalogue des modules disponibles, filtrable par recherche de nom et par étiquette. Chaque module porte une ou plusieurs étiquettes parmi **16 catégories** : **Action, AI agent, Archive, Automation, Classification, Code, Document, Email, Extraction, Generation, Input, Output, Post-processing, Review, State, Validation**. Le nombre de modules par catégorie dépend des agents et modèles configurés dans votre organisation (les agents d'extraction/classification y apparaissent comme modules).
+
+Dans l'éditeur de Workflow, le bouton **Ajouter une étape** ouvre la bibliothèque **Étapes**. Elle permet de rechercher les modules par nom ou de les filtrer selon **17 catégories** : **Action, AI, Archive, Automation, Classification, Code, Document, Email, Extraction, Génération, Input, Output, Post-processing, Review, Sources, État** et **Validation**.
+
+Les cartes générées à partir des Agents d'extraction, des Agents de classification et des anciens modèles de classification d'e-mail sont des instances configurées propres à votre organisation. Elles ne constituent pas des types d'action Workflow supplémentaires.
+
 {% endhint %}
 
-<figure><img src="../.gitbook/assets/workflow_steps_library.png" alt="Steps Library — catalogue des modules de workflow"><figcaption>La <em>Steps Library</em> (bouton <strong>Add step</strong>) — catalogue de modules filtrable par étiquette.</figcaption></figure>
+<figure><img src="../.gitbook/assets/workflow_steps_library.png" alt="Étapes — catalogue des modules de Workflow"><figcaption>La bibliothèque <em>Étapes</em> (bouton <strong>Ajouter une étape</strong>) — catalogue de modules filtrable par catégorie.</figcaption></figure>
+
+Les catégories décrivent plusieurs dimensions d'un même module. Par exemple, **Code-barres** relève à la fois des catégories **Action**, **Extraction** et **Document**.
+
+| Catégorie | Modules concernés |
+| --- | --- |
+| Sources | API, CRON, IMAP |
+| Action | Workflow, Diviser un document, Fusionner des documents, Décompresser, Code-barres |
+| AI | Classification E-mail, Classification, Extraction, LLM, Validation d'ensemble |
+| Archive | Décompresser |
+| Automation | Workflow |
+| Classification | Classification E-mail, Classification, Revue de classification, Revue de classification d'e-mail |
+| Code | Code personnalisé |
+| Document | Classification, Extraction, Revue de classification, Revue d'extraction, Revue avancée, Diviser un document, Fusionner des documents, Code-barres, Validation d'ensemble |
+| Email | Ingérer des e-mails, Classification E-mail, Revue de classification d'e-mail, Décompresser |
+| Extraction | Extraction, Revue d'extraction, Revue avancée, Décompresser, Code-barres |
+| Génération | LLM |
+| Input | Ingérer des e-mails |
+| Output | Nettoyer, Webhook |
+| Post-processing | Diviser un document, Fusionner des documents |
+| Review | Revue de classification, Revue de classification d'e-mail, Revue d'extraction, Revue avancée |
+| État | Start, Done, État personnalisé |
+| Validation | Validation d'ensemble |
 
 {% hint style="info" %}
-La plupart des modules partagent des paramètres communs, regroupés sous **Advanced options** : **Input expression** (expression d'entrée), **Output key** (clé de sortie), **Iterate over input** (itérer sur l'entrée).
+
+Chaque étape possède un **Nom de l'étape**. Les champs techniques `input_expr`, `iterate` et `output_key` correspondent respectivement à l'expression d'entrée, à l'option **Itérer sur l'entrée** et à la clé de sortie dans `data`. Lorsqu'ils sont proposés, ils figurent généralement dans les **Options avancées**.
+
 {% endhint %}
 
-## 1. Input
+## 1. Sources
 
-### Ingest Email — ingérer des emails
+Les modules **Sources** représentent l'origine d'un job. Ils ne possèdent pas de configuration propre dans une étape.
 
-Ce module suppose qu'une boite mail a été configurée (voir [Connexion boîte mail](connexion-boite-mail.md)), ou bien que les documents envoyés sont des .msg ou .eml.
+### API
 
-Cette étape permet de récupérer toutes les informations concernant le mail et de les conserver dans "data". Elle permet également de mettre les pièces jointes dans une collection.
+Le module **API** identifie un job créé par l'API Workflow.
 
-#### Paramètres
+### CRON
 
-<table><thead><tr><th width="234">Paramètre</th><th>Description</th></tr></thead><tbody><tr><td><strong>Nom</strong></td><td>Le nom de l'étape</td></tr><tr><td><strong>Expression d'entrée</strong></td><td>La collection d'email à traiter. files["email"] par défaut.</td></tr><tr><td><strong>Taille minimale de pièce jointe (ko)</strong></td><td>Limite minimale à une pièce jointe pour qu'elle soit prise en compte.</td></tr><tr><td><strong>Taille maximale de pièce jointe (ko)</strong></td><td>Limite maximale à une pièce jointe pour qu'elle soit prise en compte.</td></tr><tr><td><strong>Ignorer pièce jointe si le nom contient</strong></td><td>Si le nom de la pièce jointe contient le texte renseigné, alors la pièce jointe sera ignorée. Mettre le nom entre "".</td></tr><tr><td><strong>Extensions acceptées pour pièce jointe</strong></td><td>Les fichiers n'ayant pas ces extensions ne seront pas pris en compte. Par défaut : pdf, txt, html, doc, docx, ppt, pptx, tif, tiff, png, jpg, jpeg.</td></tr><tr><td><strong>Clé de sortie</strong></td><td>La clé de "data" dans lesquels seront stockées toutes les informations relatives à ce module.</td></tr><tr><td><strong>Collection de sortie</strong></td><td>La collection dans laquelle seront envoyées les pièces jointes. "attachments" par défaut.</td></tr><tr><td><strong>Itérer sur l'entrée</strong></td><td>Activer l'option si l'entrée est une liste. Le module traitera les documents 1 à 1, et la sortie sera une liste de résultats.</td></tr><tr><td><strong>Renommer les pièces jointes en double</strong> (Rename duplicate attachments)</td><td>Si activé, les pièces jointes portant un nom identique sont automatiquement renommées pour éviter les collisions.</td></tr></tbody></table>
+Le module **CRON** identifie un job créé par une planification. Le job est traité périodiquement selon la configuration du service ; aucune fréquence fixe n'est garantie par ce module.
 
-#### Structure des résultats
+### IMAP
+
+Le module **IMAP** identifie un job créé à partir d'une boîte mail configurée.
+
+## 2. Input
+
+### Ingérer des e-mails
+
+**Dépendance produit : Classify.** Ce module suppose qu'une boîte mail a été configurée (voir [Connexion boîte mail](connexion-boite-mail.md)), ou que le document reçu est au format `.msg` ou `.eml`. Il conserve les informations de l'e-mail dans `data` et place les pièces jointes acceptées dans une collection.
+
+| Paramètre | Champ | Valeur par défaut ou rôle |
+| --- | --- | --- |
+| Expression d'entrée | `input_expr` | `files['email']` |
+| Itérer sur l'entrée | `iterate` | `false` |
+| Renommer les pièces jointes en double | `rename_duplicates` | `false` |
+| Taille minimale des pièces jointes | `attachment_min_size` | Aucune limite |
+| Taille maximale des pièces jointes | `attachment_max_size` | Aucune limite |
+| Ignorer les pièces jointes dont le nom correspond | `attachments_ignore_matches` | Liste vide |
+| Extensions acceptées | `attachment_accepted_extensions` | Extensions prises en charge par le produit |
+| Clé de sortie | `output_key` | `email` |
+| Collection de sortie | `output_col` | `attachments` |
+
+Exemple de résultat :
 
 ```json
 {
-    "email": {
-        "date": "2024-07-01 14:59:43",
-        "subject": ".....",
-        "from": {
-            "name": "Demo Test",
-            "address": "demo.test@recital.ai"
-        },
-        "to": [
-            {
-                "name": "Demo Test",
-                "address": "demo.test@recital.ai"
-            }
-        ],
-        "cc": [],
-        "body": "....",
-        "attachments" : ["test1.pdf", "test2.pdf"],
-        "skipped_attachments" : ["logo.jpg"]
-    }
+  "email": {
+    "date": "2024-07-01 14:59:43",
+    "subject": "Objet du message",
+    "from": {
+      "name": "Demo Test",
+      "address": "demo.test@recital.ai"
+    },
+    "to": [
+      {
+        "name": "Demo Test",
+        "address": "demo.test@recital.ai"
+      }
+    ],
+    "cc": [],
+    "body": "Contenu du message",
+    "attachments": ["test1.pdf", "test2.pdf"],
+    "skipped_attachments": ["logo.jpg"]
+  }
 }
 ```
 
+## 3. AI
 
+### Classification E-mail
 
-## 2. AI Agent
+**Dépendance produit : Classify.** Ce module classe un e-mail avec un modèle de classification d'e-mail configuré dans l'organisation.
 
-### Documents classification agent — classification de document
+| Paramètre | Champ | Valeur par défaut ou rôle |
+| --- | --- | --- |
+| Expression d'entrée | `input_expr` | `data['email']` |
+| Expression des pièces jointes | `attachments_expr` | `files['attachments']` |
+| Modèle | `model` | Modèle configuré dans l'organisation |
+| Expression du modèle | `model_expr` | Sélection dynamique du modèle ; `None` par défaut |
+| Itérer sur l'entrée | `iterate` | `false` |
+| Clé de sortie | `output_key` | `classify` |
 
-#### Paramètres
+Voir la [structure des résultats de Classification](../integration-api/classification/structure-des-resultats-de-classification.md).
 
-<table><thead><tr><th width="234">Paramètre</th><th>Description</th></tr></thead><tbody><tr><td><strong>Nom</strong> (Name)</td><td>Le nom de l'étape</td></tr><tr><td><strong>Agent de classification</strong> (Classification agent)</td><td>La sélection parmi les agents de classification existants.</td></tr><tr><td><strong>Per page</strong></td><td>Permet d'avoir une classification page à page. Il peut être couplé à un module split-pdf à la suite pour déliasser un document.</td></tr><tr><td><strong>Expression d'entrée</strong> (Input expression)</td><td>Le ou les fichiers à classifier. <code>files['file']</code> par défaut.</td></tr><tr><td><strong>Expression de l'agent de classification</strong> (Classification Agent Expr)</td><td>Sélection dynamique de l'agent de classification.</td></tr><tr><td><strong>Clé de sortie</strong> (Output key)</td><td>La clé de "data" dans laquelle seront stockées les informations de ce module. <code>classify</code> par défaut.</td></tr><tr><td><strong>Itérer sur l'entrée</strong> (Iterate over input)</td><td>Activer l'option si l'entrée est une liste. Le module traitera les documents 1 à 1, et la sortie sera une liste de résultats.</td></tr><tr><td><strong>Inclure le texte OCR</strong> (Include OCR Text)</td><td>Si activé, le texte OCR du document est joint aux données renvoyées par le module.</td></tr></tbody></table>
+### Classification
 
-#### Structure des résultats
+**Dépendance produit : Classify.** Ce module utilise un Agent de classification de documents configuré dans l'organisation. Les cartes portant le nom d'un Agent sont des raccourcis vers cette même action canonique.
 
-Voir [Structure des résultats de Classification](../integration-api/classification/structure-des-resultats-de-classification.md)
+| Paramètre | Champ | Valeur par défaut ou rôle |
+| --- | --- | --- |
+| Expression d'entrée | `input_expr` | `files['file']` |
+| Agent de classification | `classification_agent` | Agent configuré dans l'organisation |
+| Expression de l'Agent de classification | `classification_agent_expr` | Sélection dynamique ; `None` par défaut |
+| Par page | `per_page` | `false` |
+| Inclure le texte OCR | `include_ocr_text` | `false` |
+| Itérer sur l'entrée | `iterate` | `false` |
+| Clé de sortie | `output_key` | `classify` |
 
-### Classify Email — classification de mails
+Voir la [structure des résultats de Classification](../integration-api/classification/structure-des-resultats-de-classification.md).
 
-#### Paramètres
+### Extraction
 
-<table><thead><tr><th width="234">Paramètre</th><th>Description</th></tr></thead><tbody><tr><td><strong>Nom</strong></td><td>Le nom de l'étape</td></tr><tr><td><strong>Expression d'entrée</strong></td><td>Le mail à classifier.  La valeur par défaut est : data['email']</td></tr><tr><td><strong>Expression des pièces jointes</strong></td><td>La collection des pièces jointes. La valeur par défaut est : files['attachments']</td></tr><tr><td><strong>Modèle</strong></td><td>La sélection parmi les modèles de classification de mails existants</td></tr><tr><td><strong>Expression du modèle</strong></td><td>Sélection dynamique du modèle de classification de mails.</td></tr><tr><td><strong>Clé de sortie</strong></td><td>La clé de "data" dans lesquels seront stockées toutes les informations relatives à ce module.</td></tr><tr><td><strong>Itérer sur l'entrée</strong></td><td>Activer l'option si l'entrée est une liste. Le module traitera les documents 1 à 1, et la sortie sera une liste de résultats.</td></tr></tbody></table>
+**Dépendance produit : Extract.** Ce module utilise un Agent d'extraction configuré dans l'organisation. Les cartes portant le nom d'un Agent sont des raccourcis vers cette même action canonique.
 
-#### Structure des résultats
+| Paramètre | Champ | Valeur par défaut ou rôle |
+| --- | --- | --- |
+| Expression d'entrée | `input_expr` | `files['file']` |
+| Agent d'extraction | `doctype` | Agent configuré dans l'organisation |
+| Expression de l'Agent d'extraction | `doctype_expr` | Sélection dynamique ; `None` par défaut |
+| Inclure le texte OCR | `include_ocr_text` | `false` |
+| Itérer sur l'entrée | `iterate` | `false` |
+| Clé de sortie | `output_key` | `extract` |
 
-Voir [Structure des résultats de Classification](../integration-api/classification/structure-des-resultats-de-classification.md)
+Voir la [structure des résultats d'Extraction](../integration-api/extraction/structure-des-resultats-dextraction.md).
 
-### Extract — extraction
+### LLM
 
-#### Paramètres
+Le module **LLM** envoie une invite à un modèle de langage et peut, si nécessaire, lui joindre un fichier.
 
-<table><thead><tr><th width="234">Paramètre</th><th>Description</th></tr></thead><tbody><tr><td><strong>Nom</strong> (Name)</td><td>Le nom de l'étape</td></tr><tr><td><strong>Agent d'extraction</strong> (Extraction agent)</td><td>La sélection parmi les agents d'extraction existants.</td></tr><tr><td><strong>Expression d'entrée</strong> (Input expression)</td><td>Le ou les fichiers à traiter. <code>files['file']</code> par défaut.</td></tr><tr><td><strong>Expression de l'agent d'extraction</strong> (Extraction agent expression)</td><td>Sélection dynamique de l'agent d'extraction.</td></tr><tr><td><strong>Clé de sortie</strong> (Output key)</td><td>La clé de "data" dans laquelle seront stockées les informations de ce module. <code>extract</code> par défaut.</td></tr><tr><td><strong>Itérer sur l'entrée</strong> (Iterate over input)</td><td>Activer l'option si l'entrée est une liste. Le module traitera les documents 1 à 1, et la sortie sera une liste de résultats.</td></tr><tr><td><strong>Inclure le texte OCR</strong> (Include OCR Text)</td><td>Si activé, le texte OCR du document est joint aux données renvoyées par le module.</td></tr></tbody></table>
+| Paramètre | Champ | Valeur par défaut ou rôle |
+| --- | --- | --- |
+| Fournisseur | `provider` | Optionnel ; `None` par défaut |
+| Modèle | `model` | **Obligatoire** |
+| Invite | `prompt` | **Obligatoire** |
+| Inclure le fichier | `include_file` | `false` |
+| Collection de fichiers | `collection` | `file` |
+| Expression d'entrée | `input_expr` | `None` |
+| Itérer sur l'entrée | `iterate` | `false` |
+| Clé de sortie | `output_key` | `llm_output` |
+| Température | `temperature` | De `0` à `2` ; `1.0` par défaut |
 
-#### Structure des résultats
-
-Voir [Structure des résultats d'Extraction](../integration-api/extraction/structure-des-resultats-dextraction.md)
-
-### llm — GenAI
-
-<table><thead><tr><th width="234">Paramètre</th><th>Description</th></tr></thead><tbody><tr><td><strong>Nom</strong></td><td>Le nom de l'étape</td></tr><tr><td><strong>Fournisseur</strong></td><td>Fournisseur du modèle de langue</td></tr><tr><td><strong>Modèle</strong></td><td>Version du modèle de langue</td></tr><tr><td><strong>Prompt</strong></td><td>Prompt qui sera envoyé au modèle de langue. Des variables peuvent être ajoutées en les mettant entre accolade. <br>Exemple : <em>Quelle est la capitale de {data.country} ?</em></td></tr><tr><td><strong>Inclure fichier</strong></td><td>Est-ce qu'un fichier doit être passé en plus du prompt ?</td></tr><tr><td>Expression d'entrée</td><td>Le ou les fichiers qui seront passés. files["file"] par défaut.</td></tr><tr><td>Clé de sortie</td><td>La clé de "data" dans lesquels seront stockées toutes les informations relatives à ce module.</td></tr><tr><td>Température</td><td>Valeur entre 0 et 1. Une température proche de 0 donnera un modèle déterministe, et inversement.<br>Certains modèles imposent une température de 1.</td></tr><tr><td>Itérer sur l'entrée</td><td>Activer l'option si l'entrée est une liste. Le module traitera les documents 1 à 1, et la sortie sera une liste de résultats.</td></tr></tbody></table>
-
-
-
-## 3. Review
+## 4. Review
 
 {% hint style="info" %}
-Les étapes de review sont bloquantes tant que le document n'a pas été validé par un opérateur.
+
+Les étapes de Review sont bloquantes tant que le document n'a pas été traité par un opérateur. Lorsqu'une date d'expiration est configurée, son dépassement est traité périodiquement ; aucune fréquence fixe n'est garantie.
+
 {% endhint %}
 
-### Classification Review — review de classification (vidéo-typage)
+### Revue de classification
 
-Active le vidéo-typage suite à une classification.
+**Dépendance produit : Classify.** Ce module soumet le résultat d'une classification de document à une revue.
 
 <figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
-#### Paramètres
+| Paramètre | Champ | Valeur par défaut ou rôle |
+| --- | --- | --- |
+| Contexte | `context` | Instructions affichées pendant la revue ; `None` par défaut |
+| Expression d'entrée | `input_expr` | `data['classify']` |
+| Expression du contexte | `context_expr` | Contexte dynamique ; `None` par défaut |
+| Itérer sur l'entrée | `iterate` | `false` |
+| Expression de la date d'expiration | `expiration_deadline_expr` | `data.get('expiration_deadline', None)` |
+| Action d'expiration | `on_expiration_action` | `validate` ; accepte aussi `discard` |
+| Clé de sortie | `output_key` | `classify` |
 
-<table><thead><tr><th width="241">Paramètre</th><th>Description</th></tr></thead><tbody><tr><td><strong>Nom</strong></td><td>Le nom de l'étape</td></tr><tr><td><strong>Contexte</strong></td><td>Permet d'afficher des informations pendant la review</td></tr><tr><td><strong>Expression d'entrée</strong></td><td>Les données de classification à reviewer. <code>data['classify']</code> par défaut.</td></tr><tr><td><strong>Expression du contexte</strong></td><td>Permet d'afficher des informations pendant la review. Le paramètre supporte des expressions dynamiques.</td></tr><tr><td><strong>Clé de sortie</strong></td><td>La clé de "data" dans lesquels seront stockées toutes les informations relatives à ce module.</td></tr><tr><td><strong>Itérer sur l'entrée</strong></td><td>Activer l'option si l'entrée est une liste. Le module traitera les documents 1 à 1, et la sortie sera une liste de résultats.</td></tr><tr><td>Expression de date d’expiration</td><td>Une fois cette date et heure dépassées, un document en attente de review sera automatiquement libéré (validé ou rejeté en fonction du paramètre Action d'expiration).<br>Le mécanisme de libération des documents passe 1 fois / heure.<br>Format de date : <code>2025-09-23T16:00:00+02:00</code> <br><br></td></tr><tr><td>Action d'expiration</td><td>Action à prendre une fois la date d'expiration dépassée.</td></tr></tbody></table>
+Voir la [structure des résultats de Classification](../integration-api/classification/structure-des-resultats-de-classification.md).
 
-#### Structure des résultats
+### Revue de classification d'e-mail
 
-Voir [Structure des résultats de Classification](../integration-api/classification/structure-des-resultats-de-classification.md).
+**Dépendance produit : Classify.** Ce module soumet le résultat d'une classification d'e-mail à une revue. Sa configuration de production est la suivante :
 
+| Paramètre | Champ | Valeur par défaut ou rôle |
+| --- | --- | --- |
+| Expression d'entrée | `input_expr` | `data['classify']` |
+| Itérer sur l'entrée | `iterate` | `false` |
+| Clé de sortie | `output_key` | `classify` |
 
+### Revue d'extraction
 
-### Email Classification Review — review de classification d'emails
-
-Équivalent du vidéo-typage pour les emails : active la review de la classification d'un email après une étape **Classify Email**. Paramètres analogues à la *Classification Review*.
-
-### Extraction Review — review d'extraction (vidéo-codage)
-
-Active le vidéo-codage suite à une extraction.
+**Dépendance produit : Extract.** Ce module soumet un résultat d'extraction à une revue.
 
 <figure><img src="../.gitbook/assets/image (122).png" alt=""><figcaption><p>Ecran de review d'extraction</p></figcaption></figure>
 
-#### Paramètres
+| Paramètre | Champ | Valeur par défaut ou rôle |
+| --- | --- | --- |
+| Expression d'entrée | `input_expr` | `data['extract']` |
+| Itérer sur l'entrée | `iterate` | `false` |
+| Expression de la date d'expiration | `review_expiration_deadline_expr` | `data.get('expiration_deadline', None)` |
+| Action d'expiration | `on_expiration_action` | `validate` ; accepte aussi `discard` |
+| Clé de sortie | `output_key` | `review` |
 
-<table><thead><tr><th width="241">Paramètre</th><th>Description</th></tr></thead><tbody><tr><td><strong>Nom</strong></td><td>Le nom de l'étape</td></tr><tr><td><strong>Expression d'entrée</strong></td><td>Les données d'extraction à reviewer. <code>data['extract']</code> par défaut.</td></tr><tr><td><strong>Clé de sortie</strong></td><td>La clé de "data" dans lesquels seront stockées toutes les informations relatives à ce module.</td></tr><tr><td><strong>Itérer sur l'entrée</strong></td><td>Activer l'option si l'entrée est une liste. Le module traitera les documents 1 à 1, et la sortie sera une liste de résultats.</td></tr><tr><td>Expression de date d’expiration</td><td><p>Une fois cette date et heure dépassées, un document en attente de review sera automatiquement libéré (validé ou rejeté en fonction du paramètre Action d'expiration).</p><p>Le mécanisme de libération des documents passe 1 fois / heure.<br>Format de date : <code>2025-09-23T16:00:00+02:00</code></p></td></tr><tr><td>Action d'expiration</td><td>Action à prendre une fois la date d'expiration dépassée.</td></tr></tbody></table>
+Voir la [structure des résultats d'Extraction](../integration-api/extraction/structure-des-resultats-dextraction.md).
 
-#### Structure des résultats
+### Revue avancée
 
-Voir [Structure des résultats d'Extraction](../integration-api/extraction/structure-des-resultats-dextraction.md)
+**Dépendance produit : Extract Review.** Ce module envoie des données dans une file de revue avancée. Pour sa configuration et son utilisation, voir [Revue avancée](../autres/review-avancee.md).
 
-## 4. Actions
+| Paramètre | Champ | Valeur par défaut ou rôle |
+| --- | --- | --- |
+| File d'attente | `queue_id` | **Obligatoire** |
+| Expression d'entrée | `input_expr` | `data['advanced-review']` |
+| Itérer sur l'entrée | `iterate` | `false` |
+| Expression de la référence Polyvore | `polyvore_reference_expr` | `None` |
+| Expression des valeurs | `values_expr` | `None` |
+| Expression de la date d'échéance | `due_date_expr` | `None` |
+| Clé de sortie | `output_key` | `advanced-review` |
 
-### Workflow (sous-workflow)
+## 5. Action
 
-{% hint style="info" %}
-Il est possible d'imbriquer des workflows enfants dans un workflow parent. Cela présente plusieurs utilités:
+### Workflow
 
-* Réutilisation d'un workflow dans plusieurs workflow.
-* Dans le cas de création de sous-documents (module split-pdf) durant le workflow parent, pouvoir itérer sur l'ensemble de ces sous-documents. Un job 'enfant' sera crée par sous-documents.
-* Utiliser la récursivité. Un workflow peut s'appeler lui-même. Attention cependant a bien vérifier les conditions d'arrêt.
-{% endhint %}
+Le module **Workflow** lance un Workflow enfant. Il permet notamment de réutiliser un Workflow ou de traiter séparément les sous-documents produits par une étape précédente.
 
-#### Paramètres
+| Paramètre | Champ | Valeur par défaut ou rôle |
+| --- | --- | --- |
+| Workflow | `workflow` | Workflow enfant sélectionné ; `None` par défaut |
+| Expression du Workflow | `workflow_expr` | Sélection dynamique ; `None` par défaut |
+| Ignorer les erreurs | `ignore_errors` | `false` |
+| Ignorer les résultats | `ignore_results` | `false` |
+| Expression d'entrée | `input_expr` | `data` |
+| Itérer sur l'entrée | `iterate` | `false` |
+| Clé de sortie | `output_key` | `workflow` |
 
-<table><thead><tr><th width="234">Paramètre</th><th>Description</th></tr></thead><tbody><tr><td><strong>Nom</strong></td><td>Le nom du module</td></tr><tr><td><strong>Workflow</strong></td><td>La sélection parmi les workflow existants</td></tr><tr><td><strong>Expression d'entrée</strong></td><td>Les informations auxquels aura accès le sous-workflow. <br>Par exemple après un split-pdf, on peut avoir : <code>zip(data['split-pdf']['files'], files['classified'])</code><br>On prend les informations renvoyées par split-pdf, ainsi que l'ensemble des fichiers ajoutés dans la collection "classified" par split-pdf. A utiliser avec l'option "Iterate over input".</td></tr><tr><td><strong>Workflow Expression</strong></td><td>Permet de sélectionner dynamiquement un workflow en fonction d'une expression.</td></tr><tr><td><strong>Clé de sortie</strong></td><td>La clé de "data" dans lesquels seront stockées toutes les informations relatives à ce module.</td></tr><tr><td><strong>Itérer sur l'entrée</strong></td><td>Activer l'option si l'entrée est une liste. Le module traitera les documents 1 à 1, et la sortie sera une liste de résultats.</td></tr></tbody></table>
-
-#### Structure des résultats
-
-Voir [Structure des résultats du Workflow](../integration-api/workflow/structure-des-resultats-du-workflow.md)
+Voir la [structure des résultats du Workflow](../integration-api/workflow/structure-des-resultats-du-workflow.md).
 
 ### Diviser un document
 
-Ce module permet de séparer un document en sous-documents. Très utile par exemple pour Déliasser un document après une classification page par page. Les sous-documents générés sont stocké dans la collection de sortie
+Ce module sépare un document en sous-documents à partir des labels et ruptures produits, par exemple, par une classification page par page.
 
-#### Paramètres
+| Paramètre | Champ | Valeur par défaut ou rôle |
+| --- | --- | --- |
+| Collection de sortie | `output_col` | `split-file` |
+| Expression d'entrée | `input_expr` | `files['file']` |
+| Expression des labels | `labels_expr` | `data['classify']['result']['prediction']['labels']` |
+| Expression des ruptures | `breaks_expr` | `data['classify']['result']['prediction']['breaks']` |
+| Labels à ignorer | `labels_to_ignore` | `["discarded"]` |
+| Itérer sur l'entrée | `iterate` | `false` |
+| Clé de sortie | `output_key` | `split-pdf` |
 
-<table><thead><tr><th width="234">Paramètre</th><th>Description</th></tr></thead><tbody><tr><td><strong>Nom</strong></td><td>Le nom du module</td></tr><tr><td><strong>Collection de sortie</strong></td><td>La collection dans laquelle sont envoyés les sous-documents générés.</td></tr><tr><td><strong>Expression d'entrée</strong></td><td>Le ou les fichiers à déliasser. files["file"] par défaut.</td></tr><tr><td><strong>Labels Expr</strong></td><td>La liste des labels de chaque page. Le document sera divisé à chaque fois qu'un label est différent de la page précédente.</td></tr><tr><td><strong>Breaks Expr</strong></td><td>Expression indiquant les points de découpe (breaks) page à page. Issue par défaut de la prédiction de classification : <code>data['classify']['result']['prediction']['breaks']</code>.</td></tr><tr><td><strong>Labels To Ignore</strong></td><td>Les pages ayant ce label seront automatiquement mis à l'écart, et ne figureront pas dans les sous-documents générés.</td></tr><tr><td><strong>Clé de sortie</strong></td><td>La clé de "data" dans lesquels seront stockées toutes les informations relatives à ce module.</td></tr><tr><td><strong>Itérer sur l'entrée</strong></td><td>Activer l'option si l'entrée est une liste. Le module traitera les documents 1 à 1, et la sortie sera une liste de résultats.</td></tr></tbody></table>
-
-#### Structure des résultats
+Exemple de résultat :
 
 ```json
 {
-    "split-pdf": {
-        "files": [
-            {
-                "name": xxxx-split-1.pdf",
-                "label": "Carte grise",
-                "pages": [
-                    1,
-                    2
-                ],
-                "file_id": ... // int
-            },
-            {
-                "name": xxxx-split-2.pdf",
-                "label": "CNI",
-                "pages": [
-                    3
-                ],
-                "file_id": ... // int
-            }
-        ]
-    }
+  "split-pdf": {
+    "files": [
+      {
+        "name": "document-split-1.pdf",
+        "label": "Carte grise",
+        "pages": [1, 2],
+        "file_id": 101
+      },
+      {
+        "name": "document-split-2.pdf",
+        "label": "CNI",
+        "pages": [3],
+        "file_id": 102
+      }
+    ]
+  }
 }
 ```
 
 ### Décompresser
 
-Ce module permet de décompresser un dossier archivé et d'extraire les fichiers compressés dans une collection de sortie.
+**Dépendance produit : Classify.** Ce module extrait le contenu d'une archive ou d'un e-mail dans une collection de sortie.
 
-#### Paramètres
-
-<table><thead><tr><th width="234">Paramètre</th><th>Description</th></tr></thead><tbody><tr><td><strong>Nom</strong></td><td>Le nom du module</td></tr><tr><td><strong>Collection de sortie</strong></td><td>La collection dans laquelle sont envoyés les fichiers décompressés.</td></tr><tr><td><strong>Expression d'entrée</strong></td><td>Le ou les fichiers à décompresser. files["file"] par défaut.</td></tr><tr><td><strong>Extensions</strong></td><td>Une liste d'extension valide. (Exemple : "pdf, doc, jpg, png"). Les fichiers ayant une extension différente dans l'archive seront ignorés.</td></tr><tr><td><strong>Max unpack depth</strong></td><td>Profondeur maximale de décompression pour les archives imbriquées (archive contenant d'autres archives).</td></tr><tr><td><strong>Clé de sortie</strong></td><td>La clé de "data" dans lesquels seront stockées toutes les informations relatives à ce module.</td></tr><tr><td><strong>Itérer sur l'entrée</strong></td><td>Activer l'option si l'entrée est une liste. Le module traitera les documents 1 à 1, et la sortie sera une liste de résultats.</td></tr></tbody></table>
-
-#### Structure des résultats
+| Paramètre | Champ | Valeur par défaut ou rôle |
+| --- | --- | --- |
+| Collection de sortie | `output_col` | `unpacked` |
+| Expression d'entrée | `input_expr` | `files['file']` |
+| Extensions | `extensions` | Chaîne vide : aucune restriction |
+| Profondeur maximale de décompression | `max_depth` | `None` : profondeur illimitée |
+| Itérer sur l'entrée | `iterate` | `false` |
+| Clé de sortie | `output_key` | `unpack` |
 
 ```json
 {
-    "unpack": {
-        "unpacked": [
-            "ffe09da0-7e09-11ee-a133-dd18cdfb66cc.pdf",
-            "ffc93a80-7e08-11ee-a133-dd18cdfb66cc.pdf",
-            "ff7c3680-7e09-11ee-a133-dd18cdfb66cc.pdf"
-        ],
-        "skipped": []
-    }
+  "unpack": {
+    "unpacked": [
+      "ffe09da0-7e09-11ee-a133-dd18cdfb66cc.pdf",
+      "ffc93a80-7e08-11ee-a133-dd18cdfb66cc.pdf"
+    ],
+    "skipped": []
+  }
 }
 ```
 
 ### Fusionner des documents
 
-Ce module permet de fusionner les pages de plusieurs documents en entrée en un seul document.
+Ce module fusionne les pages des documents reçus en un seul document.
 
-#### Paramètres
-
-<table><thead><tr><th width="234">Paramètre</th><th>Description</th></tr></thead><tbody><tr><td><strong>Nom</strong></td><td>Le nom du module</td></tr><tr><td><strong>Collection de sortie</strong></td><td>La collection dans laquelle est envoyé le fichier fusionné.</td></tr><tr><td><strong>Nom du fichier de sortie</strong></td><td>Le nom du fichier de sortie</td></tr><tr><td><strong>Expression d'entrée</strong></td><td>Les fichiers à fusionner. files["file"] par défaut.</td></tr><tr><td><strong>Clé de sortie</strong></td><td>La clé de "data" dans lesquels seront stockées toutes les informations relatives à ce module.</td></tr><tr><td><strong>Itérer sur l'entrée</strong></td><td>Activer l'option si l'entrée est une liste. Le module traitera les documents 1 à 1, et la sortie sera une liste de résultats.</td></tr></tbody></table>
-
-#### Structure des résultats
+| Paramètre | Champ | Valeur par défaut ou rôle |
+| --- | --- | --- |
+| Collection de sortie | `output_col` | `merged-file` |
+| Nom du fichier de sortie | `output_filename` | `merged.pdf` |
+| Expression d'entrée | `input_expr` | `files['file']` |
+| Itérer sur l'entrée | `iterate` | `false` |
+| Clé de sortie | `output_key` | `merge-pdf` |
 
 ```json
 {
-    "merge-pdf": {
-        "file_id": ..., // int
-        "name": "merged.pdf"
-    }
+  "merge-pdf": {
+    "file_id": 103,
+    "name": "merged.pdf"
+  }
 }
 ```
 
-### Ensemble Validation — validation d'ensemble
+### Validation d'ensemble
 
-Ce module confronte les résultats d'extraction d'un agent à ceux déjà obtenus afin de valider (ou non) automatiquement les champs concordants.
+**Dépendance produit : Extract.** Ce module confronte les résultats d'extraction existants à ceux d'un Agent d'extraction utilisé comme second avis.
 
-#### Paramètres
+| Paramètre | Champ | Valeur par défaut ou rôle |
+| --- | --- | --- |
+| Agent de validation | `doctype` | Agent d'extraction configuré ; `None` par défaut |
+| Expression de l'Agent de validation | `doctype_expr` | Sélection dynamique ; `None` par défaut |
+| Expression d'entrée | `input_expr` | `files['file']` |
+| Expression de l'extraction | `extract_expr` | `data['extract']` |
+| Itérer sur l'entrée | `iterate` | `false` |
+| Clé de sortie | `output_key` | `ensemble_validation` |
 
-<table><thead><tr><th width="234">Paramètre</th><th>Description</th></tr></thead><tbody><tr><td><strong>Nom</strong> (Name)</td><td>Le nom de l'étape</td></tr><tr><td><strong>Agent d'extraction</strong> (Extraction agent)</td><td>La sélection parmi les agents d'extraction existants, utilisé comme second avis pour la validation.</td></tr><tr><td><strong>Expression d'entrée</strong> (Input expression)</td><td>Le ou les fichiers à valider. <code>files['file']</code> par défaut.</td></tr><tr><td><strong>Extract Expr</strong></td><td>Les données d'extraction à confronter. <code>data['extract']</code> par défaut.</td></tr><tr><td><strong>Expression de l'agent d'extraction</strong> (Extraction agent expression)</td><td>Sélection dynamique de l'agent d'extraction.</td></tr><tr><td><strong>Clé de sortie</strong> (Output key)</td><td>La clé de "data" dans laquelle seront stockées les informations de ce module. <code>ensemble_validation</code> par défaut.</td></tr><tr><td><strong>Itérer sur l'entrée</strong> (Iterate over input)</td><td>Activer l'option si l'entrée est une liste. Le module traitera les documents 1 à 1, et la sortie sera une liste de résultats.</td></tr></tbody></table>
+### Code-barres
 
+Ce module détecte et lit les codes-barres d'un document.
 
+| Paramètre | Champ | Valeur par défaut ou rôle |
+| --- | --- | --- |
+| Expression d'entrée | `input_expr` | `files['file']` |
+| Itérer sur l'entrée | `iterate` | `false` |
+| Clé de sortie | `output_key` | `barcodes` |
 
-### Barcodes — lecture de codes-barres
+{% hint style="warning" %}
 
-Ce module détecte et lit les codes-barres présents dans les documents en entrée.
+**Transfert d'e-mail** et **Envoi d'e-mail** apparaissent comme des cartes à venir dans la bibliothèque **Étapes**. Elles ne sont pas activables et ne constituent pas des modules pris en charge dans cette version.
 
-#### Paramètres
-
-<table><thead><tr><th width="234">Paramètre</th><th>Description</th></tr></thead><tbody><tr><td><strong>Nom</strong> (Name)</td><td>Le nom de l'étape</td></tr><tr><td><strong>Expression d'entrée</strong> (Input expression)</td><td>Le ou les fichiers à analyser. <code>files['file']</code> par défaut.</td></tr><tr><td><strong>Clé de sortie</strong> (Output key)</td><td>La clé de "data" dans laquelle seront stockées les informations de ce module. <code>barcodes</code> par défaut.</td></tr><tr><td><strong>Itérer sur l'entrée</strong> (Iterate over input)</td><td>Activer l'option si l'entrée est une liste. Le module traitera les documents 1 à 1, et la sortie sera une liste de résultats.</td></tr></tbody></table>
-
-{% hint style="info" %}
-Deux actions e-mail figurent dans la Steps Library mais sont marquées **« Available soon »** (bientôt disponibles, non activables à ce jour) : **Send Email** (envoyer un e-mail) et **Forward Email** (transférer un e-mail).
 {% endhint %}
 
-## 5. Code personnalisé (Custom Code)
+## 6. Code
 
-Le module **Custom Code** permet de réaliser des traitements personnalisés en Python, au-delà de ce que proposent les autres modules.
+### Code personnalisé
 
-<pre class="language-python"><code class="lang-python"><strong>def execute_action(job):
-</strong>    return StepActionType.done, {
-        # Add data here
-    }
-</code></pre>
+Le module **Code personnalisé** exécute un traitement Python fourni par l'utilisateur. La fonction d'entrée doit respecter cette signature :
 
-Le paramètre d'entrée `job` contient toutes les informations utiles dans `job.data`.
+```python
+def execute_action(job, input):
+    return StepActionType.done, {}
+```
 
-Il est également possible de rajouter de nouvelles informations dans `data` avec le `return`.&#x20;
+Le paramètre `job` expose les informations du job, notamment `job.data`. Le paramètre `input` contient le résultat de l'expression `input_expr`, ou chaque élément de ce résultat lorsque `iterate` est activé.
 
-Pour plus de détails sur le module de code personnalisé, [contacter l'équipe reciTAL](../contact/nous-contacter.md).
+| Paramètre | Champ | Valeur par défaut ou rôle |
+| --- | --- | --- |
+| Expression d'entrée | `input_expr` | `None` |
+| Itérer sur l'entrée | `iterate` | `false` |
 
-## 6. État
+Pour plus de détails, [contactez l'équipe reciTAL](../contact/nous-contacter.md).
 
-{% hint style="info" %}
-Rajouter un module d'état permet de:
+## 7. État
 
-* Recevoir automatiquement une notification de changement d'état. Avec les données accumulées jusque là.
-* Filtrer / trier les jobs en fonction de leur état.
-{% endhint %}
+Les modules d'état mettent à jour l'état général du job. Si une URL de callback a été fournie lors de la création du job, le changement d'état déclenche une notification.
 
-Les modules d'état peuvent être ajoutés à n'importe quelle transition. Ils permettent de mettre à jour l'état général d'un job, et de notifier si une url de callback a été définie lors de la création du job.
+Les trois cartes utilisent la même configuration :
 
-## 7. Output
+| Paramètre | Champ | Valeur par défaut ou rôle |
+| --- | --- | --- |
+| Valeur de l'état | `action` | Valeur associée à la carte, modifiable pour **État personnalisé** |
+| Expression d'entrée | `input_expr` | `None` |
+| État d'erreur | `is_error` | `false` ; si activé, l'étape se termine en erreur |
 
-### Cleanup
+### Start
 
-Le module **Cleanup** (étiquette **Output**) purge les données et les fichiers d'un job — utile en fin de workflow pour ne pas conserver les documents traités. Quatre options permettent de choisir précisément ce qui est conservé :
+Définit l'état `started` et représente l'état initial.
 
-<table><thead><tr><th width="234">Paramètre</th><th>Description</th></tr></thead><tbody><tr><td><strong>Nom</strong> (Name)</td><td>Le nom de l'étape</td></tr><tr><td><strong>Keep data</strong></td><td>Conserver les données (<code>data</code>) accumulées par le job. Désactiver pour les supprimer.</td></tr><tr><td><strong>Keep files</strong></td><td>Conserver les fichiers du job. Désactiver pour les supprimer.</td></tr><tr><td><strong>Keep history</strong></td><td>Conserver l'historique des étapes du job.</td></tr><tr><td><strong>Keep preliminary</strong></td><td>Conserver les fichiers préliminaires (intermédiaires) générés pendant le traitement.</td></tr></tbody></table>
+### Done
+
+Définit l'état `done` et représente l'état final.
+
+### État personnalisé
+
+Définit par défaut l'état `custom-state`. La valeur de l'état peut être personnalisée dans la configuration de l'étape.
+
+## 8. Output
+
+### Nettoyer
+
+Le module **Nettoyer** supprime les données ou fichiers devenus inutiles en fin de Workflow.
+
+| Paramètre | Champ | Valeur par défaut ou rôle |
+| --- | --- | --- |
+| Conserver les données | `keep_data` | `false` |
+| Conserver les fichiers | `keep_files` | `false` |
+| Conserver l'historique | `keep_history` | `false` |
+| Conserver les éléments préliminaires | `keep_preliminary` | `false` |
 
 ### Webhook
 
-Permet de renvoyer les résultats en cours (ou une partie) vers une URL donnée.
+Le module **Webhook** envoie les données en cours, ou une partie de celles-ci, à une URL.
 
-#### Paramètres
+| Paramètre | Champ | Valeur par défaut ou rôle |
+| --- | --- | --- |
+| URL | `url` | **Obligatoire** |
+| Expression d'URL | `url_expr` | URL dynamique ; `None` par défaut |
+| Méthode | `method` | `post` |
+| Token d'authorisation | `token` | `None` |
+| Type d'authorisation | `auth_type` | `bearer` ; accepte aussi `header` ou `param` |
+| Nom de l'en-tête d'authorisation | `auth_header` | `Authorization` ; utilisé avec `bearer` ou `header` |
+| Nom du paramètre d'authorisation | `auth_param` | `param` ; utilisé avec `param` |
+| Ignorer les erreurs | `ignore_errors` | `false` |
+| Réessayer en cas d'erreur | `retry_on_error` | `false` |
+| Encapsuler dans une enveloppe de Webhook | `encapsulate` | `true` |
+| Expression d'entrée | `input_expr` | `data` |
+| Itérer sur l'entrée | `iterate` | `false` |
+| Clé de sortie | `output_key` | `webhook` |
 
-<table><thead><tr><th width="234">Paramètre</th><th>Description</th></tr></thead><tbody><tr><td><strong>Nom</strong></td><td>Le nom du module</td></tr><tr><td><strong>URL</strong></td><td>L'url de callback</td></tr><tr><td><strong>Ignorer les erreurs</strong> (Ignore errors?)</td><td>Boolean. Si l'option est activée, le flux ne sera pas interrompu, même si le code de réponse est une erreur.</td></tr><tr><td><strong>Réessayer en cas d'erreur</strong> (Retry on error?)</td><td>Boolean. Relance l'appel en cas d'échec.</td></tr><tr><td><strong>Expression d'entrée</strong></td><td>Les données à renvoyer. "data" par défaut.</td></tr><tr><td><strong>Clé de sortie</strong></td><td>La clé de "data" dans lesquels seront stockées toutes les informations relatives à ce module.</td></tr><tr><td><strong>Itérer sur l'entrée</strong></td><td>Activer l'option si l'entrée est une liste. Le module traitera les documents 1 à 1, et la sortie sera une liste de résultats.</td></tr></tbody></table>
+Avec le type `bearer`, le token est envoyé sous la forme `Bearer <token>` dans l'en-tête configuré. Avec `header`, sa valeur est envoyée directement dans cet en-tête. Avec `param`, elle est envoyée dans le paramètre de requête configuré.
 
-#### Structure des résultats
+Exemple de résultat :
 
 ```json
 {
-    "webhook": {
-        "retries": [
-            {
-                "url": "http://foo.bar.baz.example.com",
-                "delivery": "faa7f0ee-79fc-4f7f-8bd7-13fe507d431b",
-                "timestamp": "2025-02-12T16:51:21.738001+00:00",
-                "time": 0.16692353412508965,
-                "status": 403
-            },
-            {
-                "url": "http://foo.bar.baz.example.com",
-                "delivery": "016fc069-077a-4026-a122-d03e044fc67a",
-                "timestamp": "2025-02-12T16:51:26.989879+00:00",
-                "time": 0.17694886191748083,
-                "status": 403
-            }
-        ],
-        "url": "http://foo.bar.baz.example.com",
-        "delivery": "016fc069-077a-4026-a122-d03e044fc67a",
-        "timestamp": "2025-02-12T16:51:26.989879+00:00",
-        "time": 0.17694886191748083,
-        "status": 200
-    }
+  "webhook": {
+    "retries": [
+      {
+        "url": "https://example.com/callback",
+        "delivery": "faa7f0ee-79fc-4f7f-8bd7-13fe507d431b",
+        "timestamp": "2025-02-12T16:51:21.738001+00:00",
+        "time": 0.16692353412508965,
+        "status": 403
+      }
+    ],
+    "url": "https://example.com/callback",
+    "delivery": "016fc069-077a-4026-a122-d03e044fc67a",
+    "timestamp": "2025-02-12T16:51:26.989879+00:00",
+    "time": 0.17694886191748083,
+    "status": 200
+  }
 }
 ```
