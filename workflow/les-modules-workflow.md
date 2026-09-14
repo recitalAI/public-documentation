@@ -50,13 +50,11 @@ Les pages de référence indiquent le type attendu et une expression adaptée à
 
 ## Référence par module
 
-Chaque module disponible possède une page de référence unique.
+La référence compte 20 pages. La plupart des modules possèdent leur propre page ; les trois Sources et les trois modules d'état sont regroupés par famille.
 
 ### Sources
 
-* [API](modules/api.md)
-* [CRON](modules/cron.md)
-* [IMAP](modules/imap.md)
+* [Sources — API, CRON et IMAP](modules/sources.md)
 
 ### Input
 
@@ -98,9 +96,7 @@ Chaque module disponible possède une page de référence unique.
 
 ### État
 
-* [Start](modules/start.md)
-* [Done](modules/done.md)
-* [État personnalisé](modules/etat-personnalise.md)
+* [États — Start, Done et État personnalisé](modules/etats.md)
 
 ### Output
 
