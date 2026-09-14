@@ -16,7 +16,7 @@ Le module attend un fichier de document. L'expression `files['file']` sélection
 | --- | --- |
 | Expression d'entrée | `files['file']` sélectionne les documents à classer. |
 | Agent de classification | Agent configuré dans l'organisation et utilisé pour la prédiction. |
-| Expression de l'agent de classification | Sélection dynamique, par exemple `data['routing']['classification_agent']`. Elle remplace l'Agent sélectionné lorsqu'elle est renseignée. |
+| Classification Agent Expr | Sélection dynamique, par exemple `data['routing']['classification_agent']`. Elle remplace l'Agent sélectionné lorsqu'elle est renseignée. |
 | Par page | Classe séparément les pages et produit les labels et ruptures nécessaires à une division ultérieure du document. |
 | Inclure le texte OCR | Ajoute le texte OCR au résultat renvoyé par l'Agent. |
 | Itérer sur l'entrée | Traite séparément chaque fichier sélectionné. |

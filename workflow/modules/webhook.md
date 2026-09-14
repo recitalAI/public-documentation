@@ -21,8 +21,8 @@ Le module attend un objet de données sérialisable en JSON. Pour n'envoyer qu'u
 | Type d'authorisation | `bearer` envoie `Bearer <token>` dans l'en-tête configuré ; `header` envoie directement le token dans cet en-tête ; `param` l'envoie comme paramètre de requête. |
 | Nom de l'en-tête d'authorisation | Par exemple `Authorization`, utilisé avec `bearer` ou `header`. |
 | Nom du paramètre d'authorisation | Par exemple `access_token`, utilisé avec `param`. |
-| Ignorer les erreurs | Permet au Workflow de continuer lorsqu'une livraison échoue. |
-| Réessayer en cas d'erreur | Effectue de nouvelles tentatives après une erreur de livraison. |
+| Ignore errors? | Permet au Workflow de continuer lorsqu'une livraison échoue. |
+| Retry on error? | Effectue de nouvelles tentatives après une erreur de livraison. |
 | Encapsuler dans une enveloppe de Webhook | Ajoute les informations du job autour de la donnée envoyée. |
 | Expression d'entrée | Par exemple `data['final_result']` pour envoyer uniquement le résultat final. |
 | Itérer sur l'entrée | Envoie une requête par élément lorsque l'expression renvoie une liste. |

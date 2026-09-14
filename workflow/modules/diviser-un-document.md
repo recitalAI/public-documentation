@@ -23,7 +23,7 @@ L'expression de fichier sélectionne une collection, tandis que les deux autres 
 | Collection de sortie | Par exemple `split-file` : les sous-documents sont accessibles avec `files['split-file']`. |
 | Expression d'entrée | `files['file']` sélectionne le document source. |
 | Expression des labels | `data['classify']['result']['prediction']['labels']` sélectionne les labels par page. |
-| Expression des ruptures | `data['classify']['result']['prediction']['breaks']` sélectionne les débuts de sous-documents. |
+| Breaks Expr | `data['classify']['result']['prediction']['breaks']` sélectionne les débuts de sous-documents. |
 | Labels à ignorer | Par exemple `["discarded"]` exclut du résultat les pages portant ce label. |
 | Itérer sur l'entrée | Traite séparément chaque fichier si l'expression renvoie plusieurs documents accompagnés de données compatibles. |
 | Clé de sortie | Par exemple `split-pdf` : les métadonnées sont accessibles avec `data['split-pdf']`. |

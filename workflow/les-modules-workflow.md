@@ -82,12 +82,15 @@ Chaque module disponible possède une page de référence unique.
 * [Diviser un document](modules/diviser-un-document.md)
 * [Décompresser](modules/decompresser.md)
 * [Fusionner des documents](modules/fusionner-des-documents.md)
-* [Validation d'ensemble](modules/validation-d-ensemble.md)
 * [Code-barres](modules/code-barres.md)
 
 {% hint style="warning" %}
 **Transfert d'e-mail** et **Envoi d'e-mail** apparaissent comme des cartes à venir dans la bibliothèque **Étapes**. Elles ne sont pas activables dans cette version.
 {% endhint %}
+
+### Validation
+
+* [Validation d'ensemble](modules/validation-d-ensemble.md)
 
 ### Code
 

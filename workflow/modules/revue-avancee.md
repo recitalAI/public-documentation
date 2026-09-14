@@ -30,8 +30,8 @@ Exemple de données d'entrée :
 | File d'attente | File Extract Review dans laquelle créer le document. |
 | Expression d'entrée | `data['advanced-review']` sélectionne l'objet décrivant la revue. |
 | Itérer sur l'entrée | Crée une revue pour chaque objet lorsque l'expression renvoie une liste. |
-| Expression de la référence Polyvore | Sélectionne une référence de fichier, par exemple `data['document']['polyvore_reference']`. |
-| Expression des valeurs | Sélectionne les valeurs initiales, par exemple `data['extract']['result']['values']`. |
+| Polyvore reference expression | Sélectionne une référence de fichier, par exemple `data['document']['polyvore_reference']`. |
+| Values expression | Sélectionne les valeurs initiales, par exemple `data['extract']['result']['values']`. |
 | Expression de la date d'échéance | Sélectionne une échéance, par exemple `data['review_due_date']`. |
 | Clé de sortie | Par exemple `advanced-review` : le retour est accessible avec `data['advanced-review']`. |
 
