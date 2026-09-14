@@ -24,7 +24,7 @@ Le module attend l'objet de résultat d'une classification, et non le fichier cl
 | Expression d'entrée | `data['classify']` sélectionne le résultat à revoir. |
 | Expression du contexte | Contexte dynamique, par exemple `data['review_instructions']`. |
 | Itérer sur l'entrée | Crée une revue pour chaque résultat lorsque l'expression renvoie une liste. |
-| Expression de la date d'expiration | Par exemple `data.get('expiration_deadline', None)` pour lire une échéance facultative dans les données. |
+| Expiration deadline expression | Par exemple `data.get('expiration_deadline', None)` pour lire une échéance facultative dans les données. |
 | Action d'expiration | `validate` valide la revue ; `discard` l'écarte. |
 | Clé de sortie | Par exemple `classify` : le résultat revu remplace ou complète `data['classify']`. |
 

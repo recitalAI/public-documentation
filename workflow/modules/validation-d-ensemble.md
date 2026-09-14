@@ -19,10 +19,10 @@ Il ne faut pas utiliser `zip(...)` ici : le module possède une **Expression d'e
 
 | Paramètre | Explication et exemple |
 | --- | --- |
-| Agent de validation | Agent d'extraction configuré qui fournit le second avis. |
+| Agent d'extraction | Agent d'extraction configuré qui fournit le second avis. |
 | Expression de l'agent d'extraction | Sélection dynamique d'un Agent, par exemple `data['routing']['validator_agent']`. Elle remplace l'Agent sélectionné lorsqu'elle est renseignée. |
 | Expression d'entrée | `files['file']` sélectionne le document à valider. |
-| Expression de l'extraction | `data['extract']` sélectionne la première extraction à comparer. |
+| Extract Expr | `data['extract']` sélectionne la première extraction à comparer. |
 | Itérer sur l'entrée | Traite séparément chaque fichier sélectionné ; chaque itération doit correspondre au résultat d'extraction attendu. |
 | Clé de sortie | Par exemple `ensemble_validation` : le résultat est accessible avec `data['ensemble_validation']`. |
 

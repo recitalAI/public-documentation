@@ -10,8 +10,8 @@ Le module **Nettoyer** supprime les données ou fichiers devenus inutiles, gén�
 
 | Paramètre | Explication et exemple |
 | --- | --- |
-| Conserver les données | Préserve l'objet `data` du job. Activez cette option si une étape ou un callback doit encore lire les résultats. |
-| Conserver les fichiers | Préserve les collections de fichiers du job. |
+| Keep data | Préserve l'objet `data` du job. Activez cette option si une étape ou un callback doit encore lire les résultats. |
+| Keep files | Préserve les collections de fichiers du job. |
 | Conserver l'historique | Préserve l'historique détaillé des étapes. |
 | Conserver préliminaire | Préserve les données et fichiers initiaux du job. |
 

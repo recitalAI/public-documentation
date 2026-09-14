@@ -27,9 +27,9 @@ Pour transmettre uniquement les données du job, utilisez par exemple `data['fin
 | Paramètre | Explication et exemple |
 | --- | --- |
 | Workflow | Workflow enfant à lancer. |
-| Expression du Workflow | Sélection dynamique d'un Workflow, par exemple `data['routing']['workflow']`. Elle remplace le Workflow sélectionné lorsqu'elle est renseignée. |
-| Ignorer les erreurs | Permet à l'étape parente de se terminer sans erreur si le Workflow enfant échoue. |
-| Ignorer les résultats | N'attend pas le résultat du Workflow enfant ; la sortie conserve seulement l'identifiant du job créé. |
+| Workflow Expr | Sélection dynamique d'un Workflow, par exemple `data['routing']['workflow']`. Elle remplace le Workflow sélectionné lorsqu'elle est renseignée. |
+| Ignore errors | Permet à l'étape parente de se terminer sans erreur si le Workflow enfant échoue. |
+| Ignore results | N'attend pas le résultat du Workflow enfant ; la sortie conserve seulement l'identifiant du job créé. |
 | Expression d'entrée | Par exemple `zip(files['split-file'], data['split-pdf']['files'])` pour construire les couples fichier/données attendus. |
 | Itérer sur l'entrée | Doit être activé pour lancer un Workflow enfant par couple produit par `zip(...)`. |
 | Clé de sortie | Par exemple `workflow` : le retour est accessible avec `data['workflow']`. |

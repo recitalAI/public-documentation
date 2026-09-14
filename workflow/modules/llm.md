@@ -29,11 +29,11 @@ l'invite suivante est valide :
 Rédige un message pour {data.client.name} au sujet de la facture {data.extract.invoice_number}.
 ```
 
-Une variable dont la valeur est absente est remplacée par une chaîne vide. Cette syntaxe ne sélectionne pas un fichier : utilisez **Inclure le fichier** et **Collection de fichiers** pour joindre des documents.
+Une variable dont la valeur est absente est remplacée par une chaîne vide. Cette syntaxe ne sélectionne pas un fichier : utilisez **Inclure le fichier** et la collection configurée avec **File collection** pour joindre des documents.
 
 ## Entrée et fichiers
 
-Sans **Expression d'entrée** explicite, le module n'attend pas de données d'entrée. Si **Inclure le fichier** est activé, il prend les fichiers de la **Collection de fichiers** configurée. Avec plusieurs fichiers, activez **Itérer sur l'entrée** pour créer une exécution par fichier.
+Sans **Expression d'entrée** explicite, le module n'attend pas de données d'entrée. Si **Inclure le fichier** est activé, il prend les fichiers de la collection configurée avec **File collection**. Avec plusieurs fichiers, activez **Itérer sur l'entrée** pour créer une exécution par fichier.
 
 Une expression telle que `data['extract']` peut aussi sélectionner des données pour piloter l'itération. Les variables de l'**Invite** continuent toutefois à être résolues dans l'objet `data` complet du job.
 
@@ -45,7 +45,7 @@ Une expression telle que `data['extract']` peut aussi sélectionner des données
 | Modèle | Modèle de langage disponible dans l'organisation. |
 | Invite | Instruction envoyée au modèle, par exemple `Résume le document pour {data.client.name}.` |
 | Inclure le fichier | Joint au message le ou les fichiers sélectionnés. |
-| Collection de fichiers | Nom de la collection à joindre, par exemple `file` ou `split-file`. |
+| File collection | Nom de la collection à joindre, par exemple `file` ou `split-file`. |
 | Expression d'entrée | Sélection facultative utilisée notamment pour l'itération, par exemple `files['split-file']`. |
 | Itérer sur l'entrée | Exécute un appel au modèle pour chaque élément sélectionné. |
 | Clé de sortie | Par exemple `llm_output` : la réponse est accessible avec `data['llm_output']`. |

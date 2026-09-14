@@ -18,7 +18,7 @@ Le module attend l'objet de résultat d'une extraction, et non le fichier source
 | --- | --- |
 | Expression d'entrée | `data['extract']` sélectionne le résultat à revoir. |
 | Itérer sur l'entrée | Crée une revue pour chaque résultat lorsque l'expression renvoie une liste. |
-| Expression de la date d'expiration de la revue | Par exemple `data.get('expiration_deadline', None)` pour lire une échéance facultative. |
+| Review expiration deadline expression | Par exemple `data.get('expiration_deadline', None)` pour lire une échéance facultative. |
 | Action d'expiration | `validate` valide la revue ; `discard` l'écarte. |
 | Clé de sortie | Par exemple `review` : le retour est accessible avec `data['review']`. |
 
