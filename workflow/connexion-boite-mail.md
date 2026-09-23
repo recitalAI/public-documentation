@@ -1,6 +1,6 @@
-# Connexion boîte mail
+# Connexion à une boîte mail
 
-Connecter une boîte mail permet de récupérer automatiquement les emails entrants et de les envoyer dans un Workflow, sans passer par l'API. Le connecteur se configure depuis **Workflows → Input**.
+Connecter une boîte mail permet de récupérer automatiquement les e-mails entrants et de les envoyer dans un Workflow, sans passer par l'API. Le connecteur se configure depuis **Workflows → Input**.
 
 {% hint style="info" %}
 Le Workflow ciblé doit contenir un module **Ingest Email** pour récupérer le fichier `.eml` et commencer son traitement. Voir [Les modules de Workflow](les-modules-workflow.md).
