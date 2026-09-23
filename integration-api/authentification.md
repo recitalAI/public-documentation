@@ -4,7 +4,7 @@
 
 Des tokens de service peuvent être générés depuis **Settings → API Tokens** (bouton **Generate API Token**).
 
-<figure><img src="../.gitbook/assets/image (42).png" alt=""><figcaption><p>Générer un token de service</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (42).png" alt="Générer un token de service"><figcaption><p>Générer un token de service</p></figcaption></figure>
 
 <pre class="language-python"><code class="lang-python"># Tester la connexion via le token API de service
 import requests

@@ -4,11 +4,11 @@
 
 Les données du Workflows vont être constituées de l'ensemble des étapes successives de ce dernier. Prenons par exemple le Workflow suivant :
 
-<figure><img src="../../.gitbook/assets/image (127).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (127).png" alt="Exemple de Workflow"></figure>
 
 Chaque étape que l'on rajoute dans le Workflow possède un paramètre "Clé de sortie", qui correspond à la clé JSON des données du Workflow.
 
-<figure><img src="../../.gitbook/assets/image (128).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (128).png" alt="Paramètre Clé de sortie d'une étape du Workflow"></figure>
 
 La sortie du JSON aura donc la structure suivante :
 
