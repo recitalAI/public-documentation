@@ -6,10 +6,10 @@ description: Rendez-vous dans la page "Workflow", puis sur l'onglet "Jobs".
 
 ## Qu'est-ce qu'un Job ?
 
-Un Job représente le parcours d'un document au travers du Workflow vers lequel il a été envoyé. Chaque Module, Etat ou Transition d'un Workflow est retranscrit dans les jobs.
+Un Job représente le parcours d'un document au travers du Workflow vers lequel il a été envoyé. Chaque module, état ou transition d'un Workflow est retranscrit dans les jobs.
 
 {% hint style="info" %}
-Un job permet de:
+Un job permet de :
 
 * Suivre la progression d'un document.
 * Identifier l'état d'un document : started, waiting, done, error, custom.
