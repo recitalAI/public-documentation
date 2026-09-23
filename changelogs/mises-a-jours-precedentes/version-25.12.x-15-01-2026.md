@@ -12,7 +12,7 @@
 #### Workflows
 
 * Export et import des Workflows
-* Nouvelle étape d'IA générative. Voir [Documentation](../../workflow/les-modules-workflow.md#genai) pour plus de détails.
+* Nouvelle étape d'IA générative. Voir [Documentation](../../workflow/modules/llm.md) pour plus de détails.
 
 #### Autre
 

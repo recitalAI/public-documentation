@@ -32,7 +32,7 @@
 * Possibilité de créer un job à partir du nom d'un workflow plutôt que par son uuid ou son id. La version active du Worfklow est automatiquement récupérée.
 * Ajout d'une description éditable pour chaque Workflow.
 * Une correction a été appliquée pour la suppression des workflows dans la corbeille.
-* Dans la sortie JSON de l'étape "Webhook", ajout d'une clé "retries" qui liste les tentatives effectuées. Voir [#webhook](../../workflow/les-modules-workflow.md#webhook "mention")
+* Dans la sortie JSON de l'étape "Webhook", ajout d'une clé "retries" qui liste les tentatives effectuées. Voir [#webhook](../../workflow/modules/webhook.md "mention")
 * Correctif appliqué sur le paramètre **Ignorer pièce jointe si le nom contient** dans l'étape "Ingérer des e-mails".
 
 #### OCR

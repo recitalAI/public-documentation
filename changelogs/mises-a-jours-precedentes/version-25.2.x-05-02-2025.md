@@ -64,7 +64,7 @@
 
 #### Workflows
 
-* :exclamation: L'output JSON de l'étape "Décompresser" a été modifié pour lister les fichiers non décompressés. Voir [Décompresser](../../workflow/les-modules-workflow.md#structure-des-resultats-8)
+* :exclamation: L'output JSON de l'étape "Décompresser" a été modifié pour lister les fichiers non décompressés. Voir [Décompresser](../../workflow/modules/decompresser.md#resultat)
 * Ajout d'une option dans l'étape "Webhook" pour activer ou non le Retry automatique.
 * Ajout du paramètre "Agent Expression" dans l'étape de "Classification" pour utiliser une expression dynamique plutôt qu'un agent fixe.
 * Ajout d'un bouton pour désélectionner un agent ou workflow dans la liste déroulante pour les étapes "Workflow", "Classification" et "Extraction".
