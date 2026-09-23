@@ -6,7 +6,7 @@ L'écran **Paramètres** regroupe les préférences de l'utilisateur connecté e
 
 Dans la barre latérale, cliquez sur **Paramètres**.
 
-La page présente les sections disponibles dans la vue d'administration de l'organisation. Certaines sections dépendent des produits activés :
+La page présente les sections disponibles dans la vue d'administration de l'organisation :
 
 - **Système** : préférence de langue et configurations de l'organisation ;
 - **Utilisateurs** : liste et gestion des utilisateurs ;
@@ -17,9 +17,9 @@ La page présente les sections disponibles dans la vue d'administration de l'org
 
 ### Paramètres de langue
 
-La langue est une préférence propre à l'utilisateur connecté, et non un paramètre commun à toute l'organisation. Les choix sont **Anglais (États-Unis)** et **Français (France)**.
+La langue est une préférence propre à l'utilisateur connecté, et non un paramètre commun à toute l'organisation. Le choix met immédiatement à jour la langue de l'interface et est enregistré dans le profil de l'utilisateur pour ses prochaines connexions. Les choix sont **Anglais (États-Unis)** et **Français (France)**.
 
-Les autres sections de l'onglet **Système** configurent l'organisation. Leur affichage dépend des produits activés.
+Les autres sections de l'onglet **Système** configurent l'organisation.
 
 ### Configuration OCR par défaut
 
@@ -35,17 +35,17 @@ Cette section définit la configuration OCR par défaut de l'organisation utilis
 
 ### Exporter l'organisation
 
-Lorsque Extract est activé, exportez l'organisation depuis **Système** avec **Exporter l'organisation**, puis **Télécharger en zip**.
+Exportez l'organisation depuis **Système** avec **Exporter l'organisation**, puis **Télécharger en zip**.
 
 L'export démarre de manière asynchrone. Une notification de téléchargement est fournie lorsqu'il est terminé.
 
-Le fichier exporté contient les données et paramètres de l'organisation ainsi que, selon les produits utilisés par celle-ci, les configurations Extract et Classify applicables, les Datasets, les modèles ou Agents et les Workflows pris en charge par l'export.
+Le fichier exporté contient les données et paramètres de l'organisation, ainsi que les configurations Extract et Classify applicables, les Datasets, les modèles ou Agents et les Workflows pris en charge par l'export.
 
 Cet export ne constitue pas à lui seul une stratégie de sauvegarde et ne fournit pas de procédure de restauration en libre-service.
 
 ### Paramètres de callback
 
-Cette section est disponible lorsque Extract est activé. Le callback est utilisé par le traitement d'extraction à la fin de l'extraction.
+Le callback est appelé à la fin du traitement d'extraction.
 
 Les paramètres sont :
 
@@ -57,7 +57,7 @@ L'URL, le token et le nom du header d'autorisation personnalisé peuvent être l
 
 ### Paramètres de la Corbeille
 
-Cette section est disponible lorsque Extract est activé. Elle définit uniquement la **Période de conservation des éléments dans la Corbeille** pour les Agents d'extraction et les Datasets supprimés.
+Cette section définit uniquement la **Période de conservation des éléments dans la Corbeille** pour les Agents d'extraction et les Datasets supprimés.
 
 Deux choix sont proposés :
 
@@ -65,8 +65,6 @@ Deux choix sont proposés :
 - **30 jours**.
 
 ### Paramètres Classify dépréciés des e-mails et de l'OCR
-
-Cette section est disponible lorsque Classify est activé.
 
 {% hint style="warning" %}
 Cette configuration est dépréciée. Elle concerne uniquement les anciens traitements de classification d'e-mails et leur OCR, et n'a aucun impact sur les Agents de classification. Ne l'utilisez pas pour configurer les Agents de classification ni l'OCR de la plateforme.
@@ -109,7 +107,7 @@ Lorsque **Lier les tokens d’accès aux IPs** s'applique, les nouvelles session
 
 ### Documentation des API
 
-Les entrées dépendent des produits activés pour l'utilisateur connecté. Elles peuvent inclure :
+La section répertorie les documentations d'API accessibles à l'utilisateur connecté. Elle peut inclure :
 
 - **Extract API** ;
 - **Classify API** ;
