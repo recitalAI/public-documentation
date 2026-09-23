@@ -69,7 +69,7 @@
 
 ## ⚙️ Changelogs
 
-* [Version 26.6.x (21/07/2026)](changelogs/version-26.6.x-21-07-2026.md)
+* [Version 26.8.x (06/10/2026)](changelogs/version-26.6.x-21-07-2026.md)
 * [Mises à jours précédentes](changelogs/mises-a-jours-precedentes/README.md)
   * [Version 26.4.x (20/05/2026)](changelogs/mises-a-jours-precedentes/version-26.4.x-20-05-2026.md)
   * [Version 26.2.x (02/03/2026)](changelogs/mises-a-jours-precedentes/version-26.2.x-02-03-2026.md)
@@ -100,6 +100,7 @@
   * [Version 1.0.3 (27/06/2023)](changelogs/mises-a-jours-precedentes/version-1.0.3-27-06-2023.md)
   * [Version 1.0.2 (02/05/2023)](changelogs/mises-a-jours-precedentes/version-1.0.2-02-05-2023.md)
   * [Version 1.0.1 (24/03/2023)](changelogs/mises-a-jours-precedentes/version-1.0.1-24-03-2023.md)
+  * [Version 26.6.x (21/07/2026)](changelogs/mises-a-jours-precedentes/version-26.6.x-21-07-2026.md)
 
 ## 🔴 SUPPORT
 
