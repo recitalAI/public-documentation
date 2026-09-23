@@ -14,13 +14,13 @@ Si l'Agent a été créé à partir d'un modèle existant (custom ou sur étagè
 
 Un champ unique, comme son nom l'indique, ne sera extrait qu'une seule fois dans un document. Par exemple, sur une facture : la date d'émission, le montant HT ou le n° de facture.
 
-<figure><img src="../../.gitbook/assets/image (32).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (32).png" alt="Création d'un champ unique"></figure>
 
 Ajoutez un Datapoint, donnez un nom à votre nouveau champs, puis enregistrez.
 
 ### Configuration
 
-<figure><img src="../../.gitbook/assets/image (33).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (33).png" alt="Configuration d'un champ unique"></figure>
 
 #### Type de valeur (Value type)
 
@@ -66,7 +66,7 @@ En mode génératif, le nom et la description du datapoint servent de consigne a
 
 Lorsqu’il s’agit de lignes d’un tableau par exemple, il convient de les mettre sous forme de groupe. Si vous avez créé un Agent depuis un modèle, supprimez les champs concernés de la partie "Data point" et créez un groupe d’étiquettes.
 
-<figure><img src="../../.gitbook/assets/image (34).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (34).png" alt="Création d'un groupe de champs"></figure>
 
 Rentrez le nom du groupe et choisissez le modèle d'extraction utilisé pour ce groupe.
 
@@ -82,7 +82,7 @@ Rentrez le nom du groupe et choisissez le modèle d'extraction utilisé pour ce 
 * **Ligne de tableau** : Utilisation de la détection de tableau requis. Identique à LIGNE mais se base sur la reconnaissance de tableau.
 * **Cellule de tableau** : Utilisation de la détection de tableau requis. Identique à COLONNE mais se base sur la reconnaissance de tableau.
 
-<figure><img src="../../.gitbook/assets/image (35).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (35).png" alt="Configuration d'un groupe de champs"></figure>
 
 **Conserver les valeurs des X meilleurs pages :** Par défaut dans un groupe, toutes les occurrences du groupe (sous-groupe) seront extraites, mais il est possible de limiter les extractions seulement aux "meilleures" pages. Particulièrement utile si on sait par exemple que l'information n'est que sur 1 page. Si l'option est activée, alors on peut exclure lors du calcul des meilleures pages les pages contenant une valeur spécifique.
 

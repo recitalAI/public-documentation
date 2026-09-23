@@ -8,7 +8,7 @@ Nous conseillons de ne plus utiliser cet écran, et de passer par le [Workflow](
 
 Les règles de gestion permettent de valider ou d'invalider automatiquement des champs extraits. Si tous les champs extraits sont automatiquement validés par des règles de gestion, un document ne passera pas par la phase de vidéo-codage, il sera considéré comme STP (Straight-Through Process).
 
-<figure><img src="../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2).png" alt="Règles de gestion d'un Agent"></figure>
 
 #### Type
 

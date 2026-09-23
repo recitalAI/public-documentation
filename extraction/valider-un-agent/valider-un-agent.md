@@ -4,13 +4,13 @@
 
 Une fois les documents chargés, cliquez sur le premier document. L’écran de validation s’affiche à gauche avec les valeurs extraites.
 
-<figure><img src="../../.gitbook/assets/fr_facture_doctype_06.png" alt=""><figcaption><p><em>Validation - écran de validation</em></p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/fr_facture_doctype_06.png" alt="Validation - écran de validation"><figcaption><p><em>Validation - écran de validation</em></p></figcaption></figure>
 
 Vous pouvez valider ou corriger chaque champ.
 
 Pour valider, cliquez sur le bouton de validation, ou bien cliquez directement sur le champ extrait dans le document. Pour corriger, cliquez sur la croix puis sélectionnez à l’aide de la souris dans le document la bonne valeur.
 
-<figure><img src="../../.gitbook/assets/fr_facture_doctype_07.png" alt=""><figcaption><p><em>Validation - correction</em></p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/fr_facture_doctype_07.png" alt="Validation - correction"><figcaption><p><em>Validation - correction</em></p></figcaption></figure>
 
 Une fois que tous les data points ont été validés ou corrigés, cliquez sur la flèche ou sur `ctrl + Entrée` pour passer au document suivant.
 
