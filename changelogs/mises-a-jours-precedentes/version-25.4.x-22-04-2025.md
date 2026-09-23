@@ -33,7 +33,7 @@
 
 * Les jobs de test peuvent désormais être relancés à tout moment, lancés et suivis directement depuis l’éditeur de workflow, et recréés facilement avec les paramètres précédents (données, métadonnées, fichiers).
 * Un job en production peut également être relancé manuellement.
-* La sortie JSON de l'étape "Ingérer des e-mails" intègre maintenant le nom des pièces jointes traitées, et le nom des pièces jointes filtrées. Voir [#structure-des-resultats](../../workflow/les-modules-workflow.md#structure-des-resultats "mention")
+* La sortie JSON de l'étape "Ingérer des e-mails" intègre maintenant le nom des pièces jointes traitées, et le nom des pièces jointes filtrées. Voir [#structure-des-resultats](../../workflow/modules/ingerer-des-e-mails.md#resultat "mention")
 * Les logs de fonctionnement normaux dans les jobs ne sont plus affichés.
 * Dorénavant, si le timeout d'une étape de code personnalisé (30s) est déclenché, on force l'arrêt du process, et l'étape se met en erreur.
 * Pour les étapes d'Extraction et de Classification, une option a été ajoutée pour renvoyer le texte détecté par l'OCR.
