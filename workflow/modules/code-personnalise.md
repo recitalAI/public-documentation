@@ -34,18 +34,17 @@ Ne modifiez pas `job.data` pour transmettre des données : `job` est une vue de 
 
 | Dans Expression d'entrée | Ce que cela représente et quand l'utiliser | Dans la fonction Python |
 | --- | --- | --- |
-| `data` | Données courantes du Workflow, enrichies par les étapes précédentes. Utilisez `data['final_result']` pour transmettre un résultat déjà produit. | `job.data` (dictionnaire, ou `None` si aucune donnée n'a encore été produite). |
-| `initial_data` | Données fournies à la création du job, avant les enrichissements des étapes suivantes. Utilisez par exemple `initial_data['source']` si le code a besoin de l'entrée d'origine plutôt que du résultat courant. | Pas d'attribut `job.initial_data` documenté : sélectionnez la valeur dans l'expression pour la recevoir dans `input`. |
+| `data` | Données courantes du Workflow, enrichies par les étapes précédentes. Utilisez `data['completude_dossier']` pour transmettre une valeur déjà produite. | `job.data` (dictionnaire, ou `None` si aucune donnée n'a encore été produite). |
 | `custom_metadata` | Métadonnées personnalisées associées au job : contexte fourni par l'appelant, à garder distinct des données produites par le Workflow. Sélectionnez `custom_metadata` si le code doit exploiter ce contexte. | `job.custom_metadata` (texte, ou `None`). |
 | `files` | Références des fichiers du job, regroupées par collection. Utilisez `[f.name for f in files['file']]` pour sélectionner les noms des documents de la collection `file`. | Pas d'attribut `job.files` documenté : transmettez les noms par `input`, puis lisez les fichiers comme indiqué plus bas. |
 
 `job` est une vue du job disponible directement dans la fonction Python ; `job.state` donne son état courant, `job.is_test` indique s'il s'agit d'un test et `job.id` l'identifie pour les appels à l'API reciTAL. L'expression, elle, est évaluée **avant** l'appel : son résultat devient `input`. Sans **Itérer sur l'entrée**, la fonction reçoit ce résultat en une seule fois ; avec cette option, si l'expression sélectionne une liste, chaque appel reçoit séparément un élément dans `input`. L'expression peut aussi être `None` pour transmettre la valeur `None`. Une clé absente dans une expression avec `[...]` provoque une erreur ; choisissez une expression adaptée aux données du job.
 
-Sans itération, transmettez généralement un seul objet, souvent un dictionnaire comme `data['final_result']`. Avec itération, sélectionnez généralement une liste, par exemple les noms des documents avec `[f.name for f in files['file']]` ; chaque appel recevra un nom. Il s'agit de conseils de configuration, pas de restrictions de type : sans itération, le code peut aussi recevoir un nombre ou une liste entière. L'itération s'applique aux listes ; l'association de deux séquences avec `zip(...)` est expliquée plus bas.
+Sans itération, transmettez généralement un seul objet, souvent un dictionnaire comme `data['donnees_financieres']`. Avec itération, sélectionnez généralement une liste, par exemple les noms des documents avec `[f.name for f in files['file']]` ; chaque appel recevra un nom. Il s'agit de conseils de configuration, pas de restrictions de type : sans itération, le code peut aussi recevoir un nombre ou une liste entière. L'itération s'applique aux listes ; l'association de deux séquences avec `zip(...)` est expliquée plus bas.
 
 | Paramètre | Utilisation |
 | --- | --- |
-| Expression d'entrée | Choisit la valeur transmise à `input`, par exemple `data['final_result']`. |
+| Expression d'entrée | Choisit la valeur transmise à `input`, par exemple `data['completude_dossier']`. |
 | Itérer sur l'entrée | Appelle séparément la fonction pour chaque élément d'une liste sélectionnée par l'expression. Sans cette option, la liste entière est transmise à un seul appel. |
 
 Dans une expression, chaque référence de `files['file']` porte notamment `collection` (ici `file`) et `name` (le nom du fichier). La référence brute n'est **pas** le contenu du fichier et ne fournit pas un objet fichier utilisable tel quel dans la fonction : transmettez son nom par l'expression, puis ouvrez le fichier comme indiqué dans [Lire les fichiers du job](#lire-les-fichiers-du-job).
@@ -60,7 +59,7 @@ Avec **Itérer sur l'entrée**, les dictionnaires des appels réussis sont regro
 
 ### Exemple : calculer une décision
 
-**Expression d'entrée** : `data['final_result']` (dictionnaire contenant `montant` et `seuil`). Sans itération :
+**Expression d'entrée** : `data['donnees_financieres']` (dictionnaire contenant `montant` et `seuil`). Sans itération :
 
 ```python
 def execute_action(job, input):
