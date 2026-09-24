@@ -4,7 +4,7 @@ Un **Agent de classification** applique un [modèle de classification entraîné
 
 ## Formats des documents traités par un Agent de classification {#formats-des-documents-traites-par-un-agent-de-classification}
 
-Un Agent de classification accepte les PDF (`.pdf`), les images JPEG (`.jpg`, `.jpeg`, `.jfif`), PNG (`.png`), TIFF (`.tif`, `.tiff`), BMP (`.bmp`) et PNM (`.pnm`), les fichiers texte (`.txt`, `.html`) et les documents bureautiques (`.doc`, `.docx`, `.ppt`, `.pptx`, `.xlsx`). Les PDF et TIFF peuvent comporter plusieurs pages. Les documents bureautiques sont convertis en PDF avant la classification ; les pages sont ensuite préparées pour l'extraction de texte et, si nécessaire, l'OCR.
+Un Agent de classification accepte les PDF (`.pdf`), les images JPEG (`.jpg`, `.jpeg`, `.jfif`), PNG (`.png`), TIFF (`.tif`, `.tiff`), BMP (`.bmp`) et PNM (`.pnm`), les fichiers texte (`.txt`, `.html`) et les documents bureautiques (`.doc`, `.docx`, `.ppt`, `.pptx`, `.xlsx`). Les PDF et TIFF peuvent comporter plusieurs pages.
 
 Le type est déterminé à partir du contenu du fichier, et non de sa seule extension ou du type MIME déclaré lors de l'envoi. Le module *Documents classification agent* d'un Workflow transmet également le document à cet Agent. Par rapport aux [formats d'un Agent d'extraction](../extraction/configurer-un-agent-dextraction/README.md#formats-des-documents-traites-par-un-agent-dextraction), cette liste ajoute BMP, JFIF et PNM ; elle ne comprend pas les autres formats bureautiques de la liste d'extraction.
 
