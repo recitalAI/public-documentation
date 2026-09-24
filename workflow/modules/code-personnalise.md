@@ -28,13 +28,18 @@ Ne modifiez pas `job.data` pour transmettre des données : `job` est une vue de 
 
 ## Utiliser `job` et `input`
 
-`job.data` est le dictionnaire courant des données du Workflow (il peut être `None` si aucune donnée n'a encore été produite). `job.custom_metadata` donne les métadonnées personnalisées du job, sous forme de texte ou `None` ; `job.state` donne son état courant et `job.is_test` indique s'il s'agit d'un test. `job.id` identifie le job, notamment pour une requête à l'API reciTAL. Ces valeurs sont une vue de l'exécution, non un moyen de modifier directement le job.
-
 ### Choisir la valeur de `input`
 
-Le résultat de **Expression d'entrée** est transmis à la fonction Python dans l'argument `input`. Sans **Itérer sur l'entrée**, la fonction reçoit ce résultat en une seule fois. Avec cette option, si l'expression sélectionne une liste, la fonction est appelée séparément pour chaque élément : `input` contient alors un seul élément par appel.
+**Expression d'entrée** choisit une valeur qui est transmise à la fonction Python dans l'argument `input`. Les noms ci-dessous sont disponibles **dans cette expression**, pas automatiquement comme variables dans `execute_action(job, input)` :
 
-Dans **Expression d'entrée**, `data` désigne les données courantes, `initial_data` les données initiales, `custom_metadata` les métadonnées personnalisées et `files` les références des fichiers du job regroupées par collection. Par exemple, `data['final_result']` transmet la valeur de cette clé, et `None` transmet `None`. Ces noms sont disponibles dans l'expression, pas automatiquement dans le code Python : `initial_data`, notamment, n'est pas un attribut documenté de `job`. Une clé absente dans une expression avec `[...]` provoque une erreur ; choisissez une expression adaptée aux données du job.
+| Dans Expression d'entrée | Ce que cela représente et quand l'utiliser | Dans la fonction Python |
+| --- | --- | --- |
+| `data` | Données courantes du Workflow, enrichies par les étapes précédentes. Utilisez `data['final_result']` pour transmettre un résultat déjà produit. | `job.data` (dictionnaire, ou `None` si aucune donnée n'a encore été produite). |
+| `initial_data` | Données fournies à la création du job, avant les enrichissements des étapes suivantes. Utilisez par exemple `initial_data['source']` si le code a besoin de l'entrée d'origine plutôt que du résultat courant. | Pas d'attribut `job.initial_data` documenté : sélectionnez la valeur dans l'expression pour la recevoir dans `input`. |
+| `custom_metadata` | Métadonnées personnalisées associées au job : contexte fourni par l'appelant, à garder distinct des données produites par le Workflow. Sélectionnez `custom_metadata` si le code doit exploiter ce contexte. | `job.custom_metadata` (texte, ou `None`). |
+| `files` | Références des fichiers du job, regroupées par collection. Utilisez `[f.name for f in files['file']]` pour sélectionner les noms des documents de la collection `file`. | Pas d'attribut `job.files` documenté : transmettez les noms par `input`, puis lisez les fichiers comme indiqué plus bas. |
+
+`job` est une vue du job disponible directement dans la fonction Python ; `job.state` donne son état courant, `job.is_test` indique s'il s'agit d'un test et `job.id` l'identifie pour les appels à l'API reciTAL. L'expression, elle, est évaluée **avant** l'appel : son résultat devient `input`. Sans **Itérer sur l'entrée**, la fonction reçoit ce résultat en une seule fois ; avec cette option, si l'expression sélectionne une liste, chaque appel reçoit séparément un élément dans `input`. L'expression peut aussi être `None` pour transmettre la valeur `None`. Une clé absente dans une expression avec `[...]` provoque une erreur ; choisissez une expression adaptée aux données du job.
 
 Sans itération, transmettez généralement un seul objet, souvent un dictionnaire comme `data['final_result']`. Avec itération, sélectionnez généralement une liste, par exemple les noms des documents avec `[f.name for f in files['file']]` ; chaque appel recevra un nom. Il s'agit de conseils de configuration, pas de restrictions de type : sans itération, le code peut aussi recevoir un nombre ou une liste entière. L'itération s'applique aux listes ; l'association de deux séquences avec `zip(...)` est expliquée plus bas.
 
