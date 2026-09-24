@@ -24,20 +24,26 @@ def execute_action(job, input):
     return StepActionType.done, {"valide": True}
 ```
 
-Définissez ici **Expression d'entrée** sur `data.get('final_result')`. Une signature différente du contrat documenté, une exception ou un résultat impossible à interpréter provoquent un échec plutôt qu'un résultat exploitable. Ne modifiez pas `job.data` pour transmettre des données : `job` est une vue de l'état du job au moment de l'appel ; seules les valeurs renvoyées sont propagées au Workflow.
+Ne modifiez pas `job.data` pour transmettre des données : `job` est une vue de l'état du job au moment de l'appel ; seules les valeurs renvoyées sont propagées au Workflow.
 
 ## Utiliser `job` et `input`
 
 `job.data` est le dictionnaire courant des données du Workflow (il peut être `None` si aucune donnée n'a encore été produite). `job.custom_metadata` donne les métadonnées personnalisées du job, sous forme de texte ou `None` ; `job.state` donne son état courant et `job.is_test` indique s'il s'agit d'un test. `job.id` identifie le job, notamment pour une requête à l'API reciTAL. Ces valeurs sont une vue de l'exécution, non un moyen de modifier directement le job.
 
-`input` est **la valeur calculée par Expression d'entrée**, et non automatiquement l'ensemble des données du job. Dans cette expression, `data` désigne les données courantes, `initial_data` les données initiales, `custom_metadata` les métadonnées personnalisées, `files` les références des fichiers du job regroupées par collection et `zip` permet d'associer deux séquences. Ces noms sont disponibles **dans l'expression** ; dans la fonction, utilisez `input` pour sa valeur et `job` pour les informations du job exposées ci-dessus. Par exemple, `initial_data` est disponible dans l'expression, mais n'est pas un attribut documenté de `job`.
+### Choisir la valeur de `input`
+
+Le résultat de **Expression d'entrée** est transmis à la fonction Python dans l'argument `input`. Sans **Itérer sur l'entrée**, la fonction reçoit ce résultat en une seule fois. Avec cette option, si l'expression sélectionne une liste, la fonction est appelée séparément pour chaque élément : `input` contient alors un seul élément par appel.
+
+Dans **Expression d'entrée**, `data` désigne les données courantes, `initial_data` les données initiales, `custom_metadata` les métadonnées personnalisées et `files` les références des fichiers du job regroupées par collection. Par exemple, `data['final_result']` transmet la valeur de cette clé, et `None` transmet `None`. Ces noms sont disponibles dans l'expression, pas automatiquement dans le code Python : `initial_data`, notamment, n'est pas un attribut documenté de `job`. Une clé absente dans une expression avec `[...]` provoque une erreur ; choisissez une expression adaptée aux données du job.
+
+Sans itération, transmettez généralement un seul objet, souvent un dictionnaire comme `data['final_result']`. Avec itération, sélectionnez généralement une liste, par exemple les noms des documents avec `[f.name for f in files['file']]` ; chaque appel recevra un nom. Il s'agit de conseils de configuration, pas de restrictions de type : sans itération, le code peut aussi recevoir un nombre ou une liste entière. L'itération s'applique aux listes ; l'association de deux séquences avec `zip(...)` est expliquée plus bas.
 
 | Paramètre | Utilisation |
 | --- | --- |
-| Expression d'entrée | `data['final_result']` transmet cette valeur à `input` ; `files['file']` sélectionne les références de la collection `file` ; `None` transmet `None`. Une clé absente dans une expression avec `[...]` provoque une erreur : adaptez l'expression aux données du job. |
-| Itérer sur l'entrée | Si l'expression produit une liste ou un `zip(...)`, appelle la fonction pour chaque élément. Sans cette option, la liste entière est transmise en un seul appel. |
+| Expression d'entrée | Choisit la valeur transmise à `input`, par exemple `data['final_result']`. |
+| Itérer sur l'entrée | Appelle séparément la fonction pour chaque élément d'une liste sélectionnée par l'expression. Sans cette option, la liste entière est transmise à un seul appel. |
 
-Dans une expression, chaque référence de `files['file']` porte notamment `collection` (ici `file`) et `name` (le nom du fichier) : `files['file'][0].name` transmet ainsi le nom du premier fichier à `input`. La liste brute des références n'est **pas** le contenu binaire des fichiers, ni une liste de chemins directement ouvrables en Python. Pour lire les fichiers, utilisez la procédure de la section [Lire les fichiers du job](#lire-les-fichiers-du-job). Une expression telle que `zip(data['montants'], data['taux'])` construit des couples par position ; avec **Itérer sur l'entrée**, chaque appel reçoit un couple `(montant, taux)`. `zip` s'arrête à la séquence la plus courte : vérifiez que les deux listes correspondent avant de les associer.
+Dans une expression, chaque référence de `files['file']` porte notamment `collection` (ici `file`) et `name` (le nom du fichier). La référence brute n'est **pas** le contenu du fichier et ne fournit pas un objet fichier utilisable tel quel dans la fonction : transmettez son nom par l'expression, puis ouvrez le fichier comme indiqué dans [Lire les fichiers du job](#lire-les-fichiers-du-job).
 
 ## Renvoyer des données au Workflow
 
@@ -60,22 +66,50 @@ def execute_action(job, input):
 
 Une étape suivante peut exploiter `data['decision']['revision_requise']` dans sa configuration ou une transition. Adaptez les noms des champs à vos données.
 
-### Exemple : traiter une liste ou des couples
+### Exemple : examiner chaque document PDF
 
-Pour calculer individuellement des montants avec TVA, définissez **Expression d'entrée** sur `data['montants']`, activez **Itérer sur l'entrée**, puis utilisez :
-
-```python
-def execute_action(job, input):
-    return StepActionType.done, {"montant_ttc": round(float(input) * 1.20, 2)}
-```
-
-`data['montant_ttc']` sera une liste de résultats, dans l'ordre des montants. Si chaque montant possède son propre taux, utilisez plutôt **Expression d'entrée** : `zip(data['montants'], data['taux'])`, toujours avec **Itérer sur l'entrée** :
+Pour analyser séparément des PDF de la collection `file`, définissez **Expression d'entrée** sur `[f.name for f in files['file']]` et activez **Itérer sur l'entrée**. Chaque appel reçoit dans `input` le nom d'un PDF ; le code lit le document et repère les pages contenant une expression à contrôler :
 
 ```python
+from pathlib import Path
+from PyPDF2 import PdfReader
+
+
 def execute_action(job, input):
-    montant, taux = input
-    return StepActionType.done, {"montant_ttc": round(float(montant) * (1 + float(taux)), 2)}
+    fichier = Path("files/file") / input
+    pdf = PdfReader(str(fichier))
+    pages_a_controler = [
+        numero for numero, page in enumerate(pdf.pages, start=1)
+        if "signature" in (page.extract_text() or "").lower()
+    ]
+    return StepActionType.done, {
+        "analyse_pdf": {"nom": input, "pages": len(pdf.pages), "pages_a_controler": pages_a_controler}
+    }
 ```
+
+`data['analyse_pdf']` devient une liste de résultats, dans l'ordre des fichiers sélectionnés. Utilisez l'itération lorsqu'un élément demande un traitement significatif ; pour des transformations rapides d'une simple liste Python, traitez plutôt la liste en un seul appel lorsque c'est possible.
+
+### Associer chaque fichier à ses données
+
+Pour rechercher une expression différente dans chaque PDF, définissez **Expression d'entrée** sur `zip([f.name for f in files['file']], data['documents'])` et activez **Itérer sur l'entrée**. `zip(...)` associe les éléments de même position ; chaque appel reçoit un couple `(nom_du_fichier, données)`. Les deux listes doivent correspondre dans le même ordre : `zip(...)` s'arrête à la plus courte. Ici chaque élément de `data['documents']` contient un champ `terme_a_verifier` :
+
+```python
+from pathlib import Path
+from PyPDF2 import PdfReader
+
+
+def execute_action(job, input):
+    nom_du_fichier, donnees = input
+    pdf = PdfReader(str(Path("files/file") / nom_du_fichier))
+    terme = donnees["terme_a_verifier"].lower()
+    pages = [
+        numero for numero, page in enumerate(pdf.pages, start=1)
+        if terme in (page.extract_text() or "").lower()
+    ]
+    return StepActionType.done, {"verification": {"nom": nom_du_fichier, "pages": pages}}
+```
+
+Une expression `zip(files['file'], data['documents'])` peut être évaluée, mais la référence de fichier brute n'arrive pas comme objet fichier exploitable dans le code Python. Sélectionnez `f.name` dans l'expression comme ci-dessus, puis ouvrez le document par son nom.
 
 ## Lire les fichiers du job
 
@@ -133,9 +167,29 @@ def execute_action(job, input):
 
 Définissez **Expression d'entrée** sur `data['total']`. Ici `rapports` est la collection du fichier joint, `total.txt` son nom ; le résultat de l'API est une liste de références de fichiers. Contrairement à un fichier créé seulement sur le disque temporaire, le fichier envoyé par cette API est associé au job. Utilisez cette opération seulement lorsqu'un module standard ne répond pas au besoin de création du fichier. Une erreur de l'API remonte comme une exception dans l'historique du job.
 
+## Interroger un référentiel externe avec `requests`
+
+Pour enrichir les données du Workflow avec un service HTTP externe accessible depuis votre environnement, définissez **Expression d'entrée** sur `data['reference']` (un dictionnaire contenant `code`) et adaptez l'adresse et la structure de la réponse à votre référentiel :
+
+```python
+import requests
+
+
+def execute_action(job, input):
+    response = requests.get(
+        "https://api.example.com/references",
+        params={"code": input["code"]},
+        timeout=10,
+    )
+    response.raise_for_status()
+    return StepActionType.done, {"reference_verifiee": response.json()}
+```
+
+`api.example.com` est une adresse d'exemple, non un service reciTAL. Si le service est indisponible ou renvoie une erreur HTTP, l'étape échoue ; vérifiez l'accès réseau au référentiel concerné et adaptez le traitement de sa réponse. Ne placez pas d'identifiants sensibles en clair dans le code ni dans les sorties de `print()`.
+
 ## Environnement Python et diagnostic
 
-Le code peut importer la bibliothèque standard Python (`json`, `csv`, `re`, `datetime`, `pathlib`, etc.). Parmi les bibliothèques tierces utiles présentes dans l'environnement de production figurent `pandas` (tableaux), `openpyxl` (classeurs Excel) et `PyPDF2` (lecture/manipulation de PDF), ainsi que `librecital` pour les API reciTAL. Importez seulement ce dont vous avez besoin, par exemple `import pandas as pd`. Cette sélection décrit des outils disponibles, **pas** une garantie que toutes les dépendances de l'environnement sont prises en charge comme API stable. Le traitement dispose actuellement de **60 secondes** pour se terminer. Les fichiers locaux créés pendant l'exécution ne sont pas conservés entre les appels ou les jobs ; utilisez les données renvoyées ou l'API des fichiers du job pour conserver un résultat.
+Le code peut importer la bibliothèque standard Python (`json`, `csv`, `re`, `datetime`, `pathlib`, etc.). Parmi les bibliothèques tierces utiles présentes dans l'environnement de production figurent `requests` pour appeler des API HTTP externes (par exemple un référentiel de validation ou d'enrichissement), `pandas` pour les tableaux, `openpyxl` pour les classeurs Excel et `PyPDF2` pour les PDF, ainsi que `librecital` pour les API reciTAL. Importez seulement ce dont vous avez besoin, par exemple `import requests`. La connexion à un service externe dépend de l'accès réseau disponible vers ce service dans votre environnement ; ne présumez pas que tous les hôtes sont joignables. Cette sélection décrit des outils disponibles, **pas** une garantie que toutes les dépendances de l'environnement sont prises en charge comme API stable. Le traitement dispose actuellement de **60 secondes** pour se terminer. Les fichiers locaux créés pendant l'exécution ne sont pas conservés entre les appels ou les jobs ; utilisez les données renvoyées ou l'API des fichiers du job pour conserver un résultat.
 
 Pour diagnostiquer un échec, consultez l'**historique du job** : les sorties de `print()` et les traces d'erreur Python y sont enregistrées. Une erreur de syntaxe, une exception pendant l'exécution ou un retour mal formé échouent ; un dépassement du délai de 60 secondes interrompt le traitement et produit un message d'erreur. `StepActionType.error` marque aussi l'étape et le job en échec. Corrigez le code ou les données d'entrée avant de relancer le job ; ne comptez pas sur une reprise automatique du code échoué. Évitez d'afficher des données sensibles avec `print()` puisque ses sorties sont conservées dans l'historique.
 
