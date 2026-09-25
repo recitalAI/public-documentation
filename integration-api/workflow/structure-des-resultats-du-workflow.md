@@ -1,16 +1,16 @@
-# Structure des résultats du Workflow
+# Workflow callback
 
 ## Structure du Workflow
 
-Les données du Workflows vont être constituées de l'ensemble des étapes successives de ce dernier. Prenons par exemple le Workflow suivant :
+Les données du Workflows vont être constituées de l'ensemble des étapes successives de ce dernier. Prenons par exemple le Workflow suivant :
 
-<figure><img src="../../.gitbook/assets/image (127).png" alt="Exemple de Workflow"></figure>
+<figure><img src="../../.gitbook/assets/image (3).png" alt="Exemple de Workflow"><figcaption></figcaption></figure>
 
 Chaque étape que l'on rajoute dans le Workflow possède un paramètre "Clé de sortie", qui correspond à la clé JSON des données du Workflow.
 
-<figure><img src="../../.gitbook/assets/image (128).png" alt="Paramètre Clé de sortie d'une étape du Workflow"></figure>
+<figure><img src="../../.gitbook/assets/image (128).png" alt="Paramètre Clé de sortie d&#x27;une étape du Workflow"><figcaption></figcaption></figure>
 
-La sortie du JSON aura donc la structure suivante :
+La sortie du JSON aura donc la structure suivante :
 
 ```json
 {
@@ -50,4 +50,3 @@ Lors de l'intégration, pensez à descendre jusqu'à `result` pour retrouver les
 ## Structure des étapes du Workflow
 
 Voir [Les modules Workflow](../../workflow/les-modules-workflow.md)
-

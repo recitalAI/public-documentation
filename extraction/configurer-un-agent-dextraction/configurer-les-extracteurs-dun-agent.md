@@ -14,35 +14,33 @@ Si l'Agent a été créé à partir d'un modèle existant (custom ou sur étagè
 
 Un champ unique, comme son nom l'indique, ne sera extrait qu'une seule fois dans un document. Par exemple, sur une facture : la date d'émission, le montant HT ou le n° de facture.
 
-<figure><img src="../../.gitbook/assets/image (32).png" alt="Création d'un champ unique"></figure>
+<figure><img src="../../.gitbook/assets/image (32).png" alt="Création d&#x27;un champ unique"><figcaption></figcaption></figure>
 
 Ajoutez un Datapoint, donnez un nom à votre nouveau champs, puis enregistrez.
 
 ### Configuration
 
-<figure><img src="../../.gitbook/assets/image (33).png" alt="Configuration d'un champ unique"></figure>
+<figure><img src="../../.gitbook/assets/image (33).png" alt="Configuration d&#x27;un champ unique"><figcaption></figcaption></figure>
 
 #### Type de valeur (Value type)
 
 Le type de valeur normalise le champ extrait. Il se choisit dans une liste déroulante :
 
-<figure><img src="../../.gitbook/assets/datapoint_value_type.png" alt="Liste des types de valeur"><figcaption>Les types de valeur disponibles pour un datapoint.</figcaption></figure>
+<figure><img src="../../.gitbook/assets/datapoint_value_type.png" alt="Liste des types de valeur"><figcaption><p>Les types de valeur disponibles pour un datapoint.</p></figcaption></figure>
 
-| Value type | Détail | Exemples |
-|---|---|---|
-| **Any** (Tout) | N'importe quelle chaîne de caractères — valeur par défaut. | Nom, Prénom, Désignation |
-| **Date and time** | Une date accompagnée d'une heure. | Date et heure de dépôt, horodatage d'un accusé de réception |
-| **Date** | Une date, normalisée au format `YYYY-MM-DD`. | Date d'émission, date d'échéance |
-| **Time** | Une heure seule. | Heure de rendez-vous, heure de passage |
-| **Integer** | Un nombre entier. | Nombre d'unités, quantité |
-| **Float** | Un nombre décimal. | Montant HT, pourcentage |
-| **Regex** | Expressions régulières. La 1ʳᵉ expression doit correspondre au champ extrait ; dans la 2ᵉ, on peut réutiliser les groupes capturés (`\1`, `\2`, …) pour la normalisation. | N° de téléphone, référence client, code-barres |
-
-
+| Value type        | Détail                                                                                                                                                                    | Exemples                                                    |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
+| **Any** (Tout)    | N'importe quelle chaîne de caractères — valeur par défaut.                                                                                                                | Nom, Prénom, Désignation                                    |
+| **Date and time** | Une date accompagnée d'une heure.                                                                                                                                         | Date et heure de dépôt, horodatage d'un accusé de réception |
+| **Date**          | Une date, normalisée au format `YYYY-MM-DD`.                                                                                                                              | Date d'émission, date d'échéance                            |
+| **Time**          | Une heure seule.                                                                                                                                                          | Heure de rendez-vous, heure de passage                      |
+| **Integer**       | Un nombre entier.                                                                                                                                                         | Nombre d'unités, quantité                                   |
+| **Float**         | Un nombre décimal.                                                                                                                                                        | Montant HT, pourcentage                                     |
+| **Regex**         | Expressions régulières. La 1ʳᵉ expression doit correspondre au champ extrait ; dans la 2ᵉ, on peut réutiliser les groupes capturés (`\1`, `\2`, …) pour la normalisation. | N° de téléphone, référence client, code-barres              |
 
 #### **Méthode d'extraction**
 
-C'est la façon dont le champ sera extrait dans le document.&#x20;
+C'est la façon dont le champ sera extrait dans le document.
 
 La méthode par défaut est **Model** : sélectionnez le modèle entraîné et sa version, puis le label du modèle correspondant.
 
@@ -66,7 +64,7 @@ En mode génératif, le nom et la description du datapoint servent de consigne a
 
 Lorsqu’il s’agit de lignes d’un tableau par exemple, il convient de les mettre sous forme de groupe. Si vous avez créé un Agent depuis un modèle, supprimez les champs concernés de la partie "Data point" et créez un groupe d’étiquettes.
 
-<figure><img src="../../.gitbook/assets/image (34).png" alt="Création d'un groupe de champs"></figure>
+<figure><img src="../../.gitbook/assets/image (34).png" alt="Création d&#x27;un groupe de champs"><figcaption></figcaption></figure>
 
 Rentrez le nom du groupe et choisissez le modèle d'extraction utilisé pour ce groupe.
 
@@ -82,7 +80,7 @@ Rentrez le nom du groupe et choisissez le modèle d'extraction utilisé pour ce 
 * **Ligne de tableau** : Utilisation de la détection de tableau requis. Identique à LIGNE mais se base sur la reconnaissance de tableau.
 * **Cellule de tableau** : Utilisation de la détection de tableau requis. Identique à COLONNE mais se base sur la reconnaissance de tableau.
 
-<figure><img src="../../.gitbook/assets/image (35).png" alt="Configuration d'un groupe de champs"></figure>
+<figure><img src="../../.gitbook/assets/image (34).png" alt="Configuration d&#x27;un groupe de champs"><figcaption></figcaption></figure>
 
 **Conserver les valeurs des X meilleurs pages :** Par défaut dans un groupe, toutes les occurrences du groupe (sous-groupe) seront extraites, mais il est possible de limiter les extractions seulement aux "meilleures" pages. Particulièrement utile si on sait par exemple que l'information n'est que sur 1 page. Si l'option est activée, alors on peut exclure lors du calcul des meilleures pages les pages contenant une valeur spécifique.
 
@@ -96,8 +94,7 @@ Rentrez le nom du groupe et choisissez le modèle d'extraction utilisé pour ce 
 
 Ajoutez un par un les champs provenant du modèle à ajouter dans le groupe. Pour chaque champ, vous pouvez configurer un type de valeur (voir "[Créer un nouveau champ unique](configurer-les-extracteurs-dun-agent.md#creer-un-nouveau-champs-unique)"), et désigner si ce dernier est primaire ou non. Un champ primaire autorise la création d'un sous-groupe s'il est extrait. Le sous-groupe n'est pas créé si aucun champ primaire n'est extrait.
 
-
-## Datapoint génératif {#datapoint-generatif}
+## Datapoint génératif <a href="#datapoint-generatif" id="datapoint-generatif"></a>
 
 Au-delà des méthodes basées sur un modèle entraîné, des règles ou un groupe, un datapoint peut être configuré pour extraire la valeur via un **LLM** (Large Language Model). C'est le **datapoint génératif**.
 
@@ -105,15 +102,15 @@ Au-delà des méthodes basées sur un modèle entraîné, des règles ou un grou
 
 Dans la configuration d'un datapoint (créé via **Add → Single data point**), sélectionner **Extraction method → Generative**.
 
-<figure><img src="../../.gitbook/assets/demarrage_datapoint_methods.png" alt="Choix de la méthode d'extraction"><figcaption>Les 4 méthodes : Model, Rules, Group, Generative.</figcaption></figure>
+<figure><img src="../../.gitbook/assets/demarrage_datapoint_methods.png" alt="Choix de la méthode d&#x27;extraction"><figcaption><p>Les 4 méthodes : Model, Rules, Group, Generative.</p></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/demarrage_datapoint_generative_selected.png" alt="Méthode générative sélectionnée"><figcaption>Méthode Generative active. Un avertissement rappelle que les données sont partagées avec le provider LLM.</figcaption></figure>
+<figure><img src="../../.gitbook/assets/demarrage_datapoint_generative_selected.png" alt="Méthode générative sélectionnée"><figcaption><p>Méthode Generative active. Un avertissement rappelle que les données sont partagées avec le provider LLM.</p></figcaption></figure>
 
 ### Cas d'usage
 
-- **Champs non structurés** : résumé, analyse de sentiment, classification libre — là où une expression régulière ou un modèle entraîné classique ne suffit pas
-- **Démarrage rapide** : pas de Dataset à constituer ni à annoter, le prompt suffit
-- **Champs rares** : valeurs présentes dans peu de documents, où un modèle entraîné manquerait de données
+* **Champs non structurés** : résumé, analyse de sentiment, classification libre — là où une expression régulière ou un modèle entraîné classique ne suffit pas
+* **Démarrage rapide** : pas de Dataset à constituer ni à annoter, le prompt suffit
+* **Champs rares** : valeurs présentes dans peu de documents, où un modèle entraîné manquerait de données
 
 {% hint style="info" %}
 Un datapoint génératif transmet le contenu du document au provider LLM configuré dans l'organisation.
@@ -121,5 +118,5 @@ Un datapoint génératif transmet le contenu du document au provider LLM configu
 
 ### Cross-refs
 
-- [Créer un Agent génératif](../../demarrage-rapide/creer-un-agent-generatif.md) — tutoriel de démarrage
-- [Configurer les paramètres d'un Agent](configurer-les-parametres-dun-agent.md) — paramètres avancés et configuration LLM côté organisation
+* [Créer un Agent génératif](../../demarrage-rapide/creer-un-agent-generatif.md) — tutoriel de démarrage
+* [Configurer les paramètres d'un Agent](configurer-les-parametres-dun-agent.md) — paramètres avancés et configuration LLM côté organisation

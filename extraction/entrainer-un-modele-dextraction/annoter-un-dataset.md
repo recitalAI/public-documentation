@@ -12,7 +12,7 @@ Avant de pouvoir annoter, il est nécessaire de configurer les étiquettes (labe
 
 Pour ce faire, cliquez sur l'onglet `Etiquettes`, en haut à droite.
 
-<figure><img src="../../.gitbook/assets/fr_studio_04.png" alt=""><figcaption><p>Gestion des labels d'un dataset</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (43).png" alt=""><figcaption><p>Gestion des labels d'un dataset</p></figcaption></figure>
 
 Saisir le nom du label, puis cliquez sur `AJOUTER`.
 
@@ -46,7 +46,7 @@ Afin d'annoter correctement, il est indispensable de suivre les deux principes d
 
     _Exemple: Si le numéro SIREN de l'émetteur apparaît à la fois dans l'entête et le pied de page d'un document, il doit être annoté dans ces deux sections pour assurer une extraction complète et précise._
 2. **Annotation cohérente** : Il est crucial que chaque information soit annotée de manière uniforme sur tous les documents similaires. Cela évite d'introduire des ambiguïtés qui pourraient désorienter le modèle.\
-   &#xNAN;_&#x45;xemple: Si un fournisseur place systématiquement le numéro de facture à un emplacement inattendu, par exemple après un libellé "numéro de commande", il est important de continuer à récupérer l'information à cet emplacement spécifique pour toutes les factures de ce fournisseur. Bien que non conventionnel, cet emplacement reste constant et doit être respecté pour garantir la précision de l'extraction des données._
+   \&#xNAN;_Exemple: Si un fournisseur place systématiquement le numéro de facture à un emplacement inattendu, par exemple après un libellé "numéro de commande", il est important de continuer à récupérer l'information à cet emplacement spécifique pour toutes les factures de ce fournisseur. Bien que non conventionnel, cet emplacement reste constant et doit être respecté pour garantir la précision de l'extraction des données._
 
 Respectez ces deux principes lors de l'annotation.
 
@@ -57,4 +57,3 @@ Annotez le document en cliquant sur le stylo situé à droite de l'étiquette et
 Toutes les fonctionnalités liées à l'annotation sont répertoriées sur [une page dédiée](../../autres/astuces-dannotation.md).
 
 <figure><img src="../../.gitbook/assets/image (39).png" alt=""><figcaption></figcaption></figure>
-
