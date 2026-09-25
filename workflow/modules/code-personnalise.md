@@ -38,7 +38,7 @@ Ne modifiez pas `job.data` pour transmettre des données : `job` est une vue de 
 | `custom_metadata` | Métadonnées personnalisées associées au job : contexte fourni par l'appelant, à garder distinct des données produites par le Workflow. Sélectionnez `custom_metadata` si le code doit exploiter ce contexte. | `job.custom_metadata` (texte, ou `None`). |
 | `files` | Références des fichiers du job, regroupées par collection. Utilisez `[f.name for f in files['file']]` pour sélectionner les noms des documents de la collection `file`. | Pas d'attribut `job.files` documenté : transmettez les noms par `input`, puis lisez les fichiers comme indiqué plus bas. |
 
-`job` est une vue du job disponible directement dans la fonction Python ; `job.state` donne son état courant, `job.is_test` indique s'il s'agit d'un test et `job.id` l'identifie pour les appels à l'API reciTAL. L'expression, elle, est évaluée **avant** l'appel : son résultat devient `input`. Sans **Itérer sur l'entrée**, la fonction reçoit ce résultat en une seule fois ; avec cette option, si l'expression sélectionne une liste, chaque appel reçoit séparément un élément dans `input`. L'expression peut aussi être `None` pour transmettre la valeur `None`. Une clé absente dans une expression avec `[...]` provoque une erreur ; choisissez une expression adaptée aux données du job.
+`job` est une vue du job disponible directement dans la fonction Python ; `job.state` donne son état courant et `job.id` l'identifie pour les appels à l'API reciTAL. L'expression, elle, est évaluée **avant** l'appel : son résultat devient `input`. Sans **Itérer sur l'entrée**, la fonction reçoit ce résultat en une seule fois ; avec cette option, si l'expression sélectionne une liste, chaque appel reçoit séparément un élément dans `input`. L'expression peut aussi être `None` pour transmettre la valeur `None`. Une clé absente dans une expression avec `[...]` provoque une erreur ; choisissez une expression adaptée aux données du job.
 
 Sans itération, transmettez généralement un seul objet, souvent un dictionnaire comme `data['donnees_financieres']`. Avec itération, sélectionnez généralement une liste, par exemple les noms des documents avec `[f.name for f in files['file']]` ; chaque appel recevra un nom. Il s'agit de conseils de configuration, pas de restrictions de type : sans itération, le code peut aussi recevoir un nombre ou une liste entière. L'itération s'applique aux listes ; l'association de deux séquences avec `zip(...)` est expliquée plus bas.
 
@@ -48,6 +48,17 @@ Sans itération, transmettez généralement un seul objet, souvent un dictionnai
 | Itérer sur l'entrée | Appelle séparément la fonction pour chaque élément d'une liste sélectionnée par l'expression. Sans cette option, la liste entière est transmise à un seul appel. |
 
 Dans une expression, chaque référence de `files['file']` porte notamment `collection` (ici `file`) et `name` (le nom du fichier). La référence brute n'est **pas** le contenu du fichier et ne fournit pas un objet fichier utilisable tel quel dans la fonction : transmettez son nom par l'expression, puis ouvrez le fichier comme indiqué dans [Lire les fichiers du job](#lire-les-fichiers-du-job).
+
+### Distinguer un job de test avec `job.is_test`
+
+Dans `execute_action(job, input)`, `job.is_test` est un booléen Python : `True` pour un job de test, `False` pour un job de production. Cette valeur correspond à la distinction **Live / Test** de l'[onglet Jobs](../jobs.md#consulter-les-jobs) et reste celle du job pendant son exécution. Vous pouvez l'utiliser dans une condition pour adapter le traitement, par exemple renvoyer un résultat différent selon le mode :
+
+```python
+def execute_action(job, input):
+    if job.is_test:
+        return StepActionType.done, {"mode": "test"}
+    return StepActionType.done, {"mode": "live"}
+```
 
 ## Renvoyer des données au Workflow
 
