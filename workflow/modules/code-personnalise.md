@@ -38,7 +38,7 @@ Ne modifiez pas `job.data` pour transmettre des données : `job` est une vue de 
 | `custom_metadata` | Métadonnées personnalisées associées au job : contexte fourni par l'appelant, à garder distinct des données produites par le Workflow. Sélectionnez `custom_metadata` si le code doit exploiter ce contexte. | `job.custom_metadata` (texte, ou `None`). |
 | `files` | Références des fichiers du job, regroupées par collection. Utilisez `[f.name for f in files['file']]` pour sélectionner les noms des documents de la collection `file`. | Pas d'attribut `job.files` documenté : transmettez les noms par `input`, puis lisez les fichiers comme indiqué plus bas. |
 
-`job` est une vue du job disponible directement dans la fonction Python ; `job.state` donne son état courant et `job.id` l'identifie pour les appels à l'API reciTAL. L'expression, elle, est évaluée **avant** l'appel : son résultat devient `input`. Sans **Itérer sur l'entrée**, la fonction reçoit ce résultat en une seule fois ; avec cette option, si l'expression sélectionne une liste, chaque appel reçoit séparément un élément dans `input`. L'expression peut aussi être `None` pour transmettre la valeur `None`. Une clé absente dans une expression avec `[...]` provoque une erreur ; choisissez une expression adaptée aux données du job.
+`job` est une vue du job disponible directement dans la fonction Python ; `job.state` donne son état courant et `job.id` son identifiant. L'expression, elle, est évaluée **avant** l'appel : son résultat devient `input`. Sans **Itérer sur l'entrée**, la fonction reçoit ce résultat en une seule fois ; avec cette option, si l'expression sélectionne une liste, chaque appel reçoit séparément un élément dans `input`. L'expression peut aussi être `None` pour transmettre la valeur `None`. Une clé absente dans une expression avec `[...]` provoque une erreur ; choisissez une expression adaptée aux données du job.
 
 Sans itération, transmettez généralement un seul objet, souvent un dictionnaire comme `data['donnees_financieres']`. Avec itération, sélectionnez généralement une liste, par exemple les noms des documents avec `[f.name for f in files['file']]` ; chaque appel recevra un nom. Il s'agit de conseils de configuration, pas de restrictions de type : sans itération, le code peut aussi recevoir un nombre ou une liste entière. L'itération s'applique aux listes ; l'association de deux séquences avec `zip(...)` est expliquée plus bas.
 
@@ -143,7 +143,7 @@ def execute_action(job, input):
     return StepActionType.done, {"fichiers_analyses": noms}
 ```
 
-Ce code suppose qu'une collection `file` existe ; adaptez-la à la collection utilisée par votre Workflow. Pour de gros fichiers, lisez progressivement plutôt que de charger tout le contenu avec `read_bytes()`. Les fichiers que votre code crée localement sont temporaires : ils ne deviennent pas automatiquement des fichiers du job. Pour joindre un fichier produit au job, utilisez l'[API des fichiers du job](#utiliser-les-api-recital-avec-librecital).
+Ce code suppose qu'une collection `file` existe ; adaptez-la à la collection utilisée par votre Workflow. Pour de gros fichiers, lisez progressivement plutôt que de charger tout le contenu avec `read_bytes()`. Les fichiers que votre code crée localement sont temporaires : ils ne deviennent pas automatiquement des fichiers du job. `librecital.Client` ne permet pas de les joindre au job via l'API Workflows depuis ce module.
 
 ## Lire une Ressource
 
@@ -163,24 +163,7 @@ Définissez **Expression d'entrée** sur `data['montant']`. Respectez la casse e
 
 ## Utiliser les API reciTAL avec `librecital`
 
-`librecital.Client` permet d'appeler les API reciTAL depuis le code personnalisé sans renseigner vous-même une adresse ou un jeton. Par exemple, pour attacher au job courant un fichier texte généré par votre code, faites un `POST` multipart vers l'API des fichiers du job :
-
-```python
-from librecital import Client
-
-
-def execute_action(job, input):
-    contenu = f"Total : {float(input):.2f}\n".encode("utf-8")
-    with Client() as client:
-        response = client.post(
-            f"/workflows/api/v1/jobs/{job.id}/files/",
-            files={"rapports": ("total.txt", contenu, "text/plain")},
-        )
-        response.raise_for_status()
-    return StepActionType.done, {"rapport_genere": True}
-```
-
-Définissez **Expression d'entrée** sur `data['total']`. Ici `rapports` est la collection du fichier joint, `total.txt` son nom ; le résultat de l'API est une liste de références de fichiers. Contrairement à un fichier créé seulement sur le disque temporaire, le fichier envoyé par cette API est associé au job. Utilisez cette opération seulement lorsqu'un module standard ne répond pas au besoin de création du fichier. Une erreur de l'API remonte comme une exception dans l'historique du job.
+Dans le module **Code personnalisé**, `librecital.Client` permet d'appeler l'API Extract de reciTAL, mais pas l'API Workflows. Ne l'utilisez pas pour appeler l'API des fichiers du job : l'envoi d'un fichier créé localement par cette voie ne fonctionne pas.
 
 ## Interroger un référentiel externe avec `requests`
 
@@ -204,7 +187,7 @@ def execute_action(job, input):
 
 ## Environnement Python et diagnostic
 
-Le code peut importer la bibliothèque standard Python (`json`, `csv`, `re`, `datetime`, `pathlib`, etc.). Parmi les bibliothèques tierces utiles présentes dans l'environnement de production figurent `requests` pour appeler des API HTTP externes (par exemple un référentiel de validation ou d'enrichissement), `pandas` pour les tableaux, `openpyxl` pour les classeurs Excel et `PyPDF2` pour les PDF, ainsi que `librecital` pour les API reciTAL. Importez seulement ce dont vous avez besoin, par exemple `import requests`. La connexion à un service externe dépend de l'accès réseau disponible vers ce service dans votre environnement ; ne présumez pas que tous les hôtes sont joignables. Cette sélection décrit des outils disponibles, **pas** une garantie que toutes les dépendances de l'environnement sont prises en charge comme API stable. Le traitement dispose actuellement de **60 secondes** pour se terminer. Les fichiers locaux créés pendant l'exécution ne sont pas conservés entre les appels ou les jobs ; utilisez les données renvoyées ou l'API des fichiers du job pour conserver un résultat.
+Le code peut importer la bibliothèque standard Python (`json`, `csv`, `re`, `datetime`, `pathlib`, etc.). Parmi les bibliothèques tierces utiles présentes dans l'environnement de production figurent `requests` pour appeler des API HTTP externes (par exemple un référentiel de validation ou d'enrichissement), `pandas` pour les tableaux, `openpyxl` pour les classeurs Excel et `PyPDF2` pour les PDF, ainsi que `librecital` pour l'API Extract de reciTAL. Importez seulement ce dont vous avez besoin, par exemple `import requests`. La connexion à un service externe dépend de l'accès réseau disponible vers ce service dans votre environnement ; ne présumez pas que tous les hôtes sont joignables. Cette sélection décrit des outils disponibles, **pas** une garantie que toutes les dépendances de l'environnement sont prises en charge comme API stable. Le traitement dispose actuellement de **60 secondes** pour se terminer. Les fichiers locaux créés pendant l'exécution ne sont pas conservés entre les appels ou les jobs ; renvoyez les données à conserver dans le Workflow.
 
 Pour diagnostiquer un échec, consultez l'**historique du job** : les sorties de `print()` et les traces d'erreur Python y sont enregistrées. Une erreur de syntaxe, une exception pendant l'exécution ou un retour mal formé échouent ; un dépassement du délai de 60 secondes interrompt le traitement et produit un message d'erreur. `StepActionType.error` marque aussi l'étape et le job en échec. Corrigez le code ou les données d'entrée avant de relancer le job ; ne comptez pas sur une reprise automatique du code échoué. Évitez d'afficher des données sensibles avec `print()` puisque ses sorties sont conservées dans l'historique.
 
