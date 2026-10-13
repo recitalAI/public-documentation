@@ -60,7 +60,7 @@ Toutes les fonctionnalités liées à l'annotation sont répertoriées sur [une 
 
 ## Pré-annoter un Dataset avec un Agent génératif <a href="#pre-annoter-un-dataset-avec-un-agent-generatif" id="pre-annoter-un-dataset-avec-un-agent-generatif"></a>
 
-**Oui, vous pouvez fournir des documents à reciTAL pour que l’IA propose leurs annotations.** En version 26.8.28, la pré-annotation peut utiliser un **Agent d’extraction génératif**, qui extrait les champs à l’aide d’un modèle de langage (LLM). Elle ne nécessite ni modèle extractif préalablement entraîné ni documents déjà annotés manuellement.
+La pré-annotation permet d’utiliser un **Agent d’extraction génératif** pour proposer les annotations des documents d’un Dataset à l’aide d’un modèle de langage (LLM). Elle ne nécessite ni modèle extractif préalablement entraîné ni documents déjà annotés manuellement.
 
 L’annotation manuelle consiste à sélectionner vous-même les valeurs. La pré-annotation propose des valeurs à vérifier et à compléter : l’onglet `Modèles` utilise un modèle d’extraction entraîné ou sur étagère ; l’onglet `Agents d'extraction` utilise les extracteurs d’un Agent, y compris génératifs, non génératifs ou mixtes.
 
@@ -68,7 +68,17 @@ L’annotation manuelle consiste à sélectionner vous-même les valeurs. La pr�
 
 * Importez vos documents dans un Dataset et attendez la fin de leur traitement.
 * Disposez d’un Agent d’extraction actif, avec ses champs génératifs, ses instructions d’extraction et son LLM configurés. Voir [Créer un Agent génératif](../../demarrage-rapide/creer-un-agent-generatif.md). Aucune modification spécifique du prompt n’est nécessaire pour lancer la pré-annotation.
-* Faites correspondre vos étiquettes aux noms des champs de l’Agent : les propositions utilisent ces noms **en majuscules** (pour un groupe, les noms de ses champs). Les étiquettes absentes du Dataset sont ajoutées à partir des résultats retournés. Une étiquette d’un autre nom n’est pas automatiquement associée au champ.
+Les propositions utilisent les noms des champs de l’Agent **en majuscules** ; pour un groupe, elles utilisent les noms de ses champs.
+
+* **Dataset sans étiquettes :** les étiquettes correspondant aux champs retournés par l’Agent sont créées automatiquement avec leurs pré-annotations.
+* **Dataset contenant déjà des étiquettes :** vérifiez leur correspondance avec les noms des champs de l’Agent. Par exemple, si le Dataset utilise `DATE_DOCUMENT` et l’Agent `DATE_EMISSION` pour désigner la même valeur, utilisez le même nom : une étiquette dont le nom diffère n’est pas associée automatiquement au champ de l’Agent.
+* **Champs sans étiquette correspondante :** les étiquettes manquantes sont ajoutées au Dataset lorsque l’Agent retourne des résultats pour ces champs.
+
+{% hint style="warning" %}
+La pré-annotation avec un Agent génératif transmet le contenu de vos documents au fournisseur de LLM utilisé. Avant de la lancer, vérifiez la configuration de l’Agent et le fournisseur afin de vous assurer qu’ils sont conformes à vos politiques de sécurité.
+
+Les conditions de conservation et d’utilisation des données, notamment pour l’entraînement des LLM, dépendent du service et des options de partage configurés. Consultez la politique du service concerné : [OpenAI API](https://developers.openai.com/api/docs/guides/your-data), [Gemini API](https://ai.google.dev/gemini-api/terms), [Scaleway Generative APIs](https://www.scaleway.com/en/docs/generative-apis/reference-content/data-privacy/) ou [OVHcloud AI Endpoints](https://www.ovhcloud.com/en/public-cloud/ai-endpoints/).
+{% endhint %}
 
 ### Lancer la pré-annotation et gérer les annotations existantes
 
