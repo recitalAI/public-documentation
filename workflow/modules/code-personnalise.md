@@ -161,6 +161,44 @@ def execute_action(job, input):
 
 Définissez **Expression d'entrée** sur `data['montant']`. Respectez la casse et les dossiers du nom de la Ressource ; si le fichier manque ou ne contient pas un nombre, la fonction échoue et l'erreur apparaît dans l'historique du job. La lecture n'altère pas la Ressource d'origine.
 
+## Adapter la configuration entre plusieurs environnements
+
+Pour garder le même **Code personnalisé** (Custom Code) entre un environnement de développement et un environnement de production (dev / prod), séparez du code les valeurs de configuration **non sensibles** : UUID du Workflow cible, adresse d'une API externe ou seuil de traitement. Les **Ressources** sont propres à chaque organisation. Créez dans chacune une Ressource au même chemin relatif, `config/environnement.json`, avec des valeurs différentes. Ces fichiers sont gérés séparément : exporter ou importer un Workflow ne transfère pas ses Ressources.
+
+Par exemple, dans l'organisation de développement, le contenu de `config/environnement.json` peut être :
+
+```json
+{"target_workflow_uuid": "11111111-1111-4111-8111-111111111111", "api_base_url": "https://api-dev.example.com", "seuil": 50}
+```
+
+Dans l'organisation de production, conservez le même chemin avec un contenu propre à la production :
+
+```json
+{"target_workflow_uuid": "22222222-2222-4222-8222-222222222222", "api_base_url": "https://api-prod.example.com", "seuil": 80}
+```
+
+Le même code lit alors la Ressource de l'organisation où le job s'exécute. Définissez **Expression d'entrée** sur `data['montant']`, sans activer **Itérer sur l'entrée** :
+
+```python
+import json
+from pathlib import Path
+
+
+def execute_action(job, input):
+    config = json.loads(Path("resources/config/environnement.json").read_text(encoding="utf-8"))
+    return StepActionType.done, {
+        "depasse_seuil": float(input) > config["seuil"],
+        "workflow_cible": config["target_workflow_uuid"],
+        "api_base_url": config["api_base_url"],
+    }
+```
+
+Les valeurs ci-dessus sont fictives et non sensibles. Vérifiez que la Ressource existe dans chaque organisation avant d'exécuter le Workflow ; les données renvoyées seront visibles dans le job. Pour la lecture des fichiers, voir [Lire une Ressource](#lire-une-ressource).
+
+**Identifiants (credentials) et secrets :** ne confondez pas cette configuration avec un coffre à secrets. Une Ressource est un fichier ordinaire : son contenu peut être consulté ou téléchargé par les personnes autorisées à gérer les Ressources de l'organisation et lu par le Code personnalisé. Il n'est pas masqué comme un secret. Pour un appel avec `requests` à une API externe exigeant un token, une clé API (API key) ou un `client_id` / `client_secret`, ne mettez pas ces identifiants dans cette Ressource de configuration ni en clair dans le code ou les sorties de `print()`. Le module ne propose pas de gestion client de variables d'environnement arbitraires ni de secrets masqués. Si votre intégration nécessite des identifiants, [contactez l'équipe reciTAL](../../contact/nous-contacter.md) pour définir une solution adaptée avant de la déployer ; une Ressource contenant des identifiants reste un fichier consultable, pas un stockage de secrets dédié.
+
+Pour l'authentification aux API reciTAL, utilisez `librecital.Client` uniquement pour l'API Extract prise en charge ici, comme indiqué dans [Utiliser les API reciTAL avec `librecital`](#utiliser-les-api-recital-avec-librecital). Ne transposez pas ce mécanisme à l'API Workflows et ne codez pas de token ou d'adresse interne reciTAL en dur.
+
 ## Utiliser les API reciTAL avec `librecital`
 
 Dans le module **Code personnalisé**, `librecital.Client` permet d'appeler l'API Extract de reciTAL, mais pas l'API Workflows. Ne l'utilisez pas pour appeler l'API des fichiers du job : l'envoi d'un fichier créé localement par cette voie ne fonctionne pas.
