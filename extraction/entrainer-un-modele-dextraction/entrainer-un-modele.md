@@ -12,6 +12,19 @@ Donnez un nom au nouveau modèle ou sélectionnez un modèle précédemment entr
 
 <figure><img src="../../.gitbook/assets/image (109).png" alt="Sélection du modèle d'extraction à entraîner"><figcaption><p>Sélection du modèle d'extraction à entraîner</p></figcaption></figure>
 
+### Choisir les annotations utilisées pour l’entraînement <a href="#choisir-les-annotations-utilisees-pour-lentrainement" id="choisir-les-annotations-utilisees-pour-lentrainement"></a>
+
+Pour un Dataset pré-annoté, le formulaire de lancement propose deux choix :
+
+| Option | Par défaut | Effet |
+| --- | --- | --- |
+| `Utiliser les annotations À valider` | Cochée | Inclut les propositions localisées, sans exiger leur validation préalable. Décochez-la pour les exclure. |
+| `Utiliser les annotations À terminer` | Décochée | Exclut ces propositions par défaut. Si vous la cochez, un avertissement rappelle qu’elles peuvent ne pas avoir de position exacte sur le document. |
+
+Ces choix filtrent les **annotations**, pas les documents entiers. Les annotations validées restent incluses. Une proposition sans texte localisé n’est pas utilisée pour entraîner un modèle d’extraction de texte, même si l’option est cochée ou si elle a été marquée comme validée. Complétez d’abord sa sélection sur le document.
+
+La validation de toutes les propositions n’est donc pas obligatoire pour lancer l’entraînement, mais leur vérification reste essentielle à la qualité du modèle. Voir [Vérifier, corriger, compléter et valider les pré-annotations](annoter-un-dataset.md#verifier-corriger-completer-et-valider).
+
 Chaque entraînement prend entre 30 min et 2 h en fonction du nombre de documents utilisés.
 
 ## Interpréter les résultats
