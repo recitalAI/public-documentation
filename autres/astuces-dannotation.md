@@ -2,7 +2,7 @@
 
 ## La pré-annotation
 
-La pré-annotation propose des annotations à partir d’un modèle d’extraction entraîné ou sur étagère, ou d’un Agent d’extraction. Dans la version 26.8, un **Agent génératif** permet de démarrer sans modèle extractif entraîné ni documents déjà annotés manuellement.
+La pré-annotation propose des annotations à partir d’un modèle d’extraction entraîné ou sur étagère, ou d’un Agent d’extraction. Un **Agent génératif** permet de démarrer sans modèle extractif entraîné ni documents déjà annotés manuellement.
 
 Consultez la [procédure de pré-annotation d’un Dataset](../extraction/entrainer-un-modele-dextraction/annoter-un-dataset.md#pre-annoter-un-dataset-avec-un-agent-generatif) pour choisir la source, gérer les annotations existantes, puis vérifier, compléter et valider les propositions.
 
