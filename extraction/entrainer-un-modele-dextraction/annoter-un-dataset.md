@@ -77,11 +77,11 @@ L’annotation manuelle consiste à sélectionner vous-même les valeurs. La pr�
 3. Ouvrez le menu `Annoter` → `Pré-annoter (automatique)` (ou l’action `Pré-annoter (N)` pour une sélection), puis l’onglet `Agents d'extraction`. Sélectionnez votre Agent. Pour utiliser un modèle, choisissez plutôt l’onglet `Modèles` et sa version.
 4. Avant de lancer, choisissez la `Gestion des conflits` :
 
-| Choix | Effet pour un document et une étiquette |
-| --- | --- |
-| `Toujours remplacer` **(par défaut)** | Remplace les annotations existantes des champs retournés, y compris celles déjà validées. |
-| `Remplacer si vide` | Ajoute des propositions seulement si aucune annotation n’existe pour cette étiquette dans le document. Une annotation existante, même vide ou validée, est conservée. |
-| `Toujours conserver` | Conserve les annotations existantes et ajoute les propositions qui ne recouvrent pas une annotation existante. |
+   | Choix | Effet pour un document et une étiquette |
+   | --- | --- |
+   | `Toujours remplacer` **(par défaut)** | Remplace les annotations existantes des champs retournés, y compris celles déjà validées. |
+   | `Remplacer si vide` | Ajoute des propositions seulement si aucune annotation n’existe pour cette étiquette dans le document. Une annotation existante, même vide ou validée, est conservée. |
+   | `Toujours conserver` | Conserve les annotations existantes et ajoute les propositions qui ne recouvrent pas une annotation existante. |
 
 5. Cliquez sur `Lancer la pré-annotation`. `Annuler` ferme la fenêtre avant le lancement ; cette fenêtre ne propose pas d’annuler un traitement déjà lancé.
 6. Attendez la fin du traitement dans la liste des documents. Les documents en cours affichent un indicateur de chargement, puis redeviennent ouvrables. Un indicateur d’erreur signale un document en échec : ne le considérez pas comme pré-annoté avec succès.
