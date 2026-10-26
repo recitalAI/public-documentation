@@ -2,19 +2,13 @@
 
 ## La pré-annotation
 
-La pré-annotation consiste à intégrer des étiquettes et des annotations en fonction d’un modèle existant. Elle reprend les étiquettes du modèle et les utilise pour déduire les textes à annoter. Elle est disponible lorsque des modèles ont déjà été entraînés, ou avec les modèles sur étagère.
+La pré-annotation propose des annotations à partir d’un modèle d’extraction entraîné ou sur étagère, ou d’un Agent d’extraction. Un **Agent génératif** permet de démarrer sans modèle extractif entraîné ni documents déjà annotés manuellement.
+
+Consultez la [procédure de pré-annotation d’un Dataset](../extraction/entrainer-un-modele-dextraction/annoter-un-dataset.md#pre-annoter-un-dataset-avec-un-agent-generatif) pour choisir la source, gérer les annotations existantes, puis vérifier, compléter et valider les propositions.
 
 {% hint style="warning" %}
-La pré-annotation utilise un modèle d’intelligence artificielle et peut présenter des erreurs. Il est indispensable de vérifier l’exactitude des annotations et de les corriger si besoin est.
+Les propositions de l’IA peuvent être erronées ou incomplètes. Vérifiez les valeurs, leur localisation et chaque occurrence pertinente ; marquer une annotation comme validée ne remplace pas ce contrôle.
 {% endhint %}
-
-Pour pré-annoter le Dataset:&#x20;
-
-* Cliquez sur "Pré-annoter".
-* Sélectionnez le modèle souhaité et cliquez sur "Confirmer". Le modèle importe les étiquettes et annote les documents.
-* Une fois le traitement terminé, les documents sont prêts et pré-annotés.
-
-Il faut alors vérifier et compléter précautionneusement les annotations.
 
 ## Raccourcis d'annotation
 
