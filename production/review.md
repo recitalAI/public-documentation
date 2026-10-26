@@ -28,6 +28,12 @@ Cliquer sur le nom d'un document ouvre l'écran de correction. Il est divisé en
 
 <figure><img src="../.gitbook/assets/production_review_correction.png" alt="Écran de correction : champs à gauche, document à droite"><figcaption>Écran de correction d'un document. Les boutons d'action sont regroupés en haut de la colonne de gauche.</figcaption></figure>
 
+### Document déjà en cours de correction
+
+Dans l'onglet **Extraction**, un document ouvert par un autre correcteur est temporairement verrouillé : il ne peut pas être ouvert depuis la liste pour une correction en parallèle. Si le document est indisponible, corrigez un autre document, puis revenez à la liste pour réessayer.
+
+Le déverrouillage automatique libère l'accès au document ; il ne le valide pas. Ce mécanisme est distinct de la validité du lien de **validation externe**, réglée par **Token valid for … hours**.
+
 ### Naviguer entre les documents
 
 En haut de l'écran :
