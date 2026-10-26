@@ -30,9 +30,12 @@ Cliquer sur le nom d'un document ouvre l'écran de correction. Il est divisé en
 
 ### Document déjà en cours de correction
 
-Dans l'onglet **Extraction**, un document ouvert par un autre correcteur est temporairement verrouillé : il ne peut pas être ouvert depuis la liste pour une correction en parallèle. Si le document est indisponible, corrigez un autre document, puis revenez à la liste pour réessayer.
+Dans les onglets **Classification** et **Extraction**, un document ouvert par un autre correcteur est temporairement verrouillé : il ne peut pas être ouvert depuis la liste pour une correction en parallèle. Si le document est indisponible, corrigez un autre document, puis revenez à la liste pour réessayer.
 
-Le déverrouillage automatique libère l'accès au document ; il ne le valide pas. Ce mécanisme est distinct de la validité du lien de **validation externe**, réglée par **Token valid for … hours**.
+- **Classification** : une échéance est programmée à l'ouverture de la correction. À cette échéance, vous êtes redirigé vers la file de correction, sans alerte préalable (vers la connexion pour une validation externe). Pour reprendre, rouvrez le document s'il est disponible et vérifiez les corrections affichées avant de valider.
+- **Extraction** : le déverrouillage automatique rend le document accessible à un autre correcteur.
+
+Le déverrouillage ne constitue pas une validation du document. Il est distinct de la validité du lien de **validation externe**, réglée par **Token valid for … hours**.
 
 ### Naviguer entre les documents
 
