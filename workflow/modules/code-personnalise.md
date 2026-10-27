@@ -227,6 +227,28 @@ def execute_action(job, input):
 
 Le code peut importer la bibliothèque standard Python (`json`, `csv`, `re`, `datetime`, `pathlib`, etc.). Parmi les bibliothèques tierces utiles présentes dans l'environnement de production figurent `requests` pour appeler des API HTTP externes (par exemple un référentiel de validation ou d'enrichissement), `pandas` pour les tableaux, `openpyxl` pour les classeurs Excel et `PyPDF2` pour les PDF, ainsi que `librecital` pour l'API Extract de reciTAL. Importez seulement ce dont vous avez besoin, par exemple `import requests`. La connexion à un service externe dépend de l'accès réseau disponible vers ce service dans votre environnement ; ne présumez pas que tous les hôtes sont joignables. Cette sélection décrit des outils disponibles, **pas** une garantie que toutes les dépendances de l'environnement sont prises en charge comme API stable. Le traitement dispose actuellement de **60 secondes** pour se terminer. Les fichiers locaux créés pendant l'exécution ne sont pas conservés entre les appels ou les jobs ; renvoyez les données à conserver dans le Workflow.
 
+### Identifier les versions pour écrire du code compatible
+
+Le code, y compris celui proposé par un assistant IA, doit cibler les versions disponibles dans l'environnement où le Workflow s'exécute, et non la dernière version publiée d'une bibliothèque. Pour relever la version exacte de Python et celles des bibliothèques citées dans ce guide, exécutez ce code dans un **job de test** du même environnement, avec **Expression d'entrée** à `None` et sans **Itérer sur l'entrée** :
+
+```python
+import sys
+from importlib.metadata import version
+
+
+def execute_action(job, input):
+    print("Python :", sys.version)
+    for paquet in ("requests", "pandas", "openpyxl", "PyPDF2", "librecital"):
+        print(f"{paquet}=={version(paquet)}")
+    return StepActionType.done, {}
+```
+
+Les versions apparaissent dans l'**historique du job** ; ce code ne renvoie aucune nouvelle donnée métier. `version(...)` attend le nom du paquet installé : pour le PDF, utilisez bien `from PyPDF2 import PdfReader`, comme dans les exemples PDF ci-dessus, et non un exemple destiné à un autre paquet comme `pypdf`.
+
+Conservez ce relevé avec la date, l'environnement et la version reciTAL concernée, puis transmettez ces informations à votre assistant de génération de code. Refaites le relevé après une mise à jour de reciTAL ou avant de réutiliser le code dans un autre environnement. La présence d'un paquet ne garantit pas que toutes ses interfaces sont officiellement prises en charge ; les [limites de `librecital.Client`](#utiliser-les-api-recital-avec-librecital) restent applicables. Ne supposez pas pouvoir installer un paquet supplémentaire ou mettre à niveau les bibliothèques du module : [contactez l'équipe reciTAL](../../contact/nous-contacter.md) pour vérifier la disponibilité et la prise en charge de votre besoin.
+
+### Diagnostiquer un échec
+
 Pour diagnostiquer un échec, consultez l'**historique du job** : les sorties de `print()` et les traces d'erreur Python y sont enregistrées. Une erreur de syntaxe, une exception pendant l'exécution ou un retour mal formé échouent ; un dépassement du délai de 60 secondes interrompt le traitement et produit un message d'erreur. `StepActionType.error` marque aussi l'étape et le job en échec. Corrigez le code ou les données d'entrée avant de relancer le job ; ne comptez pas sur une reprise automatique du code échoué. Évitez d'afficher des données sensibles avec `print()` puisque ses sorties sont conservées dans l'historique.
 
 Pour plus d'aide, [contactez l'équipe reciTAL](../../contact/nous-contacter.md).
