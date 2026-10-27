@@ -225,11 +225,47 @@ def execute_action(job, input):
 
 ## Environnement Python et diagnostic
 
-Le code peut importer la bibliothèque standard Python (`json`, `csv`, `re`, `datetime`, `pathlib`, etc.). Parmi les bibliothèques tierces utiles présentes dans l'environnement de production figurent `requests` pour appeler des API HTTP externes (par exemple un référentiel de validation ou d'enrichissement), `pandas` pour les tableaux, `openpyxl` pour les classeurs Excel et `PyPDF2` pour les PDF, ainsi que `librecital` pour l'API Extract de reciTAL. Importez seulement ce dont vous avez besoin, par exemple `import requests`. La connexion à un service externe dépend de l'accès réseau disponible vers ce service dans votre environnement ; ne présumez pas que tous les hôtes sont joignables. Cette sélection décrit des outils disponibles, **pas** une garantie que toutes les dépendances de l'environnement sont prises en charge comme API stable. Le traitement dispose actuellement de **60 secondes** pour se terminer. Les fichiers locaux créés pendant l'exécution ne sont pas conservés entre les appels ou les jobs ; renvoyez les données à conserver dans le Workflow.
+Pour les besoins courants, utilisez `requests` pour appeler des API HTTP externes (par exemple un référentiel de validation ou d'enrichissement), `pandas` pour les tableaux, `openpyxl` pour les classeurs Excel et `PyPDF2` pour les PDF, ainsi que `librecital` pour l'API Extract de reciTAL. Importez seulement ce dont vous avez besoin, par exemple `import requests`. La connexion à un service externe dépend de l'accès réseau disponible vers ce service dans votre environnement ; ne présumez pas que tous les hôtes sont joignables. Le traitement dispose actuellement de **60 secondes** pour se terminer. Les fichiers locaux créés pendant l'exécution ne sont pas conservés entre les appels ou les jobs ; renvoyez les données à conserver dans le Workflow.
 
-### Identifier les versions pour écrire du code compatible
+### Python et bibliothèque standard
 
-Le code, y compris celui proposé par un assistant IA, doit cibler les versions disponibles dans l'environnement où le Workflow s'exécute, et non la dernière version publiée d'une bibliothèque. Pour relever la version exacte de Python et celles des bibliothèques citées dans ce guide, exécutez ce code dans un **job de test** du même environnement, avec **Expression d'entrée** à `None` et sans **Itérer sur l'entrée** :
+La version reciTAL **v26.8.32** est construite pour **Python 3.11**. La [bibliothèque standard Python 3.11](https://docs.python.org/3.11/library/index.html) est disponible, notamment `json`, `csv`, `re`, `datetime` et `pathlib`. Pour analyser un message électronique au format binaire, vous pouvez par exemple utiliser `from email.parser import BytesParser`, sans bibliothèque tierce.
+
+### Référence des bibliothèques tierces — v26.8.32
+
+Cette sélection concerne le module **Code personnalisé** de la version reciTAL **v26.8.32**. Les versions exactes ci-dessous sont celles verrouillées pour sa construction, **pas un relevé de votre environnement d'exécution**. Elles ne sont pas garanties pour une autre version reciTAL ou un autre environnement ; les mises à jour, notamment de sécurité, peuvent les modifier. Pour confirmer votre environnement et la version corrective exacte de Python (`3.11.x`), utilisez le [diagnostic des versions](#identifier-les-versions-disponibles).
+
+| Paquet — documentation officielle | Import Python | Version de référence | Usage courant |
+| --- | --- | --- | --- |
+| [Jinja2](https://jinja.palletsprojects.com/en/stable/) | `jinja2` | `3.1.2` | Produire du texte à partir de modèles. |
+| [Pillow](https://pillow.readthedocs.io/en/stable/) | `PIL` | `10.2.0` | Lire et transformer des images. |
+| [PyPDF2](https://pypdf2.readthedocs.io/en/3.x/) | `PyPDF2` | `2.10.6` | Lire des PDF et extraire leur texte, comme dans les exemples ci-dessus. |
+| [Shapely](https://shapely.readthedocs.io/en/maint-1.8/manual.html) | `shapely` | `1.7.1` | Manipuler des géométries et leurs intersections. |
+| [beautifulsoup4 (Beautiful Soup)](https://www.crummy.com/software/BeautifulSoup/bs4/doc/) | `bs4` | `4.11.2` | Extraire des informations d'un document HTML. |
+| [cryptography](https://cryptography.io/en/42.0.7/) | `cryptography` | `42.0.7` | Utiliser des primitives cryptographiques. |
+| [numpy](https://numpy.org/doc/1.24/) | `numpy` | `1.24.4` | Calculer sur des tableaux numériques. |
+| [opencv-python-headless](https://docs.opencv.org/4.7.0/) | `cv2` | `4.7.0.72` | Traiter des images sans interface graphique. |
+| [openpyxl](https://openpyxl.readthedocs.io/en/3.1.2/) | `openpyxl` | `3.1.2` | Lire et écrire des classeurs Excel `.xlsx`. |
+| [pandas](https://pandas.pydata.org/pandas-docs/version/2.0.3/) | `pandas` | `2.0.3` | Transformer et rapprocher des données tabulaires. |
+| [pdf2image](https://pdf2image.readthedocs.io/en/latest/) | `pdf2image` | `1.14.0` | Convertir des PDF en images, sous réserve de la disponibilité de Poppler. |
+| [pikepdf](https://pikepdf.readthedocs.io/en/stable/) | `pikepdf` | `8.15.1` | Manipuler la structure et les pages d'un PDF. |
+| [pyarrow](https://arrow.apache.org/docs/15.0/python/) | `pyarrow` | `15.0.2` | Lire et écrire des données au format Parquet ou Arrow. |
+| [rapidfuzz](https://rapidfuzz.github.io/RapidFuzz/) | `rapidfuzz` | `3.9.7` | Comparer des textes par similarité. |
+| [requests](https://requests.readthedocs.io/en/latest/) | `requests` | `2.31.0` | Appeler un service HTTP externe. |
+| [scikit-image](https://scikit-image.org/docs/0.19.x/) | `skimage` | `0.19.3` | Analyser et transformer des images. |
+| [scikit-learn](https://scikit-learn.org/1.7/) | `sklearn` | `1.7.2` | Appliquer des traitements statistiques et des modèles d'apprentissage. |
+| [scipy](https://docs.scipy.org/doc/scipy-1.9.3/) | `scipy` | `1.9.3` | Effectuer des calculs scientifiques et statistiques. |
+| [xlrd](https://xlrd.readthedocs.io/en/latest/) | `xlrd` | `2.0.1` | Lire les anciens classeurs Excel `.xls`, pas les `.xlsx`. |
+
+Le nom du paquet installé n'est pas toujours son nom d'import : Beautiful Soup est fourni par `beautifulsoup4` et s'importe avec `bs4`. Les documentations officielles liées peuvent décrire une autre version ; adaptez leurs exemples à la version de référence, sans supposer que les API plus récentes sont disponibles.
+
+Cette sélection ne rend pas toutes les dépendances installées ni toutes leurs interfaces officiellement prises en charge. Certaines opérations exigent aussi des exécutables, des données ou des accès réseau qui ne sont pas nécessairement disponibles dans le module : importer une bibliothèque ne suffit pas à garantir ces opérations. C'est notamment le cas de `pdf2image`, qui dépend des outils Poppler ; vérifiez ce besoin avec l'équipe reciTAL avant de l'utiliser.
+
+Le client reciTAL **`librecital`** est documenté séparément : sa version de construction pour **v26.8.32** est **`26.8.32`**, son import est `librecital` et son usage reste limité à l'[API Extract, pas à l'API Workflows](#utiliser-les-api-recital-avec-librecital).
+
+### Identifier les versions disponibles
+
+Le code, y compris celui proposé par un assistant IA, doit cibler les versions disponibles dans l'environnement où le Workflow s'exécute, et non la dernière version publiée d'une bibliothèque. Pour relever la version exacte de Python et celles de quelques bibliothèques utilisées dans ce guide, exécutez ce code dans un **job de test** du même environnement, avec **Expression d'entrée** à `None` et sans **Itérer sur l'entrée** :
 
 ```python
 import sys
