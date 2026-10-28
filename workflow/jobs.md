@@ -22,7 +22,15 @@ Un job permet de :
 
 Les jobs de Workflow font l'objet d'une suppression automatique liée à leur durée de conservation (rétention). L'âge d'un job est calculé depuis sa **date de création**, et non depuis son passage à l'état **Done** ou en erreur.
 
-La suppression devient applicable dès que le job atteint **le délai prévu pour son statut ou une limite globale d'âge, selon celui qui est atteint en premier**. La limite globale concerne tous les jobs, même ceux encore en cours : un délai plus long pour un statut ne repousse pas cette échéance. Le nettoyage n'est pas nécessairement immédiat à l'échéance. Pour connaître les délais applicables à vos jobs, contactez l'équipe reciTAL.
+| Statut du job | Délai de conservation depuis la création |
+| --- | --- |
+| Terminé avec succès | 7 jours |
+| En erreur | 14 jours |
+| En cours | 14 jours |
+
+La suppression devient applicable dès que le job atteint **le délai prévu pour son statut ou la limite globale de 14 jours, selon celui qui est atteint en premier**. Cette limite globale concerne tous les jobs, quel que soit leur statut, même ceux encore en cours : un délai plus long pour un statut ne repousse pas cette échéance.
+
+La suppression est **asynchrone** : ces délais rendent le job éligible au nettoyage, sans garantir sa suppression à un instant précis.
 
 Après suppression, le job et ses données ne sont plus consultables dans **Jobs** : historique des étapes, logs associés et fichiers originaux ou générés ne sont plus accessibles depuis ce job. Le nettoyage peut aussi viser les documents d'extraction ou de classification référencés dans les données du job. Cela ne constitue pas une garantie d'effacement de toutes les copies dans les autres services ou systèmes destinataires.
 
