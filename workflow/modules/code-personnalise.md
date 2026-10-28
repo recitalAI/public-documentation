@@ -233,7 +233,7 @@ Le module **Code personnalisé** utilise **Python 3.11** en production. La [bibl
 
 ### Référence des bibliothèques tierces — v26.8.32
 
-Cette référence concerne le module **Code personnalisé** en production avec reciTAL **v26.8.32**. Le tableau indique les versions issues des dépendances verrouillées de cette version de production. Elles peuvent changer lors des mises à jour, notamment de sécurité : ne les considérez pas comme des garanties permanentes ni comme une référence pour un autre environnement. Pour diagnostiquer un écart, utilisez le [diagnostic des versions](#identifier-les-versions-disponibles).
+Cette référence concerne le module **Code personnalisé** en production avec reciTAL **v26.8.32**. Le tableau indique les versions issues des dépendances verrouillées de cette version de production. Elles peuvent changer lors des mises à jour, notamment de sécurité : ne les considérez pas comme des garanties permanentes ni comme une référence pour un autre environnement. Pour diagnostiquer un écart, utilisez le [diagnostic des versions](#identifier-les-versions-sur-une-ancienne-version-de-recital).
 
 | Paquet — documentation officielle | Import Python | Version de référence | Usage courant |
 | --- | --- | --- | --- |
@@ -260,25 +260,28 @@ Le nom du paquet installé n'est pas toujours son nom d'import : Beautiful Soup 
 
 Cette sélection ne rend pas toutes les dépendances installées ni toutes leurs interfaces officiellement prises en charge. Les opérations dépendant de données, d'exécutables ou d'un service externe nécessitent que ces ressources soient accessibles depuis le module.
 
-### Identifier les versions disponibles
+### Identifier les versions sur une ancienne version de reciTAL
 
-Le code, y compris celui proposé par un assistant IA, doit cibler les versions disponibles dans l'environnement où le Workflow s'exécute, et non la dernière version publiée d'une bibliothèque. Pour relever la version exacte de Python et celles de quelques bibliothèques utilisées dans ce guide, exécutez ce code dans un **job de test de votre environnement de production**, avec **Expression d'entrée** à `None` et sans **Itérer sur l'entrée** :
+Le tableau ci-dessus est la référence officielle pour la version reciTAL indiquée dans cette documentation. Si votre environnement utilise une version antérieure, les bibliothèques disponibles et leurs versions peuvent différer. Vous pouvez alors utiliser ce **diagnostic facultatif** pour relever la version de Python et celle de quelques paquets. Exécutez-le dans un **job de test** du module **Code personnalisé** de votre environnement, avec **Expression d'entrée** à `None` et sans **Itérer sur l'entrée** :
 
 ```python
 import sys
-from importlib.metadata import version
+from importlib.metadata import PackageNotFoundError, version
 
 
 def execute_action(job, input):
     print("Python :", sys.version)
     for paquet in ("requests", "pandas", "openpyxl", "PyPDF2", "librecital"):
-        print(f"{paquet}=={version(paquet)}")
+        try:
+            print(f"{paquet}=={version(paquet)}")
+        except PackageNotFoundError:
+            print(f"{paquet} : non installé")
     return StepActionType.done, {}
 ```
 
-Les versions apparaissent dans l'**historique du job** ; ce code ne renvoie aucune nouvelle donnée métier. `version(...)` attend le nom du paquet installé : pour le PDF, utilisez bien `from PyPDF2 import PdfReader`, comme dans les exemples PDF ci-dessus, et non un exemple destiné à un autre paquet comme `pypdf`.
+Les résultats apparaissent dans l'**historique du job** : chaque paquet est indiqué avec sa version, ou comme `non installé` s'il est absent. Ce code ne renvoie aucune nouvelle donnée métier. Vous pouvez transmettre ce relevé à votre assistant de génération de code pour adapter ses exemples à votre ancienne version de reciTAL.
 
-Conservez ce relevé avec la date, l'environnement et la version reciTAL concernée, puis transmettez ces informations à votre assistant de génération de code. Refaites le relevé après une mise à jour de reciTAL ou avant de réutiliser le code dans un autre environnement. La présence d'un paquet ne garantit pas que toutes ses interfaces sont officiellement prises en charge ; les [limites de `librecital.Client`](#utiliser-les-api-recital-avec-librecital) restent applicables. Ne supposez pas pouvoir installer un paquet supplémentaire ou mettre à niveau les bibliothèques du module : [contactez l'équipe reciTAL](../../contact/nous-contacter.md) pour vérifier la disponibilité et la prise en charge de votre besoin.
+La présence d'un paquet ne garantit pas que toutes ses interfaces sont officiellement prises en charge ; les [limites de `librecital.Client`](#utiliser-les-api-recital-avec-librecital) restent applicables. Ne supposez pas pouvoir installer un paquet supplémentaire ou mettre à niveau les bibliothèques du module : [contactez l'équipe reciTAL](../../contact/nous-contacter.md) pour vérifier la disponibilité et la prise en charge de votre besoin.
 
 ### Diagnostiquer un échec
 
