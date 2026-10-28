@@ -229,11 +229,11 @@ Pour les besoins courants, utilisez `requests` pour appeler des API HTTP externe
 
 ### Python et bibliothèque standard
 
-La version reciTAL **v26.8.32** est construite pour **Python 3.11**. La [bibliothèque standard Python 3.11](https://docs.python.org/3.11/library/index.html) est disponible, notamment `json`, `csv`, `re`, `datetime` et `pathlib`. Pour analyser un message électronique au format binaire, vous pouvez par exemple utiliser `from email.parser import BytesParser`, sans bibliothèque tierce.
+Le module **Code personnalisé** utilise **Python 3.11** en production. La [bibliothèque standard Python 3.11](https://docs.python.org/3.11/library/index.html) est disponible, notamment `json`, `csv`, `re`, `datetime` et `pathlib`. Pour analyser un message électronique au format binaire, vous pouvez par exemple utiliser `from email.parser import BytesParser`, sans bibliothèque tierce.
 
 ### Référence des bibliothèques tierces — v26.8.32
 
-Cette sélection concerne le module **Code personnalisé** de la version reciTAL **v26.8.32**. Les versions exactes ci-dessous sont celles verrouillées pour sa construction, **pas un relevé de votre environnement d'exécution**. Elles ne sont pas garanties pour une autre version reciTAL ou un autre environnement ; les mises à jour, notamment de sécurité, peuvent les modifier. Pour confirmer votre environnement et la version corrective exacte de Python (`3.11.x`), utilisez le [diagnostic des versions](#identifier-les-versions-disponibles).
+Cette référence concerne le module **Code personnalisé** en production avec reciTAL **v26.8.32**. Le tableau indique les versions issues des dépendances verrouillées de cette version de production. Elles peuvent changer lors des mises à jour, notamment de sécurité : ne les considérez pas comme des garanties permanentes ni comme une référence pour un autre environnement. Pour diagnostiquer un écart, utilisez le [diagnostic des versions](#identifier-les-versions-disponibles).
 
 | Paquet — documentation officielle | Import Python | Version de référence | Usage courant |
 | --- | --- | --- | --- |
@@ -247,7 +247,6 @@ Cette sélection concerne le module **Code personnalisé** de la version reciTAL
 | [opencv-python-headless](https://docs.opencv.org/4.7.0/) | `cv2` | `4.7.0.72` | Traiter des images sans interface graphique. |
 | [openpyxl](https://openpyxl.readthedocs.io/en/3.1.2/) | `openpyxl` | `3.1.2` | Lire et écrire des classeurs Excel `.xlsx`. |
 | [pandas](https://pandas.pydata.org/pandas-docs/version/2.0.3/) | `pandas` | `2.0.3` | Transformer et rapprocher des données tabulaires. |
-| [pdf2image](https://pdf2image.readthedocs.io/en/latest/) | `pdf2image` | `1.14.0` | Convertir des PDF en images, sous réserve de la disponibilité de Poppler. |
 | [pikepdf](https://pikepdf.readthedocs.io/en/stable/) | `pikepdf` | `8.15.1` | Manipuler la structure et les pages d'un PDF. |
 | [pyarrow](https://arrow.apache.org/docs/15.0/python/) | `pyarrow` | `15.0.2` | Lire et écrire des données au format Parquet ou Arrow. |
 | [rapidfuzz](https://rapidfuzz.github.io/RapidFuzz/) | `rapidfuzz` | `3.9.7` | Comparer des textes par similarité. |
@@ -259,13 +258,11 @@ Cette sélection concerne le module **Code personnalisé** de la version reciTAL
 
 Le nom du paquet installé n'est pas toujours son nom d'import : Beautiful Soup est fourni par `beautifulsoup4` et s'importe avec `bs4`. Les documentations officielles liées peuvent décrire une autre version ; adaptez leurs exemples à la version de référence, sans supposer que les API plus récentes sont disponibles.
 
-Cette sélection ne rend pas toutes les dépendances installées ni toutes leurs interfaces officiellement prises en charge. Certaines opérations exigent aussi des exécutables, des données ou des accès réseau qui ne sont pas nécessairement disponibles dans le module : importer une bibliothèque ne suffit pas à garantir ces opérations. C'est notamment le cas de `pdf2image`, qui dépend des outils Poppler ; vérifiez ce besoin avec l'équipe reciTAL avant de l'utiliser.
-
-Le client reciTAL **`librecital`** est documenté séparément : sa version de construction pour **v26.8.32** est **`26.8.32`**, son import est `librecital` et son usage reste limité à l'[API Extract, pas à l'API Workflows](#utiliser-les-api-recital-avec-librecital).
+Cette sélection ne rend pas toutes les dépendances installées ni toutes leurs interfaces officiellement prises en charge. Les opérations dépendant de données, d'exécutables ou d'un service externe nécessitent que ces ressources soient accessibles depuis le module.
 
 ### Identifier les versions disponibles
 
-Le code, y compris celui proposé par un assistant IA, doit cibler les versions disponibles dans l'environnement où le Workflow s'exécute, et non la dernière version publiée d'une bibliothèque. Pour relever la version exacte de Python et celles de quelques bibliothèques utilisées dans ce guide, exécutez ce code dans un **job de test** du même environnement, avec **Expression d'entrée** à `None` et sans **Itérer sur l'entrée** :
+Le code, y compris celui proposé par un assistant IA, doit cibler les versions disponibles dans l'environnement où le Workflow s'exécute, et non la dernière version publiée d'une bibliothèque. Pour relever la version exacte de Python et celles de quelques bibliothèques utilisées dans ce guide, exécutez ce code dans un **job de test de votre environnement de production**, avec **Expression d'entrée** à `None` et sans **Itérer sur l'entrée** :
 
 ```python
 import sys
