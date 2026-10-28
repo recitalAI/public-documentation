@@ -20,7 +20,9 @@ Un job permet de :
 
 ## Conservation et suppression des jobs
 
-Les jobs de Workflow font l'objet d'une suppression automatique liée à leur durée de conservation (rétention). L'âge d'un job est calculé depuis sa **date de création**, et non depuis son passage à l'état **Done** ou en erreur. La suppression ne concerne pas uniquement les jobs terminés : un job encore en cours peut aussi être concerné. Pour connaître les délais applicables à vos jobs, contactez l'équipe reciTAL.
+Les jobs de Workflow font l'objet d'une suppression automatique liée à leur durée de conservation (rétention). L'âge d'un job est calculé depuis sa **date de création**, et non depuis son passage à l'état **Done** ou en erreur.
+
+La suppression devient applicable dès que le job atteint **le délai prévu pour son statut ou une limite globale d'âge, selon celui qui est atteint en premier**. La limite globale concerne tous les jobs, même ceux encore en cours : un délai plus long pour un statut ne repousse pas cette échéance. Le nettoyage n'est pas nécessairement immédiat à l'échéance. Pour connaître les délais applicables à vos jobs, contactez l'équipe reciTAL.
 
 Après suppression, le job et ses données ne sont plus consultables dans **Jobs** : historique des étapes, logs associés et fichiers originaux ou générés ne sont plus accessibles depuis ce job. Le nettoyage peut aussi viser les documents d'extraction ou de classification référencés dans les données du job. Cela ne constitue pas une garantie d'effacement de toutes les copies dans les autres services ou systèmes destinataires.
 
