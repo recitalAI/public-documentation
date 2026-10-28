@@ -22,6 +22,8 @@ Un job permet de :
 
 Les jobs de Workflow font l'objet d'une suppression automatique liée à leur durée de conservation (rétention). L'âge d'un job est calculé depuis sa **date de création**, et non depuis son passage à l'état **Done** ou en erreur.
 
+Relancer un job avec **Restart** ne modifie pas sa date de création : la durée de conservation de ce job continue à courir depuis sa création initiale, et non depuis sa relance.
+
 | Statut du job | Délai de conservation depuis la création |
 | --- | --- |
 | Terminé avec succès | 7 jours |
