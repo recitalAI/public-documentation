@@ -225,7 +225,65 @@ def execute_action(job, input):
 
 ## Environnement Python et diagnostic
 
-Le code peut importer la bibliothèque standard Python (`json`, `csv`, `re`, `datetime`, `pathlib`, etc.). Parmi les bibliothèques tierces utiles présentes dans l'environnement de production figurent `requests` pour appeler des API HTTP externes (par exemple un référentiel de validation ou d'enrichissement), `pandas` pour les tableaux, `openpyxl` pour les classeurs Excel et `PyPDF2` pour les PDF, ainsi que `librecital` pour l'API Extract de reciTAL. Importez seulement ce dont vous avez besoin, par exemple `import requests`. La connexion à un service externe dépend de l'accès réseau disponible vers ce service dans votre environnement ; ne présumez pas que tous les hôtes sont joignables. Cette sélection décrit des outils disponibles, **pas** une garantie que toutes les dépendances de l'environnement sont prises en charge comme API stable. Le traitement dispose actuellement de **60 secondes** pour se terminer. Les fichiers locaux créés pendant l'exécution ne sont pas conservés entre les appels ou les jobs ; renvoyez les données à conserver dans le Workflow.
+Pour les besoins courants, utilisez `requests` pour appeler des API HTTP externes (par exemple un référentiel de validation ou d'enrichissement), `pandas` pour les tableaux, `openpyxl` pour les classeurs Excel et `PyPDF2` pour les PDF, ainsi que `librecital` pour l'API Extract de reciTAL. Importez seulement ce dont vous avez besoin, par exemple `import requests`. La connexion à un service externe dépend de l'accès réseau disponible vers ce service dans votre environnement ; ne présumez pas que tous les hôtes sont joignables. Le traitement dispose actuellement de **60 secondes** pour se terminer. Les fichiers locaux créés pendant l'exécution ne sont pas conservés entre les appels ou les jobs ; renvoyez les données à conserver dans le Workflow.
+
+### Python et bibliothèque standard
+
+Le module **Code personnalisé** utilise **Python 3.11** en production. La [bibliothèque standard Python 3.11](https://docs.python.org/3.11/library/index.html) est disponible, notamment `json`, `csv`, `re`, `datetime` et `pathlib`. Pour analyser un message électronique au format binaire, vous pouvez par exemple utiliser `from email.parser import BytesParser`, sans bibliothèque tierce.
+
+### Référence des bibliothèques tierces — v26.8.36
+
+Cette référence concerne le module **Code personnalisé** en production avec reciTAL **v26.8.36**. Le tableau indique les versions issues des dépendances verrouillées de cette version de production. Elles peuvent changer lors des mises à jour, notamment de sécurité : ne les considérez pas comme des garanties permanentes ni comme une référence pour un autre environnement. Pour diagnostiquer un écart, utilisez le [diagnostic des versions](#identifier-les-versions-sur-une-ancienne-version-de-recital).
+
+| Paquet — documentation officielle | Import Python | Version de référence | Usage courant |
+| --- | --- | --- | --- |
+| [Jinja2](https://jinja.palletsprojects.com/en/stable/) | `jinja2` | `3.1.2` | Produire du texte à partir de modèles. |
+| [Pillow](https://pillow.readthedocs.io/en/stable/) | `PIL` | `10.2.0` | Lire et transformer des images. |
+| [PyPDF2](https://pypdf2.readthedocs.io/en/3.x/) | `PyPDF2` | `2.10.6` | Lire des PDF et extraire leur texte, comme dans les exemples ci-dessus. |
+| [Shapely](https://shapely.readthedocs.io/en/maint-1.8/manual.html) | `shapely` | `1.7.1` | Manipuler des géométries et leurs intersections. |
+| [beautifulsoup4 (Beautiful Soup)](https://www.crummy.com/software/BeautifulSoup/bs4/doc/) | `bs4` | `4.11.2` | Extraire des informations d'un document HTML. |
+| [cryptography](https://cryptography.io/en/42.0.7/) | `cryptography` | `42.0.7` | Utiliser des primitives cryptographiques. |
+| [numpy](https://numpy.org/doc/1.24/) | `numpy` | `1.24.4` | Calculer sur des tableaux numériques. |
+| [opencv-python-headless](https://docs.opencv.org/4.7.0/) | `cv2` | `4.7.0.72` | Traiter des images sans interface graphique. |
+| [openpyxl](https://openpyxl.readthedocs.io/en/3.1.2/) | `openpyxl` | `3.1.2` | Lire et écrire des classeurs Excel `.xlsx`. |
+| [pandas](https://pandas.pydata.org/pandas-docs/version/2.0.3/) | `pandas` | `2.0.3` | Transformer et rapprocher des données tabulaires. |
+| [pikepdf](https://pikepdf.readthedocs.io/en/stable/) | `pikepdf` | `8.15.1` | Manipuler la structure et les pages d'un PDF. |
+| [pyarrow](https://arrow.apache.org/docs/15.0/python/) | `pyarrow` | `15.0.2` | Lire et écrire des données au format Parquet ou Arrow. |
+| [rapidfuzz](https://rapidfuzz.github.io/RapidFuzz/) | `rapidfuzz` | `3.9.7` | Comparer des textes par similarité. |
+| [requests](https://requests.readthedocs.io/en/latest/) | `requests` | `2.31.0` | Appeler un service HTTP externe. |
+| [scikit-image](https://scikit-image.org/docs/0.19.x/) | `skimage` | `0.19.3` | Analyser et transformer des images. |
+| [scikit-learn](https://scikit-learn.org/1.7/) | `sklearn` | `1.7.2` | Appliquer des traitements statistiques et des modèles d'apprentissage. |
+| [scipy](https://docs.scipy.org/doc/scipy-1.9.3/) | `scipy` | `1.9.3` | Effectuer des calculs scientifiques et statistiques. |
+| [xlrd](https://xlrd.readthedocs.io/en/latest/) | `xlrd` | `2.0.1` | Lire les anciens classeurs Excel `.xls`, pas les `.xlsx`. |
+
+Le nom du paquet installé n'est pas toujours son nom d'import : Beautiful Soup est fourni par `beautifulsoup4` et s'importe avec `bs4`. Les documentations officielles liées peuvent décrire une autre version ; adaptez leurs exemples à la version de référence, sans supposer que les API plus récentes sont disponibles.
+
+Cette sélection ne rend pas toutes les dépendances installées ni toutes leurs interfaces officiellement prises en charge. Les opérations dépendant de données, d'exécutables ou d'un service externe nécessitent que ces ressources soient accessibles depuis le module.
+
+### Identifier les versions sur une ancienne version de reciTAL
+
+Le tableau ci-dessus est la référence officielle pour la version reciTAL indiquée dans cette documentation. Si votre environnement utilise une version antérieure, les bibliothèques disponibles et leurs versions peuvent différer. Vous pouvez alors utiliser ce **diagnostic facultatif** pour relever la version de Python et celle de quelques paquets. Exécutez-le dans un **job de test** du module **Code personnalisé** de votre environnement, avec **Expression d'entrée** à `None` et sans **Itérer sur l'entrée** :
+
+```python
+import sys
+from importlib.metadata import PackageNotFoundError, version
+
+
+def execute_action(job, input):
+    print("Python :", sys.version)
+    for paquet in ("requests", "pandas", "openpyxl", "PyPDF2", "librecital"):
+        try:
+            print(f"{paquet}=={version(paquet)}")
+        except PackageNotFoundError:
+            print(f"{paquet} : non installé")
+    return StepActionType.done, {}
+```
+
+Les résultats apparaissent dans l'**historique du job** : chaque paquet est indiqué avec sa version, ou comme `non installé` s'il est absent. Ce code ne renvoie aucune nouvelle donnée métier. Vous pouvez transmettre ce relevé à votre assistant de génération de code pour adapter ses exemples à votre ancienne version de reciTAL.
+
+La présence d'un paquet ne garantit pas que toutes ses interfaces sont officiellement prises en charge ; les [limites de `librecital.Client`](#utiliser-les-api-recital-avec-librecital) restent applicables. Ne supposez pas pouvoir installer un paquet supplémentaire ou mettre à niveau les bibliothèques du module : [contactez l'équipe reciTAL](../../contact/nous-contacter.md) pour vérifier la disponibilité et la prise en charge de votre besoin.
+
+### Diagnostiquer un échec
 
 Pour diagnostiquer un échec, consultez l'**historique du job** : les sorties de `print()` et les traces d'erreur Python y sont enregistrées. Une erreur de syntaxe, une exception pendant l'exécution ou un retour mal formé échouent ; un dépassement du délai de 60 secondes interrompt le traitement et produit un message d'erreur. `StepActionType.error` marque aussi l'étape et le job en échec. Corrigez le code ou les données d'entrée avant de relancer le job ; ne comptez pas sur une reprise automatique du code échoué. Évitez d'afficher des données sensibles avec `print()` puisque ses sorties sont conservées dans l'historique.
 
