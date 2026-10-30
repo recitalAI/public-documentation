@@ -231,9 +231,9 @@ Pour les besoins courants, utilisez `requests` pour appeler des API HTTP externe
 
 Le module **Code personnalisé** utilise **Python 3.11** en production. La [bibliothèque standard Python 3.11](https://docs.python.org/3.11/library/index.html) est disponible, notamment `json`, `csv`, `re`, `datetime` et `pathlib`. Pour analyser un message électronique au format binaire, vous pouvez par exemple utiliser `from email.parser import BytesParser`, sans bibliothèque tierce.
 
-### Référence des bibliothèques tierces — v26.8.32
+### Référence des bibliothèques tierces — v26.8.36
 
-Cette référence concerne le module **Code personnalisé** en production avec reciTAL **v26.8.32**. Le tableau indique les versions issues des dépendances verrouillées de cette version de production. Elles peuvent changer lors des mises à jour, notamment de sécurité : ne les considérez pas comme des garanties permanentes ni comme une référence pour un autre environnement. Pour diagnostiquer un écart, utilisez le [diagnostic des versions](#identifier-les-versions-sur-une-ancienne-version-de-recital).
+Cette référence concerne le module **Code personnalisé** en production avec reciTAL **v26.8.36**. Le tableau indique les versions issues des dépendances verrouillées de cette version de production. Elles peuvent changer lors des mises à jour, notamment de sécurité : ne les considérez pas comme des garanties permanentes ni comme une référence pour un autre environnement. Pour diagnostiquer un écart, utilisez le [diagnostic des versions](#identifier-les-versions-sur-une-ancienne-version-de-recital).
 
 | Paquet — documentation officielle | Import Python | Version de référence | Usage courant |
 | --- | --- | --- | --- |
