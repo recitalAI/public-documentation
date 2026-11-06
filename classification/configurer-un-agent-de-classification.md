@@ -34,6 +34,8 @@ Renseigner un nom, puis sélectionner le modèle de classification à utiliser. 
 
 ## Voir aussi
 
+- [Valider un Agent de classification](valider-un-agent-de-classification.md) — consulter les documents et les actions de validation de l'Agent.
+
 - [Entraîner un modèle de classification](entrainer-un-modele-de-classification/entrainement-du-modele.md)
 - [Les modules de Workflow](../workflow/les-modules-workflow.md) — module *Documents classification agent*
 - [Structure des résultats de classification](../integration-api/classification/structure-des-resultats-de-classification.md)
