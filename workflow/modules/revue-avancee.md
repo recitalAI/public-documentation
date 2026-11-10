@@ -21,7 +21,7 @@ L'objet sélectionné par l'expression d'entrée peut contenir les propriétés 
 | `values` | Liste des valeurs à contrôler ou corriger. Elle peut notamment provenir des valeurs d'une étape **Extraction**. |
 | `due_date` | Date d'échéance de la revue, au format date et heure, si elle est fournie. |
 
-Cet objet de revue ne doit pas être confondu avec la **sortie complète d'une étape Extraction** : celle-ci contient une enveloppe avec notamment `doctype`, `job` et `result`. Dans cette dernière, les valeurs extraites sont sous `result.values`. Consultez la [structure des résultats d'Extraction](../../integration-api/extraction/structure-des-resultats-dextraction.md) pour le détail des champs et de leurs valeurs.
+Dans la configuration d'entrée manuelle décrite ici, cet objet de revue ne doit pas être confondu avec la **sortie complète d'une étape Extraction** : celle-ci contient une enveloppe avec notamment `doctype`, `job` et `result`. Dans cette dernière, les valeurs extraites sont sous `result.values`. Consultez la [structure des résultats d'Extraction](../../integration-api/extraction/structure-des-resultats-dextraction.md) pour le détail des champs et de leurs valeurs.
 
 Exemple de données d'entrée :
 
@@ -53,7 +53,6 @@ Exemple de données d'entrée :
 Si une étape **Extraction** enregistre sa sortie sous la clé `extract`, l'expression `data['extract']['result']['values']` sélectionne la liste des valeurs extraites. Dans la configuration décrite ici, renseignez-la dans **Values expression** pour alimenter les valeurs initiales de la revue.
 
 Cette expression ne désigne **pas** l'objet de revue complet : la référence du document et les autres informations nécessaires sont à renseigner par l'objet d'entrée ou par les expressions dédiées. Adaptez `extract` si vous avez choisi une autre **Clé de sortie** dans votre Workflow.
-
 
 ## Résultat
 
