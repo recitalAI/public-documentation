@@ -7,7 +7,7 @@ description: Tester les modes Classification simple et Déliassage d'un Agent, p
 Valider un [Agent de classification](configurer-un-agent-de-classification.md) consiste ici à lui envoyer des documents de test, examiner les catégories prédites et corriger les résultats si nécessaire. L'onglet **Documents** de l'Agent affiche ces tests ; il ne s'agit pas de la liste des documents à traiter en Review de production.
 
 {% hint style="warning" %}
-**Documentation en cours de vérification — ne pas publier cette page en l'état.** Le parcours ci-dessous est vérifié dans le code de la version `26.8.38`, mais la version déployée sur l'environnement du client reste à confirmer. Les libellés et le parcours doivent également être contrôlés dans cette application avant publication.
+**Documentation en cours de vérification — ne pas publier cette page en l'état.** Le parcours ci-dessous est vérifié dans le code de la version `26.8.38`, mais la version déployée sur l'environnement du client reste à confirmer. La correspondance entre cette version, les libellés et le parcours de l'environnement client doit être confirmée avant publication.
 {% endhint %}
 
 ## Accéder à l'onglet Documents
@@ -58,8 +58,6 @@ Après un test de classification simple ou de déliassage, attendez la fin du tr
 3. Pour une liasse, vérifiez aussi les groupes de pages correspondant aux sous-documents. L'action **Séparer toutes les pages en groupes individuels** permet de dissocier un groupe avant d'attribuer des catégories différentes à ses pages.
 4. Désélectionnez les pages si nécessaire pour retrouver le bouton **Soumettre**, puis cliquez dessus. Si l'Agent exige une catégorie autre que **Unknown**, attribuez une catégorie aux pages ou au document encore classés **Unknown** pour pouvoir soumettre.
 5. Après soumission, vous revenez à l'onglet **Documents** de l'Agent. Les catégories corrigées et la validation du document sont enregistrées.
-
-Pour rejeter le fichier entier plutôt que valider ses catégories, désélectionnez toutes les pages, cliquez sur **Rejeter**, choisissez un motif puis confirmez avec **Rejeter** dans la boîte de dialogue. Vous revenez ensuite à la liste des documents.
 
 **Soumettre** valide le résultat du document examiné ; cette action ne réentraîne pas le modèle et ne constitue pas une activation de l'Agent. Pour modifier le comportement de classification, consultez [la configuration de l'Agent](configurer-un-agent-de-classification.md) et, si nécessaire, [l'entraînement du modèle](entrainer-un-modele-de-classification/entrainement-du-modele.md).
 
