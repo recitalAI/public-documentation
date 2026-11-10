@@ -10,6 +10,19 @@ description: Créer une revue avancée dans une file d'attente Extract Review de
 
 Le module attend un objet de données décrivant le document à revoir. L'expression `data['advanced-review']` sélectionne cet objet. Celui-ci peut fournir `polyvore_reference`, `filename`, `values` et `due_date`. Les expressions dédiées peuvent remplacer la référence, les valeurs ou l'échéance lues dans cet objet.
 
+### Format de l'objet de revue
+
+L'objet sélectionné par l'expression d'entrée peut contenir les propriétés suivantes :
+
+| Propriété | Contenu |
+| --- | --- |
+| `polyvore_reference` | Référence du document à présenter dans la revue. |
+| `filename` | Nom du fichier présenté à l'opérateur. |
+| `values` | Liste des valeurs à contrôler ou corriger. Elle peut notamment provenir des valeurs d'une étape **Extraction**. |
+| `due_date` | Date d'échéance de la revue, au format date et heure, si elle est fournie. |
+
+Cet objet de revue ne doit pas être confondu avec la **sortie complète d'une étape Extraction** : celle-ci contient une enveloppe avec notamment `doctype`, `job` et `result`. Dans cette dernière, les valeurs extraites sont sous `result.values`. Consultez la [structure des résultats d'Extraction](../../integration-api/extraction/structure-des-resultats-dextraction.md) pour le détail des champs et de leurs valeurs.
+
 Exemple de données d'entrée :
 
 ```json
@@ -34,6 +47,13 @@ Exemple de données d'entrée :
 | Values expression | Sélectionne les valeurs initiales, par exemple `data['extract']['result']['values']`. |
 | Expression de la date d'échéance | Sélectionne une échéance, par exemple `data['review_due_date']`. |
 | Clé de sortie | Par exemple `advanced-review` : le retour est accessible avec `data['advanced-review']`. |
+
+### Utiliser les valeurs d'une étape Extraction
+
+Si une étape **Extraction** enregistre sa sortie sous la clé `extract`, l'expression `data['extract']['result']['values']` sélectionne la liste des valeurs extraites. Dans la configuration décrite ici, renseignez-la dans **Values expression** pour alimenter les valeurs initiales de la revue.
+
+Cette expression ne désigne **pas** l'objet de revue complet : la référence du document et les autres informations nécessaires sont à renseigner par l'objet d'entrée ou par les expressions dédiées. Adaptez `extract` si vous avez choisi une autre **Clé de sortie** dans votre Workflow.
+
 
 ## Résultat
 
