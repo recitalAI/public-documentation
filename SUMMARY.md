@@ -23,6 +23,7 @@
       * [Entraîner un modèle](extraction/entrainer-un-modele-dextraction/entrainer-un-modele.md)
   * [Agents](guide-utilisateur/design/agents/README.md)
     * [Classification](classification/configurer-un-agent-de-classification.md)
+      * [Valider un Agent de classification](classification/valider-un-agent-de-classification.md)
     * [Extraction](extraction/configurer-un-agent-dextraction/README.md)
       * [Créer un Agent](extraction/configurer-un-agent-dextraction/creer-un-agent.md)
       * [Configurer les extracteurs d'un Agent](extraction/configurer-un-agent-dextraction/configurer-les-extracteurs-dun-agent.md)
