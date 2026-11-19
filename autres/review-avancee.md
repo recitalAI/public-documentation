@@ -74,10 +74,27 @@ La colonne mandatory couvre l'absence de valeur. Pour refuser également une cha
 
 Toute feuille qui ne porte pas un nom réservé devient un onglet de la Review App. Le nom de la feuille est le titre affiché à l'opérateur.
 
-{% hint style="success" %}
-**Mise en forme**\
-Les couleurs de fond, bordures et le gras appliqués dans le tableur sont repris dans la Review App. Utilisez-les sobrement : par exemple, une ligne de titre et des libellés lisibles.
-{% endhint %}
+### Personnaliser la mise en forme des sections
+
+Dans une feuille de section, mettez en forme les cellules dans LibreOffice Calc. La Review App reprend, cellule par cellule, la couleur de fond, les bordures et le gras. Ces styles s’appliquent aux cellules de texte statique comme à celles contenant une référence `$champ` ; ils ne changent ni le champ configuré ni son comportement. Les autres propriétés de mise en forme du tableur ne sont pas garanties.
+
+**Exemple** : dans la feuille `Informations contrat`, avec la grille `30% | 70%`, mettez en gras et ajoutez une couleur de fond à la cellule contenant `Type de contrat` :
+
+```text
+Feuille : Informations contrat
+30% | 70%
+Type de contrat | $contract_type
+```
+
+Le libellé `Type de contrat` apparaît en gras sur fond coloré ; la cellule `$contract_type` reste le champ interactif défini dans `Config`. La grille détermine toujours la largeur des cellules : la mise en forme ne crée pas de champ et ne modifie pas la répartition des colonnes.
+
+Pour essayer :
+
+1. Ouvrez la feuille de section dans LibreOffice Calc et appliquez les styles souhaités aux cellules concernées.
+2. Enregistrez le fichier au format ODS.
+3. Importez-le dans une nouvelle version de la file, puis contrôlez le rendu dans l’aperçu avant d’activer cette version.
+
+Les styles pris en charge se limitent à ceux indiqués ci-dessus ; vérifiez le rendu dans l’aperçu plutôt que de supposer que les autres styles du tableur seront reproduits.
 
 ### Première ligne : grille de colonnes
 
