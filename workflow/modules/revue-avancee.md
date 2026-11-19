@@ -6,10 +6,6 @@ description: Créer une revue avancée dans une file d'attente Extract Review de
 
 **Dépendance produit : Extract Review.** Le module **Revue avancée** crée un document dans une file d'attente de revue puis suspend le Workflow jusqu'à sa validation ou son recyclage. Pour le fonctionnement des files, consultez [Revue avancée](../../autres/review-avancee.md).
 
-{% hint style="info" %}
-Cette page décrit la version **26.8.38**. Dans cette version, les données d'Extraction doivent être converties au format de revue. Les champs **Résultat d'extraction** et **Résultats personnalisés** ne font pas partie de cette configuration.
-{% endhint %}
-
 ## Format attendu en entrée
 
 **Expression d'entrée** doit renvoyer un objet décrivant la revue, et non une liste de valeurs ou le résultat natif d'Extraction. L'expression par défaut est `data['advanced-review']`.
@@ -75,7 +71,7 @@ Les noms de cet exemple doivent être adaptés au layout. Les noms de champs sim
 | Expression de la date d'échéance | Remplace l'échéance de l'objet, par exemple `data['review_due_date']`. |
 | Clé de sortie | Par défaut `advanced-review` : le retour est accessible avec `data['advanced-review']`. |
 
-Les expressions dédiées, lorsqu'elles sont renseignées, remplacent les propriétés correspondantes : elles ne fusionnent pas les listes de valeurs. Pour personnaliser les résultats dans cette version, construisez l'objet dans **Expression d'entrée**, ou fournissez la liste complète dans **Values expression**.
+Les expressions dédiées, lorsqu'elles sont renseignées, remplacent les propriétés correspondantes : elles ne fusionnent pas les listes de valeurs. Pour personnaliser les résultats, construisez l'objet dans **Expression d'entrée**, ou fournissez la liste complète dans **Values expression**.
 
 ## Relier Extraction à Revue avancée
 
@@ -89,7 +85,7 @@ Après la fin d'une étape **Extraction** dont la **Clé de sortie** est `extrac
 
 Consultez la [structure des résultats d'Extraction](../../integration-api/extraction/structure-des-resultats-dextraction.md) pour le détail du format natif.
 
-Dans la version 26.8.38, utilisez **`data`**, pas `result`, comme variable d'expression : `result['extract']` n'est pas défini dans ce contexte. Le mot `result` dans `data['extract']['result']` est une **clé de l'enveloppe**, pas une variable.
+Utilisez **`data`** pour accéder aux données du Workflow : la variable `result` n'est pas définie dans le contexte d'expression. Le mot `result` dans `data['extract']['result']` est une **clé de l'enveloppe**, pas une variable.
 
 ### Exemple de conversion d'un champ extrait
 
@@ -165,7 +161,7 @@ Laissez les expressions dédiées vides pour ne pas remplacer ces propriétés. 
 
 Cet exemple suppose que `values` est une liste de champs simples avec un objet `value`, et non une sortie d'Extraction configurée sous forme de dictionnaire. Il utilise la valeur normalisée lorsqu'elle n'est pas `null`, sinon la valeur brute. Il ne transfère ni les corrections `valid_value` ni les groupes : convertissez séparément chaque occurrence de `groups` au format parent/enfants décrit plus haut. Adaptez `extract` si la clé de sortie de l'étape Extraction est différente.
 
-Ne transmettez pas directement `data['extract']`, `data['extract']['result']` ou sa liste `values` comme objet de revue : la version 26.8.38 ne convertit pas ces structures. Attendez la réussite de l'étape Extraction avant d'accéder à son résultat.
+Convertissez les données d'Extraction au format de revue avant de les transmettre au module. Ne fournissez pas directement `data['extract']`, `data['extract']['result']` ou sa liste `values` comme objet de revue. Attendez la réussite de l'étape Extraction avant d'accéder à son résultat.
 
 ## Résultat
 
