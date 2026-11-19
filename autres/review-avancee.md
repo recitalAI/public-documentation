@@ -109,23 +109,23 @@ Pour réutiliser la même mise en page dans plusieurs sections, créez une feuil
 
 ### Afficher un groupe sous forme de tableau
 
-Un groupe rassemble des champs liés, par exemple les lignes d’une remise. Pour afficher plusieurs occurrences de ces champs dans un tableau, renseignez leur nom de groupe dans la colonne `Group` de `Config`, puis créez un composant portant ce nom. La référence `#NomDuGroupe[*]` dans une feuille de section répète les lignes du composant sous forme de tableau.
+Un groupe rassemble des champs liés, par exemple les champs d’une remise. La colonne `Group` de `Config` identifie les champs du groupe, mais ne crée pas à elle seule le tableau : une feuille composant du même nom définit les champs et les colonnes à afficher. Dans une feuille de section, la référence `#NomDuGroupe[*]` affiche ce composant sous forme de tableau.
 
 Exemple pour un groupe `DISCOUNT` :
 
-1. Dans `Config`, renseignez `DISCOUNT` dans la colonne `Group` pour les champs du groupe, par exemple `discount_name` et `discount_amount`.
-2. Créez une feuille `#DISCOUNT` contenant les champs à afficher :
+1. Dans `Config`, renseignez `DISCOUNT` dans la colonne `Group` pour les champs `discount_name` et `discount_amount`.
+2. Créez une feuille `#DISCOUNT` avec une ligne d’en-tête sans référence de champ, suivie des références aux champs du groupe :
 
 ```text
 Feuille : #DISCOUNT
-30% | 70%
-Remise | $discount_name
-Montant | $discount_amount
+50% | 50%
+Libellé | Montant
+$discount_name | $discount_amount
 ```
 
-3. Dans la feuille de section, insérez `#DISCOUNT[*]` pour afficher les occurrences du composant sous forme de tableau.
+3. Dans la feuille de section, insérez `#DISCOUNT[*]` pour afficher le composant en tableau.
 
-Le composant doit exister et contenir les champs à répéter. Les commandes d’ajout et de suppression de lignes du tableau sont proposées lorsque la revue autorise la modification. Cette syntaxe est une référence à un composant répété, distincte de l’insertion simple `#NomDuComposant` ou fixe `##NomDuComposant`.
+Le tableau affiche une ligne par occurrence ; en l’absence d’occurrence, une ligne vide permet la saisie. Lorsque la revue autorise la modification, l’opérateur peut ajouter ou supprimer des lignes. Cette notation répète un composant ; elle est distincte de l’insertion simple `#NomDuComposant` ou fixe `##NomDuComposant`.
 
 ## 5. Listes, référentiels et listes en cascade
 
