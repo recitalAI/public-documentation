@@ -125,7 +125,7 @@ $discount_name | $discount_amount
 
 3. Dans la feuille de section, insérez `#DISCOUNT[*]` pour afficher le composant en tableau.
 
-Le tableau affiche une ligne par occurrence ; en l’absence d’occurrence, une ligne vide permet la saisie. Lorsque la revue autorise la modification, l’opérateur peut ajouter ou supprimer des lignes. Cette notation répète un composant ; elle est distincte de l’insertion simple `#NomDuComposant` ou fixe `##NomDuComposant`.
+Chaque occurrence enregistrée apparaît sur une ligne. En l’absence d’occurrence, une ligne vide au moins reste disponible pour la saisie. Lorsque la revue autorise la modification, l’opérateur peut ajouter ou supprimer des lignes. Cette notation répète un composant ; elle est distincte de l’insertion simple `#NomDuComposant` ou fixe `##NomDuComposant`.
 
 ## 5. Listes, référentiels et listes en cascade
 
