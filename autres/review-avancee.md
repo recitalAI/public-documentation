@@ -107,6 +107,26 @@ Préfixez le nom de la feuille par ! pour rendre la section optionnelle, par exe
 
 Pour réutiliser la même mise en page dans plusieurs sections, créez une feuille nommée #NomDuComposant, puis insérez #NomDuComposant dans une ligne de section. Avec le préfixe ##, le composant est affiché dans la zone fixe de la section. Cette fonctionnalité est particulièrement utile pour les headers / pied de page identiques sur toutes les sections.
 
+### Afficher un groupe sous forme de tableau
+
+Un groupe rassemble des champs liés, par exemple les lignes d’une remise. Pour afficher plusieurs occurrences de ces champs dans un tableau, renseignez leur nom de groupe dans la colonne `Group` de `Config`, puis créez un composant portant ce nom. La référence `#NomDuGroupe[*]` dans une feuille de section répète les lignes du composant sous forme de tableau.
+
+Exemple pour un groupe `DISCOUNT` :
+
+1. Dans `Config`, renseignez `DISCOUNT` dans la colonne `Group` pour les champs du groupe, par exemple `discount_name` et `discount_amount`.
+2. Créez une feuille `#DISCOUNT` contenant les champs à afficher :
+
+```text
+Feuille : #DISCOUNT
+30% | 70%
+Remise | $discount_name
+Montant | $discount_amount
+```
+
+3. Dans la feuille de section, insérez `#DISCOUNT[*]` pour afficher les occurrences du composant sous forme de tableau.
+
+Le composant doit exister et contenir les champs à répéter. Les commandes d’ajout et de suppression de lignes du tableau sont proposées lorsque la revue autorise la modification. Cette syntaxe est une référence à un composant répété, distincte de l’insertion simple `#NomDuComposant` ou fixe `##NomDuComposant`.
+
 ## 5. Listes, référentiels et listes en cascade
 
 ### Liste statique
