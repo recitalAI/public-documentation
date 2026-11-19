@@ -74,27 +74,31 @@ La colonne mandatory couvre l'absence de valeur. Pour refuser également une cha
 
 Toute feuille qui ne porte pas un nom réservé devient un onglet de la Review App. Le nom de la feuille est le titre affiché à l'opérateur.
 
-### Personnaliser la mise en forme des sections
+### Titres, bordures et styles de cellule
 
-Dans une feuille de section, mettez en forme les cellules dans LibreOffice Calc. La Review App reprend, cellule par cellule, la couleur de fond, les bordures et le gras. Ces styles s’appliquent aux cellules de texte statique comme à celles contenant une référence `$champ` ; ils ne changent ni le champ configuré ni son comportement. Les autres propriétés de mise en forme du tableur ne sont pas garanties.
+Une cellule contenant du texte simple affiche un libellé ou un titre ; elle ne crée pas de champ. Dans LibreOffice Calc, vous pouvez mettre en forme les cellules des feuilles de section et des composants. La Review App reprend les couleurs de fond, les quatre bordures (haut, bas, gauche, droite) et le gras, cellule par cellule, y compris pour une cellule contenant `$champ`. Ces styles ne modifient ni le champ défini dans `Config` ni son comportement.
 
-**Exemple** : dans la feuille `Informations contrat`, avec la grille `30% | 70%`, mettez en gras et ajoutez une couleur de fond à la cellule contenant `Type de contrat` :
+**Exemple : titre et séparateur**. Dans la feuille `Informations contrat`, utilisez la grille `30% | 70%`. Saisissez `Informations du contrat` sur une ligne, puis les libellés et champs ci-dessous. Mettez le titre en gras avec un fond coloré et ajoutez une bordure inférieure aux cellules de la ligne de titre ou aux cellules de libellé pour séparer visuellement les lignes.
 
 ```text
 Feuille : Informations contrat
 30% | 70%
+Informations du contrat |
 Type de contrat | $contract_type
+Numéro de contrat | $contract_number
 ```
 
-Le libellé `Type de contrat` apparaît en gras sur fond coloré ; la cellule `$contract_type` reste le champ interactif défini dans `Config`. La grille détermine toujours la largeur des cellules : la mise en forme ne crée pas de champ et ne modifie pas la répartition des colonnes.
+Pour reproduire l’essai, appliquez les styles dans Calc, enregistrez le fichier au format ODS, importez-le dans une nouvelle version de la file et contrôlez le rendu dans l’aperçu avant d’activer cette version. La première ligne reste la grille de largeur : le formatage ne la remplace pas et ne configure pas les champs.
 
-Pour essayer :
+### Cellules fusionnées et débordement du texte
 
-1. Ouvrez la feuille de section dans LibreOffice Calc et appliquez les styles souhaités aux cellules concernées.
-2. Enregistrez le fichier au format ODS.
-3. Importez-le dans une nouvelle version de la file, puis contrôlez le rendu dans l’aperçu avant d’activer cette version.
+La fusion de cellules dans Calc est prise en compte comme une largeur couvrant plusieurs colonnes de la grille. Par exemple, avec `30% | 30% | 40%`, fusionnez les trois cellules de la ligne du titre et saisissez `Informations du contrat` dans la cellule fusionnée : elle occupe la largeur totale de la grille. Enregistrez au format ODS et vérifiez le résultat dans l’aperçu. La fusion est distincte du style et ne change pas la grille définie sur la première ligne.
 
-Les styles pris en charge se limitent à ceux indiqués ci-dessus ; vérifiez le rendu dans l’aperçu plutôt que de supposer que les autres styles du tableur seront reproduits.
+Le parseur peut aussi regrouper certaines cellules vides adjacentes lorsque leurs fonds et bordures sont compatibles ; ce regroupement automatique ne remplace pas une fusion explicite dans Calc.
+
+Le texte statique est rendu dans une grille CSS sans règle spécifique de débordement ni de texte sur une seule ligne. Le comportement dépend donc du contenu et de la largeur disponible : un texte avec des espaces peut revenir à la ligne ; une chaîne sans point de coupure peut élargir la piste de la grille, puis être coupée au bord de la section, dont le conteneur masque le débordement. Le code ne garantit pas que le texte s’étende dans une cellule voisine vide. Pour un titre large, fusionnez les cellules ou répartissez la grille pour lui réserver l’espace ; ne confondez pas une éventuelle extension visuelle avec une fusion ODS.
+
+Les styles pris en charge se limitent au fond, aux bordures et au gras. Les autres propriétés du tableur ne sont pas garanties ; dans les tableaux de groupes, l’en-tête est rendu par l’interface avec son propre style. Vérifiez chaque mise en page dans l’aperçu.
 
 ### Première ligne : grille de colonnes
 
@@ -120,9 +124,13 @@ Date de signature | $signature_date
 
 Préfixez le nom de la feuille par ! pour rendre la section optionnelle, par exemple !Annexes. La section ne sera visible que si au moins une des valeurs est non-nulle.
 
-### Composants réutilisables
+### Composants réutilisables et zone fixe
 
-Pour réutiliser la même mise en page dans plusieurs sections, créez une feuille nommée #NomDuComposant, puis insérez #NomDuComposant dans une ligne de section. Avec le préfixe ##, le composant est affiché dans la zone fixe de la section. Cette fonctionnalité est particulièrement utile pour les headers / pied de page identiques sur toutes les sections.
+Pour réutiliser un bloc de mise en page dans plusieurs onglets, créez une feuille composant nommée `#EN_TETE`, avec sa propre grille en première ligne et son contenu dans les lignes suivantes. Dans chaque feuille de section, insérez `#EN_TETE` dans une cellule d’une ligne. Le composant reprend ses cellules, libellés, champs et styles ; vous pouvez ainsi partager un en-tête ou un bloc d’information sans le recopier.
+
+Pour garder ce bloc visible pendant le défilement de la section, nommez sa feuille `##EN_TETE` ; la référence dans la section reste `#EN_TETE`. Le préfixe `##` est porté par le nom de la feuille composant, pas par la référence. L’application rend alors ses lignes dans une zone fixe au-dessus du contenu défilant. Le composant fixe reste dans l’onglet où il est inséré : il ne fixe pas toute la section et ne crée pas un nouvel onglet.
+
+**Exemple reproductible** : créez une feuille `##EN_TETE` avec la grille `100%` et une ligne de texte `Dossier de revue` mise en gras. Dans chaque feuille de section, ajoutez une ligne contenant `#EN_TETE`. Le titre reste visible au-dessus du contenu défilant dans la Review App. L’aperçu du layout affiche le composant, mais ne reproduit pas cette séparation fixe/défilante : vérifiez ce comportement dans la Review App. Pour un bloc réutilisable mais défilant, nommez plutôt la feuille `#EN_TETE`.
 
 ### Afficher un groupe sous forme de tableau
 
