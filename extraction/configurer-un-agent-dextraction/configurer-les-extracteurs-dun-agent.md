@@ -36,7 +36,24 @@ Le type de valeur normalise le champ extrait. Il se choisit dans une liste déro
 | **Time**          | Une heure seule.                                                                                                                                                          | Heure de rendez-vous, heure de passage                      |
 | **Integer**       | Un nombre entier.                                                                                                                                                         | Nombre d'unités, quantité                                   |
 | **Float**         | Un nombre décimal.                                                                                                                                                        | Montant HT, pourcentage                                     |
-| **Regex**         | Expressions régulières. La 1ʳᵉ expression doit correspondre au champ extrait ; dans la 2ᵉ, on peut réutiliser les groupes capturés (`\1`, `\2`, …) pour la normalisation. | N° de téléphone, référence client, code-barres              |
+| **Regex**         | Normalise la valeur avec une expression régulière et, si besoin, un remplacement. Les groupes capturés peuvent être réutilisés dans le remplacement (voir ci-dessous). | N° de téléphone, référence client, code-barres              |
+
+#### Normaliser une valeur avec une expression régulière
+
+Dans l'onglet **Extracteurs**, créez ou modifiez un champ, puis choisissez **Regex** dans **Type de valeur**. Saisissez le motif dans le champ **Regex**. Pour remplacer chaque correspondance, activez **Remplacez la valeur par :** et saisissez le texte de remplacement.
+
+Les parenthèses capturantes du motif définissent des groupes numérotés à partir de 1. Dans le remplacement, utilisez `\g<1>`, `\g<2>`, etc. pour réinsérer les groupes dans l'ordre souhaité. Chaque référence doit correspondre à un groupe capturé existant. Par exemple, `\g<2>-\g<1>` inverse les deux groupes en les séparant par un tiret.
+
+##### Exemple : supprimer les points tout en conservant les lettres
+
+Pour transformer `C.N.R.A.C.L` en `CNRACL` :
+
+1. Choisissez **Regex** comme **Type de valeur**.
+2. Dans **Regex**, saisissez `([A-Za-z])\.`. Les parenthèses capturent chaque lettre et `\.` correspond à un point littéral.
+3. Activez **Remplacez la valeur par :** et saisissez `\g<1>` pour réinsérer la lettre capturée sans le point.
+4. La valeur normalisée obtenue est `CNRACL`.
+
+Le remplacement s'applique à toutes les correspondances du motif. Dans l'interface, laisser le champ de remplacement vide n'envoie pas de remplacement : la valeur normalisée correspond alors à la première correspondance trouvée par le motif. Cela ne supprime donc pas les correspondances. Pour retirer des caractères tout en conservant une partie du texte, capturez cette partie et réinsérez-la dans le remplacement, comme dans l'exemple ci-dessus.
 
 #### **Méthode d'extraction**
 
