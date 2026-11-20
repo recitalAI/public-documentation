@@ -23,18 +23,26 @@ Un layout est composé de trois éléments :
 Commencez avec une version simple : une feuille Config et une ou deux sections. Ajoutez les règles, composants et référentiels après avoir validé le parcours de revue de base.
 {% endhint %}
 
-## 2. Préparer et importer le fichier de layout
+## 2. Configurer, importer ou exporter le layout
 
 {% hint style="info" %}
-Format pris en charge : fichier .ods (LibreOffice Calc). Un fichier créé dans Microsoft Excel doit être enregistré ou exporté au format ODS avant son import.
+Le layout se configure directement dans le viewer de classeur intégré à la
+plateforme ; aucun fichier ODS n'est nécessaire pour le modifier. L'import et
+l'export de fichiers de layout utilisent le format ODS. Un fichier Excel doit
+être exporté au format ODS avant de pouvoir être importé.
 {% endhint %}
 
-**Étapes recommandées**
+### Configurer le layout dans l'application
 
-* Créez le fichier dans LibreOffice Calc, ou préparez-le dans Excel puis enregistrez-le au format ODS.
-* Créez la feuille Config avec les en-têtes exacts et dans l'ordre attendu.
-* Ajoutez une feuille par onglet à afficher dans l'application.
-* Importez le fichier dans une nouvelle version de la file, puis utilisez l'aperçu avant de la rendre active.
+1. Dans l'onglet `Versions`, choisissez `Nouveau Layout` pour ouvrir une
+   version à configurer.
+2. Modifiez les feuilles dans le viewer de classeur intégré, puis choisissez
+   `Enregistrer` pour sauvegarder le layout.
+3. Utilisez `Aperçu` pour vérifier le rendu, puis `Activer` lorsque la version
+   est prête.
+
+Pour partir d'un fichier, choisissez `Importer le layout` et fournissez un
+fichier ODS. Pour récupérer un fichier, utilisez `Télécharger la Configuration`.
 
 {% hint style="warning" %}
 **Attention aux noms**\
@@ -77,17 +85,18 @@ Toute feuille qui ne porte pas un nom réservé devient un onglet de la Review A
 ### Titres, bordures et styles de cellule
 
 Une cellule contenant du texte simple affiche un libellé ou un titre ; elle ne
-crée pas de champ. Dans LibreOffice Calc, vous pouvez mettre en forme les
-cellules des feuilles de section et des composants. La Review App reprend les
-couleurs de fond, les quatre bordures (haut, bas, gauche, droite) et le gras,
-cellule par cellule, y compris pour une cellule contenant `$champ`. Ces styles
-ne modifient ni le champ défini dans `Config` ni son comportement.
+crée pas de champ. Dans le viewer de classeur intégré, vous pouvez mettre en
+forme les cellules des feuilles de section et des composants. La Review App
+reprend les couleurs de fond, les quatre bordures (haut, bas, gauche, droite)
+et le gras, cellule par cellule, y compris pour une cellule contenant
+`$champ`. Ces styles ne modifient ni le champ défini dans `Config` ni son
+comportement.
 
 **Exemple : titre et séparateur**. Dans la feuille `Informations contrat`,
 utilisez la grille `30% | 70%`. Saisissez `Informations du contrat` sur une
 ligne, puis les libellés et champs ci-dessous. Mettez le titre en gras avec un
-fond coloré et ajoutez une bordure inférieure aux cellules de la ligne de
-titre ou aux cellules de libellé pour séparer visuellement les lignes.
+fond coloré et ajoutez une bordure inférieure aux cellules de la ligne de titre
+ou aux cellules de libellé pour séparer visuellement les lignes.
 
 ```text
 Feuille : Informations contrat
@@ -97,25 +106,24 @@ Type de contrat | $contract_type
 Numéro de contrat | $contract_number
 ```
 
-Pour reproduire l’essai, appliquez les styles dans Calc, enregistrez le
-fichier au format ODS, importez-le dans une nouvelle version de la file et
-contrôlez le rendu dans l’aperçu avant d’activer cette version. La première
-ligne reste la grille de largeur : le formatage ne la remplace pas et ne
-configure pas les champs.
+Pour reproduire l’essai, appliquez les styles dans le viewer de classeur
+intégré, puis choisissez `Enregistrer`. Utilisez `Aperçu` pour contrôler le
+rendu avant d’`Activer` la version. La première ligne reste la grille de
+largeur : le formatage ne la remplace pas et ne configure pas les champs.
 
 ### Cellules fusionnées et débordement du texte
 
-La fusion de cellules dans Calc est prise en compte comme une largeur couvrant
-plusieurs colonnes de la grille. Par exemple, avec `30% | 30% | 40%`,
-fusionnez les trois cellules de la ligne du titre et saisissez `Informations
-du contrat` dans la cellule fusionnée : elle occupe la largeur totale de la
-grille. Enregistrez au format ODS et vérifiez le résultat dans l’aperçu. La
-fusion est distincte du style et ne change pas la grille définie sur la
-première ligne.
+La fusion de cellules dans le viewer de classeur est prise en compte comme une
+largeur couvrant plusieurs colonnes de la grille. Par exemple, avec
+`30% | 30% | 40%`, fusionnez les trois cellules de la ligne du titre et
+saisissez `Informations du contrat` dans la cellule fusionnée : elle occupe la
+largeur totale de la grille. Choisissez `Enregistrer`, puis `Aperçu` pour
+vérifier le résultat. La fusion est distincte du style et ne change pas la
+grille définie sur la première ligne.
 
 Le parseur peut aussi regrouper certaines cellules vides adjacentes lorsque
 leurs fonds et bordures sont compatibles ; ce regroupement automatique ne
-remplace pas une fusion explicite dans Calc.
+remplace pas une fusion explicite dans le viewer de classeur.
 
 Le texte statique est rendu dans une grille CSS sans règle spécifique de
 débordement ni de texte sur une seule ligne. Le comportement dépend donc du
@@ -125,7 +133,7 @@ grille, puis être coupée au bord de la section, dont le conteneur masque le
 débordement. Le code ne garantit pas que le texte s’étende dans une cellule
 voisine vide. Pour un titre large, fusionnez les cellules ou répartissez la
 grille pour lui réserver l’espace ; ne confondez pas une éventuelle extension
-visuelle avec une fusion ODS.
+visuelle avec une fusion de cellules.
 
 Les styles pris en charge se limitent au fond, aux bordures et au gras. Les
 autres propriétés du tableur ne sont pas garanties ; dans les tableaux de
