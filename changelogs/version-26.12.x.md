@@ -1,56 +1,84 @@
-<!-- Brouillon pour revue GitHub #84. Ne pas fusionner avant confirmation du tag final, des tests QA et des impacts API. -->
+# Version 26.12.x
 
-# Version 26.12.x — notes de version en préparation
+## Quoi de neuf dans cette version ?
 
-Cette page présente les principales évolutions identifiées dans le tag candidat `v26.12.1` du 19 novembre 2026, en comparaison de la série 26.8.x. **La version définitive, la date de déploiement en production et la disponibilité selon les installations restent à confirmer.** Ces fonctionnalités et correctifs font l'objet de tests sur l'environnement de préproduction.
+La version 26.12 facilite la réutilisation et le transfert de configurations entre environnements. Les **Blueprints** prennent en charge davantage de types de ressources, tandis que l'**export et l'import des Workflows** peuvent inclure leurs dépendances.
 
-Les améliorations déjà introduites par les correctifs 26.8.x ne sont pas présentées ici comme de nouvelles fonctionnalités. Si votre installation utilise une version antérieure, consultez également les [notes de version 26.8.x](version-26.8.x-06-10-2026.md).
+Cette version améliore également le suivi des exécutions, la **Review avancée**, la configuration des modèles de langage et la portabilité des Agents et des files de révision. Plusieurs correctifs renforcent la fiabilité des éditions et des échanges de documents.
 
-## À vérifier avant votre mise à niveau
+## Changements incompatibles et actions nécessaires
 
-- **API Extract — anciennes routes :** si des intégrations utilisent d'anciens chemins sans le préfixe `/extract`, vérifiez leur compatibilité avec les routes sous `/extract/api/v1`. Certains anciens alias ont été retirés ; le périmètre exact des routes concernées doit encore être confirmé.
-- **API File — schémas des pages :** le champ `pages` est déprécié et n'est plus obligatoire dans `FileOut`. Plusieurs champs de texte ou d'image peuvent être `null`. Si vous validez strictement les réponses JSON, adaptez les schémas et contrôlez les usages dépendant de ces champs.
-- **Extraction générative — choix du modèle :** plusieurs chemins de traitement ne sélectionnent plus automatiquement le modèle OpenAI lorsqu'aucun modèle n'est renseigné. Vérifiez la configuration de vos Agents et testez ceux qui ne précisent pas de modèle.
-- **Intégrations de Review et OCR :** les routes de texte documentaire utilisent le texte issu du traitement OCR de la file ; les évolutions et dépréciations associées doivent être vérifiées avant de modifier les intégrations.
-- **Installations On-Prem :** faites vérifier les paramètres de déploiement et la compatibilité des documents historiques avec la nouvelle gestion du stockage avant la mise à niveau.
+### API Extract : retrait d'anciennes routes
 
-## Blueprints : davantage de contenus réutilisables
+Les anciennes routes historiques d'Extract accessibles **sans le préfixe `/extract`** ne sont plus exposées. Les intégrations utilisant ces URL doivent appeler les routes correspondantes sous `/extract/api/v1`.
 
-- Les blueprints peuvent cibler des Agents et modèles d'extraction et de classification ainsi que des Workflows.
-- Les blueprints de Workflows peuvent inclure des dépendances supplémentaires, pour faciliter leur réutilisation dans un autre environnement.
-- La liste des blueprints affiche plus clairement les types et le contenu. Les dépôts en lecture seule sont identifiables et la recherche ou sélection des Agents a été améliorée.
-- Plusieurs correctifs portent sur les noms des blueprints, la synchronisation et l'affichage de leurs dépôts.
+**Action requise :** vérifiez les URL appelées par vos scripts et intégrations, y compris les sondes de supervision, puis adaptez les appels concernés. Ce changement ne concerne pas les intégrations qui utilisent déjà les routes canoniques.
 
-## Workflows : transferts et suivi des exécutions
+### Extraction générative : sélection explicite du modèle
 
-- **Export et import avec dépendances :** exportez un Workflow avec les objets associés, puis importez-le dans un autre environnement. Des évolutions permettent de mettre à jour des objets existants et de retrouver les références aux fournisseurs. Vérifiez après import les références, les connexions et les secrets propres à l'environnement cible.
-- **Étapes Python :** la prise en charge des tunnels SSH est ajoutée, sous réserve de la configuration réseau de votre installation.
-- **Suivi des jobs :** la liste et les détails des jobs sont améliorés, notamment pour consulter les exécutions des sous-workflows dans un panneau latéral.
-- **Notifications webhook :** un nouveau filtrage permet de sélectionner les événements qui déclenchent un callback, lorsque la fonctionnalité est utilisée. Vérifiez les notifications reçues avant de modifier vos intégrations.
-- **Correctifs :** plusieurs cas d'activation ou de modification d'un Workflow publié ont été corrigés, ainsi que des problèmes liés à l'affichage des jobs.
+Sur plusieurs chemins de traitement d'extraction générative, l'application ne sélectionne plus automatiquement un modèle OpenAI lorsqu'aucun modèle n'est indiqué dans la configuration de l'Agent.
 
-## Review : portabilité, navigation et corrections
+**Action requise :** vérifiez les Agents d'extraction générative dont le modèle n'est pas renseigné et sélectionnez explicitement le modèle à utiliser avant la mise à niveau.
 
-- **Export et import des files :** les configurations de files de révision peuvent être transférées entre environnements.
-- **Review avancée :** les workflows peuvent transmettre un identifiant externe pour accéder à un document et fournir une entrée d'extraction par défaut.
-- **Contrôles de saisie :** relance manuelle de la vérification des règles, message personnalisé pour certains champs nécessitant une intervention, raccourci de copie depuis le champ suivant et navigation entre pages améliorée.
-- **Webhooks :** une reprise des notifications en échec est ajoutée. Si votre application reçoit ces notifications, vérifiez son comportement en cas de tentative répétée.
-- **Documents anciens :** une opération permet de demander leur suppression en lot dans une file de révision. Vérifiez la portée et la politique de conservation applicables avant utilisation.
-- **Correctifs :** des problèmes d'édition des cellules, d'effacement des groupes avec `CLEAR ALL` et d'actualisation du bouton d'envoi ont été corrigés.
+## Nouvelles fonctionnalités et améliorations
 
-## Extraction, classification et modèles de langage
+### Blueprints et ressources réutilisables
 
-- **Groupes d'extraction :** l'API expose le champ `group_labels` et prend en charge sa mise à jour. Les intégrations qui manipulent des groupes doivent vérifier les formats échangés.
-- **Configuration LLM :** possibilité d'ajouter un fournisseur ou modèle LLM propre à une organisation et de configurer le délai maximal de certains traitements génératifs. Vérifiez la disponibilité et les valeurs applicables à votre environnement.
-- **Portabilité des Agents :** export et import des configurations des Agents et modèles, avec notamment une option permettant d'exporter un Agent d'extraction sans les fichiers associés.
-- **Classification :** l'interface de configuration et de validation évolue, et l'état de correction des documents est mieux visible.
-- **Suivi de la consommation :** des informations de coût sont ajoutées aux traces de traitement. Elles ne constituent pas nécessairement le montant facturé.
-- **Données et OCR :** les mécanismes de copie, d'export et d'import des documents et annotations ont été renforcés pour le stockage commun, y compris la conservation d'annotations de position. Vérifiez le résultat lors de transferts de données historiques.
+- Les Blueprints peuvent représenter des Agents et modèles d'extraction ou de classification, ainsi que des Workflows.
+- Les Blueprints de Workflows peuvent inclure davantage de dépendances, afin de faciliter leur réutilisation dans d'autres environnements.
+- La liste des Blueprints présente plus clairement le type et le contenu des ressources. Les dépôts en lecture seule sont identifiables et la sélection des Agents prend mieux en compte les filtres et la pagination.
 
-## Autres améliorations et correctifs
+### Workflows et suivi des exécutions
 
-- L'interface peut proposer un rafraîchissement lorsqu'une nouvelle version est détectée.
-- Les jetons API sont mieux masqués visuellement dans les paramètres.
-- Des corrections concernent notamment la suppression de boîtes de messagerie, l'ouverture d'un premier onglet dans la page Performance et l'affichage des colonnes ignorées dans Search.
+- **Export et import avec dépendances :** un Workflow peut être exporté avec ses objets associés, puis importé dans un autre environnement. L'import prend en charge certains cas de mise à jour d'objets existants et affiche les références nécessaires aux fournisseurs. Les connexions et secrets spécifiques à la destination restent à vérifier après l'import.
+- **Étapes Python :** prise en charge des tunnels SSH lorsque l'environnement est configuré pour les utiliser.
+- **Suivi des jobs :** amélioration de la liste des exécutions, de la consultation des sous-workflows et de l'affichage des détails d'un job dans un panneau latéral.
+- **Notifications :** possibilité de filtrer les événements à l'origine des appels webhook sur les opérations concernées.
 
-Les changements concernant exclusivement les services, les images de déploiement, la sécurité technique ou les composants internes ne sont pas détaillés ici. Ils sont suivis dans la préparation de la release et la validation des installations concernées.
+### Review et Review avancée
+
+- **Portabilité :** export et import des configurations de files de révision.
+- **Identification des documents :** ouverture d'un document de Review avancée à partir d'un identifiant externe transmis par un Workflow.
+- **Entrée d'extraction :** possibilité de définir une entrée par défaut dans une étape de Review avancée.
+- **Validation :** relance manuelle de la vérification des règles dans une file et affichage de messages personnalisés pour les champs nécessitant une correction.
+- **Saisie et navigation :** raccourci de copie depuis le champ suivant et navigation plus fluide entre les pages.
+- **Webhooks :** nouvelles tentatives de notification en cas d'échec. Les applications réceptrices doivent pouvoir reconnaître un événement déjà traité.
+- **Entretien des files :** possibilité de demander la suppression en lot des documents anciens, selon la politique de conservation applicable.
+
+### Extraction, classification et modèles de langage
+
+- **Groupes d'extraction :** l'API expose le champ `group_labels` et prend en charge sa mise à jour.
+- **Modèles LLM :** possibilité d'ajouter un fournisseur ou un modèle propre à l'organisation et de configurer le délai maximal de certains traitements génératifs.
+- **Portabilité des Agents :** export et import des configurations d'Agents et de modèles ; l'export d'un Agent d'extraction peut exclure ses fichiers.
+- **Classification :** amélioration de la configuration des Agents, de la validation et de l'affichage de l'état de correction des documents.
+- **Traces de traitement :** ajout d'informations sur le coût des appels aux modèles de langage. Ces estimations ne correspondent pas nécessairement aux montants facturés.
+- **Documents et OCR :** amélioration des opérations de copie, d'export et d'import, notamment pour les documents historiques et les annotations de position.
+
+### Évolutions de contrats API
+
+- **API File :** le champ `pages` de `FileOut` est déprécié et n'est plus obligatoire. Certains champs de texte et d'image des schémas de pages peuvent désormais être `null`. Les intégrations utilisant des validateurs JSON stricts doivent prendre en charge ces valeurs.
+- **Review et OCR :** les routes de récupération du texte documentaire tiennent compte du texte OCR obtenu lors du traitement dans la file. Les intégrations exploitant ces résultats doivent vérifier le comportement attendu pour leurs documents.
+
+Ces évolutions de schéma ne sont pas, à elles seules, des suppressions d'endpoints.
+
+## Principaux correctifs
+
+### Review : fiabilité des corrections
+
+- L'action **`CLEAR ALL`** efface également les valeurs des groupes en Review avancée.
+- L'édition d'une cellule n'affiche plus simultanément l'ancienne valeur et la nouvelle.
+- Le bouton d'envoi est correctement actualisé lorsque les conditions de validation sont réunies.
+
+### Blueprints et transferts de données
+
+- Corrections de la création, de la synchronisation et de l'affichage des dépôts de Blueprints.
+- Amélioration de la conservation des annotations de position et des libellés lors de certains exports et imports.
+- Corrections de copie ou d'export de documents lorsque leurs données sont stockées dans le stockage documentaire commun.
+
+### Interface et opérations courantes
+
+- L'application peut demander un rafraîchissement de la page après le déploiement d'une nouvelle version de l'interface.
+- Les jetons API sont masqués visuellement dans les paramètres.
+- Corrections de la suppression de boîtes de messagerie, du premier affichage d'un onglet Workflow dans Performance et de la gestion des colonnes ignorées dans Search.
+
+Pour les changements déjà introduits au cours de la série 26.8.x, consultez les [notes de version 26.8.x](version-26.8.x-06-10-2026.md).
