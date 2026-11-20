@@ -90,7 +90,7 @@
 
 ## ⚙️ Changelogs
 
-* [Version 26.12.x — en préparation](changelogs/version-26.12.x.md)
+* [Version 26.12.x](changelogs/version-26.12.x.md)
 * [Version 26.8.x (06/10/2026)](changelogs/version-26.8.x-06-10-2026.md)
 * [Mises à jours précédentes](changelogs/mises-a-jours-precedentes/README.md)
   * [Version 26.4.x (20/05/2026)](changelogs/mises-a-jours-precedentes/version-26.4.x-20-05-2026.md)
