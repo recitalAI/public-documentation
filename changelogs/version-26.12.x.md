@@ -2,52 +2,69 @@
 
 ## En bref
 
-Les **Blueprints** permettent de réutiliser des configurations. Les Workflows se transfèrent avec leurs dépendances, et la Review avancée affiche des consignes et des couleurs personnalisées par champ.
+Cette version facilite le transfert de vos configurations d'un environnement à l'autre et le travail des personnes chargées de vérifier les documents.
+
+- **Réutilisez vos configurations** grâce aux nouveaux Blueprints et à l'import/export des Workflows avec leurs dépendances, sans avoir à reconstruire manuellement chaque élément associé.
+- **Guidez la vérification des documents** dans Review avancée : attirez l'attention sur une valeur avec une couleur et indiquez précisément ce qui doit être vérifié.
+- **Maîtrisez vos traitements génératifs** en choisissant vos fournisseurs de modèles, en ajustant les délais de traitement et en consultant les estimations de coût.
 
 ## Changements incompatibles : actions à prévoir
 
-- **Extraction générative :** sélectionnez un modèle dans l'Agent utilisé pour traiter des champs ou groupes génératifs. Sans modèle explicite, les appels concernés peuvent répondre `412` avant la mise en file. Les Agents qui n'exécutent que de l'extraction classique ne sont pas concernés.
-- **Export d'Agents d'extraction :** indiquez `with_files=true` ou `with_files=false` dans l'appel de préparation de l'archive.
-- **Intégrations existantes :** utilisez les chemins canoniques Extract, adaptez vos sondes de santé et ne transmettez plus `PROCESSING` dans une mise à jour Review. Si vous utilisiez déjà l'API des dépôts de Blueprints, adaptez aussi la publication et la lecture. Voir les [migrations API](#migrations-api) en fin de page.
+Les adaptations ci-dessous concernent les Agents et les intégrations qui utilisent les fonctionnalités ou les appels mentionnés.
+
+- **Agents d'extraction générative :** si des champs ou groupes génératifs utilisent un modèle de repli implicite, sélectionnez explicitement un modèle dans l'Agent. Sans modèle renseigné, les appels concernés peuvent renvoyer une erreur `412` avant la mise en file. Les traitements exclusivement classiques ne sont pas concernés par cette exigence.
+- **Intégrations API Extract :** si vous préparez l'export d'un Agent par API, renseignez désormais le paramètre obligatoire `with_files` (`true` ou `false`). Deux routes canoniques nécessitent également une barre oblique finale.
+- **Intégrations API Review :** si vous modifiez le statut d'un document par API, n'envoyez plus la valeur `PROCESSING`, qui reste un état géré par le service.
+
+D'autres adaptations ciblées concernent les anciennes URL Extract, les sondes de supervision, la copie et le transfert d'Agents, ainsi que les clients qui utilisaient déjà l'API des dépôts de Blueprints. Consultez le [tableau des migrations API](#migrations-api) si votre intégration utilise ces appels.
+
+Si votre intégration valide strictement les réponses JSON, vérifiez aussi les [évolutions de paramètres et de réponses](#autres-evolutions-de-parametres-et-de-reponses), notamment les champs de fichiers désormais facultatifs ou susceptibles de contenir une valeur nulle.
 
 ## Nouvelles fonctionnalités et améliorations
 
 ### Blueprints et transferts de configuration
 
-- **Blueprints :** créez, réutilisez, modifiez ou supprimez des ensembles de ressources : Agents et modèles d'extraction ou de classification, ainsi que Workflows. La liste indique les types de ressources et leur contenu, et identifie les dépôts en lecture seule.
-- **Workflows :** exportez un Workflow avec ses dépendances et importez-le dans un autre environnement. Avant de mettre à jour un Workflow existant, vérifiez les objets ciblés, les références aux fournisseurs et les connexions et secrets propres à l'environnement de destination.
-- **Agents, modèles et files de Review :** exportez et importez leurs configurations. L'export d'un Agent d'extraction peut exclure ses fichiers, et celui d'une file de Review ne contient ni documents ni valeurs.
+- **Blueprints :** créez des ensembles de ressources réutilisables pour partager vos configurations entre environnements. Ils peuvent regrouper des Agents et des modèles d'extraction ou de classification, ainsi que des Workflows. Vous pouvez les modifier ou les supprimer, consulter leur contenu et identifier les dépôts en lecture seule.
+- **Transfert de Workflows :** exportez un Workflow avec ses dépendances, puis importez-le dans un autre environnement pour éviter de recréer manuellement chaque objet associé. Avant de mettre à jour un Workflow existant, vérifiez les objets ciblés, les références aux fournisseurs, les connexions et les secrets propres à l'environnement de destination.
+- **Transfert d'Agents, de modèles et de files de Review :** réutilisez leurs configurations. Pour un Agent d'extraction, vous pouvez choisir de ne pas inclure les fichiers ; pour une file de Review, l'export contient la configuration, sans les documents ni leurs valeurs.
 
 ### Workflows et suivi des jobs
 
-- **Notifications par job :** à la création d'un job via l'API, sélectionnez les événements à notifier avec le paramètre facultatif `webhook_events`. Ce réglage s'applique au job, pas à la configuration du Workflow. Voir [l'exemple de création de job](#filtrer-les-notifications-a-la-creation-dun-job).
-- **Suivi :** consultez plus facilement les jobs enfants et leurs détails dans le panneau latéral de la liste des jobs.
+- **Notifications par job :** si votre intégration ne doit recevoir que les notifications de réussite ou d'échec, filtrez les événements lors de la création d'un job via l'API avec le paramètre facultatif `webhook_events`. Ce réglage s'applique au job, pas à la configuration du Workflow dans l'interface. Voir [comment filtrer les notifications à la création d'un job](#filtrer-les-notifications-a-la-creation-dun-job).
+- **Suivi des jobs :** retrouvez les jobs enfants et leurs détails dans le panneau latéral de la liste des jobs, pour identifier plus facilement le traitement à examiner.
 - **Étapes Python :** utilisez des tunnels SSH lorsque l'environnement est configuré pour les prendre en charge.
 
 ### Review et Review avancée
 
-- **Consignes par champ :** depuis le Workflow, affichez une couleur personnalisée et un message de vérification pour une valeur. Le message explique à la personne qui traite le document ce qu'elle doit vérifier. Voir [l'exemple de configuration d'un champ](#transmettre-une-couleur-et-un-message-a-la-review-avancee).
-- **Entrée et identification :** l'étape de Review avancée utilise par défaut le résultat d'Extract. Vous pouvez transmettre un identifiant externe pour retrouver le document.
-- **Traitement des documents :** relancez manuellement la vérification des règles ou un webhook en échec. La saisie bénéficie d'un raccourci pour copier la valeur du champ suivant, et le défilement permet de passer d'une page à l'autre.
+- **Consignes de vérification par champ :** depuis le Workflow, associez une couleur et un message personnalisé à une valeur. Par exemple, demandez à la personne qui vérifie le document de comparer la date extraite avec celle de la pièce d'identité. Voir [comment transmettre une couleur et un message](#transmettre-une-couleur-et-un-message-a-la-review-avancee).
+- **Préparation de la vérification :** l'étape de Review avancée utilise par défaut le résultat d'Extract. Vous pouvez transmettre un identifiant externe pour retrouver le document.
+- **Vérification et navigation :** relancez manuellement le contrôle des règles ou un webhook en échec. Un raccourci permet de copier la valeur du champ suivant, et le défilement de la visionneuse permet de passer d'une page à l'autre.
 - **Entretien des files :** demandez la suppression en lot des documents anciens, selon votre politique de conservation.
 
 ### Extraction, classification et modèles de langage
 
-- **Modèles de langage :** ajoutez un fournisseur de modèles propre à votre organisation et choisissez un délai de 60 à 300 secondes pour les traitements génératifs des Agents d'extraction ou de classification.
-- **Traces :** consultez les estimations de coût des appels aux modèles de langage. Ces estimations ne correspondent pas nécessairement aux montants facturés.
-- **Classification :** consultez l'état de correction dans la liste des documents des Agents de classification.
+- **Fournisseurs de modèles :** ajoutez un fournisseur de modèles de langage propre à votre organisation.
+- **Délais de traitement :** choisissez un délai de 60 à 300 secondes pour les traitements génératifs des Agents d'extraction ou de classification.
+- **Suivi des coûts :** consultez dans les traces les estimations de coût des appels aux modèles de langage, pour mieux suivre leur utilisation. Ces estimations ne correspondent pas nécessairement aux montants facturés.
+- **Classification :** retrouvez l'état de correction dans la liste des documents des Agents de classification.
 - **Groupes d'extraction :** l'API expose le champ `group_labels` et prend en charge sa mise à jour.
 
-### Principaux correctifs
+### Interface et utilisation quotidienne
 
-- En Review avancée, **`CLEAR ALL`** efface aussi les valeurs des groupes. L'édition d'une cellule n'affiche plus simultanément l'ancienne valeur et la nouvelle, et le bouton d'envoi s'actualise quand les conditions de validation sont réunies.
-- Les exports de jeux de données récupèrent les images des pages depuis le stockage documentaire commun en priorité, avec repli sur le stockage historique.
-- Plusieurs opérations de copie et de transfert conservent mieux les annotations de position et les libellés. La création et la synchronisation des dépôts de Blueprints ont aussi été corrigées.
-- L'application peut demander un rafraîchissement après une mise à jour de l'interface. Les jetons API sont masqués visuellement dans les paramètres.
+- L'application peut vous inviter à actualiser la page après une mise à jour de l'interface.
+- Les jetons API sont masqués visuellement dans les paramètres.
+
+## Principaux correctifs
+
+- **Review avancée :** l'action **`CLEAR ALL`** efface aussi les valeurs des groupes. L'édition d'une cellule n'affiche plus simultanément l'ancienne valeur et la nouvelle, et le bouton d'envoi s'actualise lorsque les conditions de validation sont réunies.
+- **Export de jeux de données :** la récupération des images de pages a été corrigée, y compris pour les documents utilisant l'ancien stockage.
+- **Copie et transfert de configurations :** plusieurs opérations conservent mieux les annotations de position et les libellés. La création et la synchronisation des dépôts de Blueprints ont également été corrigées.
 
 Pour les changements déjà introduits dans la série précédente, consultez les [notes de version 26.8.x](version-26.8.x-06-10-2026.md).
 
 ## Détails avancés pour les intégrations API
+
+Cette section s'adresse aux intégrateurs et aux personnes qui configurent des Workflows. Retrouvez les exemples d'utilisation et les contrats d'API détaillés selon votre besoin : [filtrage des notifications](#filtrer-les-notifications-a-la-creation-dun-job), [consignes de Review avancée](#transmettre-une-couleur-et-un-message-a-la-review-avancee), [migrations API](#migrations-api), [transferts et ressources](#transferts-ressources-et-entretien) ou [autres évolutions API](#autres-evolutions-de-parametres-et-de-reponses).
 
 ### Filtrer les notifications à la création d'un job
 
