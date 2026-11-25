@@ -12,7 +12,7 @@ Cette version facilite le transfert de vos configurations d'un environnement à 
 
 Les adaptations ci-dessous concernent les Agents et les intégrations qui utilisent les fonctionnalités ou les appels mentionnés.
 
-- **Agents d'extraction générative :** si des champs ou groupes génératifs utilisent un modèle de repli implicite, sélectionnez explicitement un modèle dans l'Agent. Sans modèle renseigné, les appels concernés peuvent renvoyer une erreur `412` avant la mise en file. Les traitements exclusivement classiques ne sont pas concernés par cette exigence.
+- **Agents d'extraction générative :** reciTAL ne sélectionne plus de modèle par défaut. Si vous n'avez pas encore configuré votre Agent pour les traitements génératifs, choisissez explicitement un fournisseur et un modèle. Sans cette configuration, les appels concernés peuvent renvoyer une erreur HTTP `412` avant la mise en file. Les traitements exclusivement classiques ne sont pas concernés.
 - **Intégrations API Extract :** si vous préparez l'export d'un Agent par API, renseignez désormais le paramètre obligatoire `with_files` (`true` ou `false`). Deux routes canoniques nécessitent également une barre oblique finale.
 - **Intégrations API Review :** si vous modifiez le statut d'un document par API, n'envoyez plus la valeur `PROCESSING`, qui reste un état géré par le service.
 
