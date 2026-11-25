@@ -23,18 +23,26 @@ Un layout est composé de trois éléments :
 Commencez avec une version simple : une feuille Config et une ou deux sections. Ajoutez les règles, composants et référentiels après avoir validé le parcours de revue de base.
 {% endhint %}
 
-## 2. Préparer et importer le fichier de layout
+## 2. Configurer, importer ou exporter le layout
 
 {% hint style="info" %}
-Format pris en charge : fichier .ods (LibreOffice Calc). Un fichier créé dans Microsoft Excel doit être enregistré ou exporté au format ODS avant son import.
+Le layout se configure directement dans le viewer de classeur intégré à la
+plateforme ; aucun fichier ODS n'est nécessaire pour le modifier. L'import et
+l'export de fichiers de layout utilisent le format ODS. Un fichier Excel doit
+être exporté au format ODS avant de pouvoir être importé.
 {% endhint %}
 
-**Étapes recommandées**
+### Configurer le layout dans l'application
 
-* Créez le fichier dans LibreOffice Calc, ou préparez-le dans Excel puis enregistrez-le au format ODS.
-* Créez la feuille Config avec les en-têtes exacts et dans l'ordre attendu.
-* Ajoutez une feuille par onglet à afficher dans l'application.
-* Importez le fichier dans une nouvelle version de la file, puis utilisez l'aperçu avant de la rendre active.
+1. Dans l'onglet `Versions`, choisissez `Nouveau Layout` pour ouvrir une
+   version à configurer.
+2. Modifiez les feuilles dans le viewer de classeur intégré, puis choisissez
+   `Enregistrer` pour sauvegarder le layout.
+3. Utilisez `Aperçu` pour vérifier le rendu, puis `Activer` lorsque la version
+   est prête.
+
+Pour partir d'un fichier, choisissez `Importer le layout` et fournissez un
+fichier ODS. Pour récupérer un fichier, utilisez `Télécharger la Configuration`.
 
 {% hint style="warning" %}
 **Attention aux noms**\
@@ -74,10 +82,63 @@ La colonne mandatory couvre l'absence de valeur. Pour refuser également une cha
 
 Toute feuille qui ne porte pas un nom réservé devient un onglet de la Review App. Le nom de la feuille est le titre affiché à l'opérateur.
 
-{% hint style="success" %}
-**Mise en forme**\
-Les couleurs de fond, bordures et le gras appliqués dans le tableur sont repris dans la Review App. Utilisez-les sobrement : par exemple, une ligne de titre et des libellés lisibles.
-{% endhint %}
+### Titres, bordures et styles de cellule
+
+Une cellule contenant du texte simple affiche un libellé ou un titre ; elle ne
+crée pas de champ. Dans le viewer de classeur intégré, vous pouvez mettre en
+forme les cellules des feuilles de section et des composants. La Review App
+reprend les couleurs de fond, les quatre bordures (haut, bas, gauche, droite)
+et le gras, cellule par cellule, y compris pour une cellule contenant
+`$champ`. Ces styles ne modifient ni le champ défini dans `Config` ni son
+comportement.
+
+**Exemple : titre et séparateur**. Dans la feuille `Informations contrat`,
+utilisez la grille `30% | 70%`. Saisissez `Informations du contrat` sur une
+ligne, puis les libellés et champs ci-dessous. Mettez le titre en gras avec un
+fond coloré et ajoutez une bordure inférieure aux cellules de la ligne de titre
+ou aux cellules de libellé pour séparer visuellement les lignes.
+
+```text
+Feuille : Informations contrat
+30% | 70%
+Informations du contrat |
+Type de contrat | $contract_type
+Numéro de contrat | $contract_number
+```
+
+Pour reproduire l’essai, appliquez les styles dans le viewer de classeur
+intégré, puis choisissez `Enregistrer`. Utilisez `Aperçu` pour contrôler le
+rendu avant d’`Activer` la version. La première ligne reste la grille de
+largeur : le formatage ne la remplace pas et ne configure pas les champs.
+
+### Cellules fusionnées et débordement du texte
+
+La fusion de cellules dans le viewer de classeur est prise en compte comme une
+largeur couvrant plusieurs colonnes de la grille. Par exemple, avec
+`30% | 30% | 40%`, fusionnez les trois cellules de la ligne du titre et
+saisissez `Informations du contrat` dans la cellule fusionnée : elle occupe la
+largeur totale de la grille. Choisissez `Enregistrer`, puis `Aperçu` pour
+vérifier le résultat. La fusion est distincte du style et ne change pas la
+grille définie sur la première ligne.
+
+Le parseur peut aussi regrouper certaines cellules vides adjacentes lorsque
+leurs fonds et bordures sont compatibles ; ce regroupement automatique ne
+remplace pas une fusion explicite dans le viewer de classeur.
+
+Le texte statique est rendu dans une grille CSS sans règle spécifique de
+débordement ni de texte sur une seule ligne. Le comportement dépend donc du
+contenu et de la largeur disponible : un texte avec des espaces peut revenir à
+la ligne ; une chaîne sans point de coupure peut élargir la piste de la
+grille, puis être coupée au bord de la section, dont le conteneur masque le
+débordement. Le code ne garantit pas que le texte s’étende dans une cellule
+voisine vide. Pour un titre large, fusionnez les cellules ou répartissez la
+grille pour lui réserver l’espace ; ne confondez pas une éventuelle extension
+visuelle avec une fusion de cellules.
+
+Les styles pris en charge se limitent au fond, aux bordures et au gras. Les
+autres propriétés du tableur ne sont pas garanties ; dans les tableaux de
+groupes, l’en-tête est rendu par l’interface avec son propre style. Vérifiez
+chaque mise en page dans l’aperçu.
 
 ### Première ligne : grille de colonnes
 
@@ -103,9 +164,29 @@ Date de signature | $signature_date
 
 Préfixez le nom de la feuille par ! pour rendre la section optionnelle, par exemple !Annexes. La section ne sera visible que si au moins une des valeurs est non-nulle.
 
-### Composants réutilisables
+### Composants réutilisables et zone fixe
 
-Pour réutiliser la même mise en page dans plusieurs sections, créez une feuille nommée #NomDuComposant, puis insérez #NomDuComposant dans une ligne de section. Avec le préfixe ##, le composant est affiché dans la zone fixe de la section. Cette fonctionnalité est particulièrement utile pour les headers / pied de page identiques sur toutes les sections.
+Pour réutiliser un bloc de mise en page dans plusieurs onglets, créez une
+feuille composant nommée `#EN_TETE`, avec sa propre grille en première ligne
+et son contenu dans les lignes suivantes. Dans chaque feuille de section,
+insérez `#EN_TETE` dans une cellule d’une ligne. Le composant reprend ses
+cellules, libellés, champs et styles ; vous pouvez ainsi partager un en-tête
+ou un bloc d’information sans le recopier.
+
+Pour garder ce bloc visible pendant le défilement de la section, nommez sa
+feuille `##EN_TETE` ; la référence dans la section reste `#EN_TETE`. Le
+préfixe `##` est porté par le nom de la feuille composant, pas par la
+référence. L’application rend alors ses lignes dans une zone fixe au-dessus du
+contenu défilant. Le composant fixe reste dans l’onglet où il est inséré : il
+ne fixe pas toute la section et ne crée pas un nouvel onglet.
+
+**Exemple reproductible** : créez une feuille `##EN_TETE` avec la grille
+`100%` et une ligne de texte `Dossier de revue` mise en gras. Dans chaque
+feuille de section, ajoutez une ligne contenant `#EN_TETE`. Le titre reste
+visible au-dessus du contenu défilant dans la Review App. L’aperçu du layout
+affiche le composant, mais ne reproduit pas cette séparation fixe/défilante :
+vérifiez ce comportement dans la Review App. Pour un bloc réutilisable mais
+défilant, nommez plutôt la feuille `#EN_TETE`.
 
 ### Afficher un groupe sous forme de tableau
 
